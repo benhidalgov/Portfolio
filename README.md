@@ -18,7 +18,7 @@ This is a beginner-level portfolio webpage project built using Django for the ba
 
 ## Usage
 
--Showcase personal projects, on the languages used mostly during my college path and personal ones.
+Showcase personal projects, on the languages used mostly during my college path and personal ones.
 -Leave information for recruiters for them to review some of my projects.
 -Learning new things.
 
