@@ -1,0 +1,58 @@
+/* --- Reemplazar la sección de GRID DE PROYECTOS en ProjectsSummary.css --- */
+.projects-summary {
+    padding: 4rem 0; /* Ajusta el padding para que fluya con el main-content-area */
+    background-color: transparent; /* No necesita fondo, usa el fondo negro global */
+    color: #f0f0f0;
+}
+
+.summary-header {
+    /* Mantener un encabezado simple */
+    justify-content: flex-start;
+    margin-bottom: 2.5rem;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Muestra 2 columnas (imagen y detalles) */
+    gap: 5rem 3rem; /* Espaciado vertical y horizontal */
+}
+
+.project-card-summary {
+    background-color: transparent; /* Fondo transparente */
+    border-radius: 0;
+    overflow: visible;
+    box-shadow: none; /* Eliminar sombras */
+    display: contents; /* Permite que los elementos fluyan directamente en la cuadrícula */
+}
+
+.project-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 4/3; /* Proporción de imagen */
+    object-fit: cover;
+    border: 1px solid #222; /* Borde sutil para definir el área */
+}
+
+.card-content {
+    padding: 0;
+    padding-top: 0.5rem; /* Pequeño espacio sobre el texto */
+    color: #aaa;
+}
+
+.card-content h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff; /* Título blanco */
+    margin-bottom: 0.2rem;
+}
+
+.card-tech, .card-content p {
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.details-link {
+    /* Eliminar el enlace de detalles si no lo necesitas, o hacerlo muy sutil */
+    display: none; 
+}

@@ -1,0 +1,26 @@
+/* src/styles/layout.css */
+
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.main-content-area {
+    /* Offset para compensar el ancho fijo del sidebar */
+    margin-left: 280px; 
+    flex-grow: 1;
+    min-height: 100vh;
+    padding: 0 4rem; /* Espaciado lateral para el contenido */
+    box-sizing: border-box;
+}
+
+/* --- Footer (Debe ajustarse al nuevo layout) --- */
+.footer {
+    /* Lo esencial para que se vea bien en el espacio principal */
+    display: flex;
+    justify-content: center; /* Centrar el contenido en lugar de espaciarlo */
+    padding: 2rem;
+    margin-top: 4rem;
+    border-top: 1px solid #333;
+    text-align: center;
+}

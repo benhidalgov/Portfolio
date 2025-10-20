@@ -1,0 +1,79 @@
+/* src/Components/Sidebar/Sidebar.css */
+
+.sidebar {
+    /* Posicionamiento y Dimensiones */
+    position: fixed; /* Fija la barra lateral */
+    top: 0;
+    left: 0;
+    width: 280px; /* Ancho fijo para la barra lateral */
+    height: 100vh;
+    padding: 2rem;
+    padding-top: 4rem;
+    /* Apariencia */
+    background-color: #000; /* Fondo negro */
+    border-right: 1px solid #333; /* Línea de separación sutil */
+    overflow-y: auto;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Para empujar "Dark/Light" hacia abajo */
+}
+
+/* --- ELEMENTOS DE TEXTO INTRODUCTORIO --- */
+.sidebar-intro p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #a0a0a0; /* Gris sutil */
+    margin-bottom: 2rem;
+}
+
+.sidebar-section-title {
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+}
+
+/* --- ESTILO DE ENLACES DE NAVEGACIÓN (Botones de caja) --- */
+.sidebar-nav-item {
+    display: block;
+    font-size: 1rem;
+    padding: 0.75rem 0.5rem;
+    margin-bottom: 0.2rem;
+    border: 1px solid transparent; /* Inicialmente transparente */
+    transition: all 0.2s;
+    color: #fff;
+    font-weight: 500;
+}
+
+/* Hover/Selección: Invertido */
+.sidebar-nav-item:hover {
+    border-color: #555;
+    background-color: #1a1a1a;
+    cursor: pointer;
+}
+
+.sidebar-nav-item.active { /* Para cuando uses la clase "active" de react-router-dom */
+    background-color: #fff;
+    color: #000;
+}
+
+/* --- SECCIÓN DE CASOS DE ESTUDIO (Enlaces complejos) --- */
+.case-study-list {
+    margin-top: 1.5rem;
+}
+
+.case-study-item {
+    display: block;
+    padding: 0.75rem 0.5rem;
+    border-left: 3px solid transparent;
+    transition: border-left-color 0.2s;
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.case-study-item:hover {
+    border-left-color: #00bcd4; /* Color de acento al pasar el mouse */
+}

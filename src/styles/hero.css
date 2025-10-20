@@ -1,0 +1,123 @@
+/* --- CONFIGURACIÓN GENERAL DEL HERO --- */
+.hero {
+    display: flex;
+    flex-direction: row; /* Diseño de dos columnas en escritorio */
+    justify-content: space-between;
+    align-items: center;
+    min-height: 80vh; /* Altura generosa */
+    padding: 4rem 6rem;
+    background-color: #1a1a1a; /* Fondo oscuro */
+    color: #f0f0f0; /* Texto claro */
+    gap: 4rem;
+}
+
+/* --- CONTENIDO DE TEXTO --- */
+.hero-content {
+    max-width: 600px;
+}
+
+.hero-greeting {
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: #999;
+    margin-bottom: 0.5rem;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+.highlight {
+    color: #00bcd4; /* Color de acento (azul/cian) */
+    display: block; /* Mantiene la línea moderna y legible */
+}
+
+.hero-description {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: #ccc;
+    margin-bottom: 2.5rem;
+}
+
+/* --- BOTONES CTA --- */
+.hero-actions {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.cta-button {
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.primary {
+    background-color: #00bcd4;
+    color: #1a1a1a;
+    border: 2px solid #00bcd4;
+}
+
+.secondary {
+    background-color: transparent;
+    color: #00bcd4;
+    border: 2px solid #00bcd4;
+}
+
+.primary:hover {
+    background-color: #0097a7;
+    border-color: #0097a7;
+}
+
+.secondary:hover {
+    background-color: #00bcd41a; /* Un ligero fondo al pasar el mouse */
+}
+
+/* --- IMAGEN PLACEHOLDER --- */
+.hero-image-placeholder {
+    width: 300px;
+    height: 300px;
+    background-color: #333;
+    border-radius: 50%; /* Circular para un look moderno */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f0f0f0;
+    font-size: 1.5rem;
+    font-weight: 500;
+    border: 5px solid #00bcd4;
+}
+
+/* --- RESPONSIVE DESIGN (Móviles y Tablets) --- */
+@media (max-width: 1024px) {
+    .hero {
+        flex-direction: column; /* Apila el contenido verticalmente */
+        text-align: center;
+        padding: 3rem 1rem;
+    }
+
+    .hero-content {
+        order: 2; /* Mantiene el texto después de la imagen en móvil */
+        max-width: 100%;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-image-placeholder {
+        order: 1; /* Mueve la imagen arriba */
+        margin-bottom: 2rem;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
+}

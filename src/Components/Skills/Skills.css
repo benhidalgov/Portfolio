@@ -1,0 +1,67 @@
+/* --- Skills Styles: src/Components/Skills/Skills.css --- */
+
+.skills-section {
+    padding: 6rem 0;
+    border-top: 1px solid #1a1a1a; /* Separador sutil */
+}
+
+.skills-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-align: center;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+}
+
+.skill-category-card {
+    background-color: #0a0a0a; /* Fondo muy sutil */
+    padding: 1.5rem;
+    border: 1px solid #1a1a1a;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.category-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #333; /* Separador */
+    padding-bottom: 0.5rem;
+}
+
+.skill-list {
+    list-style: none;
+    padding: 0;
+}
+
+.skill-item {
+    font-size: 0.95rem;
+    color: #ccc;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+}
+
+.skill-icon {
+    color: #b0b0b0; /* Icono discreto */
+    font-size: 0.8rem;
+    margin-right: 0.7rem;
+}
+
+/* --- RESPONSIVO --- */
+@media (max-width: 768px) {
+    .skills-title {
+        text-align: left;
+        margin-bottom: 2rem;
+    }
+}

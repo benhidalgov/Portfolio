@@ -1,0 +1,161 @@
+/* --- Sidebar Styles: src/Components/Sidebar/Sidebar.css --- */
+
+/* --- GENERAL & LAYOUT (Fija la barra lateral) --- */
+.sidebar {
+    /* Posicionamiento y Dimensiones */
+    position: fixed; /* Fija la barra lateral */
+    top: 0;
+    left: 0;
+    width: 280px; /* Ancho fijo para la barra lateral */
+    height: 100vh;
+    padding: 2.5rem 2rem;
+    /* Apariencia */
+    background-color: #000; /* Fondo negro puro */
+    border-right: 1px solid #1a1a1a; /* Línea de separación sutil */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Empuja el footer (tema) hacia abajo */
+    overflow-y: auto;
+}
+
+/* --- SECCIÓN SUPERIOR: INTRODUCCIÓN Y TEXTO --- */
+.sidebar-header {
+    margin-bottom: 2rem;
+}
+
+/* Estilo para el contenedor del logo (simulando el diseño cuadrado) */
+.sidebar-title .logo-placeholder {
+    background-color: #fff;
+    color: #000;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 3rem;
+    border: 1px solid #1a1a1a;
+}
+
+.sidebar-intro-text {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: #999; /* Texto gris sutil */
+    margin-bottom: 2rem;
+}
+
+/* --- SECCIÓN CENTRAL: NAVEGACIÓN Y ENLACES --- */
+.sidebar-nav-sections {
+    flex-grow: 1; /* Permite que esta sección ocupe el espacio disponible */
+    padding-top: 1rem;
+}
+
+.section-title {
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    margin-top: 2rem;
+}
+
+/* --- ENLACES PRINCIPALES (WORK, ABOUT, PLAY) --- */
+.nav-item-primary {
+    display: flex;
+    flex-direction: column;
+    padding: 0.75rem 0.5rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid transparent; /* Para el efecto de borde en hover */
+    transition: all 0.2s;
+    border-radius: 4px;
+}
+
+.item-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.item-subtext {
+    font-size: 0.75rem;
+    color: #777;
+    margin-top: 0.2rem;
+}
+
+/* Efecto de Hover/Active: Simula el diseño de "caja" con borde sutil */
+.nav-item-primary:hover,
+.nav-item-primary.active {
+    border-color: #333;
+    background-color: #0a0a0a;
+}
+
+/* --- ENLACES DE CASOS DE ESTUDIO (Lista de enlaces de la izquierda) --- */
+.case-study-list {
+    /* Lista simple para la sección 'SELECTED CASE STORIES' */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.case-study-item {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 0.5rem;
+    border-left: 3px solid transparent;
+    transition: border-left-color 0.2s;
+    color: #fff;
+    font-size: 0.9rem;
+    /* Ajusta el espaciado para que se parezca a un botón/lista */
+}
+
+.case-study-item:hover {
+    border-left-color: #00bcd4; /* Color de acento para el borde izquierdo */
+    background-color: #0a0a0a;
+}
+
+.case-study-icon {
+    /* Simula el círculo/cuadrado de color del ícono */
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #00bcd4;
+    margin-right: 0.8rem;
+}
+
+.case-study-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.case-study-name {
+    font-weight: 600;
+}
+
+.case-study-detail {
+    font-size: 0.75rem;
+    color: #777;
+}
+
+/* --- SECCIÓN INFERIOR: CAMBIO DE TEMA --- */
+.sidebar-footer {
+    padding-top: 2rem;
+    border-top: 1px solid #1a1a1a;
+}
+
+.theme-toggle-button {
+    /* Estilo para el botón de Dark / Light */
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.85rem;
+    padding: 0.5rem 0;
+    transition: color 0.2s;
+}
+
+.theme-toggle-button:hover {
+    color: #00bcd4;
+}
