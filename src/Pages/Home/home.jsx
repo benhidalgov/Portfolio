@@ -1,8 +1,7 @@
 import React from 'react';
 import Hero from "../../Components/Hero/hero.jsx"; // Importar el componente Hero
-import ProjectsSummary from '../../Components/ProjectsSummary/ProjectsSummary.jsx'; // Componente de Resumen de Proyectos
 import Skills from '../../Components/Skills/Skills.jsx'; // Nuevo componente de Habilidades
-
+import Project from '../Projects/projects.jsx'
 function Home() {
   return (
     <main className="home-page-container">
@@ -13,7 +12,7 @@ function Home() {
       <Skills />
 
       {/* 3. RESUMEN DE PROYECTOS (Reemplaza el código obsoleto) */}
-      <ProjectsSummary />
+      <Project />
       
     </main>
   );

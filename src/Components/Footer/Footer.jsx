@@ -11,28 +11,26 @@ function Footer() {
         <h3>Navegación</h3>
         {/* Enlaces internos usando Link */}
         <Link to="/" className="footer-link">Inicio</Link>
-        <Link to="/projects" className="footer-link">Proyectos</Link>
+        <Link to="/Next" className="footer-link"> Futuros Proyectos</Link>
         <Link to="/about" className="footer-link">Sobre Mí</Link>
-        <Link to="/contact" className="footer-link">Contacto</Link>
       </div>
 
       <div className="footer-social">
         <h3>Conéctate</h3>
         {/* Enlaces externos usando <a> */}
-        <a href="[Tu URL de GitHub]" target="_blank" rel="noopener noreferrer" className="social-link">
+        <a href="https://github.com/benhidalgov" target="_blank" rel="noopener noreferrer" className="social-link">
           GitHub
         </a>
-        <a href="[Tu URL de LinkedIn]" target="_blank" rel="noopener noreferrer" className="social-link">
+        <a href="https://www.linkedin.com/in/benjamin-hidalgov/" target="_blank" rel="noopener noreferrer" className="social-link">
           LinkedIn
         </a>
-        <a href="mailto:[Tu Correo Electrónico]" className="social-link">
+        <a href="Contacto via correo por hidalgobenjaminv@gmail.com" className="social-link">
           Email
         </a>
       </div>
 
       <div className="footer-copyright">
         <p>Hecho con ❤️ y React.</p>
-        <p>&copy; {currentYear} [Tu Nombre]. Todos los derechos reservados.</p>
       </div>
     </footer>
   );

@@ -1,0 +1,163 @@
+/* --- Sidebar Styles: src/Components/Sidebar/Sidebar.css --- */
+
+/* --- GENERAL & LAYOUT (Fija la barra lateral) --- */
+.sidebar {
+    font-family: 'Courier New', Courier, monospace; /* Fuente de código */
+    /* Posicionamiento y Dimensiones */
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 280px; 
+    height: 100vh;
+    padding: 2.5rem 2rem;
+    /* Apariencia */
+    background-color: #000; /* Fondo negro puro */
+    border-right: 1px solid #1a1a1a; /* Línea de separación sutil */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    overflow-y: auto;
+}
+
+/* --- SECCIÓN SUPERIOR: LOGO Y TEXTO INTRO --- */
+.sidebar-header {
+    margin-bottom: 2rem;
+}
+
+.sidebar-title {
+    /* Contenedor del logo */
+    display: inline-block;
+    margin-bottom: 3rem;
+}
+
+/* Estilo para el contenedor del logo (usado para la imagen o placeholder de texto) */
+.sidebar-logo-img {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #BB86FC; /* Borde púrpura de acento */
+    background-color: #000;
+    padding: 4px; /* Pequeño margen interno */
+}
+
+
+.sidebar-intro-text {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: #999; 
+    margin-bottom: 2rem;
+}
+
+/* --- SECCIÓN CENTRAL: NAVEGACIÓN Y ENLACES --- */
+.sidebar-nav-sections {
+    flex-grow: 1; 
+    padding-top: 1rem;
+}
+
+.section-title {
+    font-size: 0.8rem;
+    color: #BB86FC; /* Título de sección en púrpura */
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    margin-top: 2rem;
+}
+
+/* --- ENLACES PRINCIPALES (WORK, ABOUT, CONTACT) --- */
+.nav-item-primary {
+    display: flex;
+    flex-direction: column;
+    padding: 0.75rem 0.5rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid transparent; 
+    transition: all 0.2s;
+    border-radius: 0; /* Desactivar bordes redondeados */
+}
+
+.item-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.05em;
+}
+
+.item-subtext {
+    font-size: 0.75rem;
+    color: #777;
+    margin-top: 0.2rem;
+}
+
+/* Efecto de Hover/Active: Usa el borde de línea dura púrpura */
+.nav-item-primary:hover,
+.nav-item-primary.active {
+    border-color: #BB86FC;
+    background-color: #1a1a1a;
+    box-shadow: 2px 2px 0 #BB86FC; /* Simula un borde de código/pixel */
+}
+
+/* --- ENLACES DE CASOS DE ESTUDIO --- */
+.case-studies {
+    margin-top: 3rem;
+}
+
+.case-study-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 0.5rem 0.5rem;
+    border-left: 2px solid transparent;
+    transition: border-left-color 0.2s;
+    color: #fff;
+    font-size: 0.9rem;
+    margin-bottom: 0.1rem;
+}
+
+.case-study-item:hover {
+    border-left-color: #BB86FC; /* Borde izquierdo en color de acento */
+    background-color: #0a0a0a;
+}
+
+.case-study-symbol {
+    /* El ícono de círculo/punto */
+    color: #BB86FC; 
+    margin-right: 0.8rem;
+    font-size: 0.7rem;
+    line-height: 1.2;
+}
+
+.case-study-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.case-study-name {
+    font-weight: 400; /* Menos negrita */
+    color: #fff;
+}
+
+.case-study-detail {
+    font-size: 0.7rem;
+    color: #777;
+}
+
+/* --- SECCIÓN INFERIOR: CAMBIO DE TEMA --- */
+.sidebar-footer {
+    padding-top: 2rem;
+    border-top: 1px dashed #333; /* Línea discontinua */
+}
+
+.theme-toggle-button {
+    background: none;
+    border: 1px solid #BB86FC; /* Botón con borde púrpura */
+    color: #BB86FC;
+    cursor: pointer;
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+    transition: all 0.2s;
+    text-transform: uppercase;
+}
+
+.theme-toggle-button:hover {
+    background-color: #BB86FC;
+    color: #000; /* Texto negro en hover */
+}

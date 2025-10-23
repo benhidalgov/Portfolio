@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import './Sidebar.css'; 
+import '../../styles/sidebar.css'; 
 
-// Datos para la navegación principal (WORK, PLAY, ABOUT)
+// Datos para la navegación principal
 const primaryNav = [
-  { path: '/projects', name: 'WORK', subtext: 'A selection of recent work' },
-  { path: '/play', name: 'PLAY', subtext: 'Making things for fun' },
-  { path: '/about', name: 'ABOUT', subtext: "Let's get to know each other" },
+  { path: '/', name: 'Inicio', subtext: 'Volvamos a empezar' },
+  { path: '/Next', name: 'Próximos proyectos', subtext: 'Mis próximos proyectos.' },
+  { path: '/about', name: 'About me', subtext: "Conoce al profesional." }
 ];
 
 // Datos para la sección de "Case Studies" (Casos de Estudio)
@@ -34,19 +34,17 @@ function Sidebar() {
       {/* SECCIÓN SUPERIOR: Título / Nombre */}
       <div className="sidebar-header">
         <Link to="/" className="sidebar-title">
-          <div className="logo-placeholder">LOGO</div>
+          <div className="logo-placeholder">BH</div>
         </Link>
         <p className="sidebar-intro-text">
-          UI based product designer, currently at SFITT, building things that hopefully 
-          encourage us to lead more thoughtful lives.
+        "Ingeniero en Informática en desarrollo, fan de las soluciones escalables y que busca la realizacion de proyectos que puedan proteger al usuario"
         </p>
       </div>
-
-      {/* SECCIÓN CENTRAL: Enlaces Principales y Casos de Estudio */}
+      {/* SECCIÓN CENTRAL: Navegación Principal */}
       <div className="sidebar-nav-sections">
         {/* Enlaces Principales */}
         <div className="section-group">
-          <p className="section-title">NAVIGATE</p>
+          <p className="section-title">NAVEGACIÓN</p>
           {primaryNav.map((item) => (
             <Link 
               key={item.path} 

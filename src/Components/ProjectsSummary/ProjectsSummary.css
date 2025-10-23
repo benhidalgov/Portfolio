@@ -1,58 +1,116 @@
-/* --- Reemplazar la sección de GRID DE PROYECTOS en ProjectsSummary.css --- */
+/* --- ProjectsSummary Styles --- */
 .projects-summary {
-    padding: 4rem 0; /* Ajusta el padding para que fluya con el main-content-area */
-    background-color: transparent; /* No necesita fondo, usa el fondo negro global */
+    padding: 4rem 0;
+    background-color: transparent;
     color: #f0f0f0;
 }
 
 .summary-header {
-    /* Mantener un encabezado simple */
-    justify-content: flex-start;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 2.5rem;
+}
+
+.summary-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+}
+
+.view-all-link {
+    color: #00bcd4;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.view-all-link:hover {
+    color: #fff;
 }
 
 .summary-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Muestra 2 columnas (imagen y detalles) */
-    gap: 5rem 3rem; /* Espaciado vertical y horizontal */
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem 3rem;
 }
 
 .project-card-summary {
-    background-color: transparent; /* Fondo transparente */
+    background-color: transparent;
     border-radius: 0;
     overflow: visible;
-    box-shadow: none; /* Eliminar sombras */
-    display: contents; /* Permite que los elementos fluyan directamente en la cuadrícula */
+    box-shadow: none;
+    display: contents;
 }
 
 .project-image {
     width: 100%;
     height: auto;
     display: block;
-    aspect-ratio: 4/3; /* Proporción de imagen */
+    aspect-ratio: 4/3;
     object-fit: cover;
-    border: 1px solid #222; /* Borde sutil para definir el área */
+    border: 1px solid #222;
 }
 
 .card-content {
     padding: 0;
-    padding-top: 0.5rem; /* Pequeño espacio sobre el texto */
+    padding-top: 0.5rem;
     color: #aaa;
 }
 
 .card-content h3 {
     font-size: 1.1rem;
     font-weight: 700;
-    color: #fff; /* Título blanco */
+    color: #fff;
     margin-bottom: 0.2rem;
 }
 
-.card-tech, .card-content p {
+.card-content p {
     font-size: 0.9rem;
     color: #888;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.card-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.tech-tag {
+    background-color: #333;
+    color: #fff;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    font-weight: 500;
 }
 
 .details-link {
-    /* Eliminar el enlace de detalles si no lo necesitas, o hacerlo muy sutil */
-    display: none; 
+    color: #00bcd4;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.details-link:hover {
+    color: #fff;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .summary-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .summary-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
 }

@@ -10,20 +10,19 @@ export const projectData = [
     },
     {
         id: 2,
-        title: "Dashboard de Tareas en Tiempo Real",
-        description: "Herramienta de gestión de tareas que utiliza Firebase Firestore para actualizaciones en tiempo real y hooks personalizados para la lógica de CRUD.",
+        title: "Desarrollo de chatbot para Bravo Izquierdo.",
+        description: "Chatbot desarrollado para el cliente Bravo Izquierdo, este chatbot fue desarrollado en conjunto con IA de parte de copilot, para mejorar la experiencia de el usuario promedio buscando simplificar el tedio de tramites administrativos. Incluyendo una integracion con la plataforma de BUK",
         image: "https://placehold.co/400x250/80d400/ffffff?text=DASHBOARD+FIREBASE",
-        tech: ["React", "Firebase", "Hooks"],
-        link: "/projects/dashboard",
-        github: "https://github.com/[TuUsuario]/realtime-dashboard"
+        tech: ["Dart", "Flutter", "IA", "Copilot", "API", "BUK"],
+        github: "https://github.com/benhidalgov/Construye-"
     },
     {
         id: 3,
-        title: "App del Clima con API Externa",
-        description: "Aplicación que consume la API de OpenWeatherMap. Enseña el uso de useEffect para la captura de datos asíncrona y manejo de estados de carga/error.",
+        title: "Desarrollo de una politica de gobernanza de datos",
+        description: "Desarrollo de una politica de gobernanza de datos para los titulados de DUOC UC, en conjunto a la nueva legislacion en cuanto al manejo de datos personales, esto incluia limpieza y verificacion de datos personales junto a una automatizacion en POWER BI",
         image: "https://placehold.co/400x250/ff6f00/ffffff?text=WEATHER+APP",
-        tech: ["React", "Axios", "useEffect"],
-        link: "/projects/weather",
-        github: "https://github.com/[TuUsuario]/weather-app-react"
-    }
+        tech: ["Power BI", "Python", "SQL"],
+        github: ""
+    },
+    
 ];

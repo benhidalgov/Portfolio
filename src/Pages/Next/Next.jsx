@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// ✅ CORRECCIÓN FINAL: Usamos el salto de dos niveles necesario para llegar a src/data/
-import { projectData } from '../../data/project.jsx'; 
-import './ProjectsSummary.css';
+// ✅ CORRECCIÓN: Apuntando a 'projects.js' (plural)
+import { projectData } from '../../Pages/Next/next.js'; 
+import '../../styles/next.css';
 
 function ProjectsSummary() {
   // Tomamos solo los primeros 3 proyectos para el resumen de la página Home
@@ -31,6 +31,7 @@ function ProjectsSummary() {
               <h3>{project.title}</h3>
               <p>{project.description.substring(0, 80)}...</p>
               <div className="card-tech">
+                {/* Asegura que 'tech' o 'techStack' exista antes de mapear */}
                 {(project.tech || project.techStack || []).map((tech) => (
                   <span key={tech} className="tech-tag">{tech}</span>
                 ))}

@@ -1,67 +1,91 @@
-/* --- Skills Styles: src/Components/Skills/Skills.css --- */
-
+/* --- SECCIÓN PRINCIPAL --- */
 .skills-section {
-    padding: 6rem 0;
-    border-top: 1px solid #1a1a1a; /* Separador sutil */
+    font-family: 'Courier New', Courier, monospace;
+    padding: 4rem 0;
+    margin-top: 3rem;
+    color: #fff;
+    border-top: 1px solid #222; /* Separador sutil */
 }
 
+/* --- TÍTULO PRINCIPAL --- */
 .skills-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #fff;
+    font-size: 1.8rem;
+    color: #BB86FC;
+    text-align: center;
     margin-bottom: 3rem;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    text-align: center;
+    /* Efecto de línea dura/pixelado con sombra sutil */
+    text-shadow: 1px 1px 0 #000, 2px 2px 0 #BB86FC40;
 }
 
+/* --- GRID DE HABILIDADES --- */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2.5rem;
+    /* Divide en 4 columnas en escritorio, adaptable en tamaños menores */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
+/* --- TARJETA DE CATEGORÍA --- */
 .skill-category-card {
-    background-color: #0a0a0a; /* Fondo muy sutil */
+    background-color: #0d0d0d; /* Fondo un poco más claro que el body */
     padding: 1.5rem;
-    border: 1px solid #1a1a1a;
-    border-radius: 4px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid #333; /* Borde de marco */
+    /* Sombra exterior para destacar la caja */
+    box-shadow: 3px 3px 0 #1a1a1a; 
+    transition: box-shadow 0.3s;
 }
 
+.skill-category-card:hover {
+    box-shadow: 5px 5px 0 #BB86FC40; /* El púrpura se ilumina al pasar el mouse */
+}
+
+/* --- TÍTULO DE LA CATEGORÍA --- */
 .category-title {
-    font-size: 1.1rem;
-    font-weight: 700;
+    font-size: 1.2rem;
     color: #fff;
     margin-top: 0;
-    margin-bottom: 1.5rem;
-    border-bottom: 2px solid #333; /* Separador */
+    margin-bottom: 1.2rem;
     padding-bottom: 0.5rem;
+    border-bottom: 1px solid #444; /* Separador */
 }
 
+/* --- LISTA DE HABILIDADES --- */
 .skill-list {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .skill-item {
-    font-size: 0.95rem;
-    color: #ccc;
-    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-bottom: 0.6rem;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    line-height: 1.4;
 }
 
 .skill-icon {
-    color: #b0b0b0; /* Icono discreto */
-    font-size: 0.8rem;
-    margin-right: 0.7rem;
+    /* Estilo para el bullet point personalizado */
+    color: #BB86FC;
+    margin-right: 0.5rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
 }
 
-/* --- RESPONSIVO --- */
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        padding: 0 1rem;
+    }
+}
 @media (max-width: 768px) {
     .skills-title {
-        text-align: left;
-        margin-bottom: 2rem;
+        font-size: 1.5rem;
+        padding: 0 1rem;
     }
 }

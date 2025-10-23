@@ -6,15 +6,13 @@ import './styles/layout.css'; // Contiene .app-container y .main-content-area
 
 // Importaciones de Páginas
 import Home from './Pages/Home/home.jsx';
-import Projects from './Pages/Projects/projects.jsx';
-import About from './Pages/About/about.jsx'; 
-import Contact from './Pages/Contact/contact.jsx'; 
+import About from './Pages/about/about.jsx';
 
 // Importaciones de Componentes de Layout
 // NOTA: Hemos renombrado y usaremos Sidebar en lugar del Navbar superior
 import Sidebar from './Components/Sidebar/Sidebar.jsx'; 
 import Footer from './Components/Footer/Footer.jsx';
-
+import Next from './Pages/Next/Next.jsx';
 
 function App() {
   return (
@@ -34,8 +32,7 @@ function App() {
             {/* Rutas principales */}
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/contact" element={<Contact />} />
+            <Route path="/Next" element={<Next />} />
             
             {/* Ruta 404 */}
             <Route path="*" element={
