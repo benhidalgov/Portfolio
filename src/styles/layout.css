@@ -3,24 +3,30 @@
 .app-container {
     display: flex;
     min-height: 100vh;
+    background-color: var(--color-background); /* Asegura que el contenedor use el fondo del tema */
 }
 
 .main-content-area {
-    /* Offset para compensar el ancho fijo del sidebar */
-    margin-left: 280px; 
+    margin-left: 280px; /* Offset para el sidebar */
     flex-grow: 1;
     min-height: 100vh;
-    padding: 0 4rem; /* Espaciado lateral para el contenido */
+    padding: 0 4rem; 
     box-sizing: border-box;
+    /* Transición para el contenido principal */
+    transition: background-color 0.3s ease, color 0.3s ease; 
 }
 
-/* --- Footer (Debe ajustarse al nuevo layout) --- */
-.footer {
-    /* Lo esencial para que se vea bien en el espacio principal */
-    display: flex;
-    justify-content: center; /* Centrar el contenido en lugar de espaciarlo */
-    padding: 2rem;
-    margin-top: 4rem;
-    border-top: 1px solid #333;
-    text-align: center;
+/* Responsive para layout */
+@media (max-width: 992px) { /* Ajuste para tablets */
+    .main-content-area {
+        margin-left: 0; /* O ajusta el ancho del sidebar */
+        padding: 0 2rem;
+    }
+    /* Aquí necesitarías lógica para ocultar/mostrar el sidebar en móvil */
+}
+
+@media (max-width: 768px) {
+    .main-content-area {
+        padding: 0 1rem;
+    }
 }

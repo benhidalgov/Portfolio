@@ -24,7 +24,7 @@ const skillCategories = [
 function Skills() {
   return (
     <section className="skills-section">
-      <h2 className="skills-title">TECNOLOGÍAS DUOC UC & HABILIDADES CLAVE</h2>
+      <h2 className="skills-title">TECNOLOGÍAS & HABILIDADES CLAVE</h2>
       
       <div className="skills-grid">
         {skillCategories.map((category, index) => (

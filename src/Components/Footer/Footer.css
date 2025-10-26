@@ -2,8 +2,8 @@
 .footer {
     /* Mantener el diseño de línea dura del portafolio */
     font-family: 'Courier New', Courier, monospace;
-    color: #f0ff0f; /* Color base del texto */
-    background-color: #000;
+    color: var(--color-subtext); /* MIGRADO: Color base del texto (gris sutil) */
+    background-color: var(--color-background); /* MIGRADO */
     
     /* Layout */
     display: flex;
@@ -13,8 +13,8 @@
     margin-top: 4rem; 
 
     /* Borde distintivo superior para separarlo del contenido */
-    border-top: 2px solid #1a1a1a;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5), inset 0 1px 0 #333;
+    border-top: 2px solid var(--color-shadow); /* MIGRADO */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5), inset 0 1px 0 var(--color-border); /* MIGRADO */
 }
 
 /* --- SECCIONES (Navegación, Social, Copyright) --- */
@@ -26,18 +26,18 @@
 /* Encabezados de Sección */
 .footer h3 {
     font-size: 1.1rem;
-    color: #BB86FC; /* Color de acento púrpura */
+    color: var(--color-primary); /* MIGRADO */
     margin-bottom: 1.2rem;
     text-transform: uppercase;
     font-weight: 700;
-    border-bottom: 1px solid #BB86FC55; /* Línea sutil debajo del título */
+    border-bottom: 1px solid var(--color-shadow-primary); /* MIGRADO (Usando sombra púrpura) */
     padding-bottom: 0.2rem;
 }
 
 /* --- ENLACES (Navegación y Social) --- */
 .footer-link, .social-link {
     display: block;
-    color: #aaa;
+    color: var(--color-subtext); /* MIGRADO */
     font-size: 0.95rem;
     margin-bottom: 0.5rem;
     transition: color 0.2s, padding-left 0.2s;
@@ -45,9 +45,9 @@
 
 /* Efecto Hover */
 .footer-link:hover, .social-link:hover {
-    color: #fff;
+    color: var(--color-text); /* MIGRADO */
     padding-left: 5px; /* Pequeño desplazamiento al pasar el mouse */
-    text-shadow: 0 0 5px rgba(187, 134, 252, 0.4);
+    text-shadow: 0 0 5px var(--color-shadow-primary); /* MIGRADO */
 }
 
 /* --- COPYRIGHT --- */
@@ -55,7 +55,7 @@
     text-align: center;
     align-self: flex-end; /* Alinea los derechos de autor al fondo si es necesario */
     font-size: 0.8rem;
-    color: #666;
+    color: var(--color-subtext); /* MIGRADO (Usamos subtext para consistencia) */
 }
 
 /* --- RESPONSIVE --- */

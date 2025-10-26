@@ -1,55 +1,55 @@
 /* --- SECCIÓN PRINCIPAL --- */
 .skills-section {
+    text-size-adjust: 15;
     font-family: 'Courier New', Courier, monospace;
     padding: 4rem 0;
     margin-top: 3rem;
-    color: #fff;
-    border-top: 1px solid #222; /* Separador sutil */
+    color: var(--color-text); /* MIGRADO */
+    border-top: 1px solid var(--color-border); /* MIGRADO */
 }
 
 /* --- TÍTULO PRINCIPAL --- */
 .skills-title {
+    text-size-adjust: 45;
     font-size: 1.8rem;
-    color: #BB86FC;
+    color: var(--color-primary); /* MIGRADO */
     text-align: center;
     margin-bottom: 3rem;
     text-transform: uppercase;
-    /* Efecto de línea dura/pixelado con sombra sutil */
-    text-shadow: 1px 1px 0 #000, 2px 2px 0 #BB86FC40;
+    /* Mantenemos sombra, usando variables */
+    text-shadow: 1px 1px 0 var(--color-background), 2px 2px 0 var(--color-shadow-primary); /* MIGRADO */
 }
 
-/* --- GRID DE HABILIDADES --- */
+/* --- GRID DE HABILIDADES (Ajustado a 2x2 FORZADO) --- */
 .skills-grid {
     display: grid;
-    /* Divide en 4 columnas en escritorio, adaptable en tamaños menores */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: 1fr 1fr; 
     gap: 2rem;
-    max-width: 1200px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
 /* --- TARJETA DE CATEGORÍA --- */
 .skill-category-card {
-    background-color: #0d0d0d; /* Fondo un poco más claro que el body */
+    background-color: var(--color-card-bg); /* MIGRADO */
     padding: 1.5rem;
-    border: 1px solid #333; /* Borde de marco */
-    /* Sombra exterior para destacar la caja */
-    box-shadow: 3px 3px 0 #1a1a1a; 
+    border: 1px solid var(--color-border); /* MIGRADO */
+    box-shadow: 3px 3px 0 var(--color-shadow); /* MIGRADO */
     transition: box-shadow 0.3s;
 }
 
 .skill-category-card:hover {
-    box-shadow: 5px 5px 0 #BB86FC40; /* El púrpura se ilumina al pasar el mouse */
+    box-shadow: 5px 5px 0 var(--color-shadow-primary); /* MIGRADO */
 }
 
 /* --- TÍTULO DE LA CATEGORÍA --- */
 .category-title {
     font-size: 1.2rem;
-    color: #fff;
+    color: var(--color-text); /* MIGRADO */
     margin-top: 0;
     margin-bottom: 1.2rem;
     padding-bottom: 0.5rem;
-    border-bottom: 1px solid #444; /* Separador */
+    border-bottom: 1px solid var(--color-border); /* MIGRADO */
 }
 
 /* --- LISTA DE HABILIDADES --- */
@@ -61,7 +61,7 @@
 
 .skill-item {
     font-size: 0.9rem;
-    color: #aaa;
+    color: var(--color-subtext); /* MIGRADO */
     margin-bottom: 0.6rem;
     display: flex;
     align-items: flex-start;
@@ -69,8 +69,7 @@
 }
 
 .skill-icon {
-    /* Estilo para el bullet point personalizado */
-    color: #BB86FC;
+    color: var(--color-primary); /* MIGRADO */
     margin-right: 0.5rem;
     font-size: 0.9rem;
     line-height: 1.4;
@@ -79,8 +78,9 @@
 /* --- RESPONSIVE --- */
 @media (max-width: 1024px) {
     .skills-grid {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: 1fr; 
         padding: 0 1rem;
+        max-width: 600px;
     }
 }
 @media (max-width: 768px) {

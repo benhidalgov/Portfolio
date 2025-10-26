@@ -2,7 +2,8 @@
 .projects-summary {
     padding: 4rem 0;
     background-color: transparent;
-    color: #f0f0f0;
+    color: var(--color-text); /* MIGRADO */
+    font-family: 'Courier New', Courier, monospace; /* Añadido para consistencia */
 }
 
 .summary-header {
@@ -15,19 +16,24 @@
 .summary-header h2 {
     font-size: 2rem;
     font-weight: 700;
-    color: #fff;
+    color: var(--color-primary); /* MIGRADO (Usamos el color primario para el título) */
+    text-shadow: 0 0 5px var(--color-shadow-primary-strong); /* MIGRADO */
     margin: 0;
 }
 
 .view-all-link {
-    color: #00bcd4;
+    color: var(--color-link); /* MIGRADO */
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.2s;
+    border: 2px solid var(--color-primary); /* MIGRADO */
+    padding: 0.5rem 1rem;
+    border-radius: 0;
+    transition: all 0.2s;
 }
 
 .view-all-link:hover {
-    color: #fff;
+    color: var(--color-background); /* MIGRADO */
+    background-color: var(--color-primary); /* MIGRADO */
 }
 
 .summary-grid {
@@ -50,25 +56,25 @@
     display: block;
     aspect-ratio: 4/3;
     object-fit: cover;
-    border: 1px solid #222;
+    border: 1px solid var(--color-border); /* MIGRADO */
 }
 
 .card-content {
     padding: 0;
     padding-top: 0.5rem;
-    color: #aaa;
+    color: var(--color-subtext); /* MIGRADO */
 }
 
 .card-content h3 {
     font-size: 1.1rem;
     font-weight: 700;
-    color: #fff;
+    color: var(--color-text); /* MIGRADO */
     margin-bottom: 0.2rem;
 }
 
 .card-content p {
     font-size: 0.9rem;
-    color: #888;
+    color: var(--color-subtext); /* MIGRADO */
     margin-bottom: 1rem;
     line-height: 1.4;
 }
@@ -78,19 +84,22 @@
     flex-wrap: wrap;
     gap: 0.5rem;
     margin-bottom: 1rem;
+    padding-top: 0.5rem;
+    border-top: 1px dashed var(--color-border); /* MIGRADO */
 }
 
 .tech-tag {
-    background-color: #333;
-    color: #fff;
+    background-color: var(--color-shadow-primary); /* MIGRADO (Fondo sutil de acento) */
+    color: var(--color-primary); /* MIGRADO */
     padding: 0.25rem 0.5rem;
     border-radius: 3px;
     font-size: 0.75rem;
     font-weight: 500;
+    border: 1px solid var(--color-primary); /* MIGRADO */
 }
 
 .details-link {
-    color: #00bcd4;
+    color: var(--color-link); /* MIGRADO */
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: 500;
@@ -98,7 +107,7 @@
 }
 
 .details-link:hover {
-    color: #fff;
+    color: var(--color-link-hover); /* MIGRADO */
 }
 
 /* Responsive design */

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import '../../styles/sidebar.css'; 
+import { useTheme } from '../../Context/ThemeContext.jsx';
+import '../../styles/Sidebar.css'; 
 
 // Datos para la navegación principal
 const primaryNav = [
@@ -19,15 +20,7 @@ const caseStudies = [
 
 function Sidebar() {
   const location = useLocation(); // Hook de React Router para saber la ruta actual
-  const [theme, setTheme] = React.useState('DARK'); // Hook para el estado del tema
-
-  const toggleTheme = () => {
-    // Lógica simple para cambiar el tema
-    const newTheme = theme === 'DARK' ? 'LIGHT' : 'DARK';
-    setTheme(newTheme);
-    // En una aplicación real, aquí aplicarías una clase al body o usarías Context
-    document.body.setAttribute('data-theme', newTheme.toLowerCase());
-  };
+  const { theme, toggleTheme } = useTheme(); // Hook del contexto de tema
 
   return (
     <nav className="sidebar">

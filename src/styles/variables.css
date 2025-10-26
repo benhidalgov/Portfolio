@@ -1,0 +1,31 @@
+/* src/styles/variables.css */
+
+:root {
+    /* --- DARK THEME (Default) --- */
+    --color-primary: #BB86FC;
+    --color-primary-hover: #A064FF;
+    --color-background: #000000;
+    --color-card-bg: #0d0d0d;
+    --color-text: #FFFFFF;
+    --color-subtext: #999999;
+    --color-border: #333333;
+    --color-shadow: #1a1a1a;
+    --color-shadow-primary: rgba(187, 134, 252, 0.4);
+    --color-link: var(--color-primary);
+    --color-link-hover: var(--color-text);
+}
+
+body[data-theme="light"] {
+    /* --- LIGHT THEME --- */
+    --color-primary: #6200EE;
+    --color-primary-hover: #3700B3;
+    --color-background: #F0F0F0;
+    --color-card-bg: #FFFFFF;
+    --color-text: #000000;
+    --color-subtext: #555555;
+    --color-border: #DDDDDD;
+    --color-shadow: #BBBBBB;
+    --color-shadow-primary: rgba(98, 0, 238, 0.3);
+    --color-link: var(--color-primary);
+    --color-link-hover: var(--color-primary-hover);
+}

@@ -1,22 +1,23 @@
 /* --- PÁGINA PRINCIPAL --- */
 .about-page {
     font-family: 'Courier New', Courier, monospace;
-    padding: 2rem 0;
-    color: #fff;
+    padding: 2rem 0; /* Ajusta según sea necesario dentro del main-content-area */
+    color: var(--color-text); /* MIGRADO */
+    transition: color 0.3s ease; /* Transición suave */
 }
 
 /* --- TÍTULOS GENERALES --- */
 .about-page h1 {
     font-size: 2.5rem;
-    color: #fff;
+    color: var(--color-text); /* MIGRADO */
     margin-bottom: 0.5rem;
     padding-bottom: 0.2rem;
-    border-bottom: 2px solid #BB86FC; /* Línea púrpura para destacar */
+    border-bottom: 2px solid var(--color-primary); /* MIGRADO */
 }
 
 .about-page h2 {
     font-size: 1.5rem;
-    color: #BB86FC;
+    color: var(--color-primary); /* MIGRADO */
     margin-top: 3rem;
     margin-bottom: 1.5rem;
     text-transform: uppercase;
@@ -26,8 +27,13 @@
 .lead-paragraph {
     font-size: 1.1rem;
     line-height: 1.6;
-    color: #aaa;
+    color: var(--color-subtext); /* MIGRADO */
     max-width: 900px;
+}
+
+.lead-paragraph strong { /* Estilo para texto resaltado */
+    color: var(--color-primary);
+    font-weight: 700;
 }
 
 /* --- 2. CERTIFICACIONES DESTACADAS --- */
@@ -35,60 +41,61 @@
     list-style: none;
     padding: 1.5rem;
     margin: 0;
-    background-color: #0d0d0d;
-    border: 1px solid #333;
-    border-left: 5px solid #BB86FC; /* Borde de acento púrpura */
+    background-color: var(--color-card-bg); /* MIGRADO */
+    border: 1px solid var(--color-border); /* MIGRADO */
+    border-left: 5px solid var(--color-primary); /* MIGRADO */
     max-width: 800px;
-    box-shadow: 4px 4px 0 #1a1a1a;
+    box-shadow: 4px 4px 0 var(--color-shadow); /* MIGRADO */
 }
 
 .certs-summary li {
     font-size: 1rem;
     line-height: 1.8;
-    color: #fff;
+    color: var(--color-text); /* MIGRADO */
 }
 
 .certs-summary li strong {
-    color: #BB86FC;
+    color: var(--color-primary); /* MIGRADO */
 }
 
 /* --- 3. STACK DE HABILIDADES (GRID) --- */
-/* Estilos similares a Skills.css para mantener coherencia */
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
+    /* No necesita max-width si ya está dentro de .main-content-area */
 }
 
 .skill-category {
-    background-color: #0d0d0d;
+    background-color: var(--color-card-bg); /* MIGRADO */
     padding: 1.5rem;
-    border: 1px solid #333;
-    box-shadow: 3px 3px 0 #1a1a1a;
+    border: 1px solid var(--color-border); /* MIGRADO */
+    box-shadow: 3px 3px 0 var(--color-shadow); /* MIGRADO */
+    transition: box-shadow 0.3s; /* Mantenemos la transición */
 }
 
 .skill-category:hover {
-    box-shadow: 5px 5px 0 #BB86FC40;
+    box-shadow: 5px 5px 0 var(--color-shadow-primary); /* MIGRADO */
 }
 
 .skill-category h3 {
     font-size: 1.1rem;
-    color: #fff;
+    color: var(--color-text); /* MIGRADO */
     margin-top: 0;
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
-    border-bottom: 1px dashed #555;
+    border-bottom: 1px dashed var(--color-border); /* MIGRADO */
 }
 
 .skill-category .skills-list {
-    list-style: '>> '; /* Puntos de viñeta estilo retro */
+    list-style: '>> '; /* Mantenemos el estilo retro */
     padding-left: 1.5rem;
     margin: 0;
 }
 
 .skill-category .skills-list li {
     font-size: 0.9rem;
-    color: #aaa;
+    color: var(--color-subtext); /* MIGRADO */
     margin-bottom: 0.4rem;
 }
 
