@@ -1,71 +1,38 @@
-@import './styles/variables.css'; /* 👈 CRÍTICO: Asegúrate que esta línea esté al inicio */
+/* src/index.css */
 
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+/* 🏆 CLAVE 1: Importa las variables CSS definidas en src/styles/variables.css */
+@import './styles/variables.css'; 
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+/* 🏆 CLAVE 2: Eliminar todos los bloques :root, h1, button, y @media obsoletos. */
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Estilos de Reinicio y Tema Oscuro por Defecto */
+body {
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    
+    /* Usa las variables CSS para los colores base */
+    background-color: var(--color-background); 
+    color: var(--color-text); 
+
+    min-height: 100vh;
+    overflow-x: hidden; 
+    
+    /* Transición suave para el cambio de color */
+    transition: background-color 0.3s ease, color 0.3s ease; 
 }
 
+/* Enlaces generales */
 a {
-  color: var(--color-link);
-  text-decoration: none;
-  transition: color 0.2s;
+    color: var(--color-link); 
+    text-decoration: none;
+    transition: color 0.2s;
 }
 a:hover {
-  color: var(--color-link-hover);
-}
-body {
-  margin: 0;
-  font-family: 'Courier New', Courier, monospace;
-  background-color: var(--color-background); 
-  color: var(--color-text); 
-  min-height: 100vh;
-  overflow-x: hidden; 
-  transition: background-color 0.3s ease, color 0.3s ease; 
+    color: var(--color-link-hover);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
+/* Restablecer estilos de botón generales para evitar la interferencia de Vite */
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+    font-family: inherit;
+    /* Los estilos funcionales del botón serán definidos por cada componente (Hero, Sidebar) */
 }

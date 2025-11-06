@@ -1,32 +1,47 @@
-/* src/styles/layout.css */
-
 .app-container {
     display: flex;
     min-height: 100vh;
-    background-color: var(--color-background); /* Asegura que el contenedor use el fondo del tema */
 }
 
 .main-content-area {
-    margin-left: 280px; /* Offset para el sidebar */
+    /* El margen ahora depende del estado del sidebar */
+    margin-left: 280px; /* Margen cuando está ABIERTO */
     flex-grow: 1;
     min-height: 100vh;
     padding: 0 4rem; 
     box-sizing: border-box;
-    /* Transición para el contenido principal */
-    transition: background-color 0.3s ease, color 0.3s ease; 
+    transition: margin-left 0.3s ease; /* Transición suave para el margen */
 }
 
-/* Responsive para layout */
-@media (max-width: 992px) { /* Ajuste para tablets */
-    .main-content-area {
-        margin-left: 0; /* O ajusta el ancho del sidebar */
-        padding: 0 2rem;
-    }
-    /* Aquí necesitarías lógica para ocultar/mostrar el sidebar en móvil */
+/* Cuando el sidebar está CERRADO, el margen del contenido se reduce */
+.sidebar.closed + .main-content-area {
+    margin-left: 80px; /* Corresponde al ancho cerrado del sidebar */
 }
 
+/* --- Footer --- */
+/* ... (Estilos existentes del Footer) ... */
+
+/* --- Responsive para el Layout --- */
 @media (max-width: 768px) {
+    .sidebar {
+        /* En móvil, el sidebar podría ocultarse completamente o tener un ancho menor */
+        width: 60px; /* Ejemplo: Aún más pequeño en móvil por defecto */
+        padding: 1rem 0.5rem;
+    }
+    .sidebar.open {
+        width: 250px; /* Un poco menos ancho al abrir en móvil */
+    }
+
     .main-content-area {
-        padding: 0 1rem;
+        margin-left: 60px; /* Ajustar al ancho cerrado por defecto en móvil */
+        padding: 0 1rem; /* Menos padding lateral en móvil */
+    }
+    .sidebar.open + .main-content-area {
+        margin-left: 250px; /* Ajustar al ancho abierto en móvil */
+    }
+    
+    /* Opcional: Ocultar el texto intro en móvil siempre */
+    .sidebar-intro-text {
+        display: none;
     }
 }

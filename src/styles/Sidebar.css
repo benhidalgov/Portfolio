@@ -2,7 +2,8 @@
 
 /* --- GENERAL & LAYOUT (Fija la barra lateral) --- */
 .sidebar {
-    font-family: 'Courier New', Courier, monospace; /* Fuente de código */
+    font-family: 'Courier New', Courier, monospace; 
+    /* Posicionamiento y Dimensiones */
     position: fixed; 
     top: 0;
     left: 0;
@@ -10,45 +11,86 @@
     height: 100vh;
     padding: 2.5rem 2rem;
     /* Apariencia usando variables */
-    background-color: var(--color-background); /* MIGRADO */
-    border-right: 1px solid var(--color-shadow); /* MIGRADO */
+    background-color: var(--color-background); 
+    border-right: 1px solid var(--color-shadow); 
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: space-between; 
     overflow-y: auto;
-    color: var(--color-text); /* MIGRADO - Color de texto por defecto */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
+    color: var(--color-text); 
+    transition: background-color 0.3s ease, color 0.3s ease, width 0.3s ease; /* Añadida transición de width */
 }
 
-/* --- SECCIÓN SUPERIOR: LOGO Y TEXTO INTRO --- */
 .sidebar-header {
     margin-bottom: 2rem;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
 }
 
 .sidebar-title {
     display: inline-block;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem; 
 }
 
-/* Estilo para el contenedor del logo (usado para la imagen o placeholder de texto) */
 .sidebar-logo-img {
     width: 40px;
     height: 40px;
-    border: 1px solid var(--color-primary); /* MIGRADO */
-    background-color: var(--color-background); /* MIGRADO */
+    border: 1px solid var(--color-primary); 
+    background-color: var(--color-background); 
     padding: 4px; 
-    display: block; /* Asegura que sea un bloque */
+    display: block; 
+}
+
+/* --- NUEVO: Botón Toggle (Directamente debajo del logo) --- */
+.sidebar-toggle-button {
+    background: none;
+    border: 1px solid var(--color-primary); /* Borde acentuado */
+    color: var(--color-primary); 
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem; /* Espacio antes del texto intro */
+    transition: all 0.2s;
+    text-transform: uppercase;
+    font-family: 'Courier New', Courier, monospace; 
+}
+
+.sidebar-toggle-button:hover {
+    background-color: var(--color-primary); 
+    color: var(--color-background); 
 }
 
 .sidebar-intro-text {
     font-size: 0.85rem;
     line-height: 1.5;
-    color: var(--color-subtext); /* MIGRADO */
+    color: var(--color-subtext); 
     margin-bottom: 2rem;
+    text-align: center; /* Centramos el texto */
 }
 
-/* --- SECCIÓN CENTRAL: NAVEGÁCIÓN Y ENLACES --- */
+/* --- ESTADO CERRADO (Colapso) --- */
+.sidebar.closed {
+    width: 80px; 
+    padding: 1.5rem 1rem;
+}
+.sidebar.closed .sidebar-intro-text,
+.sidebar.closed .sidebar-nav-sections,
+.sidebar.closed .sidebar-footer {
+    display: none; /* Oculta todo el contenido */
+}
+.sidebar.closed .sidebar-toggle-button {
+    margin-bottom: 0; 
+}
+.sidebar.closed .sidebar-title {
+    margin-bottom: 1rem;
+}
+
+
+/* --- SECCIÓN CENTRAL: NAVEGACIÓN Y ENLACES --- */
 .sidebar-nav-sections {
     flex-grow: 1; 
     padding-top: 1rem;
@@ -56,7 +98,7 @@
 
 .section-title {
     font-size: 0.8rem;
-    color: var(--color-primary); /* MIGRADO */
+    color: var(--color-primary); 
     margin-bottom: 0.5rem;
     text-transform: uppercase;
     font-weight: 500;
@@ -73,28 +115,27 @@
     border: 1px solid transparent; 
     transition: all 0.2s;
     border-radius: 0;
-    color: var(--color-text); /* MIGRADO */
+    color: var(--color-text); 
 }
 
 .item-name {
     font-size: 1rem;
     font-weight: 600;
     letter-spacing: 0.05em;
-    /* El color se hereda de .nav-item-primary */
 }
 
 .item-subtext {
     font-size: 0.75rem;
-    color: var(--color-subtext); /* MIGRADO */
+    color: var(--color-subtext); 
     margin-top: 0.2rem;
 }
 
 .nav-item-primary:hover,
 .nav-item-primary.active {
-    border-color: var(--color-primary); /* MIGRADO */
-    background-color: var(--color-shadow); /* MIGRADO */
-    box-shadow: 2px 2px 0 var(--color-primary); /* MIGRADO */
-    color: var(--color-primary); /* MIGRADO - Resaltar texto también */
+    border-color: var(--color-primary); 
+    background-color: var(--color-shadow); 
+    box-shadow: 2px 2px 0 var(--color-primary); 
+    color: var(--color-primary); 
 }
 
 /* --- ENLACES DE CASOS DE ESTUDIO --- */
@@ -107,20 +148,20 @@
     align-items: flex-start;
     padding: 0.5rem 0.5rem;
     border-left: 2px solid transparent;
-    transition: border-left-color 0.2s, background-color 0.2s, color 0.2s; /* Añadida transición para color */
-    color: var(--color-text); /* MIGRADO */
+    transition: border-left-color 0.2s, background-color 0.2s, color 0.2s; 
+    color: var(--color-text); 
     font-size: 0.9rem;
     margin-bottom: 0.1rem;
 }
 
 .case-study-item:hover {
-    border-left-color: var(--color-primary); /* MIGRADO */
-    background-color: var(--color-card-bg); /* MIGRADO */
-    color: var(--color-primary); /* MIGRADO - Resaltar texto en hover */
+    border-left-color: var(--color-primary); 
+    background-color: var(--color-card-bg); 
+    color: var(--color-primary); 
 }
 
 .case-study-symbol {
-    color: var(--color-primary); /* MIGRADO */
+    color: var(--color-primary); 
     margin-right: 0.8rem;
     font-size: 0.7rem;
     line-height: 1.2;
@@ -133,33 +174,43 @@
 
 .case-study-name {
     font-weight: 400; 
-    /* El color se hereda de .case-study-item */
 }
 
 .case-study-detail {
     font-size: 0.7rem;
-    color: var(--color-subtext); /* MIGRADO */
+    color: var(--color-subtext); 
 }
 
 /* --- SECCIÓN INFERIOR: CAMBIO DE TEMA --- */
 .sidebar-footer {
     padding-top: 2rem;
-    border-top: 1px dashed var(--color-border); /* MIGRADO */
+    border-top: 1px dashed var(--color-border); 
+}
+.sidebar-footer {
+    padding-top: 2rem;
+    border-top: 1px dashed var(--color-border); /* Mantiene la línea discontinua */
+    text-align: center; /* Centra el botón si es necesario */
 }
 
 .theme-toggle-button {
+    /* Base */
     background: none;
-    border: 1px solid var(--color-primary); /* MIGRADO */
-    color: var(--color-primary); /* MIGRADO */
+    border: 1px solid var(--color-primary); /* Borde acentuado */
+    color: var(--color-primary); /* Texto de acento */
     cursor: pointer;
     font-size: 0.85rem;
     padding: 0.5rem 1rem;
+    
+    /* Estética */
     transition: all 0.2s;
     text-transform: uppercase;
     font-family: 'Courier New', Courier, monospace; 
+    
+    /* Asegura que el botón se ajuste al tema claro/oscuro */
+    border-radius: 0; 
 }
 
 .theme-toggle-button:hover {
-    background-color: var(--color-primary); /* MIGRADO */
-    color: var(--color-background); /* MIGRADO */
+    background-color: var(--color-primary); /* Fondo sólido al pasar el mouse */
+    color: var(--color-background); /* Texto del color de fondo (genera contraste) */
 }

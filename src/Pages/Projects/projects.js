@@ -1,12 +1,12 @@
 export const projectData = [
     {
         id: 1,
-        title: "E-Commerce de Videojuegos",
-        description: "Plataforma de comercio electrónico construida con React, Context API para la gestión del carrito y React Router. Demuestra manejo de estado complejo y enrutamiento dinámico.",
-        image: "https://placehold.co/400x250/00bcd4/ffffff?text=E-COMMERCE",
-        tech: ["React", "Context API", "Tailwind CSS"],
-        link: "/projects/ecommerce",
-        github: "https://github.com/[TuUsuario]/ecommerce-react"
+        title: "Portafolio Técnico de Ingeniería (React)",
+        description: "Aplicacion web construida con React y Context API para la muestra del estado global (cambio de tema). Demuestra diseño modular, enrutamiento (React Router) y responsividad.",
+        image: "https://placehold.co/400x250/BB86FC/000000?text=PORTAFOLIO+REACT",
+        tech: ["React", "Context API", "Vite", "CSS Variables", "JSX"],
+        link: "/", // Enlace a la página principal de este mismo portafolio
+        github: "https://github.com/benhidalgov/Portfolio"
     },
     {
         id: 2,

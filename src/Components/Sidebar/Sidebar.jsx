@@ -1,81 +1,118 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useTheme } from '../../Context/ThemeContext.jsx';
-import '../../styles/Sidebar.css'; 
+import { useTheme } from '../../Context/ThemeContext.jsx'; // Corregido: Ruta relativa a Context
+import '../../styles/Sidebar.css';
+import logo from '../../assets/images/Logo.png'; // Asegúrate que esta ruta es correcta
 
-// Datos para la navegación principal
-const primaryNav = [
-  { path: '/', name: 'Inicio', subtext: 'Volvamos a empezar' },
-  { path: '/Next', name: 'Próximos proyectos', subtext: 'Mis próximos proyectos.' },
-  { path: '/about', name: 'About me', subtext: "Conoce al profesional." }
-];
-
-// Datos para la sección de "Case Studies" (Casos de Estudio)
-const caseStudies = [
-  { id: 1, name: 'GLOBAL CITIZEN', detail: 'Mobile app & design system' },
-  { id: 2, name: 'CAMBIO', detail: 'Mobile app & UX research' },
-  { id: 3, name: 'STORMENKS', detail: 'Mobile app & web platform' },
-  { id: 4, name: 'TINICARD', detail: 'Mobile app and web platform' },
-];
+// Iconos SVG (MenuIcon y CloseIcon)
+const MenuIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="3" y1="12" x2="21" y2="12"></line>
+    <line x1="3" y1="6" x2="21" y2="6"></line>
+    <line x1="3" y1="18" x2="21" y2="18"></line>
+  </svg>
+);
+const CloseIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  );
 
 function Sidebar() {
-  const location = useLocation(); // Hook de React Router para saber la ruta actual
-  const { theme, toggleTheme } = useTheme(); // Hook del contexto de tema
+  const { theme, toggleTheme } = useTheme();
+  const location = useLocation();
+  const [isOpen, setIsOpen] = useState(true); // Empieza abierto
+
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const primaryNav = [
+    { path: '/', name: 'Inicio', subtext: 'Volvamos a empezar' },
+    { path: '/projects', name: 'Proyectos', subtext: 'Mis trabajos de ingeniería' },
+    { path: '/about', name: 'About me', subtext: "Conoce al profesional." },
+  ];
+
+  const caseStudies = [
+    { title: 'Cloud & Infraestructura', path: '/projects/cloud' },
+    { title: 'Análisis de Datos & BI', path: '/projects/data' },
+    { title: 'Ciberseguridad & Ética', path: '/projects/security' },
+    { title: 'Desarrollo Full-Stack', path: '/projects/fullstack' },
+  ];
 
   return (
-    <nav className="sidebar">
-      {/* SECCIÓN SUPERIOR: Título / Nombre */}
+    <nav className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
+      {/* SECCIÓN SUPERIOR: Logo, Botón Toggle y texto intro */}
       <div className="sidebar-header">
-        <Link to="/" className="sidebar-title">
-          <div className="logo-placeholder">BH</div>
-        </Link>
-        <p className="sidebar-intro-text">
-        "Ingeniero en Informática en desarrollo, fan de las soluciones escalables y que busca la realizacion de proyectos que puedan proteger al usuario"
-        </p>
-      </div>
-      {/* SECCIÓN CENTRAL: Navegación Principal */}
-      <div className="sidebar-nav-sections">
-        {/* Enlaces Principales */}
-        <div className="section-group">
-          <p className="section-title">NAVEGACIÓN</p>
-          {primaryNav.map((item) => (
-            <Link 
-              key={item.path} 
-              to={item.path} 
-              // Usa la clase 'active' si la ruta actual coincide
-              className={`nav-item-primary ${location.pathname === item.path ? 'active' : ''}`}
-            >
-              <span className="item-name">{item.name}</span>
-              <span className="item-subtext">{item.subtext}</span>
+        
+        {/* 1. Contenedor para Logo y Botón TOGGLE (Nivel superior) */}
+        <div className="header-logo-toggle-group">
+            {/* Logo */}
+            <Link to="/" className="sidebar-title">
+              <img 
+                src={logo} 
+                alt="Logo B. Hidalgo" 
+                className="sidebar-logo-img" 
+                onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/40x40/000000/FFFFFF?text=BH" }}
+              />
             </Link>
-          ))}
+            
+            {/* Botón Toggle (Se queda solo en su grupo para ser centrado con el logo) */}
+            <button onClick={toggleSidebar} className="sidebar-toggle-button">
+              {isOpen ? <CloseIcon /> : <MenuIcon />}
+            </button>
         </div>
+        
+        {/* 3. Texto Intro (solo si está abierto) */}
+        {isOpen && (
+          <p className="sidebar-intro-text">
+            "Ingeniero en Informática en desarrollo, fan de las soluciones escalables y que busca la realización de proyectos que puedan proteger al usuario"
+          </p>
+        )}
+      </div>
 
-        {/* Casos de Estudio (simula la sección "SELECTED CASE STORIES") */}
-        <div className="section-group case-studies">
-          <p className="section-title">SELECTED CASE STORIES</p>
-          {caseStudies.map((study) => (
-            <Link 
-              key={study.id} 
-              to={`/projects/${study.id}`} 
-              className="case-study-item"
-            >
-              <span className="case-study-icon"></span>
-              <div className="case-study-text">
-                <span className="case-study-name">{study.name}</span>
-                <span className="case-study-detail">{study.detail}</span>
-              </div>
-            </Link>
-          ))}
+      {/* SECCIÓN CENTRAL: Navegación (Solo visible si está abierto) */}
+      {isOpen && (
+        <div className="sidebar-nav-sections">
+          {/* ... (Contenido de Navegación) ... */}
+          <div className="section-group">
+            <p className="section-title">NAVEGACIÓN</p>
+            {primaryNav.map((item) => (
+              <Link 
+                key={item.path} 
+                to={item.path} 
+                className={`nav-item-primary ${location.pathname === item.path ? 'active' : ''}`}
+              >
+                <span className="item-name">{item.name}</span>
+                <span className="item-subtext">{item.subtext}</span>
+              </Link>
+            ))}
+          </div>
+
+          <div className="section-group case-studies">
+            <p className="section-title">ENFOQUES DE INGENIERÍA</p>
+            {caseStudies.map((study) => (
+              <Link 
+                key={study.path} 
+                to={study.path} 
+                className="case-study-item"
+              >
+                <span className="case-study-symbol">⦿</span> {study.title}
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
       
-      {/* SECCIÓN INFERIOR: Selector de Tema */}
-      <div className="sidebar-footer">
-        <button className="theme-toggle-button" onClick={toggleTheme}>
-          {theme} / {theme === 'DARK' ? 'LIGHT' : 'DARK'} 
-        </button>
-      </div>
+      {/* SECCIÓN INFERIOR: Selector de Tema (Solo visible si está abierto) */}
+      {isOpen && (
+        <div className="sidebar-footer">
+          <button className="theme-toggle-button" onClick={toggleTheme}>
+            {theme} / {theme === 'DARK' ? 'LIGHT' : 'DARK'} 
+          </button>
+        </div>
+      )}
     </nav>
   );
 }
