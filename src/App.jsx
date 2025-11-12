@@ -14,6 +14,12 @@ import About from './Pages/about/about.jsx';
 import Projects from './Pages/Projects/projects.jsx';
 import Next from './Pages/Next/Next.jsx';
 
+// Importaciones de Páginas de Proyectos (Case Studies)
+import Cloud from './Pages/Projects/Cloud.jsx';
+import Data from './Pages/Projects/data.jsx';
+import Security from './Pages/Projects/security.jsx';
+import FullStack from './Pages/Projects/fullstack.jsx';
+
 // Importaciones de Componentes de Layout
 import Sidebar from './Components/Sidebar/Sidebar.jsx'; 
 import Footer from './Components/Footer/Footer.jsx';
@@ -38,6 +44,12 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/Next" element={<Next />} /> 
+              
+              {/* Rutas de Case Studies (Enfoques de Ingeniería) */}
+              <Route path="/projects/cloud" element={<Cloud />} />
+              <Route path="/projects/data" element={<Data />} />
+              <Route path="/projects/security" element={<Security />} />
+              <Route path="/projects/fullstack" element={<FullStack />} />
               
               {/* Ruta 404 */}
               <Route path="*" element={
