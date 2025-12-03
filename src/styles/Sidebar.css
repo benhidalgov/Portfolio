@@ -2,215 +2,233 @@
 
 /* --- GENERAL & LAYOUT (Fija la barra lateral) --- */
 .sidebar {
-    font-family: 'Courier New', Courier, monospace; 
+    font-family: var(--font-code);
+    /* JetBrains Mono */
     /* Posicionamiento y Dimensiones */
-    position: fixed; 
-    top: 0;
-    left: 0;
-    width: 280px; 
-    height: 100vh;
-    padding: 2.5rem 2rem;
-    /* Apariencia usando variables */
-    background-color: var(--color-background); 
-    border-right: 1px solid var(--color-shadow); 
+    position: fixed;
+    top: 2rem;
+    /* Floating from top */
+    left: 2rem;
+    /* Floating from left */
+    width: 260px;
+    /* Slightly narrower */
+    height: calc(100vh - 4rem);
+    /* Floating height */
+    padding: 2rem 1.5rem;
+
+    /* Apariencia "Isla Flotante" */
+    background-color: rgba(10, 10, 10, 0.6);
+    /* Darker, more transparent */
+    backdrop-filter: blur(20px) saturate(180%);
+    /* Stronger blur and saturation */
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    /* Subtle border all around */
+    border-radius: 24px;
+    /* Large rounded corners */
+
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.4),
+        /* Deep shadow */
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+    /* Inner glow ring */
+
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; 
+    justify-content: space-between;
     overflow-y: auto;
-    color: var(--color-text); 
-    transition: background-color 0.3s ease, color 0.3s ease, width 0.3s ease; /* Añadida transición de width */
+    color: var(--color-text);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    /* Smooth spring-like transition */
+    z-index: 1000;
 }
 
 .sidebar-header {
     margin-bottom: 2rem;
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-logo-toggle-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
 }
 
 .sidebar-title {
     display: inline-block;
-    margin-bottom: 1rem; 
+    margin-bottom: 0;
 }
 
 .sidebar-logo-img {
-    width: 40px;
-    height: 40px;
-    border: 1px solid var(--color-primary); 
-    background-color: var(--color-background); 
-    padding: 4px; 
-    display: block; 
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--color-primary);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 4px;
+    display: block;
+    border-radius: 12px;
+    /* Rounded logo */
 }
 
-/* --- NUEVO: Botón Toggle (Directamente debajo del logo) --- */
+/* --- Botón Toggle --- */
 .sidebar-toggle-button {
-    background: none;
-    border: 1px solid var(--color-primary); /* Borde acentuado */
-    color: var(--color-primary); 
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
     cursor: pointer;
     padding: 0.5rem;
-    display: flex; 
+    display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 2rem; /* Espacio antes del texto intro */
+    margin-bottom: 1rem;
     transition: all 0.2s;
-    text-transform: uppercase;
-    font-family: 'Courier New', Courier, monospace; 
+    border-radius: 8px;
 }
 
 .sidebar-toggle-button:hover {
-    background-color: var(--color-primary); 
-    color: var(--color-background); 
+    background-color: var(--color-primary);
+    color: var(--color-background);
+    box-shadow: 0 0 10px var(--color-shadow-primary);
 }
 
 .sidebar-intro-text {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     line-height: 1.5;
-    color: var(--color-subtext); 
+    color: var(--color-subtext);
     margin-bottom: 2rem;
-    text-align: center; /* Centramos el texto */
+    text-align: center;
+    font-family: var(--font-primary);
+    opacity: 0.8;
 }
 
 /* --- ESTADO CERRADO (Colapso) --- */
 .sidebar.closed {
-    width: 80px; 
-    padding: 1.5rem 1rem;
+    width: 90px;
+    padding: 2rem 1rem;
 }
+
 .sidebar.closed .sidebar-intro-text,
 .sidebar.closed .sidebar-nav-sections,
 .sidebar.closed .sidebar-footer {
-    display: none; /* Oculta todo el contenido */
+    display: none;
 }
+
 .sidebar.closed .sidebar-toggle-button {
-    margin-bottom: 0; 
-}
-.sidebar.closed .sidebar-title {
-    margin-bottom: 1rem;
+    margin-bottom: 0;
 }
 
 
 /* --- SECCIÓN CENTRAL: NAVEGACIÓN Y ENLACES --- */
 .sidebar-nav-sections {
-    flex-grow: 1; 
+    flex-grow: 1;
     padding-top: 1rem;
+    width: 100%;
 }
 
 .section-title {
-    font-size: 0.8rem;
-    color: var(--color-primary); 
-    margin-bottom: 0.5rem;
+    font-size: 0.7rem;
+    color: var(--color-subtext);
+    margin-bottom: 0.75rem;
     text-transform: uppercase;
-    font-weight: 500;
-    letter-spacing: 0.1em;
+    font-weight: 700;
+    letter-spacing: 0.15em;
     margin-top: 2rem;
+    opacity: 0.6;
 }
 
 /* --- ENLACES PRINCIPALES --- */
 .nav-item-primary {
     display: flex;
     flex-direction: column;
-    padding: 0.75rem 0.5rem;
+    padding: 0.75rem 1rem;
     margin-bottom: 0.5rem;
-    border: 1px solid transparent; 
+    border: 1px solid transparent;
     transition: all 0.2s;
-    border-radius: 0;
-    color: var(--color-text); 
+    border-radius: 12px;
+    /* Rounded items */
+    color: var(--color-text);
+    background: transparent;
 }
 
 .item-name {
     font-size: 1rem;
     font-weight: 600;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.02em;
+    font-family: var(--font-primary);
 }
 
 .item-subtext {
-    font-size: 0.75rem;
-    color: var(--color-subtext); 
+    font-size: 0.7rem;
+    color: var(--color-subtext);
     margin-top: 0.2rem;
 }
 
 .nav-item-primary:hover,
 .nav-item-primary.active {
-    border-color: var(--color-primary); 
-    background-color: var(--color-shadow); 
-    box-shadow: 2px 2px 0 var(--color-primary); 
-    color: var(--color-primary); 
+    border-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--color-primary);
+    transform: translateX(5px);
 }
 
 /* --- ENLACES DE CASOS DE ESTUDIO --- */
 .case-studies {
-    margin-top: 3rem;
+    margin-top: 2rem;
 }
 
 .case-study-item {
     display: flex;
-    align-items: flex-start;
-    padding: 0.5rem 0.5rem;
-    border-left: 2px solid transparent;
-    transition: border-left-color 0.2s, background-color 0.2s, color 0.2s; 
-    color: var(--color-text); 
+    align-items: center;
+    padding: 0.6rem 0.8rem;
+    border-radius: 8px;
+    transition: all 0.2s;
+    color: var(--color-subtext);
     font-size: 0.9rem;
-    margin-bottom: 0.1rem;
+    margin-bottom: 0.2rem;
+    text-decoration: none;
 }
 
 .case-study-item:hover {
-    border-left-color: var(--color-primary); 
-    background-color: var(--color-card-bg); 
-    color: var(--color-primary); 
+    background-color: rgba(255, 255, 255, 0.03);
+    color: var(--color-primary);
+    padding-left: 1rem;
+    /* Slide effect */
 }
 
 .case-study-symbol {
-    color: var(--color-primary); 
+    color: var(--color-primary);
     margin-right: 0.8rem;
-    font-size: 0.7rem;
-    line-height: 1.2;
-}
-
-.case-study-text {
-    display: flex;
-    flex-direction: column;
-}
-
-.case-study-name {
-    font-weight: 400; 
-}
-
-.case-study-detail {
-    font-size: 0.7rem;
-    color: var(--color-subtext); 
+    font-size: 0.6rem;
+    opacity: 0.7;
 }
 
 /* --- SECCIÓN INFERIOR: CAMBIO DE TEMA --- */
 .sidebar-footer {
     padding-top: 2rem;
-    border-top: 1px dashed var(--color-border); 
-}
-.sidebar-footer {
-    padding-top: 2rem;
-    border-top: 1px dashed var(--color-border); /* Mantiene la línea discontinua */
-    text-align: center; /* Centra el botón si es necesario */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
 }
 
 .theme-toggle-button {
-    /* Base */
-    background: none;
-    border: 1px solid var(--color-primary); /* Borde acentuado */
-    color: var(--color-primary); /* Texto de acento */
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
     cursor: pointer;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     padding: 0.5rem 1rem;
-    
-    /* Estética */
     transition: all 0.2s;
     text-transform: uppercase;
-    font-family: 'Courier New', Courier, monospace; 
-    
-    /* Asegura que el botón se ajuste al tema claro/oscuro */
-    border-radius: 0; 
+    font-family: var(--font-code);
+    border-radius: 20px;
 }
 
 .theme-toggle-button:hover {
-    background-color: var(--color-primary); /* Fondo sólido al pasar el mouse */
-    color: var(--color-background); /* Texto del color de fondo (genera contraste) */
+    border-color: var(--color-primary);
+    color: var(--color-primary);
 }

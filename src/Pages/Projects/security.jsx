@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../../Context/ThemeContext.jsx';
 import '../../styles/Projects.css';
+import SEO from '../../Components/SEO/SEO.jsx';
 
 function SecurityDetail() {
     const { theme } = useTheme();
@@ -22,6 +23,10 @@ function SecurityDetail() {
 
     return (
         <main className="projects-full-page">
+            <SEO 
+                title={`${project.title} | Benjamin Hidalgo`}
+                description={project.subtitle}
+            />
             <div className="projects-header">
                 <Link to="/projects" className="back-link">
                     &larr; Volver a todos los Enfoques

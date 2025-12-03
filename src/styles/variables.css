@@ -4,15 +4,21 @@
     /* --- DARK THEME (Default) --- */
     --color-primary: #BB86FC;
     --color-primary-hover: #A064FF;
-    --color-background: #000000;
+    --color-background: #050505;
+    /* Slightly darker for better contrast with gradient */
     --color-card-bg: #0d0d0d;
     --color-text: #FFFFFF;
-    --color-subtext: #999999;
+    --color-subtext: #A0A0A0;
+    /* Lighter subtext for better readability */
     --color-border: #333333;
     --color-shadow: #1a1a1a;
     --color-shadow-primary: rgba(187, 134, 252, 0.4);
     --color-link: var(--color-primary);
     --color-link-hover: var(--color-text);
+
+    /* --- TYPOGRAPHY --- */
+    --font-primary: 'Outfit', sans-serif;
+    --font-code: 'JetBrains Mono', monospace;
 }
 
 body[data-theme="light"] {

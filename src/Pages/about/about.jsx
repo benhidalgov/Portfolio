@@ -1,5 +1,7 @@
 import React from 'react';
 import '../../styles/about.css'
+import SEO from '../../Components/SEO/SEO.jsx';
+
 function About() {
   // Las habilidades se separan por categorías para un mejor mapeo en la UI
   const skillCategories = [
@@ -27,6 +29,10 @@ function About() {
 
   return (
     <main className="about-page">
+      <SEO 
+        title="Sobre Mí | Benjamin Hidalgo" 
+        description="Conoce más sobre mi perfil como Ingeniero en Informática, mis habilidades en Cloud, Data y Desarrollo, y mis certificaciones."
+      />
       {/* 1. Descripción del Perfil Integral */}
       <h1>Ingeniero en Plataformas y Datos</h1>
       <p className="lead-paragraph">
