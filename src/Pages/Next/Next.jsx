@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 // ✅ CORRECCIÓN: Apuntando a 'projects.js' (plural)
 import { projectData } from '../../Pages/Next/next.js'; 
 import '../../styles/next.css';
+import SEO from '../../Components/SEO/SEO.jsx';
 
 function ProjectsSummary() {
   // Tomamos solo los primeros 3 proyectos para el resumen de la página Home
@@ -10,6 +11,10 @@ function ProjectsSummary() {
 
   return (
     <section className="projects-summary">
+      <SEO 
+        title="Próximos Pasos | Benjamin Hidalgo" 
+        description="Explora mis futuros proyectos y áreas de aprendizaje continuo."
+      />
       <div className="summary-header">
         <h2>Proyectos Destacados</h2>
         <Link to="/projects" className="view-all-link">

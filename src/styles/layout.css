@@ -4,18 +4,21 @@
 }
 
 .main-content-area {
-    /* El margen ahora depende del estado del sidebar */
-    margin-left: 280px; /* Margen cuando está ABIERTO */
+    /* El margen ahora depende del estado del sidebar + el espacio flotante */
+    /* 2rem (left margin) + 260px (width) + 2rem (gap) = ~310px/320px */
+    margin-left: 320px;
     flex-grow: 1;
     min-height: 100vh;
-    padding: 0 4rem; 
+    padding: 2rem 4rem;
+    /* Added top padding */
     box-sizing: border-box;
-    transition: margin-left 0.3s ease; /* Transición suave para el margen */
+    transition: margin-left 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 /* Cuando el sidebar está CERRADO, el margen del contenido se reduce */
-.sidebar.closed + .main-content-area {
-    margin-left: 80px; /* Corresponde al ancho cerrado del sidebar */
+.sidebar.closed+.main-content-area {
+    margin-left: 120px;
+    /* 2rem + 80px + gap */
 }
 
 /* --- Footer --- */
@@ -25,21 +28,28 @@
 @media (max-width: 768px) {
     .sidebar {
         /* En móvil, el sidebar podría ocultarse completamente o tener un ancho menor */
-        width: 60px; /* Ejemplo: Aún más pequeño en móvil por defecto */
+        width: 60px;
+        /* Ejemplo: Aún más pequeño en móvil por defecto */
         padding: 1rem 0.5rem;
     }
+
     .sidebar.open {
-        width: 250px; /* Un poco menos ancho al abrir en móvil */
+        width: 250px;
+        /* Un poco menos ancho al abrir en móvil */
     }
 
     .main-content-area {
-        margin-left: 60px; /* Ajustar al ancho cerrado por defecto en móvil */
-        padding: 0 1rem; /* Menos padding lateral en móvil */
+        margin-left: 60px;
+        /* Ajustar al ancho cerrado por defecto en móvil */
+        padding: 0 1rem;
+        /* Menos padding lateral en móvil */
     }
-    .sidebar.open + .main-content-area {
-        margin-left: 250px; /* Ajustar al ancho abierto en móvil */
+
+    .sidebar.open+.main-content-area {
+        margin-left: 250px;
+        /* Ajustar al ancho abierto en móvil */
     }
-    
+
     /* Opcional: Ocultar el texto intro en móvil siempre */
     .sidebar-intro-text {
         display: none;

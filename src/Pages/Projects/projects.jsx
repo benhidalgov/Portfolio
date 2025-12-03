@@ -2,12 +2,17 @@ import React from 'react';
   import { Link } from 'react-router-dom';
   import { projectData } from '../../data/project.jsx'; 
   import '../../Components/ProjectsSummary/ProjectsSummary.css';
+  import SEO from '../../Components/SEO/SEO.jsx';
 
   function ProjectsSummary() {
     const featuredProjects = projectData.slice(0, 3); 
 
     return (
       <section className="projects-summary">
+        <SEO 
+          title="Proyectos | Benjamin Hidalgo" 
+          description="Galería de proyectos destacados en Cloud Computing, Big Data y Desarrollo Full-Stack."
+        />
         <div className="summary-header">
           <h2>Proyectos Destacados</h2>
           <Link to="/projects" className="view-all-link">

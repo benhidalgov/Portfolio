@@ -1,26 +1,30 @@
 /* --- HERO CONTAINER --- */
 .hero {
-    min-height: 85vh; 
+    min-height: 85vh;
     display: flex;
-    align-items: center; 
+    align-items: center;
     padding-top: 5rem;
     padding-bottom: 5rem;
-    font-family: 'Courier New', Courier, monospace; 
+    font-family: var(--font-primary);
+    /* Updated font */
 }
 
 /* --- TÍTULOS Y SUBTÍTULOS --- */
 .hero-title {
-    font-size: 3.5rem;
+    font-size: 4.5rem;
+    /* Larger */
     line-height: 1.1;
-    margin-bottom: 0.5rem;
-    color: var(--color-text); /* MIGRADO */
-    text-shadow: 2px 2px 0px var(--color-shadow-primary); /* MIGRADO */
+    margin-bottom: 1rem;
+    color: var(--color-text);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    /* Removed text-shadow for cleaner look */
 }
 
 .hero-subtitle {
-    font-size: 1.5rem;
-    color: var(--color-primary); /* MIGRADO */
-    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    color: var(--color-primary);
+    margin-bottom: 2.5rem;
     font-weight: 500;
 }
 
@@ -33,36 +37,47 @@
 
 /* --- Botón Primario (Destacado) --- */
 .btn-primary {
-    background-color: var(--color-primary); /* MIGRADO */
-    color: var(--color-shadow); /* MIGRADO: Texto oscuro sobre fondo claro */
-    font-weight: bold;
-    padding: 0.8rem 2rem;
-    border: 2px solid var(--color-primary); /* MIGRADO */
-    border-radius: 0; 
-    transition: all 0.2s;
+    background-color: var(--color-primary);
+    color: var(--color-background);
+    font-weight: 600;
+    padding: 1rem 2.5rem;
+    border: 2px solid var(--color-primary);
+    border-radius: 50px;
+    /* Pill shape */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    font-family: var(--font-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.9rem;
 }
 
 .btn-primary:hover {
-    background-color: var(--color-primary-hover); /* MIGRADO */
-    color: var(--color-background); /* MIGRADO: Texto aún más oscuro/contraste */
-    box-shadow: 4px 4px 0 var(--color-shadow); /* MIGRADO */
-    transform: translate(-2px, -2px);
+    background-color: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+    box-shadow: 0 10px 20px var(--color-shadow-primary);
+    transform: translateY(-3px);
 }
 
 /* --- Botón Secundario (Outline) --- */
 .btn-secondary {
     background-color: transparent;
-    color: var(--color-text); /* MIGRADO */
-    font-weight: bold;
-    padding: 0.8rem 2rem;
-    border: 2px solid var(--color-border); /* MIGRADO */
-    border-radius: 0;
-    transition: all 0.2s;
+    color: var(--color-text);
+    font-weight: 600;
+    padding: 1rem 2.5rem;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    /* Pill shape */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    font-family: var(--font-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.9rem;
 }
 
 .btn-secondary:hover {
-    border-color: var(--color-primary); /* MIGRADO */
-    color: var(--color-primary); /* MIGRADO */
+    border-color: var(--color-text);
+    background-color: rgba(255, 255, 255, 0.05);
+    transform: translateY(-3px);
 }
 
 /* --- RESPONSIVE --- */
@@ -73,5 +88,17 @@
         padding-left: 1rem;
         padding-right: 1rem;
     }
-    /* (Mantenemos los demás estilos responsive sin cambios de color) */
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .hero-cta {
+        flex-direction: column;
+        gap: 1rem;
+    }
 }

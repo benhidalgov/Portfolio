@@ -1,61 +1,81 @@
 /* --- PÁGINA PRINCIPAL --- */
 .about-page {
-    font-family: 'Courier New', Courier, monospace;
-    padding: 2rem 0; /* Ajusta según sea necesario dentro del main-content-area */
-    color: var(--color-text); /* MIGRADO */
-    transition: color 0.3s ease; /* Transición suave */
+    font-family: var(--font-primary);
+    /* Updated font */
+    padding: 2rem 0;
+    color: var(--color-text);
+    transition: color 0.3s ease;
 }
 
 /* --- TÍTULOS GENERALES --- */
 .about-page h1 {
-    font-size: 2.5rem;
-    color: var(--color-text); /* MIGRADO */
+    font-size: 3rem;
+    color: var(--color-text);
     margin-bottom: 0.5rem;
     padding-bottom: 0.2rem;
-    border-bottom: 2px solid var(--color-primary); /* MIGRADO */
+    letter-spacing: -0.02em;
+    /* Removed border-bottom for cleaner look */
 }
 
 .about-page h2 {
-    font-size: 1.5rem;
-    color: var(--color-primary); /* MIGRADO */
-    margin-top: 3rem;
-    margin-bottom: 1.5rem;
-    text-transform: uppercase;
+    font-size: 1.8rem;
+    color: var(--color-primary);
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+    font-weight: 700;
 }
 
 /* --- PÁRRAFO PRINCIPAL --- */
 .lead-paragraph {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: var(--color-subtext); /* MIGRADO */
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: var(--color-subtext);
     max-width: 900px;
 }
 
-.lead-paragraph strong { /* Estilo para texto resaltado */
-    color: var(--color-primary);
-    font-weight: 700;
+.lead-paragraph strong {
+    color: var(--color-text);
+    /* White for emphasis */
+    font-weight: 600;
 }
 
 /* --- 2. CERTIFICACIONES DESTACADAS --- */
 .certs-summary {
     list-style: none;
-    padding: 1.5rem;
+    padding: 2rem;
     margin: 0;
-    background-color: var(--color-card-bg); /* MIGRADO */
-    border: 1px solid var(--color-border); /* MIGRADO */
-    border-left: 5px solid var(--color-primary); /* MIGRADO */
+    background-color: rgba(255, 255, 255, 0.03);
+    /* Glass card */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    /* Floating Island style */
     max-width: 800px;
-    box-shadow: 4px 4px 0 var(--color-shadow); /* MIGRADO */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.certs-summary:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.1);
 }
 
 .certs-summary li {
-    font-size: 1rem;
-    line-height: 1.8;
-    color: var(--color-text); /* MIGRADO */
+    font-size: 1.05rem;
+    line-height: 2;
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.certs-summary li::before {
+    content: '🏆';
+    font-size: 1.2rem;
 }
 
 .certs-summary li strong {
-    color: var(--color-primary); /* MIGRADO */
+    color: var(--color-primary);
 }
 
 /* --- 3. STACK DE HABILIDADES (GRID) --- */
@@ -63,40 +83,52 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
-    /* No necesita max-width si ya está dentro de .main-content-area */
 }
 
 .skill-category {
-    background-color: var(--color-card-bg); /* MIGRADO */
-    padding: 1.5rem;
-    border: 1px solid var(--color-border); /* MIGRADO */
-    box-shadow: 3px 3px 0 var(--color-shadow); /* MIGRADO */
-    transition: box-shadow 0.3s; /* Mantenemos la transición */
+    background-color: rgba(255, 255, 255, 0.03);
+    /* Glass card */
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    /* Floating Island style */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 
 .skill-category:hover {
-    box-shadow: 5px 5px 0 var(--color-shadow-primary); /* MIGRADO */
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    border-color: var(--color-primary);
 }
 
 .skill-category h3 {
-    font-size: 1.1rem;
-    color: var(--color-text); /* MIGRADO */
+    font-size: 1.2rem;
+    color: var(--color-text);
     margin-top: 0;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     padding-bottom: 0.5rem;
-    border-bottom: 1px dashed var(--color-border); /* MIGRADO */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: var(--font-code);
 }
 
 .skill-category .skills-list {
-    list-style: '>> '; /* Mantenemos el estilo retro */
-    padding-left: 1.5rem;
+    list-style: none;
+    padding-left: 0;
     margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 
 .skill-category .skills-list li {
     font-size: 0.9rem;
-    color: var(--color-subtext); /* MIGRADO */
-    margin-bottom: 0.4rem;
+    color: var(--color-subtext);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    font-family: var(--font-code);
 }
 
 /* --- RESPONSIVE --- */
@@ -104,9 +136,11 @@
     .about-page h1 {
         font-size: 2rem;
     }
+
     .about-page h2 {
         font-size: 1.3rem;
     }
+
     .lead-paragraph {
         font-size: 1rem;
     }
