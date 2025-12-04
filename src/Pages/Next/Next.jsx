@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// ✅ CORRECCIÓN: Apuntando a 'projects.js' (plural)
+// CORRECCIÓN: Apuntando a 'projects.js' (plural)
 import { projectData } from '../../Pages/Next/next.js'; 
 import '../../styles/next.css';
 import SEO from '../../Components/SEO/SEO.jsx';

@@ -1,28 +1,28 @@
 /* src/styles/variables.css */
 
 :root {
-    /* --- DARK THEME (Default) --- */
+    /* --- TEMA OSCURO (Por defecto) --- */
     --color-primary: #BB86FC;
     --color-primary-hover: #A064FF;
     --color-background: #050505;
-    /* Slightly darker for better contrast with gradient */
+    /* Ligeramente más oscuro para mejor contraste con el degradado */
     --color-card-bg: #0d0d0d;
     --color-text: #FFFFFF;
     --color-subtext: #A0A0A0;
-    /* Lighter subtext for better readability */
+    /* Subtexto más claro para mejor legibilidad */
     --color-border: #333333;
     --color-shadow: #1a1a1a;
     --color-shadow-primary: rgba(187, 134, 252, 0.4);
     --color-link: var(--color-primary);
     --color-link-hover: var(--color-text);
 
-    /* --- TYPOGRAPHY --- */
+    /* --- TIPOGRAFÍA --- */
     --font-primary: 'Outfit', sans-serif;
     --font-code: 'JetBrains Mono', monospace;
 }
 
 body[data-theme="light"] {
-    /* --- LIGHT THEME --- */
+    /* --- TEMA CLARO --- */
     --color-primary: #6200EE;
     --color-primary-hover: #3700B3;
     --color-background: #F0F0F0;

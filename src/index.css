@@ -1,27 +1,26 @@
 /* src/index.css */
 
-/* 🏆 CLAVE 1: Importa las variables CSS definidas en src/styles/variables.css */
-/* 🏆 CLAVE 1: Importa las variables CSS definidas en src/styles/variables.css */
+/* CLAVE 1: Importa las variables CSS definidas en src/styles/variables.css */
 @import './styles/variables.css';
 
-/* 🏆 CLAVE 3: Importar Google Fonts (Outfit & JetBrains Mono) */
+/* CLAVE 3: Importar Google Fonts (Outfit & JetBrains Mono) */
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;700;900&display=swap');
 
-/* 🏆 CLAVE 2: Eliminar todos los bloques :root, h1, button, y @media obsoletos. */
+/* CLAVE 2: Eliminar todos los bloques :root, h1, button, y @media obsoletos. */
 
 /* Estilos de Reinicio y Tema Oscuro por Defecto */
 body {
     margin: 0;
     font-family: var(--font-primary);
-    /* Updated font */
+    /* Fuente actualizada */
 
     /* Usa las variables CSS para los colores base */
     background-color: var(--color-background);
-    /* Dynamic Gradient Background */
+    /* Fondo de degradado dinámico */
     background-image: radial-gradient(circle at 10% 20%, rgba(98, 0, 238, 0.05) 0%, transparent 40%),
         radial-gradient(circle at 90% 80%, rgba(187, 134, 252, 0.05) 0%, transparent 40%);
     background-attachment: fixed;
-    /* Parallax-like effect */
+    /* Efecto tipo parallax */
 
     color: var(--color-text);
 
@@ -49,7 +48,7 @@ button {
     /* Los estilos funcionales del botón serán definidos por cada componente (Hero, Sidebar) */
 }
 
-/* 🏆 SCROLLBAR PERSONALIZADO (Premium Dark) */
+/* SCROLLBAR PERSONALIZADO (Premium Dark) */
 ::-webkit-scrollbar {
     width: 8px;
     /* Más delgado */
@@ -77,7 +76,7 @@ button {
     /* Color de acento al pasar el mouse */
 }
 
-/* Firefox support */
+/* Soporte para Firefox */
 html {
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 255, 255, 0.2) transparent;

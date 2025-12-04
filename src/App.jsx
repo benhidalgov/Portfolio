@@ -6,7 +6,7 @@ import { AnimatePresence } from 'framer-motion';
 import './index.css'; // Importa estilos base y variables CSS
 import './styles/layout.css'; // Contiene .app-container y .main-content-area
 
-// 🏆 IMPORTACIÓN CLAVE: Importa el ThemeProvider desde el contexto
+// IMPORTACIÓN CLAVE: Importa el ThemeProvider desde el contexto
 import { ThemeProvider } from './Context/ThemeContext.jsx'; 
 
 // Componentes de Layout (Se mantienen estáticos para carga inmediata)
@@ -32,7 +32,7 @@ function App() {
   const location = useLocation();
 
   return (
-    // 🏆 PASO 1: Envuelve TODO con ThemeProvider
+    // PASO 1: Envuelve TODO con ThemeProvider
     <ThemeProvider> 
       {/* CONTENEDOR PRINCIPAL: Define el layout de dos columnas */}
       <div className="app-container">

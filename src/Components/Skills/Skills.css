@@ -4,26 +4,30 @@
     font-family: 'Courier New', Courier, monospace;
     padding: 4rem 0;
     margin-top: 3rem;
-    color: var(--color-text); /* MIGRADO */
-    border-top: 1px solid var(--color-border); /* MIGRADO */
+    color: var(--color-text);
+    /* MIGRADO */
+    border-top: 1px solid var(--color-border);
+    /* MIGRADO */
 }
 
 /* --- TÍTULO PRINCIPAL --- */
 .skills-title {
     text-size-adjust: 45;
     font-size: 1.8rem;
-    color: var(--color-primary); /* MIGRADO */
+    color: var(--color-primary);
+    /* MIGRADO */
     text-align: center;
     margin-bottom: 3rem;
     text-transform: uppercase;
     /* Mantenemos sombra, usando variables */
-    text-shadow: 1px 1px 0 var(--color-background), 2px 2px 0 var(--color-shadow-primary); /* MIGRADO */
+    text-shadow: 1px 1px 0 var(--color-background), 2px 2px 0 var(--color-shadow-primary);
+    /* MIGRADO */
 }
 
 /* --- GRID DE HABILIDADES (Ajustado a 2x2 FORZADO) --- */
 .skills-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; 
+    grid-template-columns: 1fr 1fr;
     gap: 2rem;
     max-width: 900px;
     margin: 0 auto;
@@ -31,25 +35,31 @@
 
 /* --- TARJETA DE CATEGORÍA --- */
 .skill-category-card {
-    background-color: var(--color-card-bg); /* MIGRADO */
+    background-color: var(--color-card-bg);
+    /* MIGRADO */
     padding: 1.5rem;
-    border: 1px solid var(--color-border); /* MIGRADO */
-    box-shadow: 3px 3px 0 var(--color-shadow); /* MIGRADO */
+    border: 1px solid var(--color-border);
+    /* MIGRADO */
+    box-shadow: 3px 3px 0 var(--color-shadow);
+    /* MIGRADO */
     transition: box-shadow 0.3s;
 }
 
 .skill-category-card:hover {
-    box-shadow: 5px 5px 0 var(--color-shadow-primary); /* MIGRADO */
+    box-shadow: 5px 5px 0 var(--color-shadow-primary);
+    /* MIGRADO */
 }
 
 /* --- TÍTULO DE LA CATEGORÍA --- */
 .category-title {
     font-size: 1.2rem;
-    color: var(--color-text); /* MIGRADO */
+    color: var(--color-text);
+    /* MIGRADO */
     margin-top: 0;
     margin-bottom: 1.2rem;
     padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--color-border); /* MIGRADO */
+    border-bottom: 1px solid var(--color-border);
+    /* MIGRADO */
 }
 
 /* --- LISTA DE HABILIDADES --- */
@@ -61,7 +71,8 @@
 
 .skill-item {
     font-size: 0.9rem;
-    color: var(--color-subtext); /* MIGRADO */
+    color: var(--color-subtext);
+    /* MIGRADO */
     margin-bottom: 0.6rem;
     display: flex;
     align-items: flex-start;
@@ -69,20 +80,22 @@
 }
 
 .skill-icon {
-    color: var(--color-primary); /* MIGRADO */
+    color: var(--color-primary);
+    /* MIGRADO */
     margin-right: 0.5rem;
     font-size: 0.9rem;
     line-height: 1.4;
 }
 
-/* --- RESPONSIVE --- */
+/* --- RESPONSIVO --- */
 @media (max-width: 1024px) {
     .skills-grid {
-        grid-template-columns: 1fr; 
+        grid-template-columns: 1fr;
         padding: 0 1rem;
         max-width: 600px;
     }
 }
+
 @media (max-width: 768px) {
     .skills-title {
         font-size: 1.5rem;

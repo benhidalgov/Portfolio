@@ -25,7 +25,7 @@ export const ThemeProvider = ({ children }) => {
         });
     };
 
-    // 🏆 CORRECCIÓN CLAVE: Usar setAttribute para aplicar el tema al body
+    // CORRECCIÓN CLAVE: Usar setAttribute para aplicar el tema al body
     useEffect(() => {
         // Esto aplica body[data-theme="dark"] o body[data-theme="light"]
         document.body.setAttribute('data-theme', theme.toLowerCase());

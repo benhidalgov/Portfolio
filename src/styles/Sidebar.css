@@ -1,4 +1,4 @@
-/* --- Sidebar Styles: src/Components/Sidebar/Sidebar.css --- */
+/* --- Estilos de la Barra Lateral: src/Components/Sidebar/Sidebar.css --- */
 
 /* --- GENERAL & LAYOUT (Fija la barra lateral) --- */
 .sidebar {
@@ -7,32 +7,32 @@
     /* Posicionamiento y Dimensiones */
     position: fixed;
     top: 2rem;
-    /* Floating from top */
+    /* Flotando desde arriba */
     left: 2rem;
-    /* Floating from left */
+    /* Flotando desde la izquierda */
     width: 260px;
-    /* Slightly narrower */
+    /* Ligeramente más estrecho */
     height: calc(100vh - 4rem);
-    /* Floating height */
+    /* Altura flotante */
     padding: 2rem 1.5rem;
 
     /* Apariencia "Isla Flotante" */
     background-color: rgba(10, 10, 10, 0.6);
-    /* Darker, more transparent */
+    /* Más oscuro, más transparente */
     backdrop-filter: blur(20px) saturate(180%);
-    /* Stronger blur and saturation */
+    /* Desenfoque y saturación más fuertes */
     -webkit-backdrop-filter: blur(20px) saturate(180%);
 
     border: 1px solid rgba(255, 255, 255, 0.08);
-    /* Subtle border all around */
+    /* Borde sutil alrededor */
     border-radius: 24px;
-    /* Large rounded corners */
+    /* Esquinas redondeadas grandes */
 
     box-shadow:
         0 20px 40px rgba(0, 0, 0, 0.4),
-        /* Deep shadow */
+        /* Sombra profunda */
         0 0 0 1px rgba(255, 255, 255, 0.05);
-    /* Inner glow ring */
+    /* Anillo de brillo interior */
 
     box-sizing: border-box;
     display: flex;
@@ -41,7 +41,7 @@
     overflow-y: auto;
     color: var(--color-text);
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    /* Smooth spring-like transition */
+    /* Transición suave tipo resorte */
     z-index: 1000;
 }
 
@@ -73,7 +73,7 @@
     padding: 4px;
     display: block;
     border-radius: 12px;
-    /* Rounded logo */
+    /* Logo redondeado */
 }
 
 /* --- Botón Toggle --- */
@@ -151,7 +151,7 @@
     border: 1px solid transparent;
     transition: all 0.2s;
     border-radius: 12px;
-    /* Rounded items */
+    /* Elementos redondeados */
     color: var(--color-text);
     background: transparent;
 }
@@ -198,7 +198,7 @@
     background-color: rgba(255, 255, 255, 0.03);
     color: var(--color-primary);
     padding-left: 1rem;
-    /* Slide effect */
+    /* Efecto de deslizamiento */
 }
 
 .case-study-symbol {

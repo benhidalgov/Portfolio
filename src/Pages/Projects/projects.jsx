@@ -37,7 +37,7 @@ import React from 'react';
                     <span key={tech} className="tech-tag">{tech}</span>
                   ))}
                 </div>
-                {/* 🏆 CAMBIO CLAVE: Usamos <a> para el enlace externo de GitHub */}
+                {/* CAMBIO CLAVE: Usamos <a> para el enlace externo de GitHub */}
                 <a 
                   href={project.github || '#'} 
                   target="_blank" 

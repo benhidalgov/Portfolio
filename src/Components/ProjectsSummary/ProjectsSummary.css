@@ -1,4 +1,4 @@
-/* --- ProjectsSummary Styles --- */
+/* --- Estilos de Resumen de Proyectos --- */
 .projects-summary {
     padding: 4rem 0;
     background-color: transparent;
@@ -58,16 +58,16 @@
     display: flex;
     flex-direction: column;
     transition: transform 0.3s ease;
-    /* Smooth transition for the whole card */
+    /* Transición suave para toda la tarjeta */
 }
 
 .project-card-summary:hover .project-image {
     transform: scale(1.02);
-    /* Subtle zoom effect */
+    /* Efecto de zoom sutil */
     box-shadow: 0 8px 16px var(--color-shadow-primary);
-    /* Enhanced shadow on hover */
+    /* Sombra mejorada al pasar el mouse */
     border-color: var(--color-primary);
-    /* Border highlight */
+    /* Resaltado de borde */
 }
 
 .project-image {
@@ -79,17 +79,17 @@
     border: 1px solid var(--color-border);
     /* MIGRADO */
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    /* Transitions */
+    /* Transiciones */
 }
 
 .card-content {
     padding: 0;
     padding-top: 1rem;
-    /* Increased padding */
+    /* Padding aumentado */
     color: var(--color-subtext);
     /* MIGRADO */
     flex-grow: 1;
-    /* Ensure content fills space */
+    /* Asegurar que el contenido llene el espacio */
     display: flex;
     flex-direction: column;
 }
@@ -105,7 +105,7 @@
 
 .project-card-summary:hover .card-content h3 {
     color: var(--color-primary);
-    /* Highlight title on card hover */
+    /* Resaltar título al pasar el mouse sobre la tarjeta */
 }
 
 .card-content p {
@@ -156,18 +156,18 @@
     font-weight: 500;
     transition: all 0.2s ease;
     display: inline-block;
-    /* Allow transform */
+    /* Permitir transformación */
 }
 
 .details-link:hover {
     color: var(--color-link-hover);
     /* MIGRADO */
     transform: translateX(5px);
-    /* Slide effect */
+    /* Efecto de deslizamiento */
     text-shadow: 0 0 5px var(--color-shadow-primary);
 }
 
-/* Responsive design */
+/* Diseño responsivo */
 @media (max-width: 768px) {
     .summary-grid {
         grid-template-columns: 1fr;

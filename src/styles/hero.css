@@ -1,4 +1,4 @@
-/* --- HERO CONTAINER --- */
+/* --- CONTENEDOR HERO --- */
 .hero {
     min-height: 85vh;
     display: flex;
@@ -6,19 +6,19 @@
     padding-top: 5rem;
     padding-bottom: 5rem;
     font-family: var(--font-primary);
-    /* Updated font */
+    /* Fuente actualizada */
 }
 
 /* --- TÍTULOS Y SUBTÍTULOS --- */
 .hero-title {
     font-size: 4.5rem;
-    /* Larger */
+    /* Más grande */
     line-height: 1.1;
     margin-bottom: 1rem;
     color: var(--color-text);
     font-weight: 800;
     letter-spacing: -0.03em;
-    /* Removed text-shadow for cleaner look */
+    /* Sombra de texto eliminada para un aspecto más limpio */
 }
 
 .hero-subtitle {
@@ -28,7 +28,7 @@
     font-weight: 500;
 }
 
-/* --- CALL TO ACTION (CTA) --- */
+/* --- LLAMADA A LA ACCIÓN (CTA) --- */
 .hero-cta {
     display: flex;
     gap: 1.5rem;
@@ -43,7 +43,7 @@
     padding: 1rem 2.5rem;
     border: 2px solid var(--color-primary);
     border-radius: 50px;
-    /* Pill shape */
+    /* Forma de píldora */
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     font-family: var(--font-primary);
     text-transform: uppercase;
@@ -66,7 +66,7 @@
     padding: 1rem 2.5rem;
     border: 2px solid rgba(255, 255, 255, 0.2);
     border-radius: 50px;
-    /* Pill shape */
+    /* Forma de píldora */
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     font-family: var(--font-primary);
     text-transform: uppercase;
@@ -80,7 +80,7 @@
     transform: translateY(-3px);
 }
 
-/* --- RESPONSIVE --- */
+/* --- RESPONSIVO --- */
 @media (max-width: 768px) {
     .hero {
         min-height: 60vh;

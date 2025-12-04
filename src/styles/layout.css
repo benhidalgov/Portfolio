@@ -5,12 +5,12 @@
 
 .main-content-area {
     /* El margen ahora depende del estado del sidebar + el espacio flotante */
-    /* 2rem (left margin) + 260px (width) + 2rem (gap) = ~310px/320px */
+    /* 2rem (margen izquierdo) + 260px (ancho) + 2rem (espacio) = ~310px/320px */
     margin-left: 320px;
     flex-grow: 1;
     min-height: 100vh;
     padding: 2rem 4rem;
-    /* Added top padding */
+    /* Padding superior añadido */
     box-sizing: border-box;
     transition: margin-left 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
@@ -18,7 +18,7 @@
 /* Cuando el sidebar está CERRADO, el margen del contenido se reduce */
 .sidebar.closed+.main-content-area {
     margin-left: 120px;
-    /* 2rem + 80px + gap */
+    /* 2rem + 80px + espacio */
 }
 
 /* --- Footer --- */

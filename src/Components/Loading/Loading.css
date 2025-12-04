@@ -5,7 +5,7 @@
     align-items: center;
     height: 100%;
     min-height: 50vh;
-    /* Ensure it takes up space */
+    /* Asegurar que ocupe espacio */
     color: var(--color-primary);
     font-family: 'Courier New', Courier, monospace;
 }

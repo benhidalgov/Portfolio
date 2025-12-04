@@ -2,63 +2,81 @@
 .footer {
     /* Mantener el diseño de línea dura del portafolio */
     font-family: 'Courier New', Courier, monospace;
-    color: var(--color-subtext); /* MIGRADO: Color base del texto (gris sutil) */
-    background-color: var(--color-background); /* MIGRADO */
-    
-    /* Layout */
+    color: var(--color-subtext);
+    /* MIGRADO: Color base del texto (gris sutil) */
+    background-color: var(--color-background);
+    /* MIGRADO */
+
+    /* Diseño */
     display: flex;
-    flex-wrap: wrap; /* Permite que los elementos se apilen en móvil */
+    flex-wrap: wrap;
+    /* Permite que los elementos se apilen en móvil */
     justify-content: space-around;
     padding: 3rem 4rem;
-    margin-top: 4rem; 
+    margin-top: 4rem;
 
     /* Borde distintivo superior para separarlo del contenido */
-    border-top: 2px solid var(--color-shadow); /* MIGRADO */
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5), inset 0 1px 0 var(--color-border); /* MIGRADO */
+    border-top: 2px solid var(--color-shadow);
+    /* MIGRADO */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5), inset 0 1px 0 var(--color-border);
+    /* MIGRADO */
 }
 
 /* --- SECCIONES (Navegación, Social, Copyright) --- */
-.footer-links, .footer-social, .footer-copyright {
+.footer-links,
+.footer-social,
+.footer-copyright {
     margin: 1rem 0;
-    min-width: 180px; /* Ancho mínimo para mantener la estructura */
+    min-width: 180px;
+    /* Ancho mínimo para mantener la estructura */
 }
 
 /* Encabezados de Sección */
 .footer h3 {
     font-size: 1.1rem;
-    color: var(--color-primary); /* MIGRADO */
+    color: var(--color-primary);
+    /* MIGRADO */
     margin-bottom: 1.2rem;
     text-transform: uppercase;
     font-weight: 700;
-    border-bottom: 1px solid var(--color-shadow-primary); /* MIGRADO (Usando sombra púrpura) */
+    border-bottom: 1px solid var(--color-shadow-primary);
+    /* MIGRADO (Usando sombra púrpura) */
     padding-bottom: 0.2rem;
 }
 
 /* --- ENLACES (Navegación y Social) --- */
-.footer-link, .social-link {
+.footer-link,
+.social-link {
     display: block;
-    color: var(--color-subtext); /* MIGRADO */
+    color: var(--color-subtext);
+    /* MIGRADO */
     font-size: 0.95rem;
     margin-bottom: 0.5rem;
     transition: color 0.2s, padding-left 0.2s;
 }
 
 /* Efecto Hover */
-.footer-link:hover, .social-link:hover {
-    color: var(--color-text); /* MIGRADO */
-    padding-left: 5px; /* Pequeño desplazamiento al pasar el mouse */
-    text-shadow: 0 0 5px var(--color-shadow-primary); /* MIGRADO */
+.footer-link:hover,
+.social-link:hover {
+    color: var(--color-text);
+    /* MIGRADO */
+    padding-left: 5px;
+    /* Pequeño desplazamiento al pasar el mouse */
+    text-shadow: 0 0 5px var(--color-shadow-primary);
+    /* MIGRADO */
 }
 
 /* --- COPYRIGHT --- */
 .footer-copyright {
     text-align: center;
-    align-self: flex-end; /* Alinea los derechos de autor al fondo si es necesario */
+    align-self: flex-end;
+    /* Alinea los derechos de autor al fondo si es necesario */
     font-size: 0.8rem;
-    color: var(--color-subtext); /* MIGRADO (Usamos subtext para consistencia) */
+    color: var(--color-subtext);
+    /* MIGRADO (Usamos subtext para consistencia) */
 }
 
-/* --- RESPONSIVE --- */
+/* --- RESPONSIVO --- */
 @media (max-width: 768px) {
     .footer {
         flex-direction: column;
@@ -66,7 +84,9 @@
         padding: 2rem 1rem;
     }
 
-    .footer-links, .footer-social, .footer-copyright {
+    .footer-links,
+    .footer-social,
+    .footer-copyright {
         min-width: 100%;
         text-align: center;
         margin-bottom: 1.5rem;

@@ -1,4 +1,4 @@
-/* --- Projects Detail Pages Styles --- */
+/* --- Estilos de Páginas de Detalle de Proyectos --- */
 
 .projects-full-page {
     padding: 2rem 3rem;
@@ -6,14 +6,14 @@
     margin: 0 auto;
     color: var(--color-text);
     font-family: var(--font-primary);
-    /* Updated font */
+    /* Fuente actualizada */
     min-height: calc(100vh - 200px);
 }
 
 .projects-header {
     margin-bottom: 3rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    /* Subtle border */
+    /* Borde sutil */
     padding-bottom: 2rem;
 }
 
@@ -28,25 +28,25 @@
     border: 1px solid transparent;
     padding: 0.5rem 1rem;
     border-radius: 8px;
-    /* Rounded */
+    /* Redondeado */
 }
 
 .back-link:hover {
     color: var(--color-link-hover);
     background-color: rgba(255, 255, 255, 0.05);
-    /* Subtle hover bg */
+    /* Fondo sutil al pasar el mouse */
     transform: translateX(-5px);
 }
 
 .projects-header h1 {
     font-size: 3rem;
-    /* Larger */
+    /* Más grande */
     font-weight: 700;
     color: var(--color-text);
-    /* White text */
+    /* Texto blanco */
     margin: 0 0 1rem 0;
     letter-spacing: -0.02em;
-    /* Modern tracking */
+    /* Espaciado moderno */
 }
 
 .lead-paragraph {
@@ -60,7 +60,7 @@
     display: flex;
     flex-direction: column;
     gap: 3rem;
-    /* More space */
+    /* Más espacio */
 }
 
 .project-hero-image {
@@ -71,9 +71,9 @@
     object-fit: cover;
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    /* Deep shadow */
+    /* Sombra profunda */
     border-radius: 24px;
-    /* Floating Island style */
+    /* Estilo Isla Flotante */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -111,10 +111,10 @@
     line-height: 1.6;
     padding: 1rem 1.5rem;
     background-color: rgba(255, 255, 255, 0.03);
-    /* Glass card */
+    /* Tarjeta de vidrio */
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 16px;
-    /* Rounded */
+    /* Redondeado */
     transition: all 0.2s ease;
 }
 
@@ -133,11 +133,11 @@
 
 .tech-tag-full {
     background-color: rgba(187, 134, 252, 0.1);
-    /* Primary tint */
+    /* Tinte primario */
     color: var(--color-primary);
     padding: 0.5rem 1rem;
     border-radius: 50px;
-    /* Pill shape */
+    /* Forma de píldora */
     font-size: 0.9rem;
     font-weight: 500;
     border: 1px solid rgba(187, 134, 252, 0.2);
@@ -177,7 +177,7 @@
     position: relative;
     overflow: hidden;
     border-radius: 50px;
-    /* Pill */
+    /* Píldora */
 }
 
 .btn-primary:hover {
@@ -187,7 +187,7 @@
     transform: translateY(-2px);
 }
 
-/* Responsive design */
+/* Diseño responsivo */
 @media (max-width: 768px) {
     .projects-full-page {
         padding: 1.5rem 1.5rem;
