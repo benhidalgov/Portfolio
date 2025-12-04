@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Footer.css'; // CORRECCIÓN: Ahora solo importa su CSS local
+import '../../styles/Footer.css'; 
 
 function Footer() {
   const currentYear = new Date().getFullYear();

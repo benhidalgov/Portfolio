@@ -4,21 +4,25 @@
     font-family: 'Courier New', Courier, monospace;
     color: var(--color-subtext);
     /* MIGRADO: Color base del texto (gris sutil) */
-    background-color: var(--color-background);
+    background-color: var(--footer-bg);
     /* MIGRADO */
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
 
-    /* Diseño */
+    /* Diseño Floating Island */
+    margin: 4rem 2rem 2rem 2rem;
+    /* Top, Right, Bottom, Left */
+    border-radius: 24px;
+    border: 1px solid var(--footer-border);
+
     display: flex;
     flex-wrap: wrap;
     /* Permite que los elementos se apilen en móvil */
     justify-content: space-around;
     padding: 3rem 4rem;
-    margin-top: 4rem;
 
-    /* Borde distintivo superior para separarlo del contenido */
-    border-top: 2px solid var(--color-shadow);
     /* MIGRADO */
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5), inset 0 1px 0 var(--color-border);
+    box-shadow: var(--footer-shadow);
     /* MIGRADO */
 }
 
@@ -82,6 +86,8 @@
         flex-direction: column;
         align-items: center;
         padding: 2rem 1rem;
+        margin: 2rem 1rem;
+        /* Menor margen en móvil */
     }
 
     .footer-links,

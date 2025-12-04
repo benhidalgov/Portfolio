@@ -17,19 +17,19 @@
     padding: 2rem 1.5rem;
 
     /* Apariencia "Isla Flotante" */
-    background-color: rgba(10, 10, 10, 0.6);
+    background-color: var(--sidebar-bg);
     /* Más oscuro, más transparente */
     backdrop-filter: blur(20px) saturate(180%);
     /* Desenfoque y saturación más fuertes */
     -webkit-backdrop-filter: blur(20px) saturate(180%);
 
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--sidebar-border);
     /* Borde sutil alrededor */
     border-radius: 24px;
     /* Esquinas redondeadas grandes */
 
     box-shadow:
-        0 20px 40px rgba(0, 0, 0, 0.4),
+        0 20px 40px var(--sidebar-shadow-color),
         /* Sombra profunda */
         0 0 0 1px rgba(255, 255, 255, 0.05);
     /* Anillo de brillo interior */
@@ -78,7 +78,7 @@
 
 /* --- Botón Toggle --- */
 .sidebar-toggle-button {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--sidebar-toggle-bg);
     border: 1px solid var(--color-primary);
     color: var(--color-primary);
     cursor: pointer;
@@ -171,8 +171,8 @@
 
 .nav-item-primary:hover,
 .nav-item-primary.active {
-    border-color: rgba(255, 255, 255, 0.1);
-    background-color: rgba(255, 255, 255, 0.05);
+    border-color: var(--sidebar-border);
+    background-color: var(--sidebar-item-hover-bg);
     color: var(--color-primary);
     transform: translateX(5px);
 }
@@ -195,7 +195,7 @@
 }
 
 .case-study-item:hover {
-    background-color: rgba(255, 255, 255, 0.03);
+    background-color: var(--sidebar-item-hover-bg);
     color: var(--color-primary);
     padding-left: 1rem;
     /* Efecto de deslizamiento */
@@ -211,7 +211,7 @@
 /* --- SECCIÓN INFERIOR: CAMBIO DE TEMA --- */
 .sidebar-footer {
     padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid var(--sidebar-border);
     text-align: center;
 }
 
