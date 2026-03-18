@@ -1,31 +1,9 @@
 import React from 'react';
+import { aboutSkills as skillCategories } from '../../data/skills.js';
 import '../../styles/about.css'
 import SEO from '../../Components/SEO/SEO.jsx';
 
 function About() {
-  // Las habilidades se separan por categorías para un mejor mapeo en la UI
-  const skillCategories = [
-    { 
-      title: 'Infraestructura & Cloud', 
-      skills: ['AWS', 'Azure', 'Red Hat (Linux)', 'Docker & Kubernetes', 'IaC (Terraform)'],
-      certifications: ['AWS Certified Cloud Practitioner', 'Azure Fundamentals', 'RHCSA']
-    },
-    { 
-      title: 'Ingeniería de Datos & BI', 
-      skills: ['Python (Pandas/Spark)', 'SQL/T-SQL', 'PostgreSQL/MongoDB', 'Data Storytelling'],
-      certifications: ['Big Data Professional Certification', 'Data Storytelling Professional Certification']
-    },
-    { 
-      title: 'Desarrollo & Automatización', 
-      skills: ['React JS', 'Node.js (Express)', 'CI/CD (GitHub Actions)', 'Git & GitHub', 'Bash Scripting'],
-      certifications: ['DevOps Essentials', 'CCNA']
-    },
-    {
-      title: 'Ciberseguridad',
-      skills: ['Análisis de Riesgos', 'Network Security'],
-      certifications: ['Google Cybersecurity Professional Certificate', 'Cisco CCNA']
-    }
-  ];
 
   return (
     <main className="about-page">

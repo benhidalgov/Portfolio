@@ -1,31 +1,117 @@
-.loading-container {
+/* --- Loading: MAGI BOOT SEQUENCE --- */
+
+.magi-loading-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    min-height: 50vh;
-    /* Ensure it takes up space */
+    height: 100vh;
+    background-color: var(--color-background);
     color: var(--color-primary);
-    font-family: 'Courier New', Courier, monospace;
+    font-family: var(--font-code);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
 }
 
-.spinner {
-    width: 50px;
-    height: 50px;
-    border: 5px solid var(--color-shadow-primary);
-    border-top: 5px solid var(--color-primary);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin-bottom: 1rem;
+/* CRT Scanline Overlay specifically for Loading */
+.magi-loading-container::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(
+        transparent 50%, 
+        rgba(0, 0, 0, 0.25) 50%
+    );
+    background-size: 100% 4px;
+    z-index: 2;
+    pointer-events: none;
 }
 
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
+/* === TERMINAL LOGS === */
+.magi-terminal {
+    width: 600px;
+    max-width: 90%;
+    height: 300px;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    position: relative;
+}
 
-    100% {
-        transform: rotate(360deg);
-    }
+.magi-log-line {
+    font-size: 0.9rem;
+    margin: 0.3rem 0;
+    text-shadow: var(--eva-text-glow);
+    animation: typeLog 0.1s steps(40, end);
+}
+
+.log-timestamp {
+    color: var(--color-subtext);
+    margin-right: 1rem;
+}
+
+@keyframes typeLog {
+    from { width: 0; opacity: 0; }
+    to { width: 100%; opacity: 1; }
+}
+
+/* === STATUS BAR === */
+.magi-status-bar-container {
+    width: 600px;
+    max-width: 90%;
+    margin-bottom: 3rem;
+}
+
+.magi-status-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    text-shadow: var(--eva-text-glow);
+}
+
+.magi-bar-outer {
+    width: 100%;
+    height: 15px;
+    background: rgba(255, 106, 0, 0.15);
+    border: 2px solid var(--color-primary);
+    position: relative;
+}
+
+.magi-bar-inner {
+    height: 100%;
+    background: var(--color-primary);
+    box-shadow: var(--eva-glow);
+    transition: width 0.15s linear;
+}
+
+/* === MAGI TITLE (GLITCH) === */
+.magi-title {
+    font-family: var(--font-primary);
+    font-size: 3rem;
+    margin: 0;
+    letter-spacing: 0.2em;
+    text-shadow: var(--eva-text-glow);
+    animation: loadingPulse 2s ease-in-out infinite;
+}
+
+@keyframes loadingPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+/* Base Glitch text class to be reused globally */
+.glitch-text {
+    position: relative;
+    color: var(--color-primary);
 }

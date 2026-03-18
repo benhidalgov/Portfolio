@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
@@ -8,6 +8,9 @@ import './styles/layout.css'; // Contiene .app-container y .main-content-area
 
 // 🏆 IMPORTACIÓN CLAVE: Importa el ThemeProvider desde el contexto
 import { ThemeProvider } from './Context/ThemeContext.jsx'; 
+
+// Utilidad de Sonido (Web Audio API)
+import { playTerminalBip } from './utils/sound.js';
 
 // Componentes de Layout (Se mantienen estáticos para carga inmediata)
 import Sidebar from './Components/Sidebar/Sidebar.jsx'; 
@@ -21,15 +24,27 @@ const About = React.lazy(() => import('./Pages/about/about.jsx'));
 const Projects = React.lazy(() => import('./Pages/Projects/projects.jsx'));
 const Next = React.lazy(() => import('./Pages/Next/Next.jsx'));
 
-// Importaciones Lazy de Case Studies
-const Cloud = React.lazy(() => import('./Pages/Projects/Cloud.jsx'));
-const Data = React.lazy(() => import('./Pages/Projects/data.jsx'));
-const Security = React.lazy(() => import('./Pages/Projects/security.jsx'));
-const FullStack = React.lazy(() => import('./Pages/Projects/fullstack.jsx'));
+// Importaciones Lazy de Case Studies (Refactorizado a componente dinámico)
+const CategoryDetail = React.lazy(() => import('./Pages/Projects/CategoryDetail.jsx'));
 
 
 function App() {
   const location = useLocation();
+
+  // Escuchador Global de Sonidos de UI NERV
+  useEffect(() => {
+    const handleUiClick = (e) => {
+      const isInteractive = e.target.closest('a') || e.target.closest('button');
+      if (isInteractive) {
+        playTerminalBip();
+      }
+    };
+
+    document.addEventListener('click', handleUiClick);
+    return () => {
+      document.removeEventListener('click', handleUiClick);
+    };
+  }, []);
 
   return (
     // 🏆 PASO 1: Envuelve TODO con ThemeProvider
@@ -51,17 +66,14 @@ function App() {
                 <Route path="/projects" element={<PageTransition><Projects /></PageTransition>} />
                 <Route path="/Next" element={<PageTransition><Next /></PageTransition>} /> 
                 
-                {/* Rutas de Case Studies (Enfoques de Ingeniería) */}
-                <Route path="/projects/cloud" element={<PageTransition><Cloud /></PageTransition>} />
-                <Route path="/projects/data" element={<PageTransition><Data /></PageTransition>} />
-                <Route path="/projects/security" element={<PageTransition><Security /></PageTransition>} />
-                <Route path="/projects/fullstack" element={<PageTransition><FullStack /></PageTransition>} />
+                {/* Rutas de Case Studies (Enfoques de Ingeniería) - Dinámico */}
+                <Route path="/projects/:categoryId" element={<PageTransition><CategoryDetail /></PageTransition>} />
                 
                 {/* Ruta 404 */}
                 <Route path="*" element={
                   <PageTransition>
                     <div style={{ padding: '50px', textAlign: 'center' }}>
-                      <h1>404</h1>
+                      <h1 className="glitch-text" data-text="404">404</h1>
                       <p>Página no encontrada. ¡El enlace podría estar roto!</p>
                     </div>
                   </PageTransition>

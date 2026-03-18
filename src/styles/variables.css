@@ -1,37 +1,34 @@
-/* src/styles/variables.css */
+/* src/styles/variables.css — EVANGELION / NERV UI THEME */
 
 :root {
-    /* --- DARK THEME (Default) --- */
-    --color-primary: #BB86FC;
-    --color-primary-hover: #A064FF;
-    --color-background: #050505;
-    /* Slightly darker for better contrast with gradient */
-    --color-card-bg: #0d0d0d;
-    --color-text: #FFFFFF;
-    --color-subtext: #A0A0A0;
-    /* Lighter subtext for better readability */
-    --color-border: #333333;
-    --color-shadow: #1a1a1a;
-    --color-shadow-primary: rgba(187, 134, 252, 0.4);
+    /* --- NERV DARK THEME (Only) --- */
+    --color-primary: #FF6A00;
+    --color-primary-hover: #FF9D00;
+    --color-background: #0A0A0A;
+    --color-card-bg: #111111;
+    --color-text: #E8E8E8;
+    --color-subtext: #8A8A7A;
+    --color-border: rgba(255, 106, 0, 0.5);
+    --color-border-subtle: rgba(255, 106, 0, 0.15);
+    --color-shadow: #1a1200;
+    --color-shadow-primary: rgba(255, 106, 0, 0.35);
+
+    /* --- EVANGELION ACCENTS --- */
+    --color-accent-red: #CC0000;
+    --color-accent-green: #00FF41;
+    --color-accent-yellow: #FFD500;
+    --color-hazard-dark: #1a1a00;
+
+    /* --- LINK COLORS --- */
     --color-link: var(--color-primary);
-    --color-link-hover: var(--color-text);
+    --color-link-hover: var(--color-accent-green);
 
     /* --- TYPOGRAPHY --- */
-    --font-primary: 'Outfit', sans-serif;
-    --font-code: 'JetBrains Mono', monospace;
-}
+    --font-primary: 'Share Tech Mono', 'Courier New', monospace;
+    --font-code: 'Share Tech Mono', 'Courier New', monospace;
 
-body[data-theme="light"] {
-    /* --- LIGHT THEME --- */
-    --color-primary: #6200EE;
-    --color-primary-hover: #3700B3;
-    --color-background: #F0F0F0;
-    --color-card-bg: #FFFFFF;
-    --color-text: #000000;
-    --color-subtext: #555555;
-    --color-border: #DDDDDD;
-    --color-shadow: #BBBBBB;
-    --color-shadow-primary: rgba(98, 0, 238, 0.3);
-    --color-link: var(--color-primary);
-    --color-link-hover: var(--color-primary-hover);
+    /* --- EFFECTS --- */
+    --eva-glow: 0 0 10px rgba(255, 106, 0, 0.5), 0 0 30px rgba(255, 106, 0, 0.15);
+    --eva-glow-strong: 0 0 15px rgba(255, 106, 0, 0.7), 0 0 40px rgba(255, 106, 0, 0.3);
+    --eva-text-glow: 0 0 8px rgba(255, 106, 0, 0.6);
 }

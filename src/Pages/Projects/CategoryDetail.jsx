@@ -1,25 +1,26 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useTheme } from '../../Context/ThemeContext.jsx';
-import '../../styles/Projects.css';
+import { Link, useParams } from 'react-router-dom';
+import { categoriesData } from '../../data/categories.js';
+import '../../styles/Projects.css'; 
 import SEO from '../../Components/SEO/SEO.jsx';
 
-function SecurityDetail() {
-    const { theme } = useTheme();
+function CategoryDetail() {
+    // Extrae el categoryId de la URL (ej. 'cloud', 'data')
+    const { categoryId } = useParams();
+    
+    // Busca la data correspondiente en el objeto
+    const project = categoriesData[categoryId];
 
-    const project = {
-        title: "Ciberseguridad & Ética",
-        subtitle: "Enfoque en hardening, compliance y protección de datos.",
-        description: "Esta área de enfoque detalla mi capacidad para implementar medidas de seguridad, cumplir con normativas de protección de datos y desarrollar políticas de gobernanza. La prioridad es la protección de la información, compliance y ética en el manejo de datos personales.",
-        image: "https://placehold.co/800x450/CC0000/ffffff?text=CYBERSECURITY",
-        techStack: ["Linux Hardening", "Compliance", "GDPR", "Data Governance", "Security Policies", "Ethical Hacking"],
-        goals: [
-            "Implementación de políticas de gobernanza de datos.",
-            "Cumplimiento con normativas de protección de datos personales.",
-            "Hardening de servidores y sistemas.",
-            "Desarrollo de prácticas éticas en el manejo de información."
-        ]
-    };
+    // Si no existe, muestra un mensaje de error estilo terminal
+    if (!project) {
+        return (
+            <main className="projects-full-page" style={{ textAlign: 'center', paddingTop: '10rem' }}>
+                <h1 style={{ color: 'var(--color-primary)' }}>ERROR 404</h1>
+                <p>DATA_NOT_FOUND // El registro solicitado no existe en la base de datos MAGI.</p>
+                <Link to="/projects" className="btn-primary mt-5">Volver a Proyectos</Link>
+            </main>
+        );
+    }
 
     return (
         <main className="projects-full-page">
@@ -40,7 +41,7 @@ function SecurityDetail() {
                     src={project.image} 
                     alt={project.title} 
                     className="project-hero-image" 
-                    onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/800x450/CC0000/ffffff?text=IMG+SECURITY+ERROR"; }}
+                    onError={(e) => { e.target.onerror = null; e.target.src=`https://placehold.co/800x450/0066CC/ffffff?text=IMG+ERROR`; }}
                 />
 
                 <p className="project-description-long">{project.description}</p>
@@ -61,7 +62,7 @@ function SecurityDetail() {
 
                 <div className="project-actions mt-5">
                     <a 
-                        href="https://github.com/[TuUsuario]/security-repo" 
+                        href={project.repoLink}
                         target="_blank" 
                         rel="noopener noreferrer" 
                         className="btn-primary"
@@ -74,5 +75,4 @@ function SecurityDetail() {
     );
 }
 
-export default SecurityDetail;
-
+export default CategoryDetail;

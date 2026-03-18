@@ -1,4 +1,6 @@
-/* --- HERO CONTAINER --- */
+/* --- HERO SECTION: NERV TERMINAL BOOT --- */
+
+/* === HERO CONTAINER === */
 .hero {
     min-height: 85vh;
     display: flex;
@@ -6,81 +8,87 @@
     padding-top: 5rem;
     padding-bottom: 5rem;
     font-family: var(--font-primary);
-    /* Updated font */
+    position: relative;
 }
 
-/* --- TÍTULOS Y SUBTÍTULOS --- */
+/* === EVANGELION LABEL === */
+.eva-label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--color-primary);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+    text-shadow: var(--eva-text-glow);
+}
+
+/* === TITLE === */
 .hero-title {
-    font-size: 4.5rem;
-    /* Larger */
+    font-size: 4rem;
     line-height: 1.1;
     margin-bottom: 1rem;
     color: var(--color-text);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    /* Removed text-shadow for cleaner look */
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-shadow: var(--eva-text-glow);
+    animation: subtleFlicker 4s infinite;
 }
 
+/* = Highlight Name = */
+.hero-title .name-highlight {
+    color: var(--color-primary);
+    text-shadow: var(--eva-glow);
+}
+
+/* === SUBTITLE (Terminal Style) === */
 .hero-subtitle {
-    font-size: 1.8rem;
+    font-size: 1.3rem;
     color: var(--color-primary);
     margin-bottom: 2.5rem;
-    font-weight: 500;
+    font-weight: 400;
+    font-family: var(--font-code);
+    letter-spacing: 0.05em;
 }
 
-/* --- CALL TO ACTION (CTA) --- */
+/* Blinking cursor */
+.cursor {
+    display: inline-block;
+    animation: blink 1s step-end infinite;
+    color: var(--color-accent-green);
+    font-weight: 700;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* === SUBTLE SCREEN FLICKER === */
+@keyframes subtleFlicker {
+    0%, 97%, 100% { opacity: 1; }
+    98% { opacity: 0.85; }
+    99% { opacity: 0.95; }
+}
+
+/* === CTA BUTTONS === */
 .hero-cta {
     display: flex;
     gap: 1.5rem;
     margin-top: 2rem;
 }
 
-/* --- Botón Primario (Destacado) --- */
-.btn-primary {
-    background-color: var(--color-primary);
-    color: var(--color-background);
-    font-weight: 600;
-    padding: 1rem 2.5rem;
-    border: 2px solid var(--color-primary);
-    border-radius: 50px;
-    /* Pill shape */
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    font-family: var(--font-primary);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-size: 0.9rem;
+/* === DECORATIVE LINE === */
+.hero-divider {
+    width: 60px;
+    height: 2px;
+    background: var(--color-primary);
+    margin-bottom: 1.5rem;
+    box-shadow: var(--eva-glow);
 }
 
-.btn-primary:hover {
-    background-color: var(--color-primary-hover);
-    border-color: var(--color-primary-hover);
-    box-shadow: 0 10px 20px var(--color-shadow-primary);
-    transform: translateY(-3px);
-}
-
-/* --- Botón Secundario (Outline) --- */
-.btn-secondary {
-    background-color: transparent;
-    color: var(--color-text);
-    font-weight: 600;
-    padding: 1rem 2.5rem;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50px;
-    /* Pill shape */
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    font-family: var(--font-primary);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-size: 0.9rem;
-}
-
-.btn-secondary:hover {
-    border-color: var(--color-text);
-    background-color: rgba(255, 255, 255, 0.05);
-    transform: translateY(-3px);
-}
-
-/* --- RESPONSIVE --- */
+/* === RESPONSIVE === */
 @media (max-width: 768px) {
     .hero {
         min-height: 60vh;
@@ -90,11 +98,11 @@
     }
 
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
     }
 
     .hero-subtitle {
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
 
     .hero-cta {

@@ -1,52 +1,52 @@
-/* --- Sidebar Styles: src/Components/Sidebar/Sidebar.css --- */
+/* --- Sidebar Styles: NERV COMMAND PANEL --- */
 
-/* --- GENERAL & LAYOUT (Fija la barra lateral) --- */
+/* === HAZARD STRIPE DECORATION === */
+.sidebar::before,
+.sidebar::after {
+    content: '';
+    display: block;
+    height: 4px;
+    flex-shrink: 0;
+    background: repeating-linear-gradient(
+        -45deg,
+        var(--color-primary) 0px,
+        var(--color-primary) 4px,
+        transparent 4px,
+        transparent 8px
+    );
+}
+
+.sidebar::before {
+    margin-bottom: 1.5rem;
+}
+
+.sidebar::after {
+    margin-top: 1.5rem;
+}
+
+/* === GENERAL SIDEBAR === */
 .sidebar {
     font-family: var(--font-code);
-    /* JetBrains Mono */
-    /* Posicionamiento y Dimensiones */
     position: fixed;
-    top: 2rem;
-    /* Floating from top */
-    left: 2rem;
-    /* Floating from left */
-    width: 260px;
-    /* Slightly narrower */
-    height: calc(100vh - 4rem);
-    /* Floating height */
-    padding: 2rem 1.5rem;
-
-    /* Apariencia "Isla Flotante" */
-    background-color: rgba(10, 10, 10, 0.6);
-    /* Darker, more transparent */
-    backdrop-filter: blur(20px) saturate(180%);
-    /* Stronger blur and saturation */
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    /* Subtle border all around */
-    border-radius: 24px;
-    /* Large rounded corners */
-
-    box-shadow:
-        0 20px 40px rgba(0, 0, 0, 0.4),
-        /* Deep shadow */
-        0 0 0 1px rgba(255, 255, 255, 0.05);
-    /* Inner glow ring */
-
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    padding: 1rem 1.5rem;
+    background-color: rgba(10, 10, 10, 0.95);
+    border-right: 2px solid var(--color-primary);
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     overflow-y: auto;
     color: var(--color-text);
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    /* Smooth spring-like transition */
+    transition: all 0.3s ease;
     z-index: 1000;
 }
 
 .sidebar-header {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -56,7 +56,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 0.8rem;
     width: 100%;
 }
 
@@ -68,53 +68,60 @@
 .sidebar-logo-img {
     width: 48px;
     height: 48px;
-    border: 1px solid var(--color-primary);
-    background-color: rgba(0, 0, 0, 0.5);
+    border: 2px solid var(--color-primary);
+    background-color: rgba(0, 0, 0, 0.8);
     padding: 4px;
     display: block;
-    border-radius: 12px;
-    /* Rounded logo */
+    border-radius: 0;
+    box-shadow: var(--eva-glow);
+    transition: box-shadow 0.3s ease;
 }
 
-/* --- Botón Toggle --- */
+.sidebar-logo-img:hover {
+    box-shadow: var(--eva-glow-strong);
+}
+
+/* === TOGGLE BUTTON === */
 .sidebar-toggle-button {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 106, 0, 0.08);
     border: 1px solid var(--color-primary);
     color: var(--color-primary);
     cursor: pointer;
-    padding: 0.5rem;
+    padding: 0.4rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
     transition: all 0.2s;
-    border-radius: 8px;
+    border-radius: 0;
 }
 
 .sidebar-toggle-button:hover {
     background-color: var(--color-primary);
     color: var(--color-background);
-    box-shadow: 0 0 10px var(--color-shadow-primary);
+    box-shadow: var(--eva-glow);
 }
 
+/* === INTRO TEXT === */
 .sidebar-intro-text {
-    font-size: 0.8rem;
-    line-height: 1.5;
+    font-size: 0.75rem;
+    line-height: 1.6;
     color: var(--color-subtext);
-    margin-bottom: 2rem;
-    text-align: center;
-    font-family: var(--font-primary);
+    margin-bottom: 1.5rem;
+    text-align: left;
+    font-family: var(--font-code);
     opacity: 0.8;
+    border-left: 2px solid var(--color-border-subtle);
+    padding-left: 0.8rem;
 }
 
-/* --- ESTADO CERRADO (Colapso) --- */
+/* === COLLAPSED STATE === */
 .sidebar.closed {
-    width: 90px;
-    padding: 2rem 1rem;
+    width: 70px;
+    padding: 1rem 0.5rem;
 }
 
 .sidebar.closed .sidebar-intro-text,
-.sidebar.closed .sidebar-nav-sections,
 .sidebar.closed .sidebar-footer {
     display: none;
 }
@@ -123,112 +130,163 @@
     margin-bottom: 0;
 }
 
+.sidebar.closed::before,
+.sidebar.closed::after {
+    display: none;
+}
 
-/* --- SECCIÓN CENTRAL: NAVEGACIÓN Y ENLACES --- */
+/* === NAVIGATION SECTION === */
 .sidebar-nav-sections {
     flex-grow: 1;
-    padding-top: 1rem;
+    padding-top: 0.5rem;
     width: 100%;
 }
 
-.section-title {
-    font-size: 0.7rem;
-    color: var(--color-subtext);
-    margin-bottom: 0.75rem;
-    text-transform: uppercase;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    margin-top: 2rem;
-    opacity: 0.6;
+/* === COLLAPSED ICONS === */
+.nav-item-primary.icon-only,
+.case-study-item.icon-only {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.8rem 0;
+    margin-bottom: 0.5rem;
+    border-left: 2px solid transparent;
 }
 
-/* --- ENLACES PRINCIPALES --- */
+.item-icon-collapsed {
+    display: inline-flex;
+    color: var(--color-subtext);
+    transition: all 0.2s;
+}
+
+.nav-item-primary.icon-only:hover .item-icon-collapsed,
+.case-study-item.icon-only:hover .item-icon-collapsed,
+.nav-item-primary.icon-only.active .item-icon-collapsed {
+    color: var(--color-primary);
+    transform: scale(1.1);
+    filter: drop-shadow(var(--eva-text-glow));
+}
+
+
+.section-title {
+    font-size: 0.65rem;
+    color: var(--color-primary);
+    margin-bottom: 0.6rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    margin-top: 1.5rem;
+    opacity: 0.8;
+}
+
+/* === PRIMARY NAV ITEMS === */
 .nav-item-primary {
     display: flex;
     flex-direction: column;
-    padding: 0.75rem 1rem;
-    margin-bottom: 0.5rem;
+    padding: 0.6rem 0.8rem;
+    margin-bottom: 0.3rem;
     border: 1px solid transparent;
+    border-left: 3px solid transparent;
     transition: all 0.2s;
-    border-radius: 12px;
-    /* Rounded items */
+    border-radius: 0;
     color: var(--color-text);
     background: transparent;
 }
 
 .item-name {
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 600;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.05em;
     font-family: var(--font-primary);
+    text-transform: uppercase;
 }
 
 .item-subtext {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     color: var(--color-subtext);
-    margin-top: 0.2rem;
+    margin-top: 0.15rem;
 }
 
 .nav-item-primary:hover,
 .nav-item-primary.active {
-    border-color: rgba(255, 255, 255, 0.1);
-    background-color: rgba(255, 255, 255, 0.05);
+    border-left-color: var(--color-primary);
+    background-color: rgba(255, 106, 0, 0.06);
     color: var(--color-primary);
-    transform: translateX(5px);
+    transform: translateX(3px);
 }
 
-/* --- ENLACES DE CASOS DE ESTUDIO --- */
+.nav-item-primary.active {
+    background-color: rgba(255, 106, 0, 0.1);
+    box-shadow: inset 3px 0 8px rgba(255, 106, 0, 0.15);
+}
+
+/* === CASE STUDIES === */
 .case-studies {
-    margin-top: 2rem;
+    margin-top: 1.5rem;
 }
 
 .case-study-item {
     display: flex;
     align-items: center;
-    padding: 0.6rem 0.8rem;
-    border-radius: 8px;
+    padding: 0.5rem 0.6rem;
+    border-radius: 0;
     transition: all 0.2s;
     color: var(--color-subtext);
-    font-size: 0.9rem;
-    margin-bottom: 0.2rem;
+    font-size: 0.8rem;
+    margin-bottom: 0.15rem;
     text-decoration: none;
+    border-left: 2px solid transparent;
 }
 
 .case-study-item:hover {
-    background-color: rgba(255, 255, 255, 0.03);
+    background-color: rgba(255, 106, 0, 0.05);
     color: var(--color-primary);
-    padding-left: 1rem;
-    /* Slide effect */
+    border-left-color: var(--color-primary);
+    padding-left: 0.8rem;
 }
 
 .case-study-symbol {
     color: var(--color-primary);
-    margin-right: 0.8rem;
+    margin-right: 0.6rem;
     font-size: 0.6rem;
     opacity: 0.7;
 }
 
-/* --- SECCIÓN INFERIOR: CAMBIO DE TEMA --- */
+/* === FOOTER SECTION (Theme Toggle) === */
 .sidebar-footer {
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border-subtle);
     text-align: center;
 }
 
 .theme-toggle-button {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(255, 106, 0, 0.08);
     border: 1px solid var(--color-border);
-    color: var(--color-text);
+    color: var(--color-primary);
     cursor: pointer;
-    font-size: 0.75rem;
-    padding: 0.5rem 1rem;
+    font-size: 0.7rem;
+    padding: 0.4rem 1rem;
     transition: all 0.2s;
     text-transform: uppercase;
     font-family: var(--font-code);
-    border-radius: 20px;
+    border-radius: 0;
+    letter-spacing: 0.1em;
 }
 
 .theme-toggle-button:hover {
-    border-color: var(--color-primary);
-    color: var(--color-primary);
+    background-color: var(--color-primary);
+    color: var(--color-background);
+    box-shadow: var(--eva-glow);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 60px;
+        padding: 0.8rem 0.4rem;
+    }
+
+    .sidebar.open {
+        width: 260px;
+    }
 }

@@ -1,74 +1,95 @@
-/* --- FOOTER GENERAL --- */
+/* --- FOOTER: NERV STATUS BAR --- */
+
 .footer {
-    /* Mantener el diseño de línea dura del portafolio */
-    font-family: 'Courier New', Courier, monospace;
-    color: var(--color-subtext); /* MIGRADO: Color base del texto (gris sutil) */
-    background-color: var(--color-background); /* MIGRADO */
-    
-    /* Layout */
+    font-family: var(--font-code);
+    color: var(--color-subtext);
+    background-color: rgba(10, 10, 10, 0.95);
     display: flex;
-    flex-wrap: wrap; /* Permite que los elementos se apilen en móvil */
+    flex-wrap: wrap;
     justify-content: space-around;
-    padding: 3rem 4rem;
-    margin-top: 4rem; 
-
-    /* Borde distintivo superior para separarlo del contenido */
-    border-top: 2px solid var(--color-shadow); /* MIGRADO */
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5), inset 0 1px 0 var(--color-border); /* MIGRADO */
+    padding: 2rem 3rem;
+    margin-top: 4rem;
+    border-top: 2px solid var(--color-primary);
+    position: relative;
 }
 
-/* --- SECCIONES (Navegación, Social, Copyright) --- */
+/* Hazard stripe decoration */
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: repeating-linear-gradient(
+        -45deg,
+        var(--color-primary) 0px,
+        var(--color-primary) 4px,
+        transparent 4px,
+        transparent 8px
+    );
+}
+
+/* === SECTIONS === */
 .footer-links, .footer-social, .footer-copyright {
-    margin: 1rem 0;
-    min-width: 180px; /* Ancho mínimo para mantener la estructura */
+    margin: 0.8rem 0;
+    min-width: 160px;
 }
 
-/* Encabezados de Sección */
+/* === SECTION HEADERS === */
 .footer h3 {
-    font-size: 1.1rem;
-    color: var(--color-primary); /* MIGRADO */
-    margin-bottom: 1.2rem;
+    font-size: 0.85rem;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
     text-transform: uppercase;
     font-weight: 700;
-    border-bottom: 1px solid var(--color-shadow-primary); /* MIGRADO (Usando sombra púrpura) */
-    padding-bottom: 0.2rem;
+    letter-spacing: 0.15em;
+    border-bottom: 1px solid var(--color-border-subtle);
+    padding-bottom: 0.3rem;
 }
 
-/* --- ENLACES (Navegación y Social) --- */
+/* === LINKS === */
 .footer-link, .social-link {
     display: block;
-    color: var(--color-subtext); /* MIGRADO */
-    font-size: 0.95rem;
-    margin-bottom: 0.5rem;
-    transition: color 0.2s, padding-left 0.2s;
+    color: var(--color-subtext);
+    font-size: 0.85rem;
+    margin-bottom: 0.4rem;
+    transition: all 0.2s;
+    padding: 0.15rem 0;
 }
 
-/* Efecto Hover */
 .footer-link:hover, .social-link:hover {
-    color: var(--color-text); /* MIGRADO */
-    padding-left: 5px; /* Pequeño desplazamiento al pasar el mouse */
-    text-shadow: 0 0 5px var(--color-shadow-primary); /* MIGRADO */
+    color: var(--color-accent-green);
+    padding-left: 5px;
+    text-shadow: 0 0 8px rgba(0, 255, 65, 0.4);
 }
 
-/* --- COPYRIGHT --- */
+/* === COPYRIGHT === */
 .footer-copyright {
     text-align: center;
-    align-self: flex-end; /* Alinea los derechos de autor al fondo si es necesario */
-    font-size: 0.8rem;
-    color: var(--color-subtext); /* MIGRADO (Usamos subtext para consistencia) */
+    align-self: flex-end;
+    font-size: 0.7rem;
+    color: var(--color-subtext);
+    opacity: 0.6;
+    letter-spacing: 0.1em;
 }
 
-/* --- RESPONSIVE --- */
+.status-text {
+    color: var(--color-accent-green);
+    font-weight: 700;
+}
+
+/* === RESPONSIVE === */
 @media (max-width: 768px) {
     .footer {
         flex-direction: column;
         align-items: center;
-        padding: 2rem 1rem;
+        padding: 1.5rem 1rem;
     }
 
     .footer-links, .footer-social, .footer-copyright {
         min-width: 100%;
         text-align: center;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.2rem;
     }
 }

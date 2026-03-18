@@ -1,67 +1,68 @@
-/* --- PÁGINA PRINCIPAL --- */
+/* --- About Page: OPERATIVE DOSSIER --- */
+
 .about-page {
     font-family: var(--font-primary);
-    /* Updated font */
     padding: 2rem 0;
     color: var(--color-text);
-    transition: color 0.3s ease;
 }
 
-/* --- TÍTULOS GENERALES --- */
+/* === TITLES === */
 .about-page h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: var(--color-text);
     margin-bottom: 0.5rem;
-    padding-bottom: 0.2rem;
-    letter-spacing: -0.02em;
-    /* Removed border-bottom for cleaner look */
+    padding-bottom: 0.3rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    text-shadow: var(--eva-text-glow);
+    border-bottom: 2px solid var(--color-border-subtle);
 }
 
 .about-page h2 {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     color: var(--color-primary);
-    margin-top: 4rem;
-    margin-bottom: 2rem;
+    margin-top: 3.5rem;
+    margin-bottom: 1.5rem;
     font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-shadow: var(--eva-text-glow);
 }
 
-/* --- PÁRRAFO PRINCIPAL --- */
+/* === LEAD PARAGRAPH === */
 .lead-paragraph {
-    font-size: 1.2rem;
-    line-height: 1.7;
+    font-size: 1rem;
+    line-height: 1.8;
     color: var(--color-subtext);
     max-width: 900px;
+    border-left: 3px solid var(--color-primary);
+    padding-left: 1rem;
 }
 
 .lead-paragraph strong {
-    color: var(--color-text);
-    /* White for emphasis */
+    color: var(--color-primary);
     font-weight: 600;
 }
 
-/* --- 2. CERTIFICACIONES DESTACADAS --- */
+/* === CERTIFICATIONS === */
 .certs-summary {
     list-style: none;
-    padding: 2rem;
+    padding: 1.5rem;
     margin: 0;
-    background-color: rgba(255, 255, 255, 0.03);
-    /* Glass card */
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 24px;
-    /* Floating Island style */
+    background-color: var(--color-card-bg);
+    border: 1px solid var(--color-border-subtle);
+    border-left: 3px solid var(--color-primary);
     max-width: 800px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .certs-summary:hover {
-    transform: translateY(-5px);
-    border-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--color-primary);
+    box-shadow: var(--eva-glow);
 }
 
 .certs-summary li {
-    font-size: 1.05rem;
+    font-size: 0.95rem;
     line-height: 2;
     color: var(--color-text);
     display: flex;
@@ -70,47 +71,46 @@
 }
 
 .certs-summary li::before {
-    content: '🏆';
-    font-size: 1.2rem;
+    content: '▶';
+    font-size: 0.6rem;
+    color: var(--color-primary);
 }
 
 .certs-summary li strong {
     color: var(--color-primary);
 }
 
-/* --- 3. STACK DE HABILIDADES (GRID) --- */
+/* === SKILLS GRID === */
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 .skill-category {
-    background-color: rgba(255, 255, 255, 0.03);
-    /* Glass card */
-    backdrop-filter: blur(10px);
-    padding: 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 24px;
-    /* Floating Island style */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    background-color: var(--color-card-bg);
+    padding: 1.5rem;
+    border: 1px solid var(--color-border-subtle);
+    border-left: 3px solid var(--color-primary);
     transition: all 0.3s ease;
 }
 
 .skill-category:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
     border-color: var(--color-primary);
+    box-shadow: var(--eva-glow);
+    background-color: rgba(255, 106, 0, 0.03);
 }
 
 .skill-category h3 {
-    font-size: 1.2rem;
-    color: var(--color-text);
+    font-size: 1rem;
+    color: var(--color-primary);
     margin-top: 0;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     padding-bottom: 0.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid var(--color-border-subtle);
     font-family: var(--font-code);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
 }
 
 .skill-category .skills-list {
@@ -119,29 +119,35 @@
     margin: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.4rem;
 }
 
 .skill-category .skills-list li {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: var(--color-subtext);
-    background: rgba(255, 255, 255, 0.05);
-    padding: 0.4rem 0.8rem;
-    border-radius: 8px;
+    background: rgba(255, 106, 0, 0.06);
+    padding: 0.3rem 0.6rem;
+    border: 1px solid var(--color-border-subtle);
     font-family: var(--font-code);
+    transition: all 0.2s;
 }
 
-/* --- RESPONSIVE --- */
+.skill-category .skills-list li:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+/* === RESPONSIVE === */
 @media (max-width: 768px) {
     .about-page h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .about-page h2 {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
 
     .lead-paragraph {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Footer.css'; // 🏆 CORRECCIÓN: Ahora solo importa su CSS local
+import './Footer.css';
 
 function Footer() {
   const currentYear = new Date().getFullYear();
@@ -8,29 +8,27 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="footer-links">
-        <h3>Navegación</h3>
-        {/* Enlaces internos usando Link */}
+        <h3>// Navegación</h3>
         <Link to="/" className="footer-link">Inicio</Link>
-        <Link to="/Next" className="footer-link"> Futuros Proyectos</Link>
+        <Link to="/Next" className="footer-link">Futuros Proyectos</Link>
         <Link to="/about" className="footer-link">Sobre Mí</Link>
       </div>
 
       <div className="footer-social">
-        <h3>Conéctate</h3>
-        {/* Enlaces externos usando <a> */}
+        <h3>// Conectar</h3>
         <a href="https://github.com/benhidalgov" target="_blank" rel="noopener noreferrer" className="social-link">
           GitHub
         </a>
         <a href="https://www.linkedin.com/in/benjamin-hidalgov/" target="_blank" rel="noopener noreferrer" className="social-link">
           LinkedIn
         </a>
-        <a href="Contacto via correo por hidalgobenjaminv@gmail.com" className="social-link">
+        <a href="mailto:hidalgobenjaminv@gmail.com" className="social-link">
           Email
         </a>
       </div>
 
       <div className="footer-copyright">
-        <p>Hecho con ❤️ y React.</p>
+        <p>&gt;&gt; SYSTEM_STATUS: <span className="status-text">OPERATIONAL</span> // {currentYear}</p>
       </div>
     </footer>
   );
