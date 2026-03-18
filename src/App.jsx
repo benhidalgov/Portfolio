@@ -18,14 +18,24 @@ import Footer from './Components/Footer/Footer.jsx';
 import PageTransition from './Components/PageTransition/PageTransition.jsx';
 import Loading from './Components/Loading/Loading.jsx';
 
+// Helper para añadir un delay artificial y permitir que la animación MAGI de 2.2s termine
+const lazyWithDelay = (importFunc, delay = 2200) => {
+  return React.lazy(() => 
+    Promise.all([
+      importFunc(),
+      new Promise(resolve => setTimeout(resolve, delay))
+    ]).then(([moduleExports]) => moduleExports)
+  );
+};
+
 // Importaciones Lazy de Páginas
-const Home = React.lazy(() => import('./Pages/Home/home.jsx'));
-const About = React.lazy(() => import('./Pages/about/about.jsx'));
-const Projects = React.lazy(() => import('./Pages/Projects/projects.jsx'));
-const Next = React.lazy(() => import('./Pages/Next/Next.jsx'));
+const Home = lazyWithDelay(() => import('./Pages/Home/home.jsx'));
+const About = lazyWithDelay(() => import('./Pages/about/about.jsx'));
+const Projects = lazyWithDelay(() => import('./Pages/Projects/projects.jsx'));
+const Next = lazyWithDelay(() => import('./Pages/Next/Next.jsx'));
 
 // Importaciones Lazy de Case Studies (Refactorizado a componente dinámico)
-const CategoryDetail = React.lazy(() => import('./Pages/Projects/CategoryDetail.jsx'));
+const CategoryDetail = lazyWithDelay(() => import('./Pages/Projects/CategoryDetail.jsx'));
 
 
 function App() {
