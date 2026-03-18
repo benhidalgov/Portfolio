@@ -139,6 +139,10 @@
 
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
+    .about-page {
+        padding: 1rem 0;
+    }
+
     .about-page h1 {
         font-size: 1.8rem;
     }
@@ -149,5 +153,13 @@
 
     .lead-paragraph {
         font-size: 0.9rem;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .certs-summary {
+        padding: 1rem;
     }
 }

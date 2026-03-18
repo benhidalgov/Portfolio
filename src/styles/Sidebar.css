@@ -282,11 +282,67 @@
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
     .sidebar {
-        width: 60px;
-        padding: 0.8rem 0.4rem;
+        /* Transform sidebar into an off-canvas overlay on mobile */
+        transform: translateX(-100%);
+        width: 100%;
+        max-width: 320px;
+        z-index: 2000;
+        box-shadow: 10px 0 30px rgba(0,0,0,0.8);
+        border-right: 4px solid var(--color-primary);
     }
 
     .sidebar.open {
-        width: 260px;
+        transform: translateX(0);
+        width: 100%;
+        max-width: 320px;
+    }
+
+    /* Ocultar el comportamiento de "icon-only" en móvil, siempre mostrar nombres si está abierto */
+    .sidebar-intro-text,
+    .sidebar-footer {
+        display: block !important;
+    }
+
+    .item-name,
+    .item-subtext,
+    .section-title,
+    .case-study-symbol {
+        display: inline-block !important;
+    }
+    
+    .item-icon-collapsed {
+        display: none !important;
+    }
+    
+    .nav-item-primary.icon-only,
+    .case-study-item.icon-only {
+        justify-content: flex-start;
+        padding: 0.6rem 0.8rem;
+    }
+
+    /* NERV Mobile Toggle Button (Fixed on screen) */
+    .mobile-nav-toggle {
+        display: flex;
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        z-index: 2001;
+        background: rgba(10, 10, 10, 0.9);
+        border: 2px solid var(--color-primary);
+        color: var(--color-primary);
+        padding: 0.5rem;
+        cursor: pointer;
+        box-shadow: var(--eva-glow);
+        transition: all 0.3s ease;
+    }
+    
+    .mobile-nav-toggle:hover {
+        background: var(--color-primary);
+        color: black;
+    }
+
+    /* Hide the internal toggle button on mobile */
+    .sidebar-toggle-button {
+         display: none;
     }
 }

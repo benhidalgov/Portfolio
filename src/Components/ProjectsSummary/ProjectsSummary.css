@@ -171,3 +171,13 @@
         gap: 1rem;
     }
 }
+
+@media (max-width: 480px) {
+    .projects-summary {
+        padding: 2rem 0;
+    }
+    
+    .summary-header h2 {
+        font-size: 1.3rem;
+    }
+}

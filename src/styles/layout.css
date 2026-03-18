@@ -29,8 +29,8 @@
     }
 
     .main-content-area {
-        margin-left: 60px;
-        padding: 0 1rem;
+        margin-left: 0;
+        padding: 1rem 1.5rem;
     }
 
     .sidebar.open + .main-content-area {

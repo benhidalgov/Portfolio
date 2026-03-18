@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../../Context/ThemeContext.jsx';
 import '../../styles/Sidebar.css';
@@ -63,10 +63,34 @@ const CodeIcon = () => (
 function Sidebar() {
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
-  const [isOpen, setIsOpen] = useState(true);
+  
+  // Iniciar cerrado en móviles
+  const [isOpen, setIsOpen] = useState(window.innerWidth > 768);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const mobile = window.innerWidth <= 768;
+      setIsMobile(mobile);
+      if (!mobile) {
+        setIsOpen(true); // Siempre abierto en Desktop
+      } else {
+        setIsOpen(false); // Siempre cerrado al redimensionar a móvil
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
+  };
+
+  const closeMenuOnMobile = () => {
+    if (isMobile) {
+      setIsOpen(false);
+    }
   };
 
   const primaryNav = [
@@ -83,82 +107,99 @@ function Sidebar() {
   ];
 
   return (
-    <nav className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
-      {/* HEADER */}
-      <div className="sidebar-header">
-        <div className="header-logo-toggle-group">
-            <Link to="/" className="sidebar-title">
-              <img 
-                src={logo} 
-                alt="Logo B. Hidalgo" 
-                className="sidebar-logo-img" 
-                onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/40x40/0A0A0A/FF6A00?text=BH" }}
-              />
-            </Link>
-            
-            <button onClick={toggleSidebar} className="sidebar-toggle-button">
-              {isOpen ? <CloseIcon /> : <MenuIcon />}
-            </button>
+    <>
+      {/* NERV Mobile Toggle Button (Only visible on mobile via CSS) */}
+      <button className="mobile-nav-toggle" onClick={toggleSidebar} aria-label="Toggle Navigation">
+        {isOpen ? <CloseIcon /> : <MenuIcon />}
+      </button>
+
+      {/* Overlay to close when clicking outside on mobile */}
+      {isMobile && isOpen && (
+        <div 
+          style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.6)', zIndex: 1999 }} 
+          onClick={closeMenuOnMobile}
+        />
+      )}
+
+      <nav className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
+        {/* HEADER */}
+        <div className="sidebar-header">
+          <div className="header-logo-toggle-group">
+              <Link to="/" className="sidebar-title" onClick={closeMenuOnMobile}>
+                <img 
+                  src={logo} 
+                  alt="Logo B. Hidalgo" 
+                  className="sidebar-logo-img" 
+                  onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/40x40/0A0A0A/FF6A00?text=BH" }}
+                />
+              </Link>
+              
+              <button onClick={toggleSidebar} className="sidebar-toggle-button">
+                {isOpen ? <CloseIcon /> : <MenuIcon />}
+              </button>
+          </div>
+          
+          {isOpen && (
+            <p className="sidebar-intro-text">
+              OPERATIVE_PROFILE // Ingeniero en Informática especializado en soluciones escalables y seguridad.
+            </p>
+          )}
+        </div>
+
+        {/* NAVIGATION */}
+        <div className={`sidebar-nav-sections ${!isOpen ? 'nav-collapsed' : ''}`}>
+          <div className="section-group">
+            {isOpen && <p className="section-title">// Navigation</p>}
+            {primaryNav.map((item) => (
+              <Link 
+                key={item.path} 
+                to={item.path} 
+                className={`nav-item-primary ${location.pathname === item.path ? 'active' : ''} ${!isOpen ? 'icon-only' : ''}`}
+                title={!isOpen ? item.name : undefined}
+                onClick={closeMenuOnMobile}
+              >
+                {!isOpen ? (
+                  <span className="item-icon-collapsed">{item.icon}</span>
+                ) : (
+                  <>
+                    <span className="item-name">{item.name}</span>
+                    <span className="item-subtext">{item.subtext}</span>
+                  </>
+                )}
+              </Link>
+            ))}
+          </div>
+
+          <div className="section-group case-studies">
+            {isOpen && <p className="section-title">// Engineering Data</p>}
+            {caseStudies.map((study) => (
+              <Link 
+                key={study.path} 
+                to={study.path} 
+                className={`case-study-item ${!isOpen ? 'icon-only' : ''}`}
+                title={!isOpen ? study.title : undefined}
+                onClick={closeMenuOnMobile}
+              >
+                {!isOpen ? (
+                  <span className="item-icon-collapsed">{study.icon}</span>
+                ) : (
+                  <><span className="case-study-symbol">▶</span> {study.title}</>
+                )}
+              </Link>
+            ))}
+          </div>
         </div>
         
+        {/* THEME TOGGLE */}
         {isOpen && (
-          <p className="sidebar-intro-text">
-            OPERATIVE_PROFILE // Ingeniero en Informática especializado en soluciones escalables y seguridad.
-          </p>
+          <div className="sidebar-footer">
+            <button className="theme-toggle-button" onClick={toggleTheme}>
+              [ {theme} ]
+            </button>
+          </div>
         )}
-      </div>
-
-      {/* NAVIGATION */}
-      <div className={`sidebar-nav-sections ${!isOpen ? 'nav-collapsed' : ''}`}>
-        <div className="section-group">
-          {isOpen && <p className="section-title">// Navigation</p>}
-          {primaryNav.map((item) => (
-            <Link 
-              key={item.path} 
-              to={item.path} 
-              className={`nav-item-primary ${location.pathname === item.path ? 'active' : ''} ${!isOpen ? 'icon-only' : ''}`}
-              title={!isOpen ? item.name : undefined}
-            >
-              {!isOpen ? (
-                <span className="item-icon-collapsed">{item.icon}</span>
-              ) : (
-                <>
-                  <span className="item-name">{item.name}</span>
-                  <span className="item-subtext">{item.subtext}</span>
-                </>
-              )}
-            </Link>
-          ))}
-        </div>
-
-        <div className="section-group case-studies">
-          {isOpen && <p className="section-title">// Engineering Data</p>}
-          {caseStudies.map((study) => (
-            <Link 
-              key={study.path} 
-              to={study.path} 
-              className={`case-study-item ${!isOpen ? 'icon-only' : ''}`}
-              title={!isOpen ? study.title : undefined}
-            >
-              {!isOpen ? (
-                <span className="item-icon-collapsed">{study.icon}</span>
-              ) : (
-                <><span className="case-study-symbol">▶</span> {study.title}</>
-              )}
-            </Link>
-          ))}
-        </div>
-      </div>
-      
-      {/* THEME TOGGLE */}
-      {isOpen && (
-        <div className="sidebar-footer">
-          <button className="theme-toggle-button" onClick={toggleTheme}>
-            [ {theme} ]
-          </button>
-        </div>
-      )}
-    </nav>
+      </nav>
+    </>
   );
 }
 
