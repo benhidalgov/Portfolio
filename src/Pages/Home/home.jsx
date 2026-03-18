@@ -1,5 +1,5 @@
 import React from 'react';
-import Hero from "../../Components/Hero/hero.jsx";
+import Hero from "../../Components/Hero/Hero.jsx";
 import Skills from '../../Components/Skills/Skills.jsx';
 import ProjectsSummary from '../Projects/projects.jsx';
 import SEO from '../../Components/SEO/SEO.jsx';
