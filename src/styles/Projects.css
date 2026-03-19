@@ -55,11 +55,38 @@
     line-height: 1.7;
 }
 
-/* === PROJECT DETAIL CONTAINER === */
 .project-detail-container {
     display: flex;
     flex-direction: column;
     gap: 2.5rem;
+}
+
+/* === NERV STATUS STAMP === */
+.nerv-status-stamp {
+    font-size: 0.8rem;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    padding: 0.3rem 0.6rem;
+    font-family: var(--font-code);
+    letter-spacing: 0.1em;
+    background-color: rgba(255, 106, 0, 0.1);
+    animation: blinkText 4s infinite;
+}
+
+@keyframes blinkText {
+    0%, 96%, 98% { opacity: 1; }
+    97%, 99% { opacity: 0; }
+}
+
+/* === HERO CRT EFFECT === */
+.project-hero-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    background-color: #000;
 }
 
 .project-hero-image {
@@ -68,15 +95,29 @@
     height: auto;
     aspect-ratio: 16/9;
     object-fit: cover;
-    border: 2px solid var(--color-border-subtle);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    border-radius: 0;
-    transition: all 0.3s ease;
+    display: block;
+    filter: sepia(100%) hue-rotate(90deg) saturate(300%) brightness(0.7) contrast(1.5);
+    transition: all 0.5s ease;
 }
 
-.project-hero-image:hover {
-    border-color: var(--color-primary);
-    box-shadow: var(--eva-glow-strong);
+.project-hero-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0.2) 2px,
+        transparent 2px,
+        transparent 4px
+    );
+    z-index: 5;
+}
+
+.project-hero-wrapper:hover .project-hero-image {
+    filter: sepia(0) hue-rotate(0deg) saturate(1) brightness(1) contrast(1);
+    transform: scale(1.02);
 }
 
 .project-description-long {
@@ -97,7 +138,7 @@
     text-shadow: var(--eva-text-glow);
 }
 
-/* === GOALS LIST === */
+/* === GOALS (DOSSIER LOGS) === */
 .goals-list {
     list-style: none;
     padding: 0;
@@ -107,7 +148,7 @@
     gap: 0.8rem;
 }
 
-.goal-item {
+.dossier-log {
     color: var(--color-text);
     font-size: 0.95rem;
     line-height: 1.6;
@@ -116,9 +157,17 @@
     border: 1px solid var(--color-border-subtle);
     border-left: 3px solid var(--color-primary);
     transition: all 0.2s ease;
+    font-family: var(--font-primary);
 }
 
-.goal-item:hover {
+.log-prefix {
+    color: var(--color-primary);
+    font-family: var(--font-code);
+    margin-right: 0.5rem;
+    font-weight: bold;
+}
+
+.dossier-log:hover {
     border-color: var(--color-primary);
     box-shadow: var(--eva-glow);
     background-color: rgba(255, 106, 0, 0.03);

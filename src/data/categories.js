@@ -1,58 +1,58 @@
 export const categoriesData = {
-    cloud: {
-        title: "Cloud & Infraestructura",
-        subtitle: "Enfoque en IaC, Kubernetes y automatización de infraestructura.",
-        description: "Esta área de enfoque detalla mi capacidad para diseñar y gestionar infraestructura en la nube utilizando herramientas como Terraform, Kubernetes, Docker y servicios de AWS/Azure. La prioridad es la automatización, escalabilidad y seguridad, elementos fundamentales en la Ingeniería en Informática moderna.",
-        image: "https://placehold.co/800x450/0066CC/ffffff?text=CLOUD+INFRASTRUCTURE",
-        techStack: ["Terraform", "Kubernetes", "Docker", "AWS/Azure", "GitHub Actions", "Linux"],
+    taskmanager: {
+        title: "TaskManager (Kanban Board)",
+        subtitle: "Gestión ágil Fullstack con Drag & Drop continuo.",
+        description: "Un tablero Kanban de alto rendimiento construido con React y TypeScript, enfocado en una experiencia de usuario instantánea y fluida. Este sistema maneja persistencia de datos segura en PostgreSQL a través de Supabase, asegurando que las actualizaciones de tareas sean consistentes entre sesiones mediante políticas RLS (Row Level Security).",
+        image: "https://placehold.co/800x450/BB86FC/000000?text=TASKMANAGER+KANBAN",
+        techStack: ["TypeScript", "React", "Supabase", "Zustand", "PostgreSQL", "TailwindCSS"],
         goals: [
-            "Implementación de infraestructura como código (IaC) para despliegues inmutables.",
-            "Automatización de pipelines CI/CD que involucren builds de Docker.",
-            "Gestión de clústeres Kubernetes escalables y con alta disponibilidad.",
-            "Optimización de costos y recursos en la nube (FinOps básico)."
+            "Implementación iterativa de Drag & Drop para manipular tickets sin latencia.",
+            "Gestión de estado global eficiente utilizando el patrón Observer con Zustand.",
+            "Desarrollo de autenticación robusta y control de acceso (RLS).",
+            "Sincronización de base de datos relacional y UI optimista."
         ],
-        repoLink: "https://github.com/[TuUsuario]/cloud-infra-repo"
+        repoLink: "https://github.com/benhidalgov/TaskManager"
     },
-    data: {
-        title: "Análisis de Datos & BI",
-        subtitle: "Transformación de datos crudos en decisiones de negocio.",
-        description: "En esta área me enfoco en la ingesta, procesamiento, análisis y visualización de grandes volúmenes de datos. Utilizo herramientas modernas para crear pipelines robustos y dashboards interactivos que permiten a los stakeholders tomar decisiones basadas en evidencia empírica.",
-        image: "https://placehold.co/800x450/009933/ffffff?text=DATA+ANALYTICS+BI",
-        techStack: ["Python (Pandas, NumPy)", "SQL Avanzado", "Power BI / Tableau", "Apache Spark", "ETL Pipelines"],
+    portfolio: {
+        title: "Portafolio NERV Base",
+        subtitle: "Sistema interactivo de presentación profesional.",
+        description: "El kernel original que dio vida a este portafolio web. Comenzó como una plantilla pulida y optimizada utilizando React y Vite, diseñada para exponer un alto nivel de escalabilidad modular y responsividad. Evolucionó iterativamente hacia una intrincada UI inspirada en el sistema MAGI de Neon Genesis Evangelion, demostrando un profundo control sobre CSS Variables y el DOM.",
+        image: "https://placehold.co/800x450/80d400/ffffff?text=PORTFOLIO+REACT",
+        techStack: ["JavaScript", "React", "Vite", "Framer Motion", "Vanilla CSS", "React Router"],
         goals: [
-            "Extracción y limpieza de datos desde múltiples fuentes no estructuradas.",
-            "Diseño de Data Lakes y Data Warehouses estructurados.",
-            "Creación de modelos predictivos básicos usando Machine Learning.",
-            "Desarrollo de cuadros de mando (dashboards) en tiempo real para KPIs."
+            "Desacoplamiento total de datos visuales mediante estructuras JSON-like modularizadas.",
+            "Animaciones fluidas y enrutamiento dinámico sin recargas de página.",
+            "Diseño de interfaces con animaciones CSS complejas (CRT scanlines, Glitches).",
+            "Gestión de Feedback auditivo (Web Audio API) e interacciones táctiles móviles responsivas."
         ],
-        repoLink: "https://github.com/[TuUsuario]/data-analysis-portfolio"
+        repoLink: "https://github.com/benhidalgov/Portfolio"
     },
-    security: {
-        title: "Ciberseguridad & Ética",
-        subtitle: "Protección de activos digitales y análisis de vulnerabilidades.",
-        description: "La seguridad es un pilar no negociable. Este enfoque demuestra mi capacidad para identificar riesgos, auditar sistemas y aplicar principios de seguridad desde el diseño (Security by Design). Con un enfoque en el hacking ético y la mitigación de amenazas modernas.",
-        image: "https://placehold.co/800x450/CC0000/ffffff?text=CYBERSECURITY",
-        techStack: ["Kali Linux", "Burp Suite", "Nmap / Wireshark", "OWASP Top 10", "IAM / OAuth 2.0"],
+    perlenoir: {
+        title: "Perle Noir Landing",
+        subtitle: "Exhibición de catálogo interactivo para marca comercial.",
+        description: "Desarrollo de una Landing Page inmersiva e interactiva orientada a la conversión y retención del cliente para la marca Perle Noir. Construida en base a componentes React reutilizables, priorizando tiempos de carga ultrarrápidos, optimización de assets e interacciones elegantes.",
+        image: "https://placehold.co/800x450/ff6f00/ffffff?text=PERLE+NOIR",
+        techStack: ["JavaScript", "React", "Responsive Web Design", "UX/UI Design"],
         goals: [
-            "Realización de pruebas de penetración (Penetration Testing) en aplicaciones web.",
-            "Análisis estático y dinámico de código (SAST/DAST).",
-            "Configuración de firewalls y políticas de IAM en entornos cloud.",
-            "Desarrollo de planes de respuesta a incidentes de seguridad."
+            "Creación de una interfaz gráfica intuitiva orientada al e-commerce/catálogo.",
+            "Desempeño optimizado con renderizado del lado del cliente.",
+            "Aseguramiento de consistencia y fluidez del layout en dispositivos móviles.",
+            "Despliegue ágil mediante Vercel con integración contínua (CI)."
         ],
-        repoLink: "https://github.com/[TuUsuario]/security-audits-repo"
+        repoLink: "https://github.com/benhidalgov/PerleNoir"
     },
-    fullstack: {
-        title: "Desarrollo Full-Stack",
-        subtitle: "Arquitectura y construcción de sistemas web End-to-End.",
-        description: "Desde la experiencia del usuario (UI/UX) hasta el diseño y gestión de bases de datos relacionales y NoSQL. Mi enfoque Full-Stack asegura que las aplicaciones no solo sean visualmente atractivas, sino que tengan un backend robusto, APIs seguras y una arquitectura escalable.",
-        image: "https://placehold.co/800x450/FF6A00/ffffff?text=FULL+STACK+DEV",
-        techStack: ["React / Vite", "Node.js / Express", "PostgreSQL / MongoDB", "REST APIs / GraphQL", "TypeScript"],
+    golang: {
+        title: "Inventario Golang",
+        subtitle: "Microservicio concurrente de alto rendimiento para Backend.",
+        description: "Un sofisticado sistema backend modelado como un microservicio, diseñado para procesar y gestionar inventarios de manera ultra-rápida. Escrito íntegramente en Go (Golang), enfatizando la seguridad en la concurrencia (goroutines), el fuerte tipado estático y el bajo consumo de recursos (footprint de memoria).",
+        image: "https://placehold.co/800x450/00ADD8/000000?text=GOLANG+BACKEND",
+        techStack: ["Go (Golang)", "Microservices Architecture", "Structs & Interfaces", "Concurrency", "REST"],
         goals: [
-            "Desarrollo de Single Page Applications (SPAs) reactivas y de alto rendimiento.",
-            "Diseño e implementación de APIs RESTful seguras y documentadas.",
-            "Modelado de bases de datos complejas para garantizar la integridad de los datos.",
-            "Integración de pasarelas de pago y autenticación segura con JWT."
+            "Construcción de un binario ultra-rápido y autocontenido sin dependencias pesadas.",
+            "Manejo seguro de concurrencia y acceso a datos sin race-conditions.",
+            "Organización arquitectónica orientada a servicios (Domain-Driven Design básico).",
+            "Desarrollo de endpoints eficientes para operaciones CRUD de inventario."
         ],
-        repoLink: "https://github.com/[TuUsuario]/fullstack-projects-repo"
+        repoLink: "https://github.com/benhidalgov/Inventario_Golang"
     }
 };

@@ -1,57 +1,75 @@
 import React from 'react';
-  import { Link } from 'react-router-dom';
-  import { projectData } from '../../data/project.jsx'; 
-  import '../../Components/ProjectsSummary/ProjectsSummary.css';
-  import SEO from '../../Components/SEO/SEO.jsx';
+import { motion } from 'framer-motion';
+import { projectData } from '../../data/project.jsx'; 
+import '../../Components/ProjectsSummary/ProjectsSummary.css';
+import SEO from '../../Components/SEO/SEO.jsx';
 
-  function ProjectsSummary() {
-    const featuredProjects = projectData.slice(0, 3); 
+function ProjectsFull() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
 
-    return (
-      <section className="projects-summary">
-        <SEO 
-          title="Proyectos | Benjamin Hidalgo" 
-          description="Galería de proyectos destacados en Cloud Computing, Big Data y Desarrollo Full-Stack."
-        />
-        <div className="summary-header">
-          <h2>Proyectos Destacados</h2>
-          <Link to="/projects" className="view-all-link">
-            Ver todos mis trabajos &rarr;
-          </Link>
-        </div>
+  const itemVariants = {
+    hidden: { opacity: 0, x: 50 },
+    show: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 100 } }
+  };
 
-        <div className="summary-grid">
-          {featuredProjects.map((project) => (
-            <div key={project.id} className="project-card-summary">
-              <img 
-                src={project.image} 
-                alt={project.title} 
-                className="project-image"
-                onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/400x250/888888/ffffff?text=IMG+ERROR"; }}
-              />
-              <div className="card-content">
-                <h3>{project.title}</h3>
-                <p>{project.description.substring(0, 80)}...</p>
-                <div className="card-tech">
-                  {(project.tech || project.techStack || []).map((tech) => (
-                    <span key={tech} className="tech-tag">{tech}</span>
-                  ))}
-                </div>
-                {/* 🏆 CAMBIO CLAVE: Usamos <a> para el enlace externo de GitHub */}
-                <a 
-                  href={project.github || '#'} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="details-link"
-                >
-                  Ver Código Fuente (GitHub)
-                </a>
+  return (
+    <section className="projects-summary" style={{padding: '2rem 3rem'}}>
+      <SEO 
+        title="Operation Archive | Benjamin Hidalgo" 
+        description="Directorio completo de repositorios y proyectos técnicos."
+      />
+      <div className="summary-header">
+        <h2>ARCHIVE // DEPLOYED_OPERATIONS</h2>
+        <span style={{color: 'var(--color-primary)', fontSize: '0.8rem', letterSpacing: '0.2em'}}>[ SECURE CONNECTION ESTABLISHED ]</span>
+      </div>
+
+      <motion.div 
+        className="summary-grid"
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+      >
+        {projectData.map((project) => (
+          <motion.div variants={itemVariants} key={project.id} className="project-card-summary data-slate">
+            <div className="slate-decorator-top"></div>
+            <img 
+              src={project.image} 
+              alt={project.title} 
+              className="project-image"
+              onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/400x250/222222/00ff00?text=IMG+ERROR"; }}
+            />
+            <div className="scanline-hover"></div>
+            <div className="card-content">
+              <h3>{project.title}</h3>
+              <p>{project.description}</p>
+              <div className="card-tech">
+                {(project.tech || project.techStack || []).map((tech) => (
+                  <span key={tech} className="tech-tag">{tech}</span>
+                ))}
               </div>
+              <a 
+                href={project.github || '#'} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="details-link"
+              >
+                [ ACCEDER AL GITHUB_REPO ]
+              </a>
             </div>
-          ))}
-        </div>
-      </section>
-    );
-  }
+            <div className="slate-decorator-bottom"></div>
+          </motion.div>
+        ))}
+      </motion.div>
+    </section>
+  );
+}
 
-  export default ProjectsSummary;
+export default ProjectsFull;

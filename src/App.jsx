@@ -17,6 +17,7 @@ import Sidebar from './Components/Sidebar/Sidebar.jsx';
 import Footer from './Components/Footer/Footer.jsx';
 import PageTransition from './Components/PageTransition/PageTransition.jsx';
 import Loading from './Components/Loading/Loading.jsx';
+import CustomCursor from './Components/CustomCursor/CustomCursor.jsx';
 
 // Helper para añadir un delay artificial y permitir que la animación MAGI de 2.2s termine
 const lazyWithDelay = (importFunc, delay = 2200) => {
@@ -59,6 +60,7 @@ function App() {
   return (
     // 🏆 PASO 1: Envuelve TODO con ThemeProvider
     <ThemeProvider> 
+      <CustomCursor />
       {/* CONTENEDOR PRINCIPAL: Define el layout de dos columnas */}
       <div className="app-container">
         

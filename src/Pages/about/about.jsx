@@ -12,9 +12,9 @@ function About() {
         description="Conoce más sobre mi perfil como Ingeniero en Informática, mis habilidades en Cloud, Data y Desarrollo, y mis certificaciones."
       />
       {/* 1. Descripción del Perfil Integral */}
-      <h1>Ingeniero en Plataformas y Datos</h1>
+      <h1>OPERATIVE_DOSSIER // Benjamín Hidalgo</h1>
       <p className="lead-paragraph">
-        Soy un Ingeniero en Informática con un perfil integral, especializado en la arquitectura cloud y el procesamiento de datos a gran escala. Mi experiencia combina la arquitectura Cloud,con el desarrollo Full-Stack para construir soluciones robustas y escalables.
+        <strong>PROFILE SUMMARY:</strong> Ingeniero en Informática especializado en la construcción de arquitecturas escalables, seguridad de plataformas corporativas y desarrollo de ecosistemas Full-Stack. Mi flujo operativo combina el estricto rigor del tipado (TypeScript y Go) con despliegues ágiles, garantizando sistemas resilientes ante altos volúmenes de datos. Mi objetivo es transformar la deuda técnica y las amenazas de seguridad en bases estructurales inquebrantables.
       </p>
       {/* 3. Mapeo de Habilidades por Categoría */}
       <h2>Stack de Habilidades Técnicas</h2>

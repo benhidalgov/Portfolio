@@ -30,26 +30,34 @@ function CategoryDetail() {
             />
             <div className="projects-header">
                 <Link to="/projects" className="back-link">
-                    &larr; Volver a todos los Enfoques
+                    &larr; VolVER_AL_DIRECTORIO
                 </Link>
-                <h1>{project.title}</h1>
+                <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1rem'}}>
+                    <h1 style={{margin: 0}}>{project.title}</h1>
+                    <span className="nerv-status-stamp">[STATUS: CLASSIFIED // GREEN]</span>
+                </div>
                 <p className="lead-paragraph">{project.subtitle}</p>
             </div>
 
             <div className="project-detail-container">
-                <img 
-                    src={project.image} 
-                    alt={project.title} 
-                    className="project-hero-image" 
-                    onError={(e) => { e.target.onerror = null; e.target.src=`https://placehold.co/800x450/0066CC/ffffff?text=IMG+ERROR`; }}
-                />
+                <div className="project-hero-wrapper">
+                    <img 
+                        src={project.image} 
+                        alt={project.title} 
+                        className="project-hero-image" 
+                        onError={(e) => { e.target.onerror = null; e.target.src=`https://placehold.co/800x450/0066CC/ffffff?text=IMG+ERROR`; }}
+                    />
+                </div>
 
                 <p className="project-description-long">{project.description}</p>
                 
                 <h2>Objetivos Clave de Ingeniería</h2>
                 <ul className="goals-list">
                     {project.goals.map((goal, index) => (
-                        <li key={index} className="goal-item">⦿ {goal}</li>
+                        <li key={index} className="goal-item dossier-log">
+                            <span className="log-prefix">&gt; // SYS_GOAL: </span> 
+                            {goal}
+                        </li>
                     ))}
                 </ul>
 

@@ -100,10 +100,10 @@ function Sidebar() {
   ];
 
   const caseStudies = [
-    { title: 'Cloud & Infraestructura', path: '/projects/cloud', icon: <CloudIcon /> },
-    { title: 'Análisis de Datos & BI', path: '/projects/data', icon: <DatabaseIcon /> },
-    { title: 'Ciberseguridad & Ética', path: '/projects/security', icon: <ShieldIcon /> },
-    { title: 'Desarrollo Full-Stack', path: '/projects/fullstack', icon: <CodeIcon /> },
+    { title: 'TaskManager (Kanban)', path: '/projects/taskmanager', icon: <DatabaseIcon /> },
+    { title: 'Portafolio NERV Base', path: '/projects/portfolio', icon: <CodeIcon /> },
+    { title: 'Perle Noir Landing', path: '/projects/perlenoir', icon: <CloudIcon /> },
+    { title: 'Inventario Golang', path: '/projects/golang', icon: <ShieldIcon /> },
   ];
 
   return (
