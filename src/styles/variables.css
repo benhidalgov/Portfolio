@@ -1,34 +1,70 @@
 /* src/styles/variables.css — EVANGELION / NERV UI THEME */
 
 :root {
-    /* --- NERV DARK THEME (Only) --- */
-    --color-primary: #FF6A00;
-    --color-primary-hover: #FF9D00;
-    --color-background: #0A0A0A;
-    --color-card-bg: #111111;
+    /* --- EVA-01 DARK THEME --- */
+    --color-primary: #39FF14; /* Neon Green */
+    --color-primary-rgb: 57, 255, 20;
+    --color-primary-hover: #76FF03;
+    --color-background: #0B0510; /* Very dark purple/black */
+    --color-bg-rgb: 11, 5, 16;
+    --color-card-bg: #13081C; /* Dark purple container */
     --color-text: #E8E8E8;
-    --color-subtext: #8A8A7A;
-    --color-border: rgba(255, 106, 0, 0.5);
-    --color-border-subtle: rgba(255, 106, 0, 0.15);
-    --color-shadow: #1a1200;
-    --color-shadow-primary: rgba(255, 106, 0, 0.35);
+    --color-subtext: #A68CC2;
+    --color-border: rgba(138, 43, 226, 0.6); /* Purple border */
+    --color-border-subtle: rgba(138, 43, 226, 0.2);
+    --color-shadow: #05020A;
+    --color-shadow-primary: rgba(57, 255, 20, 0.25);
+    --color-grid: rgba(138, 43, 226, 0.08); /* Purple grid */
 
     /* --- EVANGELION ACCENTS --- */
-    --color-accent-red: #CC0000;
-    --color-accent-green: #00FF41;
+    --color-accent-red: #FF003C;
+    --color-accent-green: #39FF14; 
     --color-accent-yellow: #FFD500;
-    --color-hazard-dark: #1a1a00;
+    --color-accent-purple: #8A2BE2; /* Evangelion Purple */
+    --color-hazard-dark: #1A0B2E;
 
     /* --- LINK COLORS --- */
     --color-link: var(--color-primary);
-    --color-link-hover: var(--color-accent-green);
+    --color-link-hover: #FFFFFF;
 
     /* --- TYPOGRAPHY --- */
     --font-primary: 'Share Tech Mono', 'Courier New', monospace;
     --font-code: 'Share Tech Mono', 'Courier New', monospace;
 
     /* --- EFFECTS --- */
-    --eva-glow: 0 0 10px rgba(255, 106, 0, 0.5), 0 0 30px rgba(255, 106, 0, 0.15);
-    --eva-glow-strong: 0 0 15px rgba(255, 106, 0, 0.7), 0 0 40px rgba(255, 106, 0, 0.3);
-    --eva-text-glow: 0 0 8px rgba(255, 106, 0, 0.6);
+    --eva-glow: 0 0 10px rgba(57, 255, 20, 0.4), 0 0 20px rgba(138, 43, 226, 0.2);
+    --eva-glow-strong: 0 0 15px rgba(57, 255, 20, 0.6), 0 0 30px rgba(138, 43, 226, 0.4);
+    --eva-text-glow: 0 0 8px rgba(57, 255, 20, 0.6);
+}
+
+body[data-theme="light"] {
+    /* --- EVA-02 LIGHT THEME --- */
+    --color-primary: #E60000; /* Eva-02 Red */
+    --color-primary-rgb: 230, 0, 0;
+    --color-primary-hover: #FF6600; /* Eva-02 Orange */
+    --color-background: #FDF8F5; /* Crisp warm white */
+    --color-bg-rgb: 253, 248, 245;
+    --color-card-bg: #FFFFFF;
+    --color-text: #1A0505;
+    --color-subtext: #5A3530;
+    --color-border: rgba(230, 0, 0, 0.4);
+    --color-border-subtle: rgba(230, 0, 0, 0.15);
+    --color-shadow: #E8D3CB;
+    --color-shadow-primary: rgba(230, 0, 0, 0.2);
+    --color-grid: rgba(230, 0, 0, 0.05);
+
+    /* --- EVANGELION ACCENTS --- */
+    --color-accent-red: #B30000;
+    --color-accent-green: #00AA22; /* Asuka's plugsuit accents/eyes */
+    --color-accent-yellow: #FF8800; /* Eva-02 Orange */
+    --color-hazard-dark: #F5E6E1;
+
+    /* --- LINK COLORS --- */
+    --color-link: var(--color-primary);
+    --color-link-hover: var(--color-primary-hover);
+
+    /* --- EFFECTS --- */
+    --eva-glow: 0 0 10px rgba(230, 0, 0, 0.3), 0 0 20px rgba(255, 102, 0, 0.1);
+    --eva-glow-strong: 0 0 15px rgba(230, 0, 0, 0.5), 0 0 30px rgba(255, 102, 0, 0.2);
+    --eva-text-glow: 0 0 8px rgba(230, 0, 0, 0.4);
 }
