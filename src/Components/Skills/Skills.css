@@ -215,9 +215,15 @@
     transform: translateX(3px);
 }
 
-.cert-badge-icon {
-    font-size: 1rem;
+.cert-badge-prefix {
+    font-size: 0.62rem;
+    color: var(--color-primary);
+    letter-spacing: 0.08em;
     flex-shrink: 0;
+    font-weight: 700;
+    opacity: 0.85;
+    text-shadow: var(--eva-text-glow);
+    white-space: nowrap;
 }
 
 .cert-badge-label {

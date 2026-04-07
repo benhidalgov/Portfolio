@@ -21,20 +21,20 @@ const techIcons = {
   'Kubernetes,': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg',
 };
 
-// Iconos para certificaciones
-const certIcons = {
-  'Google': '🛡',
-  'Azure': '☁',
-  'Red hat': '🔴',
-  'Cisco': '🌐',
-  'AWS': '☁',
-  'Big Data': '📊',
-  'Data Story': '📈',
+// Prefijos de texto estilo terminal por certificación
+const certPrefixes = {
+  'Google':     '▸ GGL',
+  'Azure':      '▸ AZ ',
+  'Red Hat':    '▸ RHT',
+  'Cisco':      '▸ CSC',
+  'AWS':        '▸ AWS',
+  'Big Data':   '▸ BDA',
+  'Data Story': '▸ DST',
 };
 
-const getCertIcon = (name) => {
-  const key = Object.keys(certIcons).find(k => name.toLowerCase().includes(k.toLowerCase()));
-  return key ? certIcons[key] : '🏆';
+const getCertPrefix = (name) => {
+  const key = Object.keys(certPrefixes).find(k => name.toLowerCase().includes(k.toLowerCase()));
+  return key ? certPrefixes[key] : '▸ CRT';
 };
 
 // Categorías que NO son certificaciones
@@ -61,10 +61,10 @@ function SkillTag({ skill }) {
 }
 
 function CertBadge({ cert }) {
-  const icon = getCertIcon(cert);
+  const prefix = getCertPrefix(cert);
   return (
     <div className="cert-badge">
-      <span className="cert-badge-icon">{icon}</span>
+      <span className="cert-badge-prefix">{prefix}</span>
       <span className="cert-badge-label">{cert}</span>
     </div>
   );
