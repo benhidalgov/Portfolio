@@ -19,14 +19,25 @@ import PageTransition from './Components/PageTransition/PageTransition.jsx';
 import Loading from './Components/Loading/Loading.jsx';
 import CustomCursor from './Components/CustomCursor/CustomCursor.jsx';
 
-// Helper para añadir un delay artificial y permitir que la animación MAGI de 2.2s termine
+// Helper para añadir un delay artificial solo en la PRIMERA carga de cada módulo.
+// Las visitas subsecuentes (módulo ya en caché) son instantáneas.
+const loadedModules = new Set();
 const lazyWithDelay = (importFunc, delay = 2200) => {
-  return React.lazy(() => 
-    Promise.all([
+  const key = importFunc.toString();
+  return React.lazy(() => {
+    if (loadedModules.has(key)) {
+      // Módulo ya cargado → sin delay
+      return importFunc();
+    }
+    // Primera carga → esperar la animación MAGI
+    return Promise.all([
       importFunc(),
       new Promise(resolve => setTimeout(resolve, delay))
-    ]).then(([moduleExports]) => moduleExports)
-  );
+    ]).then(([moduleExports]) => {
+      loadedModules.add(key);
+      return moduleExports;
+    });
+  });
 };
 
 // Importaciones Lazy de Páginas

@@ -1,9 +1,17 @@
 // src/utils/sound.js
 
 // Usa Web Audio API para generar un sonido "mecánico" sutil sin necesitar archivos .mp3 externos
-const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+// AudioContext se crea de forma lazy en el primer uso para evitar bloqueos del browser
+let audioContext = null;
+const getAudioContext = () => {
+  if (!audioContext) {
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  return audioContext;
+};
 
 export const playTerminalBip = () => {
+  const audioContext = getAudioContext();
   if (audioContext.state === 'suspended') {
     audioContext.resume();
   }
