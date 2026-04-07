@@ -44,9 +44,10 @@
 /* === INNER LAYOUT === */
 .footer-inner {
     display: grid;
-    grid-template-columns: 1.8fr 1fr 1fr;
-    gap: 2.5rem;
-    padding: 2.5rem 3rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+    padding: 2rem 3rem;
+    align-items: start;
 }
 
 /* === COLUMNA BRAND === */
@@ -203,8 +204,8 @@
 @media (max-width: 900px) {
     .footer-inner {
         grid-template-columns: 1fr 1fr;
-        gap: 2rem;
-        padding: 2rem;
+        gap: 1.5rem;
+        padding: 1.75rem 2rem;
     }
 
     .footer-col--brand {

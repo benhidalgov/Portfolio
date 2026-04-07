@@ -19,10 +19,6 @@ function Footer() {
             <p className="footer-brand-name">BENJAMIN HIDALGO</p>
             <p className="footer-brand-sub">Software Engineer &amp; Cloud Architect</p>
           </div>
-          <p className="footer-disclaimer">
-            Diseñado &amp; construido con React + Vite.<br />
-            Temática inspirada en <span className="footer-eva-ref">Neon Genesis Evangelion</span>.
-          </p>
         </div>
 
         {/* Columna: Navegación */}
