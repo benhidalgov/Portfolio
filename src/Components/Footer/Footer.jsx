@@ -17,7 +17,7 @@ function Footer() {
           <div className="footer-brand">
             <span className="footer-brand-tag">// NERV</span>
             <p className="footer-brand-name">BENJAMIN HIDALGO</p>
-            <p className="footer-brand-sub">Software Engineer &amp; Cloud Architect</p>
+            <p className="footer-brand-sub">Ingeniero informatico y desarrollador de software</p>
           </div>
         </div>
 
