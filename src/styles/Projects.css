@@ -1,11 +1,11 @@
-/* --- Projects Detail Pages: MAGI SYSTEM DATA --- */
+/* --- Projects Detail Pages: ROSHAR CHRONICLES DATA --- */
 
 .projects-full-page {
     padding: 2rem 3rem;
     max-width: 1200px;
     margin: 0 auto;
     color: var(--color-text);
-    font-family: var(--font-primary);
+    font-family: var(--font-code);
     min-height: calc(100vh - 200px);
 }
 
@@ -26,15 +26,15 @@
     transition: all 0.2s;
     border: 1px solid var(--color-border-subtle);
     padding: 0.4rem 0.8rem;
-    border-radius: 0;
+    border-radius: 2px;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
 
 .back-link:hover {
     border-color: var(--color-primary);
-    background-color: rgba(255, 106, 0, 0.08);
-    box-shadow: var(--eva-glow);
+    background-color: rgba(var(--color-primary-rgb), 0.08);
+    box-shadow: var(--storm-glow);
     transform: translateX(-3px);
 }
 
@@ -45,7 +45,8 @@
     margin: 0 0 1rem 0;
     letter-spacing: 0.02em;
     text-transform: uppercase;
-    text-shadow: var(--eva-text-glow);
+    text-shadow: var(--storm-text-glow);
+    font-family: var(--font-primary);
 }
 
 .lead-paragraph {
@@ -61,16 +62,17 @@
     gap: 2.5rem;
 }
 
-/* === NERV STATUS STAMP === */
-.nerv-status-stamp {
+/* === STORM STATUS STAMP === */
+.storm-status-stamp {
     font-size: 0.8rem;
     color: var(--color-primary);
     border: 1px solid var(--color-primary);
     padding: 0.3rem 0.6rem;
     font-family: var(--font-code);
     letter-spacing: 0.1em;
-    background-color: rgba(255, 106, 0, 0.1);
+    background-color: rgba(var(--color-primary-rgb), 0.08);
     animation: blinkText 4s infinite;
+    border-radius: 2px;
 }
 
 @keyframes blinkText {
@@ -78,7 +80,7 @@
     97%, 99% { opacity: 0; }
 }
 
-/* === HERO CRT EFFECT === */
+/* === HERO IMAGE WITH STORMLIGHT FILTER === */
 .project-hero-wrapper {
     position: relative;
     width: 100%;
@@ -87,6 +89,7 @@
     border: 2px solid var(--color-primary);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     background-color: #000;
+    border-radius: 2px;
 }
 
 .project-hero-image {
@@ -96,7 +99,8 @@
     aspect-ratio: 16/9;
     object-fit: cover;
     display: block;
-    filter: sepia(100%) hue-rotate(90deg) saturate(300%) brightness(0.7) contrast(1.5);
+    /* Stormlight blue or gold filter depending on theme */
+    filter: var(--image-filter);
     transition: all 0.5s ease;
 }
 
@@ -105,13 +109,10 @@
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     pointer-events: none;
-    background: repeating-linear-gradient(
-        0deg,
-        rgba(0, 0, 0, 0.2),
-        rgba(0, 0, 0, 0.2) 2px,
-        transparent 2px,
-        transparent 4px
-    );
+    /* Subtle crystalline overlay instead of scanlines */
+    background: 
+        radial-gradient(ellipse at 30% 20%, rgba(var(--color-primary-rgb), 0.05) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, rgba(var(--color-primary-rgb), 0.03) 0%, transparent 50%);
     z-index: 5;
 }
 
@@ -135,10 +136,11 @@
     margin: 2rem 0 1.5rem 0;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    text-shadow: var(--eva-text-glow);
+    text-shadow: var(--storm-text-glow);
+    font-family: var(--font-primary);
 }
 
-/* === GOALS (DOSSIER LOGS) === */
+/* === GOALS (CHRONICLE LOGS) === */
 .goals-list {
     list-style: none;
     padding: 0;
@@ -157,20 +159,21 @@
     border: 1px solid var(--color-border-subtle);
     border-left: 3px solid var(--color-primary);
     transition: all 0.2s ease;
-    font-family: var(--font-primary);
+    font-family: var(--font-code);
+    border-radius: 2px;
 }
 
 .log-prefix {
     color: var(--color-primary);
-    font-family: var(--font-code);
+    font-family: var(--font-primary);
     margin-right: 0.5rem;
     font-weight: bold;
 }
 
 .dossier-log:hover {
     border-color: var(--color-primary);
-    box-shadow: var(--eva-glow);
-    background-color: rgba(255, 106, 0, 0.03);
+    box-shadow: var(--storm-glow);
+    background-color: rgba(var(--color-primary-rgb), 0.03);
 }
 
 /* === TECH TAGS === */
@@ -182,10 +185,10 @@
 }
 
 .tech-tag-full {
-    background-color: rgba(255, 106, 0, 0.08);
+    background-color: rgba(var(--color-primary-rgb), 0.08);
     color: var(--color-primary);
     padding: 0.4rem 0.8rem;
-    border-radius: 0;
+    border-radius: 2px;
     font-size: 0.8rem;
     font-weight: 500;
     border: 1px solid var(--color-border);
@@ -199,7 +202,7 @@
 .tech-tag-full:hover {
     background-color: var(--color-primary);
     color: var(--color-background);
-    box-shadow: var(--eva-glow);
+    box-shadow: var(--storm-glow);
 }
 
 /* === ACTIONS === */

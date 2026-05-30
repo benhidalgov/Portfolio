@@ -1,10 +1,10 @@
-/* src/index.css — EVANGELION GLOBAL STYLES */
+/* src/index.css — STORMLIGHT ARCHIVE GLOBAL STYLES */
 
 @import './styles/variables.css';
 @import './styles/buttons.css';
 
-/* Google Font: Share Tech Mono (NERV Terminal Font) */
-@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+/* Google Fonts: Cinzel (inscriptions) + Raleway (body) */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Raleway:wght@300;400;500;600;700&display=swap');
 
 /* === GLOBAL RESET & BASE === */
 * {
@@ -17,22 +17,22 @@ html {
 
 body {
     margin: 0;
-    font-family: var(--font-primary);
+    font-family: var(--font-code);
     background-color: var(--color-background);
     color: var(--color-text);
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
 
-    /* Subtle grid background pattern */
+    /* Subtle stone-crack pattern — evokes carved Rosharan architecture */
     background-image:
-        linear-gradient(var(--color-grid) 1px, transparent 1px),
-        linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
-    background-size: 40px 40px;
+        radial-gradient(ellipse at 20% 50%, rgba(var(--color-primary-rgb), 0.03) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(var(--color-primary-rgb), 0.02) 0%, transparent 50%),
+        linear-gradient(180deg, transparent 0%, rgba(var(--color-primary-rgb), 0.01) 100%);
     background-attachment: fixed;
 }
 
-/* === CRT SCANLINE OVERLAY === */
+/* === STORMLIGHT PARTICLE OVERLAY === */
 body::after {
     content: '';
     position: fixed;
@@ -42,13 +42,25 @@ body::after {
     height: 100%;
     pointer-events: none;
     z-index: 9999;
-    background: repeating-linear-gradient(
-        0deg,
-        rgba(0, 0, 0, 0.08) 0px,
-        rgba(0, 0, 0, 0.08) 1px,
-        transparent 1px,
-        transparent 3px
-    );
+    background:
+        radial-gradient(1px 1px at 10% 20%, rgba(var(--color-primary-rgb), 0.3), transparent),
+        radial-gradient(1px 1px at 30% 60%, rgba(var(--color-primary-rgb), 0.2), transparent),
+        radial-gradient(1px 1px at 50% 10%, rgba(var(--color-primary-rgb), 0.25), transparent),
+        radial-gradient(1px 1px at 70% 80%, rgba(var(--color-primary-rgb), 0.15), transparent),
+        radial-gradient(1px 1px at 90% 40%, rgba(var(--color-primary-rgb), 0.2), transparent),
+        radial-gradient(1.5px 1.5px at 15% 85%, rgba(var(--color-primary-rgb), 0.2), transparent),
+        radial-gradient(1.5px 1.5px at 60% 35%, rgba(var(--color-primary-rgb), 0.15), transparent),
+        radial-gradient(1px 1px at 85% 15%, rgba(var(--color-primary-rgb), 0.25), transparent);
+    animation: stormlightDrift 20s ease-in-out infinite alternate;
+    opacity: 0.6;
+}
+
+@keyframes stormlightDrift {
+    0% { transform: translateY(0px) translateX(0px); }
+    25% { transform: translateY(-5px) translateX(3px); }
+    50% { transform: translateY(-2px) translateX(-2px); }
+    75% { transform: translateY(-7px) translateX(5px); }
+    100% { transform: translateY(-3px) translateX(-3px); }
 }
 
 /* === LINKS === */
@@ -60,7 +72,7 @@ a {
 
 a:hover {
     color: var(--color-link-hover);
-    text-shadow: var(--eva-text-glow);
+    text-shadow: var(--storm-text-glow);
 }
 
 /* === BUTTONS === */
@@ -69,7 +81,7 @@ button {
     cursor: pointer;
 }
 
-/* === SCROLLBAR (NERV Style) === */
+/* === SCROLLBAR (Stormlight Style) === */
 ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
@@ -87,7 +99,7 @@ button {
 
 ::-webkit-scrollbar-thumb:hover {
     background-color: var(--color-primary-hover);
-    box-shadow: var(--eva-glow);
+    box-shadow: var(--storm-glow);
 }
 
 /* Firefox */
@@ -96,16 +108,18 @@ html {
     scrollbar-color: var(--color-primary) var(--color-background);
 }
 
-/* === HAZARD STRIPE UTILITY === */
+/* === GLYPH STRIPE UTILITY (replaces hazard stripe) === */
 .hazard-stripe {
-    height: 4px;
-    background: repeating-linear-gradient(
-        -45deg,
-        var(--color-primary) 0px,
-        var(--color-primary) 4px,
-        var(--color-background) 4px,
-        var(--color-background) 8px
+    height: 3px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        var(--color-primary) 15%,
+        var(--color-primary) 50%,
+        var(--color-primary) 85%,
+        transparent 100%
     );
+    opacity: 0.6;
 }
 
 /* === GLOBAL TEXT SELECTION === */
@@ -114,7 +128,7 @@ html {
     color: var(--color-background);
 }
 
-/* === GLITCH ANIMATION UTILITY === */
+/* === STORMLIGHT PULSE ANIMATION (replaces glitch) === */
 .glitch-text {
     position: relative;
     display: inline-block;
@@ -128,35 +142,45 @@ html {
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.8;
+    opacity: 0;
 }
 
 .glitch-text::before {
-    left: 2px;
-    text-shadow: -1px 0 var(--color-primary);
-    clip: rect(44px, 450px, 56px, 0);
-    animation: glitch-anim 5s infinite linear alternate-reverse;
+    color: var(--color-primary);
+    text-shadow: var(--storm-text-glow);
+    animation: stormlightPulse 4s ease-in-out infinite;
 }
 
 .glitch-text::after {
-    left: -2px;
-    text-shadow: -1px 0 var(--color-secondary);
-    clip: rect(44px, 450px, 56px, 0);
-    animation: glitch-anim2 5s infinite linear alternate-reverse;
+    color: var(--color-accent-yellow);
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+    animation: stormlightPulse 4s ease-in-out infinite 2s;
 }
 
-@keyframes glitch-anim {
-    0% { clip: rect(20px, 9999px, 86px, 0); }
-    5% { clip: rect(62px, 9999px, 89px, 0); }
-    10% { clip: rect(6px, 9999px, 40px, 0); }
-    15% { clip: rect(10px, 9999px, 44px, 0); }
-    100% { clip: rect(20px, 9999px, 86px, 0); }
+@keyframes stormlightPulse {
+    0%, 100% { opacity: 0; transform: translateX(0); }
+    15% { opacity: 0.15; transform: translateX(1px); }
+    30% { opacity: 0; transform: translateX(-1px); }
+    45% { opacity: 0.1; transform: translateX(0); }
 }
 
-@keyframes glitch-anim2 {
-    0% { clip: rect(78px, 9999px, 79px, 0); }
-    5% { clip: rect(32px, 9999px, 5px, 0); }
-    10% { clip: rect(54px, 9999px, 73px, 0); }
-    15% { clip: rect(15px, 9999px, 11px, 0); }
-    100% { clip: rect(78px, 9999px, 79px, 0); }
+/* === STORMLIGHT INFUSION ANIMATION === */
+@keyframes infuse {
+    0%, 100% { opacity: 1; text-shadow: var(--storm-text-glow); }
+    50% { opacity: 0.7; text-shadow: 0 0 20px rgba(var(--color-primary-rgb), 0.8), 0 0 40px rgba(var(--color-primary-rgb), 0.4); }
+}
+
+/* === GLYPH BORDER DECORATION === */
+.glyph-border {
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(var(--color-primary-rgb), 0.1) 10%,
+        var(--color-primary) 30%,
+        var(--color-primary) 50%,
+        var(--color-primary) 70%,
+        rgba(var(--color-primary-rgb), 0.1) 90%,
+        transparent
+    );
 }

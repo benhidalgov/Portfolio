@@ -27,8 +27,8 @@ function ProjectsFull() {
         description="Directorio completo de repositorios y proyectos técnicos."
       />
       <div className="summary-header">
-        <h2>ARCHIVE // DEPLOYED_OPERATIONS</h2>
-        <span style={{color: 'var(--color-primary)', fontSize: '0.8rem', letterSpacing: '0.2em'}}>[ SECURE CONNECTION ESTABLISHED ]</span>
+        <h2>CRÓNICAS // REGISTRO_DE_JURAMENTOS</h2>
+        <span style={{color: 'var(--color-primary)', fontSize: '0.8rem', letterSpacing: '0.2em'}}>[ VÍNCULO NAHEL CONECTADO ]</span>
       </div>
 
       <motion.div 
@@ -61,7 +61,7 @@ function ProjectsFull() {
                 rel="noopener noreferrer" 
                 className="details-link"
               >
-                [ ACCEDER AL GITHUB_REPO ]
+                [ ABRIR ARCHIVO DE GITHUB ]
               </a>
             </div>
             <div className="slate-decorator-bottom"></div>

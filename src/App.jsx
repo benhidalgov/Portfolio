@@ -3,13 +3,13 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
 // Estilos Globales
-import './index.css'; // Importa estilos base y variables CSS
+import './index.css'; // Importa estilos base y variables CSS (Stormlight Theme)
 import './styles/layout.css'; // Contiene .app-container y .main-content-area
 
-// 🏆 IMPORTACIÓN CLAVE: Importa el ThemeProvider desde el contexto
+// Importa el ThemeProvider (Alta Tormenta / Luz Tormentosa)
 import { ThemeProvider } from './Context/ThemeContext.jsx'; 
 
-// Utilidad de Sonido (Web Audio API)
+// Utilidad de Sonido (Resonancia de Gema)
 import { playTerminalBip } from './utils/sound.js';
 
 // Componentes de Layout (Se mantienen estáticos para carga inmediata)
@@ -29,7 +29,7 @@ const lazyWithDelay = (importFunc, delay = 2200) => {
       // Módulo ya cargado → sin delay
       return importFunc();
     }
-    // Primera carga → esperar la animación MAGI
+    // Primera carga → esperar la animación Tormenta Eterna
     return Promise.all([
       importFunc(),
       new Promise(resolve => setTimeout(resolve, delay))
@@ -53,7 +53,7 @@ const CategoryDetail = lazyWithDelay(() => import('./Pages/Projects/CategoryDeta
 function App() {
   const location = useLocation();
 
-  // Escuchador Global de Sonidos de UI NERV
+  // Escuchador Global de Sonidos — Resonancia de Gema Rosharan
   useEffect(() => {
     const handleUiClick = (e) => {
       const isInteractive = e.target.closest('a') || e.target.closest('button');
@@ -69,7 +69,7 @@ function App() {
   }, []);
 
   return (
-    // 🏆 PASO 1: Envuelve TODO con ThemeProvider
+    // ThemeProvider: Alta Tormenta (Dark) / Luz Tormentosa (Light)
     <ThemeProvider> 
       <CustomCursor />
       {/* CONTENEDOR PRINCIPAL: Define el layout de dos columnas */}

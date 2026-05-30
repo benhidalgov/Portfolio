@@ -3,8 +3,20 @@ import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../../Context/ThemeContext.jsx';
 import '../../styles/Sidebar.css';
 import logo from '../../assets/images/Logo.svg';
+import { 
+  WindrunnerGlyph, 
+  GemheartGlyph, 
+  SkybreakerGlyph, 
+  DustbringerGlyph, 
+  LightweaverGlyph,
+  BridgeFourGlyph,
+  GlyphDivider,
+  HighstormIcon,
+  StormlightIcon 
+} from '../Glyphs/RadiantGlyphs.jsx';
+import '../Glyphs/RadiantGlyphs.css';
 
-// Iconos SVG
+// Iconos SVG de menú
 const MenuIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -13,50 +25,9 @@ const MenuIcon = () => (
   </svg>
 );
 const CloseIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <line x1="18" y1="6" x2="6" y2="18"></line>
-      <line x1="6" y1="6" x2="18" y2="18"></line>
-    </svg>
-);
-
-const HomeIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-    <polyline points="9 22 9 12 15 12 15 22"></polyline>
-  </svg>
-);
-const FolderIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-  </svg>
-);
-const UserIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-    <circle cx="12" cy="7" r="4"></circle>
-  </svg>
-);
-const CloudIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
-  </svg>
-);
-const DatabaseIcon = () => (
-   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-    <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
-    <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
-  </svg>
-);
-const ShieldIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-  </svg>
-);
-const CodeIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <polyline points="16 18 22 12 16 6"></polyline>
-    <polyline points="8 6 2 12 8 18"></polyline>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="18" y1="6" x2="6" y2="18"></line>
+    <line x1="6" y1="6" x2="18" y2="18"></line>
   </svg>
 );
 
@@ -64,7 +35,6 @@ function Sidebar() {
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
   
-  // Iniciar cerrado en móviles
   const [isOpen, setIsOpen] = useState(window.innerWidth > 768);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
@@ -73,9 +43,9 @@ function Sidebar() {
       const mobile = window.innerWidth <= 768;
       setIsMobile(mobile);
       if (!mobile) {
-        setIsOpen(true); // Siempre abierto en Desktop
+        setIsOpen(true);
       } else {
-        setIsOpen(false); // Siempre cerrado al redimensionar a móvil
+        setIsOpen(false);
       }
     };
 
@@ -83,37 +53,32 @@ function Sidebar() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const toggleSidebar = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleSidebar = () => setIsOpen(!isOpen);
+  const closeMenuOnMobile = () => { if (isMobile) setIsOpen(false); };
 
-  const closeMenuOnMobile = () => {
-    if (isMobile) {
-      setIsOpen(false);
-    }
-  };
-
+  // Navegación principal con glifos de órdenes
   const primaryNav = [
-    { path: '/', name: 'Inicio', subtext: '> Volvamos a empezar', icon: <HomeIcon /> },
-    { path: '/projects', name: 'Proyectos', subtext: '> Mis trabajos de ingeniería', icon: <FolderIcon /> },
-    { path: '/about', name: 'About Me', subtext: '> Conoce al operador', icon: <UserIcon /> },
+    { path: '/', name: 'Inicio', subtext: 'El camino más importante...', glyph: <WindrunnerGlyph size={18} /> },
+    { path: '/projects', name: 'Proyectos', subtext: 'Crónicas de ingeniería', glyph: <SkybreakerGlyph size={18} /> },
+    { path: '/about', name: 'About Me', subtext: 'Conoce al Radiante', glyph: <LightweaverGlyph size={18} /> },
   ];
 
+  // Case studies con glifos temáticos
   const caseStudies = [
-    { title: 'TaskManager (Kanban)', path: '/projects/taskmanager', icon: <DatabaseIcon /> },
-    { title: 'Portafolio NERV Base', path: '/projects/portfolio', icon: <CodeIcon /> },
-    { title: 'Perle Noir Landing', path: '/projects/perlenoir', icon: <CloudIcon /> },
-    { title: 'Inventario Golang', path: '/projects/golang', icon: <ShieldIcon /> },
+    { title: 'TaskManager (Kanban)', path: '/projects/taskmanager', glyph: <BridgeFourGlyph size={16} /> },
+    { title: 'Portafolio Roshar', path: '/projects/portfolio', glyph: <GemheartGlyph size={16} /> },
+    { title: 'Perle Noir Landing', path: '/projects/perlenoir', glyph: <LightweaverGlyph size={16} /> },
+    { title: 'Inventario Golang', path: '/projects/golang', glyph: <DustbringerGlyph size={16} /> },
   ];
 
   return (
     <>
-      {/* NERV Mobile Toggle Button (Only visible on mobile via CSS) */}
+      {/* Mobile Toggle */}
       <button className="mobile-nav-toggle" onClick={toggleSidebar} aria-label="Toggle Navigation">
         {isOpen ? <CloseIcon /> : <MenuIcon />}
       </button>
 
-      {/* Overlay to close when clicking outside on mobile */}
+      {/* Overlay */}
       {isMobile && isOpen && (
         <div 
           style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.6)', zIndex: 1999 }} 
@@ -125,31 +90,42 @@ function Sidebar() {
         {/* HEADER */}
         <div className="sidebar-header">
           <div className="header-logo-toggle-group">
-              <Link to="/" className="sidebar-title" onClick={closeMenuOnMobile}>
-                <img 
-                  src={logo} 
-                  alt="Logo B. Hidalgo" 
-                  className="sidebar-logo-img" 
-                  onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/40x40/0A0A0A/FF6A00?text=BH" }}
-                />
-              </Link>
-              
-              <button onClick={toggleSidebar} className="sidebar-toggle-button">
-                {isOpen ? <CloseIcon /> : <MenuIcon />}
-              </button>
+            <Link to="/" className="sidebar-title" onClick={closeMenuOnMobile}>
+              <img 
+                src={logo} 
+                alt="Logo B. Hidalgo" 
+                className="sidebar-logo-img" 
+                onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/40x40/0A0E1A/00D4FF?text=BH" }}
+              />
+            </Link>
+            
+            <button onClick={toggleSidebar} className="sidebar-toggle-button">
+              {isOpen ? <CloseIcon /> : <MenuIcon />}
+            </button>
           </div>
           
           {isOpen && (
-            <p className="sidebar-intro-text">
-              OPERATIVE_PROFILE // Ingeniero en Informática especializado en soluciones escalables y seguridad.
-            </p>
+            <>
+              <p className="sidebar-intro-text">
+                Caballero Radiante // Ingeniero en Informática especializado en soluciones escalables y seguridad.
+              </p>
+              {/* Glifo decorativo del Corredor del Viento */}
+              <div className="sidebar-glyph-decoration">
+                <WindrunnerGlyph size={36} className="glyph-breathe" />
+              </div>
+            </>
           )}
         </div>
 
         {/* NAVIGATION */}
         <div className={`sidebar-nav-sections ${!isOpen ? 'nav-collapsed' : ''}`}>
           <div className="section-group">
-            {isOpen && <p className="section-title">// Navigation</p>}
+            {isOpen && (
+              <div className="section-title-with-glyph">
+                <GemheartGlyph size={12} />
+                <p className="section-title" style={{ marginTop: 0 }}>Juramentos</p>
+              </div>
+            )}
             {primaryNav.map((item) => (
               <Link 
                 key={item.path} 
@@ -159,19 +135,34 @@ function Sidebar() {
                 onClick={closeMenuOnMobile}
               >
                 {!isOpen ? (
-                  <span className="item-icon-collapsed">{item.icon}</span>
+                  <span className="item-icon-collapsed">{item.glyph}</span>
                 ) : (
-                  <>
-                    <span className="item-name">{item.name}</span>
-                    <span className="item-subtext">{item.subtext}</span>
-                  </>
+                  <div className="nav-item-with-glyph">
+                    <span className="nav-item-glyph">{item.glyph}</span>
+                    <div className="nav-item-text">
+                      <span className="item-name">{item.name}</span>
+                      <span className="item-subtext">{item.subtext}</span>
+                    </div>
+                  </div>
                 )}
               </Link>
             ))}
           </div>
 
+          {/* Divider entre secciones */}
+          {isOpen && (
+            <div style={{ padding: '0.5rem 0' }}>
+              <GlyphDivider width={180} />
+            </div>
+          )}
+
           <div className="section-group case-studies">
-            {isOpen && <p className="section-title">// Engineering Data</p>}
+            {isOpen && (
+              <div className="section-title-with-glyph">
+                <GemheartGlyph size={12} />
+                <p className="section-title" style={{ marginTop: 0 }}>Crónicas de Roshar</p>
+              </div>
+            )}
             {caseStudies.map((study) => (
               <Link 
                 key={study.path} 
@@ -181,23 +172,45 @@ function Sidebar() {
                 onClick={closeMenuOnMobile}
               >
                 {!isOpen ? (
-                  <span className="item-icon-collapsed">{study.icon}</span>
+                  <span className="item-icon-collapsed">{study.glyph}</span>
                 ) : (
-                  <><span className="case-study-symbol">▶</span> {study.title}</>
+                  <>
+                    <span className="case-study-symbol">{study.glyph}</span>
+                    <span>{study.title}</span>
+                  </>
                 )}
               </Link>
             ))}
           </div>
+
+          {/* Juramento al pie de la navegación */}
+          {isOpen && (
+            <div className="sidebar-oath">
+              <p className="oath-text">&ldquo;Fuerza antes que debilidad.&rdquo;</p>
+            </div>
+          )}
         </div>
         
         {/* THEME TOGGLE */}
-        {isOpen && (
-          <div className="sidebar-footer">
-            <button className="theme-toggle-button" onClick={toggleTheme}>
-              [ {theme} ]
-            </button>
-          </div>
-        )}
+        <div className="sidebar-footer">
+          <button 
+            className={`theme-toggle-button ${!isOpen ? 'icon-only' : ''}`} 
+            onClick={toggleTheme}
+            title={theme === 'DARK' ? 'Activar Luz Tormentosa' : 'Activar Alta Tormenta'}
+          >
+            {isOpen ? (
+              <span className="theme-toggle-content">
+                {theme === 'DARK' ? <HighstormIcon size={16} /> : <StormlightIcon size={16} />}
+                <span>{theme === 'DARK' ? 'Alta Tormenta' : 'Luz Tormentosa'}</span>
+                {theme === 'DARK' ? <HighstormIcon size={16} /> : <StormlightIcon size={16} />}
+              </span>
+            ) : (
+              <span className="theme-toggle-icon-collapsed">
+                {theme === 'DARK' ? <HighstormIcon size={18} /> : <StormlightIcon size={18} />}
+              </span>
+            )}
+          </button>
+        </div>
       </nav>
     </>
   );

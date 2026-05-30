@@ -1,0 +1,135 @@
+/* --- Radiant Glyphs: Stormlight Archive Symbology --- */
+
+/* === BASE GLYPH STYLES === */
+.glyph {
+    color: var(--color-primary);
+    transition: color 0.3s ease, filter 0.3s ease, transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.glyph:hover {
+    filter: drop-shadow(var(--storm-text-glow));
+}
+
+/* === GLYPH ANIMATIONS === */
+.glyph-pulse {
+    animation: glyphPulse 3s ease-in-out infinite;
+}
+
+@keyframes glyphPulse {
+    0%, 100% { filter: drop-shadow(0 0 4px rgba(var(--color-primary-rgb), 0.3)); }
+    50% { filter: drop-shadow(0 0 12px rgba(var(--color-primary-rgb), 0.7)); }
+}
+
+.glyph-spin-slow {
+    animation: glyphSpin 20s linear infinite;
+}
+
+@keyframes glyphSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.glyph-breathe {
+    animation: glyphBreathe 4s ease-in-out infinite;
+}
+
+@keyframes glyphBreathe {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+/* === HERO GLYPH (large decorative) === */
+.hero-glyph {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-primary);
+    opacity: 0.06;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* === GLYPH DIVIDER === */
+.glyph-divider {
+    color: var(--color-primary);
+    display: block;
+    margin: 0 auto;
+}
+
+/* === SIDEBAR GLYPHS === */
+.sidebar-glyph-decoration {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem 0;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar-glyph-decoration:hover {
+    opacity: 0.9;
+}
+
+.sidebar-glyph-decoration .glyph {
+    animation: glyphBreathe 5s ease-in-out infinite;
+}
+
+/* === SECTION TITLE WITH GLYPH === */
+.section-title-with-glyph {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.section-title-with-glyph .glyph {
+    opacity: 0.7;
+}
+
+/* === THEME TOGGLE GLYPHS === */
+.theme-toggle-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.theme-toggle-content .glyph {
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle-button:hover .theme-toggle-content .glyph {
+    transform: scale(1.2);
+    color: var(--color-background);
+}
+
+/* === LOADING GLYPH === */
+.loading-glyph {
+    margin-bottom: 1.5rem;
+}
+
+.loading-glyph .glyph {
+    animation: glyphPulse 2s ease-in-out infinite, glyphSpin 15s linear infinite;
+}
+
+/* === FOOTER GLYPH === */
+.footer-glyph {
+    display: flex;
+    justify-content: center;
+    padding: 0.75rem 0;
+    opacity: 0.3;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .hero-glyph {
+        right: 50%;
+        transform: translate(50%, -50%);
+        opacity: 0.04;
+    }
+
+    .hero-glyph .glyph {
+        width: 200px !important;
+        height: 200px !important;
+    }
+}

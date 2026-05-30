@@ -1,4 +1,4 @@
-/* --- ProjectsSummary: NERV DATA FEED --- */
+/* --- ProjectsSummary: ROSHAR DATA FEED --- */
 
 .projects-summary {
     padding: 4rem 0;
@@ -22,7 +22,7 @@
     color: var(--color-primary);
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    text-shadow: var(--eva-text-glow);
+    text-shadow: var(--storm-text-glow);
     margin: 0;
 }
 
@@ -42,7 +42,7 @@
 .view-all-link:hover {
     color: var(--color-background);
     background-color: var(--color-primary);
-    box-shadow: var(--eva-glow);
+    box-shadow: var(--storm-glow);
 }
 
 /* === GRID === */
@@ -136,7 +136,7 @@
     object-fit: cover;
     border-bottom: 1px solid var(--color-border-subtle);
     transition: all 0.3s ease;
-    filter: sepia(1) hue-rotate(330deg) saturate(2) brightness(0.8);
+    filter: var(--image-filter);
 }
 
 .data-slate:hover .project-image {
@@ -166,7 +166,7 @@
 
 .project-card-summary:hover .card-content h3 {
     color: var(--color-primary);
-    text-shadow: var(--eva-text-glow);
+    text-shadow: var(--storm-text-glow);
 }
 
 .card-content p {
@@ -204,7 +204,7 @@
 .tech-tag:hover {
     background-color: var(--color-primary);
     color: var(--color-background);
-    box-shadow: var(--eva-glow);
+    box-shadow: var(--storm-glow);
 }
 
 /* === DETAILS LINK === */

@@ -1,70 +1,73 @@
-/* src/styles/variables.css — EVANGELION / NERV UI THEME */
+/* src/styles/variables.css — THE STORMLIGHT ARCHIVE THEME */
 
 :root {
-    /* --- EVA-01 DARK THEME --- */
-    --color-primary: #39FF14; /* Neon Green */
-    --color-primary-rgb: 57, 255, 20;
-    --color-primary-hover: #76FF03;
-    --color-background: #0B0510; /* Very dark purple/black */
-    --color-bg-rgb: 11, 5, 16;
-    --color-card-bg: #13081C; /* Dark purple container */
-    --color-text: #E8E8E8;
-    --color-subtext: #A68CC2;
-    --color-border: rgba(138, 43, 226, 0.6); /* Purple border */
-    --color-border-subtle: rgba(138, 43, 226, 0.2);
-    --color-shadow: #05020A;
-    --color-shadow-primary: rgba(57, 255, 20, 0.25);
-    --color-grid: rgba(138, 43, 226, 0.08); /* Purple grid */
+    /* --- WINDRUNNER DARK THEME (Alta Tormenta) --- */
+    --color-primary: #00D4FF; /* Luz Tormentosa — cian brillante */
+    --color-primary-rgb: 0, 212, 255;
+    --color-primary-hover: #66E5FF;
+    --color-background: #0A0E1A; /* Cielo nocturno de Roshar */
+    --color-bg-rgb: 10, 14, 26;
+    --color-card-bg: #111827; /* Piedra oscura tallada */
+    --color-text: #E2E8F0;
+    --color-subtext: #8BA4C4; /* Niebla de tormenta */
+    --color-border: rgba(0, 212, 255, 0.4); /* Stormlight border */
+    --color-border-subtle: rgba(0, 212, 255, 0.15);
+    --color-shadow: #050810;
+    --color-shadow-primary: rgba(0, 212, 255, 0.25);
+    --color-grid: rgba(0, 212, 255, 0.04);
 
-    /* --- EVANGELION ACCENTS --- */
-    --color-accent-red: #FF003C;
-    --color-accent-green: #39FF14; 
-    --color-accent-yellow: #FFD500;
-    --color-accent-purple: #8A2BE2; /* Evangelion Purple */
-    --color-hazard-dark: #1A0B2E;
+    /* --- COSMERE ACCENTS --- */
+    --color-accent-red: #FF4D6A;     /* Rubí (gema del odio) */
+    --color-accent-green: #00FFAA;   /* Esmeralda */
+    --color-accent-yellow: #FFD700;  /* Topacio / Luz concentrada */
+    --color-accent-purple: #A855F7;  /* Amatista */
+    --color-hazard-dark: #0D1525;
 
     /* --- LINK COLORS --- */
     --color-link: var(--color-primary);
     --color-link-hover: #FFFFFF;
 
     /* --- TYPOGRAPHY --- */
-    --font-primary: 'Share Tech Mono', 'Courier New', monospace;
-    --font-code: 'Share Tech Mono', 'Courier New', monospace;
+    --font-primary: 'Cinzel', 'Georgia', serif;
+    --font-code: 'Raleway', 'Helvetica Neue', sans-serif;
 
-    /* --- EFFECTS --- */
-    --eva-glow: 0 0 10px rgba(57, 255, 20, 0.4), 0 0 20px rgba(138, 43, 226, 0.2);
-    --eva-glow-strong: 0 0 15px rgba(57, 255, 20, 0.6), 0 0 30px rgba(138, 43, 226, 0.4);
-    --eva-text-glow: 0 0 8px rgba(57, 255, 20, 0.6);
+    /* --- STORMLIGHT EFFECTS --- */
+    --storm-glow: 0 0 10px rgba(0, 212, 255, 0.4), 0 0 25px rgba(0, 212, 255, 0.15);
+    --storm-glow-strong: 0 0 15px rgba(0, 212, 255, 0.6), 0 0 35px rgba(0, 212, 255, 0.3);
+    --storm-text-glow: 0 0 10px rgba(0, 212, 255, 0.5);
+    --image-filter: sepia(1) hue-rotate(180deg) saturate(3) brightness(0.8);
 }
 
-body[data-theme="light"] {
-    /* --- EVA-02 LIGHT THEME --- */
-    --color-primary: #E60000; /* Eva-02 Red */
-    --color-primary-rgb: 230, 0, 0;
-    --color-primary-hover: #FF6600; /* Eva-02 Orange */
-    --color-background: #FDF8F5; /* Crisp warm white */
-    --color-bg-rgb: 253, 248, 245;
-    --color-card-bg: #FFFFFF;
-    --color-text: #1A0505;
-    --color-subtext: #5A3530;
-    --color-border: rgba(230, 0, 0, 0.4);
-    --color-border-subtle: rgba(230, 0, 0, 0.15);
-    --color-shadow: #E8D3CB;
-    --color-shadow-primary: rgba(230, 0, 0, 0.2);
-    --color-grid: rgba(230, 0, 0, 0.05);
+[data-theme="light"] {
+    /* --- LIGHTWEAVER LIGHT THEME (Luz Tormentosa) --- */
+    --color-primary: #8C650A; /* Dorado bronce — Luz Tormentosa suave */
+    --color-primary-rgb: 140, 101, 10;
+    --color-primary-hover: #A67C1E;
+    --color-background: #EAE6DF; /* Pergamino de Roshar suave */
+    --color-bg-rgb: 234, 230, 223;
+    --color-card-bg: #F4F1EC; /* Tarjetas de crema suave */
+    --color-text: #2C281F; /* Texto marrón carbón, no agresivo */
+    --color-subtext: #5C564A; /* Subtexto gris cálido */
+    --color-border: rgba(140, 101, 10, 0.3);
+    --color-border-subtle: rgba(140, 101, 10, 0.15);
+    --color-shadow: #DFDAD2;
+    --color-shadow-primary: rgba(140, 101, 10, 0.15);
+    --color-grid: rgba(140, 101, 10, 0.03);
 
-    /* --- EVANGELION ACCENTS --- */
-    --color-accent-red: #B30000;
-    --color-accent-green: #00AA22; /* Asuka's plugsuit accents/eyes */
-    --color-accent-yellow: #FF8800; /* Eva-02 Orange */
-    --color-hazard-dark: #F5E6E1;
+    /* --- COSMERE ACCENTS --- */
+    --color-accent-red: #8B2500;
+    --color-accent-green: #2E5A1C;
+    --color-accent-yellow: #B58E2A;
+    --color-accent-purple: #6A287E;
+    --color-hazard-dark: #E2DDD6;
 
     /* --- LINK COLORS --- */
     --color-link: var(--color-primary);
     --color-link-hover: var(--color-primary-hover);
 
-    /* --- EFFECTS --- */
-    --eva-glow: 0 0 10px rgba(230, 0, 0, 0.3), 0 0 20px rgba(255, 102, 0, 0.1);
-    --eva-glow-strong: 0 0 15px rgba(230, 0, 0, 0.5), 0 0 30px rgba(255, 102, 0, 0.2);
-    --eva-text-glow: 0 0 8px rgba(230, 0, 0, 0.4);
+    /* --- STORMLIGHT EFFECTS --- */
+    --storm-glow: 0 0 10px rgba(140, 101, 10, 0.25), 0 0 20px rgba(166, 124, 30, 0.08);
+    --storm-glow-strong: 0 0 15px rgba(140, 101, 10, 0.4), 0 0 30px rgba(166, 124, 30, 0.15);
+    --storm-text-glow: 0 0 8px rgba(140, 101, 10, 0.3);
+    --image-filter: sepia(1) hue-rotate(345deg) saturate(1.8) brightness(0.85);
 }

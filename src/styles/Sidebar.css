@@ -1,19 +1,23 @@
-/* --- Sidebar Styles: NERV COMMAND PANEL --- */
+/* --- Sidebar Styles: URITHIRU COMMAND PANEL --- */
 
-/* === HAZARD STRIPE DECORATION === */
+/* === GLYPH BORDER DECORATION (replaces hazard stripes) === */
 .sidebar::before,
 .sidebar::after {
     content: '';
     display: block;
-    height: 4px;
+    height: 2px;
     flex-shrink: 0;
-    background: repeating-linear-gradient(
-        -45deg,
-        var(--color-primary) 0px,
-        var(--color-primary) 4px,
-        transparent 4px,
-        transparent 8px
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(var(--color-primary-rgb), 0.2) 10%,
+        var(--color-primary) 35%,
+        var(--color-primary) 50%,
+        var(--color-primary) 65%,
+        rgba(var(--color-primary-rgb), 0.2) 90%,
+        transparent
     );
+    opacity: 0.7;
 }
 
 .sidebar::before {
@@ -41,8 +45,9 @@
     justify-content: space-between;
     overflow-y: auto;
     color: var(--color-text);
-    transition: all 0.3s ease;
+    transition: width 0.3s ease, padding 0.3s ease;
     z-index: 1000;
+    backdrop-filter: blur(10px);
 }
 
 .sidebar-header {
@@ -72,13 +77,13 @@
     background-color: var(--color-background);
     padding: 4px;
     display: block;
-    border-radius: 0;
-    box-shadow: var(--eva-glow);
+    border-radius: 2px;
+    box-shadow: var(--storm-glow);
     transition: box-shadow 0.3s ease;
 }
 
 .sidebar-logo-img:hover {
-    box-shadow: var(--eva-glow-strong);
+    box-shadow: var(--storm-glow-strong);
 }
 
 /* === TOGGLE BUTTON === */
@@ -93,13 +98,13 @@
     justify-content: center;
     margin-bottom: 0.8rem;
     transition: all 0.2s;
-    border-radius: 0;
+    border-radius: 2px;
 }
 
 .sidebar-toggle-button:hover {
     background-color: var(--color-primary);
     color: var(--color-background);
-    box-shadow: var(--eva-glow);
+    box-shadow: var(--storm-glow);
 }
 
 /* === INTRO TEXT === */
@@ -113,6 +118,7 @@
     opacity: 0.8;
     border-left: 2px solid var(--color-border-subtle);
     padding-left: 0.8rem;
+    font-style: italic;
 }
 
 /* === COLLAPSED STATE === */
@@ -121,8 +127,7 @@
     padding: 1rem 0.5rem;
 }
 
-.sidebar.closed .sidebar-intro-text,
-.sidebar.closed .sidebar-footer {
+.sidebar.closed .sidebar-intro-text {
     display: none;
 }
 
@@ -164,7 +169,7 @@
 .nav-item-primary.icon-only.active .item-icon-collapsed {
     color: var(--color-primary);
     transform: scale(1.1);
-    filter: drop-shadow(var(--eva-text-glow));
+    filter: drop-shadow(var(--storm-text-glow));
 }
 
 
@@ -188,7 +193,7 @@
     border: 1px solid transparent;
     border-left: 3px solid transparent;
     transition: all 0.2s;
-    border-radius: 0;
+    border-radius: 2px;
     color: var(--color-text);
     background: transparent;
 }
@@ -205,6 +210,7 @@
     font-size: 0.65rem;
     color: var(--color-subtext);
     margin-top: 0.15rem;
+    font-style: italic;
 }
 
 .nav-item-primary:hover,
@@ -229,7 +235,7 @@
     display: flex;
     align-items: center;
     padding: 0.5rem 0.6rem;
-    border-radius: 0;
+    border-radius: 2px;
     transition: all 0.2s;
     color: var(--color-subtext);
     font-size: 0.8rem;
@@ -269,14 +275,101 @@
     transition: all 0.2s;
     text-transform: uppercase;
     font-family: var(--font-code);
-    border-radius: 0;
+    border-radius: 2px;
     letter-spacing: 0.1em;
 }
 
 .theme-toggle-button:hover {
     background-color: var(--color-primary);
     color: var(--color-background);
-    box-shadow: var(--eva-glow);
+    box-shadow: var(--storm-glow);
+}
+
+.theme-toggle-button.icon-only {
+    padding: 0.4rem;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.theme-toggle-icon-collapsed {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* === NAV ITEM WITH GLYPH LAYOUT === */
+.nav-item-with-glyph {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    width: 100%;
+}
+
+.nav-item-glyph {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.nav-item-primary:hover .nav-item-glyph,
+.nav-item-primary.active .nav-item-glyph {
+    opacity: 1;
+}
+
+.nav-item-text {
+    display: flex;
+    flex-direction: column;
+}
+
+/* === CASE STUDY GLYPH SYMBOL === */
+.case-study-symbol {
+    color: var(--color-primary);
+    margin-right: 0.5rem;
+    opacity: 0.6;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    transition: opacity 0.2s ease;
+}
+
+.case-study-item:hover .case-study-symbol {
+    opacity: 1;
+}
+
+/* === OATH QUOTE === */
+.sidebar-oath {
+    margin-top: 1.5rem;
+    padding: 0.8rem;
+    border-top: 1px solid var(--color-border-subtle);
+    border-bottom: 1px solid var(--color-border-subtle);
+    text-align: center;
+}
+
+.oath-text {
+    font-family: var(--font-primary);
+    font-size: 0.68rem;
+    color: var(--color-primary);
+    opacity: 0.5;
+    letter-spacing: 0.12em;
+    margin: 0;
+    font-style: italic;
+    text-transform: uppercase;
+}
+
+/* === THEME TOGGLE WITH ICONS === */
+.theme-toggle-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
 /* === RESPONSIVE === */
@@ -320,7 +413,7 @@
         padding: 0.6rem 0.8rem;
     }
 
-    /* NERV Mobile Toggle Button (Fixed on screen) */
+    /* Stormlight Mobile Toggle Button */
     .mobile-nav-toggle {
         display: flex;
         position: fixed;
@@ -332,13 +425,15 @@
         color: var(--color-primary);
         padding: 0.5rem;
         cursor: pointer;
-        box-shadow: var(--eva-glow);
+        box-shadow: var(--storm-glow);
         transition: all 0.3s ease;
+        border-radius: 2px;
+        backdrop-filter: blur(10px);
     }
     
     .mobile-nav-toggle:hover {
         background: var(--color-primary);
-        color: black;
+        color: var(--color-background);
     }
 
     /* Hide the internal toggle button on mobile */

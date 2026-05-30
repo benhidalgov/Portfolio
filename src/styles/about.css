@@ -1,4 +1,4 @@
-/* --- About Page: OPERATIVE DOSSIER --- */
+/* --- About Page: RADIANT DOSSIER --- */
 
 .about-page {
     font-family: var(--font-primary);
@@ -14,7 +14,7 @@
     padding-bottom: 0.3rem;
     letter-spacing: 0.03em;
     text-transform: uppercase;
-    text-shadow: var(--eva-text-glow);
+    text-shadow: var(--storm-text-glow);
     border-bottom: 2px solid var(--color-border-subtle);
 }
 
@@ -26,7 +26,7 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    text-shadow: var(--eva-text-glow);
+    text-shadow: var(--storm-text-glow);
 }
 
 /* === LEAD PARAGRAPH === */
@@ -37,6 +37,7 @@
     max-width: 900px;
     border-left: 3px solid var(--color-primary);
     padding-left: 1rem;
+    font-family: var(--font-code);
 }
 
 .lead-paragraph strong {
@@ -54,11 +55,12 @@
     border-left: 3px solid var(--color-primary);
     max-width: 800px;
     transition: all 0.3s ease;
+    border-radius: 2px;
 }
 
 .certs-summary:hover {
     border-color: var(--color-primary);
-    box-shadow: var(--eva-glow);
+    box-shadow: var(--storm-glow);
 }
 
 .certs-summary li {
@@ -68,11 +70,12 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    font-family: var(--font-code);
 }
 
 .certs-summary li::before {
-    content: '▶';
-    font-size: 0.6rem;
+    content: '◆';
+    font-size: 0.5rem;
     color: var(--color-primary);
 }
 
@@ -81,60 +84,16 @@
 }
 
 /* === SKILLS GRID === */
-.skills-grid {
+.about-skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
 }
 
-.skill-category {
-    background-color: var(--color-card-bg);
-    padding: 1.5rem;
-    border: 1px solid var(--color-border-subtle);
-    border-left: 3px solid var(--color-primary);
-    transition: all 0.3s ease;
-}
-
-.skill-category:hover {
-    border-color: var(--color-primary);
-    box-shadow: var(--eva-glow);
-    background-color: rgba(255, 106, 0, 0.03);
-}
-
-.skill-category h3 {
-    font-size: 1rem;
-    color: var(--color-primary);
-    margin-top: 0;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--color-border-subtle);
-    font-family: var(--font-code);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-}
-
-.skill-category .skills-list {
-    list-style: none;
-    padding-left: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-}
-
-.skill-category .skills-list li {
-    font-size: 0.8rem;
-    color: var(--color-subtext);
-    background: rgba(255, 106, 0, 0.06);
-    padding: 0.3rem 0.6rem;
-    border: 1px solid var(--color-border-subtle);
-    font-family: var(--font-code);
-    transition: all 0.2s;
-}
-
-.skill-category .skills-list li:hover {
-    border-color: var(--color-primary);
-    color: var(--color-primary);
+@media (max-width: 1180px) {
+    .about-skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 /* === RESPONSIVE === */

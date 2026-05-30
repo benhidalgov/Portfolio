@@ -14,16 +14,16 @@ export const categoriesData = {
         repoLink: "https://github.com/benhidalgov/TaskManager"
     },
     portfolio: {
-        title: "Portafolio NERV Base",
+        title: "Portafolio Roshar",
         subtitle: "Sistema interactivo de presentación profesional.",
-        description: "El kernel original que dio vida a este portafolio web. Comenzó como una plantilla pulida y optimizada utilizando React y Vite, diseñada para exponer un alto nivel de escalabilidad modular y responsividad. Evolucionó iterativamente hacia una intrincada UI inspirada en el sistema MAGI de Neon Genesis Evangelion, demostrando un profundo control sobre CSS Variables y el DOM.",
+        description: "El kernel original que da vida a este portafolio web. Comenzó como una plantilla pulida utilizando React y Vite, diseñada para exponer un alto nivel de escalabilidad modular y responsividad. Evolucionó hacia una intrincada UI interactiva inspirada en El Archivo de las Tormentas (The Stormlight Archive) de Brandon Sanderson, demostrando control avanzado sobre variables de CSS, la Web Audio API y renderizado del DOM.",
         image: "https://placehold.co/800x450/80d400/ffffff?text=PORTFOLIO+REACT",
         techStack: ["JavaScript", "React", "Vite", "Framer Motion", "Vanilla CSS", "React Router"],
         goals: [
             "Desacoplamiento total de datos visuales mediante estructuras JSON-like modularizadas.",
             "Animaciones fluidas y enrutamiento dinámico sin recargas de página.",
-            "Diseño de interfaces con animaciones CSS complejas (CRT scanlines, Glitches).",
-            "Gestión de Feedback auditivo (Web Audio API) e interacciones táctiles móviles responsivas."
+            "Diseño de interfaces con animaciones CSS complejas (pulsos de Luz Tormentosa, partículas de spren, glifos simétricos).",
+            "Gestión de Feedback auditivo (resonancia de gema cristalina vía Web Audio API) e interacciones táctiles móviles."
         ],
         repoLink: "https://github.com/benhidalgov/Portfolio"
     },

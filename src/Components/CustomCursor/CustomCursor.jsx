@@ -36,7 +36,7 @@ function CustomCursor() {
 
     const handleMouseDown = () => {
       setIsClicking(true);
-      setResolveText(Math.random() > 0.5 ? "RESOLVED" : "PRIORITY");
+      setResolveText(Math.random() > 0.5 ? "JURAMENTO" : "RADIANTE");
       setTimeout(() => {
         setIsClicking(false);
       }, 700);
@@ -57,24 +57,36 @@ function CustomCursor() {
 
   return (
     <div 
-      className="magi-cursor-wrapper"
+      className="gem-cursor-wrapper"
       style={{ left: `${position.x}px`, top: `${position.y}px` }}
     >
-      {/* Estado Normal: Hexágono Hueco (MAGI Base) */}
+      {/* Estado Normal: Glifo Alethi Geométrico */}
       <svg 
-        className={`magi-hexagon ${isHovering ? 'hovering' : ''} ${isClicking ? 'clicking' : ''}`} 
+        className={`alethi-cursor-glyph ${isHovering ? 'hovering' : ''} ${isClicking ? 'clicking' : ''}`} 
         viewBox="0 0 100 100"
       >
-        <polygon points="50,5 95,28 95,72 50,95 5,72 5,28" />
+        {/* Diamante exterior */}
+        <polygon points="50,5 95,50 50,95 5,50" className="glyph-outline" />
+        {/* Diamante interior */}
+        <polygon points="50,25 75,50 50,75 25,50" className="glyph-inline" />
+        {/* Ejes simétricos */}
+        <line x1="50" y1="5" x2="50" y2="95" className="glyph-axis" />
+        <line x1="5" y1="50" x2="95" y2="50" className="glyph-axis" />
+        {/* Curvas/Alas decorativas */}
+        <path d="M25,50 Q50,20 75,50" className="glyph-curve" />
+        <path d="M25,50 Q50,80 75,50" className="glyph-curve" />
+        {/* Gema corazón central */}
+        <circle cx="50" cy="50" r="4" className="glyph-core" />
       </svg>
 
-      {/* Estado Clicado: Consenso de las 3 Computadoras */}
+      {/* Estado Clicado: Resplandor de Luz Tormentosa */}
       {isClicking && (
-        <div className="magi-resolve-container">
-          <div className="magi-triangle t1"></div>
-          <div className="magi-triangle t2"></div>
-          <div className="magi-triangle t3"></div>
-          <span className="magi-text">{resolveText}</span>
+        <div className="stormlight-burst-container">
+          <div className="stormlight-ray r1"></div>
+          <div className="stormlight-ray r2"></div>
+          <div className="stormlight-ray r3"></div>
+          <div className="stormlight-ray r4"></div>
+          <span className="stormlight-text">{resolveText}</span>
         </div>
       )}
     </div>

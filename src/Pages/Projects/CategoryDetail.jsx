@@ -15,9 +15,9 @@ function CategoryDetail() {
     if (!project) {
         return (
             <main className="projects-full-page" style={{ textAlign: 'center', paddingTop: '10rem' }}>
-                <h1 style={{ color: 'var(--color-primary)' }}>ERROR 404</h1>
-                <p>DATA_NOT_FOUND // El registro solicitado no existe en la base de datos MAGI.</p>
-                <Link to="/projects" className="btn-primary mt-5">Volver a Proyectos</Link>
+                <h1 style={{ color: 'var(--color-primary)' }}>REGISTRO VACÍO</h1>
+                <p>REGISTRO_NO_ENCONTRADO // El registro solicitado no existe en los anales de Urithiru.</p>
+                <Link to="/projects" className="btn-primary mt-5">Volver al Registro</Link>
             </main>
         );
     }
@@ -30,11 +30,11 @@ function CategoryDetail() {
             />
             <div className="projects-header">
                 <Link to="/projects" className="back-link">
-                    &larr; VolVER_AL_DIRECTORIO
+                    &larr; VOLVER_AL_REGISTRO
                 </Link>
                 <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1rem'}}>
                     <h1 style={{margin: 0}}>{project.title}</h1>
-                    <span className="nerv-status-stamp">[STATUS: CLASSIFIED // GREEN]</span>
+                    <span className="storm-status-stamp">[REGISTRO: LUZ TORMENTOSA // ESTABLE]</span>
                 </div>
                 <p className="lead-paragraph">{project.subtitle}</p>
             </div>
@@ -55,7 +55,7 @@ function CategoryDetail() {
                 <ul className="goals-list">
                     {project.goals.map((goal, index) => (
                         <li key={index} className="goal-item dossier-log">
-                            <span className="log-prefix">&gt; // SYS_GOAL: </span> 
+                            <span className="log-prefix">&gt; // JURAMENTO_META: </span> 
                             {goal}
                         </li>
                     ))}

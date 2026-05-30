@@ -25,10 +25,10 @@ export const ThemeProvider = ({ children }) => {
         });
     };
 
-    // 🏆 CORRECCIÓN CLAVE: Usar setAttribute para aplicar el tema al body
+    // 🌩️ Aplica el tema: Alta Tormenta (dark) o Luz Tormentosa (light)
     useEffect(() => {
-        // Esto aplica body[data-theme="dark"] o body[data-theme="light"]
-        document.body.setAttribute('data-theme', theme.toLowerCase());
+        // Esto aplica html[data-theme="dark"] o html[data-theme="light"]
+        document.documentElement.setAttribute('data-theme', theme.toLowerCase());
     }, [theme]);
 
     const value = useMemo(() => ({

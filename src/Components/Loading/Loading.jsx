@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import { useTheme } from '../../Context/ThemeContext.jsx';
+import { WindrunnerGlyph, LightweaverGlyph } from '../Glyphs/RadiantGlyphs.jsx';
 import './Loading.css';
 
-const magiLogs = [
-  "[OK] KERNEL INITIATED",
-  "[OK] NEURAL SYNC ESTABLISHED",
-  "[OK] MAGI CASPER CONDITION GREEN",
-  "[OK] MAGI BALTHASAR CONDITION GREEN",
-  "[OK] MAGI MELCHIOR CONDITION GREEN",
-  "[!] OVERRIDING SECURITY PROTOCOLS...",
-  "[OK] DECRYPTION COMPLETE",
-  "ESTABLISHING CONNECTION..."
+const stormlightQuotes = [
+  "VIDA ANTES QUE MUERTE",
+  "FUERZA ANTES QUE DEBILIDAD",
+  "EL CAMINO ANTES QUE EL DESTINO",
+  "PROTEGERÉ A QUIENES NO PUEDEN PROTEGERSE A SÍ MISMOS",
+  "VÍNCULO DE SPREN CONECTADO",
+  "IDEALES PRONUNCIADOS..."
 ];
 
 const Loading = () => {
+  const { theme } = useTheme();
   const [progress, setProgress] = useState(0);
-  const [currentLogs, setCurrentLogs] = useState([]);
+  const [quoteIndex, setQuoteIndex] = useState(0);
+  const [quoteFade, setQuoteFade] = useState(true);
 
   useEffect(() => {
     // Simular progreso de carga del 0 al 100
@@ -24,53 +26,63 @@ const Loading = () => {
           clearInterval(progressInterval);
           return 100;
         }
-        // Incremento aleatorio para que se vea más real
-        return prev + Math.floor(Math.random() * 15) + 5;
+        // Incremento aleatorio fluido
+        return prev + Math.floor(Math.random() * 12) + 4;
       });
     }, 150);
 
-    // Simular logs de consola apareciendo progresivamente
-    let logIndex = 0;
-    const logInterval = setInterval(() => {
-      if (logIndex < magiLogs.length) {
-        setCurrentLogs((prev) => [...prev, magiLogs[logIndex]]);
-        logIndex++;
-      } else {
-        clearInterval(logInterval);
-      }
-    }, 200);
+    // Rotar juramentos cada 1.6 segundos con transición fade
+    const quoteInterval = setInterval(() => {
+      setQuoteFade(false);
+      setTimeout(() => {
+        setQuoteIndex((prev) => (prev + 1) % stormlightQuotes.length);
+        setQuoteFade(true);
+      }, 300);
+    }, 1800);
 
     return () => {
       clearInterval(progressInterval);
-      clearInterval(logInterval);
+      clearInterval(quoteInterval);
     };
   }, []);
 
   return (
-    <div className="magi-loading-container">
-      
-      <div className="magi-terminal">
-        {currentLogs.map((log, index) => (
-          <p key={index} className="magi-log-line">
-            <span className="log-timestamp">{`[0.00${index + 1}]`}</span> {log}
-          </p>
-        ))}
+    <div className="storm-loading-container">
+      {/* Círculos de mandalas de Roshar concéntricos estáticos */}
+      <div className="roshar-loading-mandala">
+        <div className="mandala-ring ring-outer"></div>
+        <div className="mandala-ring ring-middle"></div>
+        <div className="mandala-ring ring-inner">
+          {theme === 'LIGHT' ? (
+            <LightweaverGlyph size={68} className="mandala-core-gem" />
+          ) : (
+            <WindrunnerGlyph size={68} className="mandala-core-gem" />
+          )}
+        </div>
       </div>
 
-      <div className="magi-status-bar-container">
-        <div className="magi-status-header">
-          <span>SYSTEM_BOOT</span>
+      {/* Juramento Radiante Actual que se desvanece suavemente */}
+      <div className="storm-quote-container">
+        <p className={`storm-quote ${quoteFade ? 'fade-in' : 'fade-out'}`}>
+          {stormlightQuotes[quoteIndex]}
+        </p>
+      </div>
+
+      {/* Barra de progreso de infusión de luz */}
+      <div className="storm-status-bar-container">
+        <div className="storm-status-header">
+          <span>Infusión de Luz</span>
           <span>{Math.min(progress, 100)}%</span>
         </div>
-        <div className="magi-bar-outer">
+        <div className="storm-bar-outer">
           <div 
-            className="magi-bar-inner" 
+            className="storm-bar-inner" 
             style={{ width: `${Math.min(progress, 100)}%` }}
           ></div>
         </div>
       </div>
-      
-      <h2 className="magi-title glitch-text" data-text="MAGI SYSTEM">MAGI SYSTEM</h2>
+
+      <h2 className="storm-title">URITHIRU</h2>
     </div>
   );
 };

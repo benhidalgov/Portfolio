@@ -1,4 +1,4 @@
-/* --- HERO SECTION: NERV TERMINAL BOOT --- */
+/* --- HERO SECTION: KNIGHT RADIANT PROFILE --- */
 
 /* === HERO CONTAINER === */
 .hero {
@@ -11,16 +11,18 @@
     position: relative;
 }
 
-/* === EVANGELION LABEL === */
-.eva-label {
+/* === RADIANT ORDER LABEL === */
+.radiant-label {
     display: block;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--color-primary);
-    letter-spacing: 0.3em;
+    letter-spacing: 0.35em;
     text-transform: uppercase;
     margin-bottom: 1rem;
-    opacity: 0.8;
-    text-shadow: var(--eva-text-glow);
+    opacity: 0.85;
+    text-shadow: var(--storm-text-glow);
+    font-family: var(--font-code);
+    font-weight: 600;
 }
 
 /* === TITLE === */
@@ -30,34 +32,35 @@
     margin-bottom: 1rem;
     color: var(--color-text);
     font-weight: 700;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    text-shadow: var(--eva-text-glow);
-    animation: subtleFlicker 4s infinite;
+    letter-spacing: 0.03em;
+    text-shadow: var(--storm-text-glow);
+    animation: infuse 6s ease-in-out infinite;
 }
 
 /* = Highlight Name = */
 .hero-title .name-highlight {
     color: var(--color-primary);
-    text-shadow: var(--eva-glow);
+    text-shadow: var(--storm-glow);
 }
 
-/* === SUBTITLE (Terminal Style) === */
+/* === SUBTITLE (Juramento Style) === */
 .hero-subtitle {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: var(--color-primary);
     margin-bottom: 2.5rem;
     font-weight: 400;
     font-family: var(--font-code);
-    letter-spacing: 0.05em;
+    letter-spacing: 0.04em;
+    font-style: italic;
 }
 
-/* Blinking cursor */
+/* Blinking glyph cursor */
 .cursor {
     display: inline-block;
-    animation: blink 1s step-end infinite;
-    color: var(--color-accent-green);
+    animation: blink 1.2s step-end infinite;
+    color: var(--color-accent-yellow);
     font-weight: 700;
+    font-style: normal;
 }
 
 @keyframes blink {
@@ -65,11 +68,10 @@
     50% { opacity: 0; }
 }
 
-/* === SUBTLE SCREEN FLICKER === */
-@keyframes subtleFlicker {
-    0%, 97%, 100% { opacity: 1; }
-    98% { opacity: 0.85; }
-    99% { opacity: 0.95; }
+/* === STORMLIGHT INFUSION GLOW === */
+@keyframes infuse {
+    0%, 100% { opacity: 1; text-shadow: var(--storm-text-glow); }
+    50% { opacity: 0.85; text-shadow: 0 0 20px rgba(var(--color-primary-rgb), 0.6), 0 0 40px rgba(var(--color-primary-rgb), 0.2); }
 }
 
 /* === CTA BUTTONS === */
@@ -79,13 +81,13 @@
     margin-top: 2rem;
 }
 
-/* === DECORATIVE LINE === */
+/* === DECORATIVE LINE (Shardblade Edge) === */
 .hero-divider {
-    width: 60px;
+    width: 80px;
     height: 2px;
-    background: var(--color-primary);
+    background: linear-gradient(90deg, var(--color-primary), transparent);
     margin-bottom: 1.5rem;
-    box-shadow: var(--eva-glow);
+    box-shadow: var(--storm-glow);
 }
 
 /* === RESPONSIVE === */

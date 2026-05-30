@@ -10,8 +10,8 @@ export const projectData = [
     },
     {
         id: 2,
-        title: "Portafolio NERV Base",
-        description: "Plantilla original de portafolio para un estudiante, construida para mostrar habilidades y competencias profesionales. Evolucionado a una interfaz inspirada en Evangelion MAGI.",
+        title: "Portafolio Roshar",
+        description: "Estructura interactiva de portafolio profesional, diseñada para mostrar habilidades y proyectos de ingeniería. Evolucionado a una interfaz inspirada en El Archivo de las Tormentas (Stormlight Archive).",
         image: "https://placehold.co/400x250/80d400/ffffff?text=PORTFOLIO+REACT",
         tech: ["JavaScript", "React", "Vite", "CSS"],
         link: "https://portfolio-bice-eight-77.vercel.app",

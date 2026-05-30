@@ -9,9 +9,9 @@ function ProjectsSummary() {
   return (
     <section className="projects-summary">
       <div className="summary-header">
-        <h2>Últimas Operaciones</h2>
+        <h2>Últimas Crónicas</h2>
         <Link to="/projects" className="view-all-link">
-          Ver Dossier Completo &rarr;
+          Ver Crónicas Completas &rarr;
         </Link>
       </div>
 
@@ -40,7 +40,7 @@ function ProjectsSummary() {
                 rel="noopener noreferrer" 
                 className="details-link"
               >
-                [ ACCEDER AL ARCHIVO MESTRO ]
+                [ ABRIR REGISTRO MAESTRO ]
               </a>
             </div>
             <div className="slate-decorator-bottom"></div>

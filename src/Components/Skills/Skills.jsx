@@ -18,23 +18,24 @@ const techIcons = {
   'Git & GitHub': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg',
   'Vite/Webpack': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg',
   'Docker': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
-  'Kubernetes,': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg',
+  'Kubernetes': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg',
+  'Bash/ Shell scripting': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg',
 };
 
-// Prefijos de texto estilo terminal por certificación
+// Prefijos de texto estilo glifo por certificación
 const certPrefixes = {
-  'Google':     '▸ GGL',
-  'Azure':      '▸ AZ ',
-  'Red Hat':    '▸ RHT',
-  'Cisco':      '▸ CSC',
-  'AWS':        '▸ AWS',
-  'Big Data':   '▸ BDA',
-  'Data Story': '▸ DST',
+  'Google':     '◆ GGL',
+  'Azure':      '◆ AZ ',
+  'Red Hat':    '◆ RHT',
+  'Cisco':      '◆ CSC',
+  'AWS':        '◆ AWS',
+  'Big Data':   '◆ BDA',
+  'Data Story': '◆ DST',
 };
 
 const getCertPrefix = (name) => {
   const key = Object.keys(certPrefixes).find(k => name.toLowerCase().includes(k.toLowerCase()));
-  return key ? certPrefixes[key] : '▸ CRT';
+  return key ? certPrefixes[key] : '◆ CRT';
 };
 
 // Categorías que NO son certificaciones
@@ -91,7 +92,8 @@ function Skills() {
             <div className="card-corner card-corner--br" />
 
             <div className="category-header">
-              <span className="category-index">SYS_{String(index + 1).padStart(2, '0')}</span>
+              <span className="category-index">ORD_{String(index + 1).padStart(2, '0')}</span>
+              <span className="category-decorator">◆</span>
               <h3 className="category-title">{category.title.toUpperCase()}</h3>
             </div>
 
@@ -108,8 +110,8 @@ function Skills() {
       {CERT_CATEGORY && (
         <div className="cert-section">
           <div className="cert-section-header">
-            <span className="cert-section-label">// SECURITY_CLEARANCES &amp; CERTIFICATIONS</span>
-            <span className="cert-count">[{CERT_CATEGORY.skills.length} REGISTERED]</span>
+            <span className="cert-section-label">◆ Juramentos y Certificaciones</span>
+            <span className="cert-count">[{CERT_CATEGORY.skills.length} VINCULADOS]</span>
           </div>
           <div className="cert-grid">
             {CERT_CATEGORY.skills.map((cert, i) => (
