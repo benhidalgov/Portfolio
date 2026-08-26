@@ -184,3 +184,77 @@ html {
         transparent
     );
 }
+
+/* ============================================================= KAGE GLOBAL OVERLAYS */
+
+/* Film grain — fixed noise overlay */
+#grain {
+    position: fixed; inset: -1px; z-index: 60; pointer-events: none;
+    opacity: .045; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 180px 180px;
+}
+
+/* Vignette overlay */
+#vignette {
+    position: fixed; inset: 0; z-index: 55; pointer-events: none;
+    background: radial-gradient(125% 95% at 50% 42%, transparent 40%, rgba(var(--color-bg-rgb), .45) 100%);
+}
+
+/* ============================================================= KAGE SCROLL REVEAL SYSTEM */
+
+[data-rv] { opacity: 0; }
+[data-rv="up"] { transform: translate3d(0, 28px, 0); }
+[data-rv="fade"] { transform: none; }
+
+[data-rv].rv-in {
+    opacity: 1; transform: none;
+    transition: opacity .9s var(--ease-out), transform 1.05s var(--ease-out);
+}
+
+/* Mask-line: each line's text slides up from below */
+.mask-line { display: block; overflow: hidden; }
+.mask-line > span { display: block; transform: translate3d(0, 110%, 0); }
+.rv-in .mask-line > span,
+.mask-line.rv-in > span {
+    transform: none;
+    transition: transform 1.05s var(--ease-out);
+}
+
+/* Word-by-word reveal */
+.word-mask { display: inline-block; overflow: hidden; vertical-align: top; }
+.word {
+    display: inline-block; opacity: 0; transform: translate3d(0, 112%, 0);
+    will-change: transform, opacity;
+    transition: transform .82s var(--ease-out), opacity .5s var(--ease-out);
+    transition-delay: var(--word-delay, 0ms);
+}
+.word-reveal.rv-in .word { opacity: 1; transform: none; }
+
+/* Section scrim — darkens the canvas per section for readability */
+.kage-sec::before {
+    content: ''; position: absolute; inset: -22% -4%; z-index: -1; pointer-events: none;
+    background: radial-gradient(
+        110% 62% at 30% 50%,
+        rgba(var(--color-bg-rgb), .88),
+        rgba(var(--color-bg-rgb), .62) 42%,
+        rgba(var(--color-bg-rgb), .18) 74%,
+        rgba(var(--color-bg-rgb), 0)
+    );
+    mask-image: linear-gradient(transparent, #000 44%);
+    -webkit-mask-image: linear-gradient(transparent, #000 44%);
+}
+
+/* ============================================================= KAGE CUE ANIMATION */
+@keyframes kage-cue {
+    0% { transform: scaleX(0); }
+    42% { transform: scaleX(1); }
+    100% { transform: scaleX(1) translateX(100%); }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    [data-rv] { opacity: 1 !important; transform: none !important; }
+    .mask-line > span, .word { opacity: 1 !important; transform: none !important; }
+}

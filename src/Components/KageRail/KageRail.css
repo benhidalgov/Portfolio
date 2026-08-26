@@ -1,0 +1,38 @@
+.kage-rail {
+  position: fixed;
+  right: calc(var(--pad, 40px) - 6px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 45;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.kage-rail-btn {
+  width: 22px; height: 10px;
+  display: grid; place-items: center;
+  background: none; border: 0; cursor: pointer; padding: 0;
+}
+
+.kage-rail-btn i {
+  display: block;
+  width: 14px; height: 1.5px;
+  background: var(--color-border-subtle, rgba(0, 212, 255, .28));
+  border-radius: 1px;
+  transition: width .5s var(--ease-out, ease), background .4s;
+}
+.kage-rail-btn.on i {
+  width: 22px;
+  background: var(--color-primary, #00d4ff);
+  box-shadow: var(--storm-glow);
+}
+.kage-rail-btn:hover i {
+  width: 22px;
+  background: var(--color-primary-hover, rgba(0, 212, 255, .65));
+}
+
+@media (max-width: 768px) {
+  .kage-rail { display: none; }
+}
