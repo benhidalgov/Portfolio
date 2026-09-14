@@ -1,5 +1,4 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import { projectData } from '../../data/project.jsx'; 
 import '../../Components/ProjectsSummary/ProjectsSummary.css';
 import SEO from '../../Components/SEO/SEO.jsx';
@@ -31,14 +30,14 @@ function ProjectsFull() {
         <span style={{color: 'var(--color-primary)', fontSize: '0.8rem', letterSpacing: '0.2em'}}>[ VÍNCULO NAHEL CONECTADO ]</span>
       </div>
 
-      <motion.div 
+      <Motion.div 
         className="summary-grid"
         variants={containerVariants}
         initial="hidden"
         animate="show"
       >
         {projectData.map((project) => (
-          <motion.div variants={itemVariants} key={project.id} className="project-card-summary data-slate">
+          <Motion.div variants={itemVariants} key={project.id} className="project-card-summary data-slate">
             <div className="slate-decorator-top"></div>
             <img 
               src={project.image} 
@@ -65,9 +64,9 @@ function ProjectsFull() {
               </a>
             </div>
             <div className="slate-decorator-bottom"></div>
-          </motion.div>
+          </Motion.div>
         ))}
-      </motion.div>
+      </Motion.div>
     </section>
   );
 }

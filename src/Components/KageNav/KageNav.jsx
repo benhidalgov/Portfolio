@@ -11,7 +11,7 @@ const NAV_LINKS = [
   { to: '/#contact',  label: 'Contact',  sub: 'Contacto' },
 ];
 
-export default function KageNav({ activeSection = 0, sections = [] }) {
+export default function KageNav() {
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
   const [stuck, setStuck] = useState(false);

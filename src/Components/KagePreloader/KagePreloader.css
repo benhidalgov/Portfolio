@@ -17,6 +17,7 @@
 .kage-pre-mark {
   margin: 0 auto 28px;
   width: 48px; height: 48px;
+  color: var(--color-primary, #00d4ff);
   animation: pre-pulse 2s var(--ease-io, ease) infinite alternate;
 }
 .kage-pre-mark svg { width: 100%; height: 100%; display: block; }

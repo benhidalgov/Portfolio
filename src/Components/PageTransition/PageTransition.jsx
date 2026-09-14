@@ -1,5 +1,4 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 
 const pageVariants = {
@@ -25,7 +24,7 @@ const pageTransition = {
 
 const PageTransition = ({ children }) => {
   return (
-    <motion.div
+    <Motion.div
       initial="initial"
       animate="in"
       exit="out"
@@ -34,7 +33,7 @@ const PageTransition = ({ children }) => {
       style={{ width: '100%', height: '100%' }}
     >
       {children}
-    </motion.div>
+    </Motion.div>
   );
 };
 

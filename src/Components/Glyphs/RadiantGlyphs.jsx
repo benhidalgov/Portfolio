@@ -165,13 +165,3 @@ export const StormlightIcon = ({ size = 20, className = '' }) => (
     <circle cx="12" cy="12" r="3" fill="currentColor" opacity="0.4" />
   </svg>
 );
-
-// Mapa de glifos por orden para uso dinámico
-export const ORDER_GLYPHS = {
-  windrunner: WindrunnerGlyph,
-  lightweaver: LightweaverGlyph,
-  dustbringer: DustbringerGlyph,
-  skybreaker: SkybreakerGlyph,
-  bridgefour: BridgeFourGlyph,
-  gemheart: GemheartGlyph,
-};

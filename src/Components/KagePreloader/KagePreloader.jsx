@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { useTheme } from '../../Context/ThemeContext.jsx';
+import { WindrunnerGlyph, LightweaverGlyph } from '../Glyphs/RadiantGlyphs.jsx';
 import './KagePreloader.css';
 
 const OATHS = [
@@ -10,6 +12,7 @@ const OATHS = [
 ];
 
 export default function KagePreloader({ onDone }) {
+  const { theme } = useTheme();
   const [progress, setProgress] = useState(0);
   const [oathIdx, setOathIdx] = useState(0);
   const [done, setDone] = useState(false);
@@ -40,12 +43,9 @@ export default function KagePreloader({ onDone }) {
   return (
     <div className={`kage-pre ${done ? 'done' : ''}`} id="kage-pre">
       <div className="kage-pre-in">
-        {/* Stormlight icon */}
+        {/* Glifo de la Orden — Windrunner (dark) / Lightweaver (light) */}
         <div className="kage-pre-mark">
-          <svg viewBox="0 0 44 44" fill="none" aria-hidden="true">
-            <circle cx="22" cy="24" r="9.5" stroke="#00D4FF" strokeWidth="1.2"/>
-            <path d="M6 12h32M9.5 17h25M22 8v28" stroke="#e2e8f0" strokeWidth="1.2"/>
-          </svg>
+          {theme === 'DARK' ? <WindrunnerGlyph /> : <LightweaverGlyph />}
         </div>
 
         <div className="kage-pre-label">Benjamin Hidalgo</div>

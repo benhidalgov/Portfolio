@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// ✅ CORRECCIÓN: Apuntando a 'projects.js' (plural)
-import { projectData } from '../../Pages/Next/next.js'; 
+import { projectData } from './next.js';
 import '../../styles/next.css';
 import SEO from '../../Components/SEO/SEO.jsx';
 
@@ -41,9 +40,14 @@ function ProjectsSummary() {
                   <span key={tech} className="tech-tag">{tech}</span>
                 ))}
               </div>
-              <Link to={(project.link || project.liveLink || '#')} className="details-link">
-                Ver Detalles
-              </Link>
+              <a
+                href={project.github || '#'}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="details-link"
+              >
+                Ver en GitHub
+              </a>
             </div>
           </div>
         ))}

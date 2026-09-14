@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import App from './App.jsx'; // Importa tu componente principal
 import './index.css'; // Importa tus estilos globales

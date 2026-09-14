@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../../Context/ThemeContext.jsx';
 import '../../styles/Sidebar.css';
-import logo from '../../assets/images/Logo.svg';
+import logo from '../../assets/images/Logo.png';
 import { 
   WindrunnerGlyph, 
   GemheartGlyph, 

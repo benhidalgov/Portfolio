@@ -12,9 +12,11 @@ export const useTheme = () => {
 
 export const ThemeProvider = ({ children }) => {
     const [theme, setTheme] = useState(() => {
-        // Usa el tema guardado en localStorage o 'DARK' por defecto
-        const savedTheme = localStorage.getItem('theme');
-        return savedTheme || 'DARK';
+        // Usa el tema guardado en localStorage o 'DARK' por defecto.
+        // Se aplica sincrónicamente para evitar el destello (FOUC) al cargar.
+        const savedTheme = localStorage.getItem('theme') || 'DARK';
+        document.documentElement.setAttribute('data-theme', savedTheme.toLowerCase());
+        return savedTheme;
     });
 
     const toggleTheme = () => {

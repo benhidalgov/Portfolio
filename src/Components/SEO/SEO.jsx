@@ -1,8 +1,12 @@
-import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import PropTypes from 'prop-types';
 
-const SEO = ({ title, description, name, type }) => {
+const SEO = ({
+  title = 'Portafolio | Benjamin Hidalgo',
+  description = 'Portafolio de Ingeniería en Informática especializado en DevOps, Cloud y Full-Stack.',
+  name = 'Benjamin Hidalgo',
+  type = 'website',
+}) => {
   return (
     <Helmet>
       {/* Standard metadata tags */}
@@ -28,13 +32,6 @@ SEO.propTypes = {
   description: PropTypes.string,
   name: PropTypes.string,
   type: PropTypes.string
-};
-
-SEO.defaultProps = {
-  title: 'Portafolio | Benjamin Hidalgo',
-  description: 'Portafolio de Ingeniería en Informática especializado en DevOps, Cloud y Full-Stack.',
-  name: 'Benjamin Hidalgo',
-  type: 'website'
 };
 
 export default SEO;

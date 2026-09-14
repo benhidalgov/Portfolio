@@ -42,7 +42,6 @@ export default function KageHome() {
   const [preloaderDone, setPreloaderDone] = useState(false);
   const [activeSection, setActiveSection] = useState(0);
   const sectionRefs = useRef([]);
-  const observerRef = useRef(null);
 
   // Register section ref
   const setRef = useCallback((el, i) => {
@@ -52,6 +51,12 @@ export default function KageHome() {
   // Preloader done → trigger reveals
   const handlePreloaderDone = useCallback(() => {
     setPreloaderDone(true);
+  }, []);
+
+  // Smooth scroll to a section on the home page
+  const scrollToSection = useCallback((id) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
   }, []);
 
   // ── IntersectionObserver for scroll reveals + active section
@@ -365,10 +370,10 @@ export default function KageHome() {
             <div>
               <h4>Navegación</h4>
               <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#about" onClick={(e) => { e.preventDefault(); scrollToSection('about'); }}>About</a></li>
+                <li><a href="#skills" onClick={(e) => { e.preventDefault(); scrollToSection('skills'); }}>Skills</a></li>
+                <li><a href="#projects" onClick={(e) => { e.preventDefault(); scrollToSection('projects'); }}>Projects</a></li>
+                <li><a href="#contact" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}>Contact</a></li>
               </ul>
             </div>
             <div>
