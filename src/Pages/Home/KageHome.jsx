@@ -4,7 +4,6 @@ import SEO from '../../Components/SEO/SEO.jsx';
 import KageCanvas from '../../Components/KageCanvas/KageCanvas.jsx';
 import KageNav from '../../Components/KageNav/KageNav.jsx';
 import KageRail from '../../Components/KageRail/KageRail.jsx';
-import KageCursor from '../../Components/KageCursor/KageCursor.jsx';
 import KagePreloader from '../../Components/KagePreloader/KagePreloader.jsx';
 import { homeSkills } from '../../data/skills.js';
 import { projectData } from '../../data/project.jsx';
@@ -111,7 +110,6 @@ export default function KageHome() {
       <KageCanvas activeSection={activeSection} />
       <div id="vignette" />
       <div id="grain" />
-      <KageCursor />
       <KageNav activeSection={activeSection} />
       <KageRail activeSection={activeSection} />
 
@@ -150,7 +148,7 @@ export default function KageHome() {
 
             {/* Chapter chips */}
             <div className="kh-chips">
-              {['About', 'Skills', 'Projects', 'Contact'].map((label, i) => (
+              {['Sobre Mí', 'Habilidades', 'Proyectos', 'Contacto'].map((label, i) => (
                 <div
                   key={label}
                   className={`kh-chip ${activeSection === i + 1 ? 'on' : ''}`}
@@ -190,7 +188,7 @@ export default function KageHome() {
           <div className="kh-sec-head" data-rv="fade">
             <span className="kh-sec-k"><b>01</b> — El Radiante</span>
             <span className="kh-rule" />
-            <span className="kh-sec-k">About</span>
+            <span className="kh-sec-k">Sobre Mí</span>
           </div>
 
           <div className="kh-gate-grid">
@@ -230,7 +228,7 @@ export default function KageHome() {
           <div className="kh-sec-head" data-rv="fade">
             <span className="kh-sec-k"><b>02</b> — Arsenal Técnico</span>
             <span className="kh-rule" />
-            <span className="kh-sec-k">Skills</span>
+            <span className="kh-sec-k">Habilidades</span>
           </div>
 
           <div className="kh-cards">
@@ -273,7 +271,7 @@ export default function KageHome() {
           <div className="kh-sec-head" data-rv="fade">
             <span className="kh-sec-k"><b>03</b> — Crónicas</span>
             <span className="kh-rule" />
-            <span className="kh-sec-k">Projects</span>
+            <span className="kh-sec-k">Proyectos</span>
           </div>
 
           <div className="kh-cur-head">
@@ -298,14 +296,19 @@ export default function KageHome() {
                   ))}
                 </div>
                 <div className="kh-les-links">
-                  {proj.github && (
-                    <a href={proj.github} target="_blank" rel="noopener noreferrer" className="kh-les-link">
-                      GitHub
-                    </a>
+                  {proj.slug && (
+                    <Link to={`/projects/${proj.slug}`} className="kh-les-link">
+                      Dossier
+                    </Link>
                   )}
                   {proj.link && (
                     <a href={proj.link} target="_blank" rel="noopener noreferrer" className="kh-les-link">
-                      Live
+                      Demo ↗
+                    </a>
+                  )}
+                  {proj.github && (
+                    <a href={proj.github} target="_blank" rel="noopener noreferrer" className="kh-les-link">
+                      GitHub
                     </a>
                   )}
                 </div>
@@ -363,17 +366,17 @@ export default function KageHome() {
           <div className="kh-foot-grid">
             <div className="kh-foot-brand">
               <p>
-                Ingeniero Informático — Full-Stack Developer.<br />
+                Ingeniero Informático — Desarrollador Full-Stack.<br />
                 Construyendo con propósito, diseñando para perdurar.
               </p>
             </div>
             <div>
               <h4>Navegación</h4>
               <ul>
-                <li><a href="#about" onClick={(e) => { e.preventDefault(); scrollToSection('about'); }}>About</a></li>
-                <li><a href="#skills" onClick={(e) => { e.preventDefault(); scrollToSection('skills'); }}>Skills</a></li>
-                <li><a href="#projects" onClick={(e) => { e.preventDefault(); scrollToSection('projects'); }}>Projects</a></li>
-                <li><a href="#contact" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}>Contact</a></li>
+                <li><a href="#about" onClick={(e) => { e.preventDefault(); scrollToSection('about'); }}>Sobre Mí</a></li>
+                <li><a href="#skills" onClick={(e) => { e.preventDefault(); scrollToSection('skills'); }}>Habilidades</a></li>
+                <li><a href="#projects" onClick={(e) => { e.preventDefault(); scrollToSection('projects'); }}>Proyectos</a></li>
+                <li><a href="#contact" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}>Contacto</a></li>
               </ul>
             </div>
             <div>

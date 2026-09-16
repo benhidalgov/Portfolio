@@ -618,7 +618,19 @@
   .kh-cue { display: none; }
   .kh-foot-grid { grid-template-columns: 1fr; }
   .kh-les { grid-template-columns: 36px minmax(0,1fr); gap: 10px; }
-  .kh-les-tech, .kh-les-links { display: none; }
+  .kh-les-tech { display: none; }
+  .kh-les-links {
+    grid-column: 2;
+    display: flex;
+    gap: 12px;
+    margin-top: 4px;
+  }
+  .kh-les-link {
+    font-size: 11px;
+    padding: 4px 10px;
+    border: 1px solid var(--color-border, rgba(0,212,255,.25));
+    border-radius: 4px;
+  }
 }
 
 @media (max-width: 480px) {

@@ -19,48 +19,29 @@ import PageTransition from './Components/PageTransition/PageTransition.jsx';
 import Loading from './Components/Loading/Loading.jsx';
 import CustomCursor from './Components/CustomCursor/CustomCursor.jsx';
 
-// Lazy loader helper
-const loadedModules = new Set();
-const lazyWithDelay = (importFunc, delay = 1800) => {
-  const key = importFunc.toString();
-  return React.lazy(() => {
-    if (loadedModules.has(key)) return importFunc();
-    return Promise.all([
-      importFunc(),
-      new Promise(resolve => setTimeout(resolve, delay)),
-    ]).then(([moduleExports]) => {
-      loadedModules.add(key);
-      return moduleExports;
-    });
-  });
-};
-
-// Home — NEW Kage experience (no delay, has its own preloader)
-const KageHome = React.lazy(() => import('./Pages/Home/KageHome.jsx'));
-
-// Other pages — sidebar layout
-const About    = lazyWithDelay(() => import('./Pages/about/about.jsx'));
-const Projects = lazyWithDelay(() => import('./Pages/Projects/projects.jsx'));
-const Next     = lazyWithDelay(() => import('./Pages/Next/Next.jsx'));
-const CategoryDetail = lazyWithDelay(() => import('./Pages/Projects/CategoryDetail.jsx'));
+// Lazy-loaded pages
+const KageHome       = React.lazy(() => import('./Pages/Home/KageHome.jsx'));
+const About          = React.lazy(() => import('./Pages/about/about.jsx'));
+const Projects       = React.lazy(() => import('./Pages/Projects/projects.jsx'));
+const Next           = React.lazy(() => import('./Pages/Next/Next.jsx'));
+const CategoryDetail = React.lazy(() => import('./Pages/Projects/CategoryDetail.jsx'));
 
 // Wrapper for sidebar pages
 function SidebarLayout({ children }) {
   return (
-    <>
-      <CustomCursor />
-      <div className="app-container">
-        <Sidebar />
-        <div className="main-content-area">
+    <div className="app-container">
+      <Sidebar />
+      <div className="main-content-area">
+        <div className="main-content-body">
           <AnimatePresence mode="wait">
             <Suspense fallback={<Loading />}>
               {children}
             </Suspense>
           </AnimatePresence>
-          <Footer />
         </div>
+        <Footer />
       </div>
-    </>
+    </div>
   );
 }
 
@@ -82,8 +63,9 @@ function App() {
 
   return (
     <ThemeProvider>
+      <CustomCursor />
       {isHome ? (
-        // ── Kage full-page experience (no sidebar, own nav/cursor)
+        // ── Kage full-page experience (no sidebar, own nav)
         <Suspense fallback={null}>
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<KageHome />} />

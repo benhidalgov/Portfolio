@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../../Context/ThemeContext.jsx';
-import { WindrunnerGlyph, LightweaverGlyph } from '../Glyphs/RadiantGlyphs.jsx';
+import RadiantSeal from '../Glyphs/RadiantSeal.jsx';
 import './KageNav.css';
 
 const NAV_LINKS = [
-  { to: '/#about',    label: 'About',    sub: 'Radiante' },
-  { to: '/#skills',   label: 'Skills',   sub: 'Habilidades' },
-  { to: '/#projects', label: 'Projects', sub: 'Proyectos' },
-  { to: '/#contact',  label: 'Contact',  sub: 'Contacto' },
+  { to: '/#about',    label: 'Sobre Mí',     sub: 'Radiante' },
+  { to: '/#skills',   label: 'Habilidades',  sub: 'Habilidades' },
+  { to: '/#projects', label: 'Proyectos',    sub: 'Proyectos' },
+  { to: '/#contact',  label: 'Contacto',     sub: 'Contacto' },
 ];
 
 export default function KageNav() {
@@ -49,14 +49,10 @@ export default function KageNav() {
       className={`kage-nav ${stuck ? 'stuck' : ''} ${hidden ? 'hide' : ''} ${menuOpen ? 'menu-open' : ''}`}
       id="kage-nav"
     >
-      {/* Brand: Windrunner on Dark, Lightweaver on Light */}
-      <Link to="/" className="kage-brand" onClick={() => setMenuOpen(false)}>
+      {/* Brand: Sello Heráldico Radiante */}
+      <Link to="/" className="kage-brand" onClick={() => setMenuOpen(false)} aria-label="Inicio - Benjamín Hidalgo">
         <div className="kage-brand-glyph-wrap">
-          {theme === 'DARK' ? (
-            <WindrunnerGlyph size={32} className="kage-brand-glyph" />
-          ) : (
-            <LightweaverGlyph size={32} className="kage-brand-glyph" />
-          )}
+          <RadiantSeal size={34} className="kage-brand-glyph" />
         </div>
         <span className="kage-brand-tx">
           <b>BHidalgo</b>
@@ -81,11 +77,11 @@ export default function KageNav() {
         })}
         {/* Other pages */}
         <Link to="/projects" className="kage-nav-link" onClick={() => setMenuOpen(false)}>
-          <span>Portfolio</span>
+          <span>Portafolio</span>
           <span className="alt">Archivo</span>
         </Link>
         <Link to="/about" className="kage-nav-link" onClick={() => setMenuOpen(false)}>
-          <span>Me</span>
+          <span>Sobre Mí</span>
           <span className="alt">Perfil</span>
         </Link>
       </nav>

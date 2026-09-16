@@ -1,6 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="7" fill="#0A0E1A"/>
-  <polygon points="16,5 24,13 16,21 8,13" fill="none" stroke="#00D4FF" stroke-width="1.8" stroke-linejoin="round"/>
-  <polygon points="16,10 21,13 16,16 11,13" fill="none" stroke="#66E5FF" stroke-width="1.2" stroke-linejoin="round"/>
-  <circle cx="16" cy="13" r="2" fill="#00D4FF"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <rect width="100" height="100" rx="20" fill="#0A0E1A"/>
+  <!-- Rombo sagrado -->
+  <polygon points="50,6 94,50 50,94 6,50" stroke="#00D4FF" stroke-width="2.5" fill="#00D4FF" fill-opacity="0.08" stroke-linejoin="round"/>
+  <!-- Marco interior -->
+  <polygon points="50,12 88,50 50,88 12,50" stroke="#00D4FF" stroke-width="1.2" stroke-dasharray="4 3" opacity="0.6"/>
+  <!-- Rayos cardinales -->
+  <line x1="50" y1="2" x2="50" y2="10" stroke="#00D4FF" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="50" y1="90" x2="50" y2="98" stroke="#00D4FF" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="2" y1="50" x2="10" y2="50" stroke="#00D4FF" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="90" y1="50" x2="98" y2="50" stroke="#00D4FF" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Alas de Corredor del Viento -->
+  <path d="M 14 50 C 16 36, 24 26, 34 20 C 28 28, 26 38, 24 50 C 26 62, 28 72, 34 80 C 24 74, 16 64, 14 50 Z" fill="#00D4FF" fill-opacity="0.2" stroke="#00D4FF" stroke-width="1.2"/>
+  <path d="M 86 50 C 84 36, 76 26, 66 20 C 72 28, 74 38, 76 50 C 74 62, 72 72, 66 80 C 76 74, 84 64, 86 50 Z" fill="#00D4FF" fill-opacity="0.2" stroke="#00D4FF" stroke-width="1.2"/>
+  <!-- Círculo central -->
+  <circle cx="50" cy="50" r="23" stroke="#00D4FF" stroke-width="1.6" fill="#0A0E1A"/>
+  <!-- Gema Corazón -->
+  <polygon points="50,22 53.5,27 50,32 46.5,27" fill="#00D4FF"/>
+  <!-- Monograma BH -->
+  <text x="50" y="58" text-anchor="middle" font-family="'Cinzel', serif, sans-serif" font-size="20" font-weight="800" letter-spacing="2px" fill="#00D4FF">BH</text>
+  <!-- Barra inferior -->
+  <line x1="38" y1="64" x2="62" y2="64" stroke="#00D4FF" stroke-width="1.4"/>
+  <polygon points="50,62.5 52,64 50,65.5 48,64" fill="#00D4FF"/>
+  <!-- Tríada de orbes -->
+  <circle cx="44" cy="70" r="1.5" fill="#00D4FF"/>
+  <circle cx="50" cy="71.5" r="2" fill="#00D4FF"/>
+  <circle cx="56" cy="70" r="1.5" fill="#00D4FF"/>
 </svg>

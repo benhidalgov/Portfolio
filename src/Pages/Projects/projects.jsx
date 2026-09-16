@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { motion as Motion } from 'framer-motion';
 import { projectData } from '../../data/project.jsx'; 
 import '../../Components/ProjectsSummary/ProjectsSummary.css';
@@ -22,7 +23,7 @@ function ProjectsFull() {
   return (
     <section className="projects-summary" style={{padding: '2rem 3rem'}}>
       <SEO 
-        title="Operation Archive | Benjamin Hidalgo" 
+        title="Proyectos | Benjamín Hidalgo" 
         description="Directorio completo de repositorios y proyectos técnicos."
       />
       <div className="summary-header">
@@ -54,14 +55,38 @@ function ProjectsFull() {
                   <span key={tech} className="tech-tag">{tech}</span>
                 ))}
               </div>
-              <a 
-                href={project.github || '#'} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="details-link"
-              >
-                [ ABRIR ARCHIVO DE GITHUB ]
-              </a>
+              <div className="card-links-group" style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap', marginTop: '0.8rem' }}>
+                {project.slug && (
+                  <Link 
+                    to={`/projects/${project.slug}`}
+                    className="details-link"
+                    style={{ color: 'var(--color-primary)' }}
+                  >
+                    [ VER CASO DE ESTUDIO ]
+                  </Link>
+                )}
+                {project.link && (
+                  <a 
+                    href={project.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="details-link"
+                    style={{ color: '#10b981' }}
+                  >
+                    [ DEMO EN VIVO ↗ ]
+                  </a>
+                )}
+                {project.github && (
+                  <a 
+                    href={project.github} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="details-link"
+                  >
+                    [ GITHUB ]
+                  </a>
+                )}
+              </div>
             </div>
             <div className="slate-decorator-bottom"></div>
           </Motion.div>

@@ -68,15 +68,27 @@ function CategoryDetail() {
                     ))}
                 </div>
 
-                <div className="project-actions mt-5">
-                    <a 
-                        href={project.repoLink}
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="btn-primary"
-                    >
-                        Ver Repositorio General (GitHub)
-                    </a>
+                <div className="project-actions mt-5" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                    {project.liveLink && (
+                        <a 
+                            href={project.liveLink}
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="btn-primary"
+                        >
+                            Ver Aplicación en Vivo ↗
+                        </a>
+                    )}
+                    {project.repoLink && (
+                        <a 
+                            href={project.repoLink}
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className={project.liveLink ? "btn-secondary" : "btn-primary"}
+                        >
+                            Ver Repositorio (GitHub)
+                        </a>
+                    )}
                 </div>
             </div>
         </main>

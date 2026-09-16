@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../../Context/ThemeContext.jsx';
 import '../../styles/Sidebar.css';
-import logo from '../../assets/images/Logo.png';
+import RadiantSeal from '../Glyphs/RadiantSeal.jsx';
 import { 
   WindrunnerGlyph, 
   GemheartGlyph, 
@@ -60,15 +60,17 @@ function Sidebar() {
   const primaryNav = [
     { path: '/', name: 'Inicio', subtext: 'El camino más importante...', glyph: <WindrunnerGlyph size={18} /> },
     { path: '/projects', name: 'Proyectos', subtext: 'Crónicas de ingeniería', glyph: <SkybreakerGlyph size={18} /> },
-    { path: '/about', name: 'About Me', subtext: 'Conoce al Radiante', glyph: <LightweaverGlyph size={18} /> },
+    { path: '/about', name: 'Sobre Mí', subtext: 'Conoce al Radiante', glyph: <LightweaverGlyph size={18} /> },
   ];
 
   // Case studies con glifos temáticos
   const caseStudies = [
     { title: 'TaskManager (Kanban)', path: '/projects/taskmanager', glyph: <BridgeFourGlyph size={16} /> },
-    { title: 'Portafolio Roshar', path: '/projects/portfolio', glyph: <GemheartGlyph size={16} /> },
-    { title: 'Perle Noir Landing', path: '/projects/perlenoir', glyph: <LightweaverGlyph size={16} /> },
+    { title: 'Consola KGB (RAG)', path: '/projects/kgb', glyph: <SkybreakerGlyph size={16} /> },
+    { title: 'Autodocs (Tickets)', path: '/projects/autodocs', glyph: <WindrunnerGlyph size={16} /> },
+    { title: 'Minutera Web App', path: '/projects/minutera', glyph: <LightweaverGlyph size={16} /> },
     { title: 'Inventario Golang', path: '/projects/golang', glyph: <DustbringerGlyph size={16} /> },
+    { title: 'Portafolio Roshar', path: '/projects/portfolio', glyph: <GemheartGlyph size={16} /> },
   ];
 
   return (
@@ -90,13 +92,8 @@ function Sidebar() {
         {/* HEADER */}
         <div className="sidebar-header">
           <div className="header-logo-toggle-group">
-            <Link to="/" className="sidebar-title" onClick={closeMenuOnMobile}>
-              <img 
-                src={logo} 
-                alt="Logo B. Hidalgo" 
-                className="sidebar-logo-img" 
-                onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/40x40/0A0E1A/00D4FF?text=BH" }}
-              />
+            <Link to="/" className="sidebar-title" onClick={closeMenuOnMobile} aria-label="Ir al inicio - Benjamín Hidalgo">
+              <RadiantSeal size={44} className="sidebar-seal" />
             </Link>
             
             <button onClick={toggleSidebar} className="sidebar-toggle-button">

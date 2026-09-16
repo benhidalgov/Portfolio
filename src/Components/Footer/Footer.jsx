@@ -16,8 +16,8 @@ function Footer() {
         <div className="footer-col footer-col--brand">
           <div className="footer-brand">
             <span className="footer-brand-tag">◆ Urithiru</span>
-            <p className="footer-brand-name">Benjamin Hidalgo</p>
-            <p className="footer-brand-sub">Ingeniero informatico y desarrollador de software</p>
+            <p className="footer-brand-name">Benjamín Hidalgo</p>
+            <p className="footer-brand-sub">Ingeniero Informático y Desarrollador de Software</p>
           </div>
         </div>
 
@@ -30,9 +30,6 @@ function Footer() {
             </Link>
             <Link to="/projects" className="footer-link">
               <span className="footer-link-arrow">◇</span> Proyectos
-            </Link>
-            <Link to="/Next" className="footer-link">
-              <span className="footer-link-arrow">◇</span> Futuros Proyectos
             </Link>
             <Link to="/about" className="footer-link">
               <span className="footer-link-arrow">◇</span> Sobre Mí
@@ -80,7 +77,7 @@ function Footer() {
           Tormenta: <span className="footer-status-value">Activa</span>
         </span>
         <span className="footer-status-center">
-          © {currentYear} Benjamin Hidalgo — Todos los derechos reservados.
+          © {currentYear} Benjamín Hidalgo — Todos los derechos reservados.
         </span>
         <span className="footer-status-right">
           Epoch: <span className="footer-status-value">v2.0.0</span> ◆ Roshar
