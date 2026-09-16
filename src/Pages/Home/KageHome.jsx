@@ -40,7 +40,18 @@ function ArrowLink({ href, to, children, 'data-rv': rv }) {
 export default function KageHome() {
   const [preloaderDone, setPreloaderDone] = useState(false);
   const [activeSection, setActiveSection] = useState(0);
+  const [copied, setCopied] = useState(false);
   const sectionRefs = useRef([]);
+
+  const handleCopyEmail = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText('hidalgobenjaminv@gmail.com');
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2600);
+    } catch (err) {
+      console.error('Error al copiar al portapapeles:', err);
+    }
+  }, []);
 
   // Register section ref
   const setRef = useCallback((el, i) => {
@@ -341,13 +352,39 @@ export default function KageHome() {
           </p>
 
           <div className="kh-cta-row" data-rv="fade">
-            <a href="mailto:hidalgobenjaminv@gmail.com" className="kh-cta">
+            <a href="mailto:hidalgobenjaminv@gmail.com" className="kh-cta" title="Abrir cliente de correo">
               <i />
-              <span>hidalgobenjaminv@gmail.com</span>
-              <svg viewBox="0 0 14 14" fill="none" width="13" height="13">
+              <span>Enviar Correo</span>
+              <svg viewBox="0 0 14 14" fill="none" width="13" height="13" aria-hidden="true">
                 <path d="M3 11 11 3M5 3h6v6" stroke="currentColor" strokeWidth="1.3"/>
               </svg>
             </a>
+
+            <button
+              type="button"
+              onClick={handleCopyEmail}
+              className={`kh-cta kh-copy-btn ${copied ? 'copied' : ''}`}
+              title="Copiar dirección de correo al portapapeles"
+              aria-label="Copiar correo hidalgobenjaminv@gmail.com"
+            >
+              <i />
+              {copied ? (
+                <span style={{ color: '#10b981', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  ¡Copiado!
+                </span>
+              ) : (
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                  Copiar Correo
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                  </svg>
+                </span>
+              )}
+            </button>
           </div>
 
           <div className="kh-social-row" data-rv="up">
