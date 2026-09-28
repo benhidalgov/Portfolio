@@ -150,6 +150,7 @@
   font: inherit;
   color: inherit;
   text-align: left;
+  opacity: 1 !important;
   transition: border-color .2s ease, background-color .2s ease, transform .2s ease;
 }
 .kh-chip:hover {
@@ -158,8 +159,12 @@
   transform: translateY(-2px);
 }
 .kh-chip.on {
-  border-color: var(--color-border-hover);
-  background: var(--color-border-subtle);
+  border-color: var(--color-primary, #00d4ff);
+  background: rgba(var(--color-primary-rgb), .08);
+}
+.kh-chip.on .kh-chip-kbd {
+  border-color: var(--color-primary, #00d4ff);
+  color: var(--color-primary, #00d4ff);
 }
 .kh-chip-kbd {
   flex: 0 0 auto;
@@ -178,18 +183,18 @@
   font-family: var(--font-sans);
 }
 
-/* Hero side text */
+/* Hero side text — offset to avoid colliding with fixed KageRail */
 .kh-hero-side {
   position: absolute; z-index: 2;
-  right: var(--pad, 40px); top: 50%; transform: translateY(-50%);
+  right: calc(var(--pad, 40px) + 32px); top: 50%; transform: translateY(-50%);
   display: flex; flex-direction: column; align-items: center; gap: 14px;
   pointer-events: none;
 }
 .kh-side-v {
   writing-mode: vertical-rl;
-  font-size: 11px; letter-spacing: .6em;
+  font-size: 10px; letter-spacing: .5em;
   color: var(--color-subtext, rgba(226,232,240,.35));
-  font-family: var(--font-code, 'Raleway', sans-serif);
+  font-family: var(--font-code, monospace);
   font-weight: 400;
 }
 

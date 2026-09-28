@@ -2,8 +2,8 @@ import './KageRail.css';
 
 const SECTIONS = [
   { id: 'hero',     label: 'Inicio' },
-  { id: 'about',    label: 'About' },
-  { id: 'skills',   label: 'Skills' },
+  { id: 'about',    label: 'Sobre Mí' },
+  { id: 'skills',   label: 'Habilidades' },
   { id: 'projects', label: 'Proyectos' },
   { id: 'contact',  label: 'Contacto' },
 ];

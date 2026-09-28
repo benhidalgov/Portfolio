@@ -177,13 +177,12 @@ export default function KageHome() {
             </div>
 
             {/* Chapter chips */}
-            <div className="kh-chips">
+            <div className="kh-chips" data-rv="up">
               {['Sobre Mí', 'Habilidades', 'Proyectos', 'Contacto'].map((label, i) => (
                 <button
                   key={label}
                   type="button"
                   className={`kh-chip ${activeSection === i + 1 ? 'on' : ''}`}
-                  data-rv="up"
                   onClick={() => {
                     const el = document.getElementById(SECTIONS[i + 1]);
                     if (el) el.scrollIntoView({ behavior: 'smooth' });
