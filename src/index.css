@@ -3,8 +3,7 @@
 @import './styles/variables.css';
 @import './styles/buttons.css';
 
-/* Google Fonts: Cinzel (inscriptions) + Raleway (body) */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Raleway:wght@300;400;500;600;700&display=swap');
+/* Typography is loaded asynchronously with preconnect in index.html */
 
 /* === GLOBAL RESET & BASE === */
 * {
@@ -12,27 +11,43 @@
 }
 
 html {
-    font-size: 18px;
+    font-size: clamp(15px, 1.05vw + 13px, 18px);
+}
+
+h1, h2, h3, h4, h5, h6,
+p, li, a, span, code, pre,
+.cert-badge-label, .tech-tag, .tech-tag-full, .skill-tag-label,
+.lead-paragraph, .category-title {
+    overflow-wrap: anywhere;
+}
+
+.main-content-body,
+.skill-category-card,
+.card-content,
+.cert-badge,
+.about-page > * {
+    min-width: 0;
 }
 
 body {
     margin: 0;
-    font-family: var(--font-code);
+    font-family: var(--font-sans);
     background-color: var(--color-background);
     color: var(--color-text);
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
+    line-height: 1.6;
 
     /* Subtle stone-crack pattern — evokes carved Rosharan architecture */
     background-image:
-        radial-gradient(ellipse at 20% 50%, rgba(var(--color-primary-rgb), 0.03) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 20%, rgba(var(--color-primary-rgb), 0.02) 0%, transparent 50%),
+        radial-gradient(ellipse at 20% 50%, rgba(var(--color-primary-rgb), 0.02) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(var(--color-primary-rgb), 0.015) 0%, transparent 50%),
         linear-gradient(180deg, transparent 0%, rgba(var(--color-primary-rgb), 0.01) 100%);
     background-attachment: fixed;
 }
 
-/* === STORMLIGHT PARTICLE OVERLAY === */
+/* === STORMLIGHT PARTICLE OVERLAY (Subtle Micro-Depth) === */
 body::after {
     content: '';
     position: fixed;
@@ -43,36 +58,53 @@ body::after {
     pointer-events: none;
     z-index: 9999;
     background:
-        radial-gradient(1px 1px at 10% 20%, rgba(var(--color-primary-rgb), 0.3), transparent),
-        radial-gradient(1px 1px at 30% 60%, rgba(var(--color-primary-rgb), 0.2), transparent),
-        radial-gradient(1px 1px at 50% 10%, rgba(var(--color-primary-rgb), 0.25), transparent),
-        radial-gradient(1px 1px at 70% 80%, rgba(var(--color-primary-rgb), 0.15), transparent),
-        radial-gradient(1px 1px at 90% 40%, rgba(var(--color-primary-rgb), 0.2), transparent),
-        radial-gradient(1.5px 1.5px at 15% 85%, rgba(var(--color-primary-rgb), 0.2), transparent),
-        radial-gradient(1.5px 1.5px at 60% 35%, rgba(var(--color-primary-rgb), 0.15), transparent),
-        radial-gradient(1px 1px at 85% 15%, rgba(var(--color-primary-rgb), 0.25), transparent);
-    animation: stormlightDrift 20s ease-in-out infinite alternate;
-    opacity: 0.6;
+        radial-gradient(1px 1px at 10% 20%, rgba(var(--color-primary-rgb), 0.2), transparent),
+        radial-gradient(1px 1px at 30% 60%, rgba(var(--color-primary-rgb), 0.15), transparent),
+        radial-gradient(1px 1px at 50% 10%, rgba(var(--color-primary-rgb), 0.2), transparent),
+        radial-gradient(1px 1px at 70% 80%, rgba(var(--color-primary-rgb), 0.1), transparent),
+        radial-gradient(1px 1px at 90% 40%, rgba(var(--color-primary-rgb), 0.15), transparent),
+        radial-gradient(1.5px 1.5px at 15% 85%, rgba(var(--color-primary-rgb), 0.15), transparent),
+        radial-gradient(1.5px 1.5px at 60% 35%, rgba(var(--color-primary-rgb), 0.1), transparent),
+        radial-gradient(1px 1px at 85% 15%, rgba(var(--color-primary-rgb), 0.2), transparent);
+    animation: stormlightDrift 28s ease-in-out infinite alternate;
+    opacity: 0.12;
 }
 
 @keyframes stormlightDrift {
     0% { transform: translateY(0px) translateX(0px); }
-    25% { transform: translateY(-5px) translateX(3px); }
+    25% { transform: translateY(-4px) translateX(2px); }
     50% { transform: translateY(-2px) translateX(-2px); }
-    75% { transform: translateY(-7px) translateX(5px); }
-    100% { transform: translateY(-3px) translateX(-3px); }
+    75% { transform: translateY(-5px) translateX(3px); }
+    100% { transform: translateY(-2px) translateX(-1px); }
 }
 
 /* === LINKS === */
 a {
     color: var(--color-link);
     text-decoration: none;
-    transition: color 0.2s, text-shadow 0.2s;
+    transition: color 0.2s, opacity 0.2s;
 }
 
 a:hover {
     color: var(--color-link-hover);
-    text-shadow: var(--storm-text-glow);
+}
+
+/* === KEYSTROKE MICRO-UI (<kbd>) === */
+kbd {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-code);
+    font-size: 0.72rem;
+    font-weight: 500;
+    line-height: 1;
+    padding: 3px 6px;
+    border-radius: 4px;
+    background: var(--kbd-bg);
+    border: 1px solid var(--kbd-border);
+    color: var(--kbd-text);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+    vertical-align: middle;
 }
 
 /* === BUTTONS === */
@@ -81,8 +113,26 @@ button {
     cursor: pointer;
 }
 
-/* === SCROLLBAR (Stormlight Style) === */
-::-webkit-scrollbar {
+/* === FOCUS VISIBLE (teclado) ===
+   No existia ningun estilo de foco: quien navega con Tab no veia donde estaba.
+   :focus-visible solo se muestra en navegacion por teclado, no al hacer clic,
+   asi que no ensucia la experiencia con raton. */
+:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+/* Enlaces y botones: ademas del outline, un halo con el glow del tema */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+    box-shadow: var(--storm-glow);
+}
+
+/* === SCROLLBAR (Stormlight Style) === */::-webkit-scrollbar {
     width: 6px;
     height: 6px;
 }
@@ -253,8 +303,30 @@ html {
     100% { transform: scaleX(1) translateX(100%); }
 }
 
-/* Reduced motion */
+/* ============================================================= REDUCED MOTION
+   Cobertura total. Antes solo cubria los reveals, dejando activas 19 animaciones
+   infinitas (drift de fondo, glifos girando, radar, blips, etc.) para quien pide
+   movimiento reducido. El bloque de abajo las neutraliza todas de una vez, sin
+   tener que tocar cada componente. */
 @media (prefers-reduced-motion: reduce) {
+    /* 1. Reveals: mostrar contenido sin animar */
     [data-rv] { opacity: 1 !important; transform: none !important; }
     .mask-line > span, .word { opacity: 1 !important; transform: none !important; }
-}
+
+    /* 2. Neutralizar animaciones decorativas infinitas en todo el sitio.
+       !important gana a las declaraciones de los componentes (misma especificidad,
+       pero este bloque va despues en la cascada). */
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    /* 3. Conservar legibilidad en elementos cuya animacion define su estado final.
+       Sin esto, un fade a "0.01ms" puede dejar el elemento en su frame inicial. */
+    #grain { opacity: .045 !important; }
+    .kage-pre-mark { animation: none !important; filter: drop-shadow(0 0 10px rgba(var(--color-primary-rgb), .6)) !important; }
+}

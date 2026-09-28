@@ -1,25 +1,10 @@
 import { Link } from 'react-router-dom';
-import { motion as Motion } from 'framer-motion';
 import { projectData } from '../../data/project.jsx'; 
-import '../../Components/ProjectsSummary/ProjectsSummary.css';
+import './projects.css';
 import SEO from '../../Components/SEO/SEO.jsx';
+import { calculateReadingTime } from '../../utils/readingMetrics.js';
 
 function ProjectsFull() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, x: 50 },
-    show: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 100 } }
-  };
-
   return (
     <section className="projects-summary" style={{padding: '2rem 3rem'}}>
       <SEO 
@@ -31,14 +16,11 @@ function ProjectsFull() {
         <span style={{color: 'var(--color-primary)', fontSize: '0.8rem', letterSpacing: '0.2em'}}>[ VÍNCULO NAHEL CONECTADO ]</span>
       </div>
 
-      <Motion.div 
-        className="summary-grid"
-        variants={containerVariants}
-        initial="hidden"
-        animate="show"
-      >
-        {projectData.map((project) => (
-          <Motion.div variants={itemVariants} key={project.id} className="project-card-summary data-slate">
+      <div className="summary-grid">
+        {projectData.map((project) => {
+          const reading = calculateReadingTime(project.description);
+          return (
+          <div key={project.id} className="project-card-summary data-slate" data-rv="up">
             <div className="slate-decorator-top"></div>
             <img 
               src={project.image} 
@@ -48,7 +30,12 @@ function ProjectsFull() {
             />
             <div className="scanline-hover"></div>
             <div className="card-content">
-              <h3>{project.title}</h3>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: '0.5rem', marginBottom: '0.25rem' }}>
+                <h3 style={{ margin: 0 }}>{project.title}</h3>
+                <span style={{ fontSize: '0.72rem', fontFamily: 'var(--font-mono)', color: 'var(--color-primary)', opacity: 0.85, whiteSpace: 'nowrap' }}>
+                  {reading.text}
+                </span>
+              </div>
               <p>{project.description}</p>
               <div className="card-tech">
                 {(project.tech || project.techStack || []).map((tech) => (
@@ -89,9 +76,9 @@ function ProjectsFull() {
               </div>
             </div>
             <div className="slate-decorator-bottom"></div>
-          </Motion.div>
-        ))}
-      </Motion.div>
+          </div>
+        ); })}
+      </div>
     </section>
   );
 }

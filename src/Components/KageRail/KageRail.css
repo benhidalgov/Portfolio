@@ -19,7 +19,7 @@
 .kage-rail-btn i {
   display: block;
   width: 14px; height: 1.5px;
-  background: var(--color-border-subtle, rgba(0, 212, 255, .28));
+  background: var(--color-border-subtle, rgba(var(--color-primary-rgb), .28));
   border-radius: 1px;
   transition: width .5s var(--ease-out, ease), background .4s;
 }
@@ -30,7 +30,7 @@
 }
 .kage-rail-btn:hover i {
   width: 22px;
-  background: var(--color-primary-hover, rgba(0, 212, 255, .65));
+  background: var(--color-primary-hover, rgba(var(--color-primary-rgb), .65));
 }
 
 @media (max-width: 768px) {

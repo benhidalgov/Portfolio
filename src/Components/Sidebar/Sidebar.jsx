@@ -66,7 +66,7 @@ function Sidebar() {
   // Case studies con glifos temáticos
   const caseStudies = [
     { title: 'TaskManager (Kanban)', path: '/projects/taskmanager', glyph: <BridgeFourGlyph size={16} /> },
-    { title: 'Consola KGB (RAG)', path: '/projects/kgb', glyph: <SkybreakerGlyph size={16} /> },
+    { title: 'Consola Knowledge Base', path: '/projects/kgb', glyph: <SkybreakerGlyph size={16} /> },
     { title: 'Autodocs (Tickets)', path: '/projects/autodocs', glyph: <WindrunnerGlyph size={16} /> },
     { title: 'Minutera Web App', path: '/projects/minutera', glyph: <LightweaverGlyph size={16} /> },
     { title: 'Inventario Golang', path: '/projects/golang', glyph: <DustbringerGlyph size={16} /> },

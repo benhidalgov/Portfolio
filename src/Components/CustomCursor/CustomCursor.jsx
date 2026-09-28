@@ -28,6 +28,14 @@ function CustomCursor() {
       return;
     }
 
+    // Respeta la preferencia de movimiento reducido: el cursor sigue al puntero
+    // con inercia y animaciones, y reemplaza el puntero nativo. Con movimiento
+    // reducido se deja el cursor del sistema y no se monta nada.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      isTouchRef.current = true;
+      return;
+    }
+
     const wrapper = wrapperRef.current;
     if (!wrapper) return;
 

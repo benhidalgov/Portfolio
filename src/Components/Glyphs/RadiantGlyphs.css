@@ -12,23 +12,9 @@
 }
 
 /* === GLYPH ANIMATIONS === */
-.glyph-pulse {
-    animation: glyphPulse 3s ease-in-out infinite;
-}
-
-@keyframes glyphPulse {
-    0%, 100% { filter: drop-shadow(0 0 4px rgba(var(--color-primary-rgb), 0.3)); }
-    50% { filter: drop-shadow(0 0 12px rgba(var(--color-primary-rgb), 0.7)); }
-}
-
-.glyph-spin-slow {
-    animation: glyphSpin 20s linear infinite;
-}
-
-@keyframes glyphSpin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
+/* .glyph-pulse y .glyph-spin-slow eliminados: ninguna clase en el JSX los usa.
+   La animacion de los glifos del sidebar y del loading se define mas abajo,
+   por selector descendiente (.sidebar-glyph-decoration .glyph, etc.). */
 
 .glyph-breathe {
     animation: glyphBreathe 4s ease-in-out infinite;
@@ -37,18 +23,6 @@
 @keyframes glyphBreathe {
     0%, 100% { opacity: 0.6; transform: scale(1); }
     50% { opacity: 1; transform: scale(1.05); }
-}
-
-/* === HERO GLYPH (large decorative) === */
-.hero-glyph {
-    position: absolute;
-    right: 5%;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--color-primary);
-    opacity: 0.06;
-    pointer-events: none;
-    z-index: 0;
 }
 
 /* === GLYPH DIVIDER === */
@@ -103,33 +77,6 @@
     color: var(--color-background);
 }
 
-/* === LOADING GLYPH === */
-.loading-glyph {
-    margin-bottom: 1.5rem;
-}
-
-.loading-glyph .glyph {
-    animation: glyphPulse 2s ease-in-out infinite, glyphSpin 15s linear infinite;
-}
-
-/* === FOOTER GLYPH === */
-.footer-glyph {
-    display: flex;
-    justify-content: center;
-    padding: 0.75rem 0;
-    opacity: 0.3;
-}
-
-/* === RESPONSIVE === */
-@media (max-width: 768px) {
-    .hero-glyph {
-        right: 50%;
-        transform: translate(50%, -50%);
-        opacity: 0.04;
-    }
-
-    .hero-glyph .glyph {
-        width: 200px !important;
-        height: 200px !important;
-    }
-}
+/* === LOADING / FOOTER / HERO GLYPH eliminados ===
+   .loading-glyph, .footer-glyph y .hero-glyph no existen en el JSX.
+   El loading real anima sus glifos via .mandala-core-gem en Loading.css. */

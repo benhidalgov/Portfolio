@@ -1,37 +1,13 @@
-import { Helmet } from 'react-helmet-async';
-import PropTypes from 'prop-types';
+import { useEffect } from 'react';
 
-const SEO = ({
-  title = 'Portafolio | Benjamin Hidalgo',
-  description = 'Portafolio de Ingeniería en Informática especializado en DevOps, Cloud y Full-Stack.',
-  name = 'Benjamin Hidalgo',
-  type = 'website',
-}) => {
-  return (
-    <Helmet>
-      {/* Standard metadata tags */}
-      <title>{title}</title>
-      <meta name='description' content={description} />
-      
-      {/* Facebook tags */}
-      <meta property="og:type" content={type} />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      
-      {/* Twitter tags */}
-      <meta name="twitter:creator" content={name} />
-      <meta name="twitter:card" content={type} />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
-    </Helmet>
-  );
+export default function SEO({ title, description }) {
+  useEffect(() => {
+    if (title) document.title = title;
+    if (description) {
+      const meta = document.querySelector('meta[name="description"]');
+      if (meta) meta.setAttribute('content', description);
+    }
+  }, [title, description]);
+
+  return null;
 }
-
-SEO.propTypes = {
-  title: PropTypes.string,
-  description: PropTypes.string,
-  name: PropTypes.string,
-  type: PropTypes.string
-};
-
-export default SEO;

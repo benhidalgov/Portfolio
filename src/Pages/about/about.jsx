@@ -52,18 +52,19 @@ function About() {
       />
       
       {/* 1. Descripción del Perfil Integral */}
-      <h1>REGISTRO_CRÓNICA // Benjamín Hidalgo</h1>
-      <p className="lead-paragraph">
+      <h1 data-rv="up">REGISTRO_CRÓNICA // Benjamín Hidalgo</h1>
+      <p className="lead-paragraph" data-rv="up">
         <strong>CRÓNICA DEL RADIANTE:</strong> Ingeniero en Informática especializado en la construcción de arquitecturas escalables, seguridad de plataformas corporativas y desarrollo de ecosistemas Full-Stack. Mi flujo operativo combina el estricto rigor del tipado (TypeScript y Go) con despliegues ágiles, garantizando sistemas resilientes ante altos volúmenes de datos. Mi objetivo es transformar la deuda técnica y las amenazas de seguridad en bases estructurales inquebrantables.
       </p>
       
       {/* 2. Mapeo de Habilidades por Categoría */}
-      <h2>Arsenal Técnico & Especialidades</h2>
+      <h2 data-rv="up">Arsenal Técnico & Especialidades</h2>
       <div className="skills-grid about-skills-grid">
         {skillCategories.map((category, index) => (
           <div 
             key={index} 
             className={`skill-category-card ${hoveredCard === index ? 'is-hovered' : ''}`}
+            data-rv="up"
             onMouseEnter={() => setHoveredCard(index)}
             onMouseLeave={() => setHoveredCard(null)}
           >
@@ -88,7 +89,7 @@ function About() {
 
       {/* 3. Juramentos y Acreditaciones Profesionales */}
       <section className="about-certifications-section" style={{ marginTop: '4rem' }}>
-        <div className="cert-section-header">
+        <div className="cert-section-header" data-rv="fade">
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
             <span style={{ color: 'var(--color-primary)' }}>◆</span>
             <span className="cert-section-label">JURAMENTOS Y ACREDITACIONES PROFESIONALES</span>
@@ -98,7 +99,7 @@ function About() {
 
         <div className="cert-grid">
           {certificationsList.map((cert) => (
-            <div key={cert.code} className="cert-badge">
+            <div key={cert.code} className="cert-badge" data-rv="up">
               <span className="cert-badge-prefix">[{cert.code}]</span>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.15rem' }}>
                 <span className="cert-badge-label" style={{ fontWeight: 600 }}>{cert.name}</span>

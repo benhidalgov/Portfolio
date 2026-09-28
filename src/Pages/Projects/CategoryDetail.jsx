@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { categoriesData } from '../../data/categories.js';
 import '../../styles/Projects.css'; 
 import SEO from '../../Components/SEO/SEO.jsx';
+import { calculateReadingTime } from '../../utils/readingMetrics.js';
 
 function CategoryDetail() {
     // Extrae el categoryId de la URL (ej. 'cloud', 'data')
@@ -22,6 +23,9 @@ function CategoryDetail() {
         );
     }
 
+    const dossierContent = [project.subtitle, project.description, ...(project.goals || [])].filter(Boolean).join(' ');
+    const readingMetric = calculateReadingTime(dossierContent);
+
     return (
         <main className="projects-full-page">
             <SEO 
@@ -32,15 +36,18 @@ function CategoryDetail() {
                 <Link to="/projects" className="back-link">
                     &larr; VOLVER_AL_REGISTRO
                 </Link>
-                <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1rem'}}>
+                <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1rem'}}>
                     <h1 style={{margin: 0}}>{project.title}</h1>
-                    <span className="storm-status-stamp">[REGISTRO: LUZ TORMENTOSA // ESTABLE]</span>
+                    <div style={{display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap'}}>
+                        <span className="storm-status-stamp" style={{fontFamily: 'var(--font-mono)'}}>⏱ {readingMetric.text}</span>
+                        <span className="storm-status-stamp">[REGISTRO: LUZ TORMENTOSA // ESTABLE]</span>
+                    </div>
                 </div>
-                <p className="lead-paragraph">{project.subtitle}</p>
+                <p className="lead-paragraph" data-rv="up">{project.subtitle}</p>
             </div>
 
             <div className="project-detail-container">
-                <div className="project-hero-wrapper">
+                <div className="project-hero-wrapper" data-rv="fade">
                     <img 
                         src={project.image} 
                         alt={project.title} 
@@ -49,26 +56,26 @@ function CategoryDetail() {
                     />
                 </div>
 
-                <p className="project-description-long">{project.description}</p>
+                <p className="project-description-long" data-rv="up">{project.description}</p>
                 
-                <h2>Objetivos Clave de Ingeniería</h2>
+                <h2 data-rv="up">Objetivos Clave de Ingeniería</h2>
                 <ul className="goals-list">
                     {project.goals.map((goal, index) => (
-                        <li key={index} className="goal-item dossier-log">
+                        <li key={index} className="goal-item dossier-log" data-rv="up">
                             <span className="log-prefix">&gt; // JURAMENTO_META: </span> 
                             {goal}
                         </li>
                     ))}
                 </ul>
 
-                <h2>Stack Utilizado</h2>
-                <div className="card-tech-full">
+                <h2 data-rv="up">Stack Utilizado</h2>
+                <div className="card-tech-full" data-rv="up">
                     {project.techStack.map((tech) => (
                         <span key={tech} className="tech-tag-full">{tech}</span>
                     ))}
                 </div>
 
-                <div className="project-actions mt-5" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                <div className="project-actions mt-5" data-rv="fade" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
                     {project.liveLink && (
                         <a 
                             href={project.liveLink}

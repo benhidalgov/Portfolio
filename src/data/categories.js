@@ -15,10 +15,10 @@ export const categoriesData = {
         liveLink: ""
     },
     kgb: {
-        title: "Consola de Infraestructura y Operaciones (KGB)",
-        subtitle: "CMDB en memoria, inferencia generativa RAG (Gemini) y bóveda cifrada AES-256.",
-        description: "Plataforma corporativa de asistencia técnica y gestión documental de infraestructura. Incorpora un inventario CMDB en memoria con DuckDB (latencia < 2 ms y cero I/O de disco), inferencia generativa con Google Gemini RAG (gemini-2.5-flash) con fallback autónomo, control de acceso perimetral RBAC con contraseñas PBKDF2-HMAC-SHA256 y bóveda de seguridad cifrada con AES-256 Fernet.",
-        image: "https://placehold.co/800x450/0f172a/38bdf8?text=KGB+INFRASTRUCTURE",
+        title: "Consola Knowledge Base (KGB)",
+        subtitle: "Base de conocimiento indexada en memoria, búsqueda semántica RAG (Gemini) y bóveda cifrada AES-256.",
+        description: "Plataforma corporativa de conocimiento técnico y gestión documental. Incorpora un índice de conocimiento en memoria con DuckDB (latencia < 2 ms y cero I/O de disco), búsqueda semántica generativa con Google Gemini RAG (gemini-2.5-flash) con fallback autónomo, control de acceso perimetral RBAC con contraseñas PBKDF2-HMAC-SHA256 y bóveda de seguridad cifrada con AES-256 Fernet.",
+        image: "https://placehold.co/800x450/0f172a/38bdf8?text=KGB+KNOWLEDGE+BASE",
         techStack: ["Python", "DuckDB", "Google Gemini RAG", "AES-256 Fernet", "PBKDF2", "Streamlit"],
         goals: [
             "Motor de búsqueda dual: indexación textual ultrarrápida en memoria (DuckDB) y RAG generativo con Gemini.",

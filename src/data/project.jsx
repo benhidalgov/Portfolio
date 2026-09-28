@@ -12,9 +12,9 @@ export const projectData = [
     {
         id: 2,
         slug: "kgb",
-        title: "Consola de Infraestructura (KGB)",
-        description: "Plataforma corporativa de gestión de infraestructura y CMDB en memoria (DuckDB) con inferencia generativa RAG (Google Gemini), RBAC perimetral (PBKDF2), bóveda cifrada (AES-256) y latencia sub-milisegundo.",
-        image: "https://placehold.co/800x450/0f172a/38bdf8?text=KGB+INFRASTRUCTURE",
+        title: "Consola Knowledge Base (KGB)",
+        description: "Plataforma corporativa de gestión de conocimiento técnico: base documental indexada en memoria (DuckDB) con búsqueda semántica RAG (Google Gemini), control de acceso RBAC (PBKDF2), bóveda cifrada (AES-256) y consultas con latencia sub-milisegundo.",
+        image: "https://placehold.co/800x450/0f172a/38bdf8?text=KGB+KNOWLEDGE+BASE",
         tech: ["Python", "DuckDB", "Gemini RAG", "AES-256", "Streamlit"],
         link: "",
         github: "https://github.com/benhidalgov/KGB"

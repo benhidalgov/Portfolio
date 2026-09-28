@@ -18,26 +18,53 @@ export default function KagePreloader({ onDone }) {
   const [done, setDone] = useState(false);
 
   useEffect(() => {
-    let p = 0;
-    const tick = setInterval(() => {
-      p += Math.floor(Math.random() * 14) + 5;
-      if (p >= 100) {
-        p = 100;
-        clearInterval(tick);
-        // Fade out
-        setTimeout(() => {
-          setDone(true);
-          setTimeout(() => { if (onDone) onDone(); }, 700);
-        }, 300);
-      }
-      setProgress(p);
-    }, 120);
+    let raf;
+    let finished = false;
+    const start = performance.now();
+    const CREEP_MS = 1400;   // ritmo del avance simulado hasta 90%
+    const HARD_CAP_MS = 2200; // techo: nunca retener al visitante mas que esto
+
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      cancelAnimationFrame(raf);
+      setProgress(100);
+      setDone(true);
+      setTimeout(() => { if (onDone) onDone(); }, 520);
+    };
+
+    // Avance simulado: rapido al inicio, se frena cerca del 90%.
+    // Es solo feedback visual; el 100% lo dispara el load real.
+    const creep = () => {
+      const t = Math.min((performance.now() - start) / CREEP_MS, 1);
+      setProgress(Math.round(90 * (1 - Math.pow(1 - t, 2))));
+      if (t < 1) raf = requestAnimationFrame(creep);
+    };
+    raf = requestAnimationFrame(creep);
+
+    // La senal real: el documento termino de cargar.
+    const onLoad = () => {
+      // Pequeno piso para que el ojo alcance a ver el estado final.
+      const elapsed = performance.now() - start;
+      setTimeout(finish, Math.max(0, 450 - elapsed));
+    };
+    if (document.readyState === 'complete') onLoad();
+    else window.addEventListener('load', onLoad, { once: true });
+
+    // Techo de seguridad por si load ya ocurrio o algo se cuelga.
+    const cap = setTimeout(finish, HARD_CAP_MS);
 
     const oathTick = setInterval(() => {
       setOathIdx(i => (i + 1) % OATHS.length);
-    }, 1600);
+    }, 1400);
 
-    return () => { clearInterval(tick); clearInterval(oathTick); };
+    return () => {
+      finished = true;
+      cancelAnimationFrame(raf);
+      clearTimeout(cap);
+      clearInterval(oathTick);
+      window.removeEventListener('load', onLoad);
+    };
   }, [onDone]);
 
   return (

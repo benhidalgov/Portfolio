@@ -1,6 +1,5 @@
 import React, { Suspense, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
 
 // Estilos Globales
 import './index.css';
@@ -15,9 +14,9 @@ import { playTerminalBip } from './utils/sound.js';
 // Components for non-home pages (sidebar layout)
 import Sidebar from './Components/Sidebar/Sidebar.jsx';
 import Footer from './Components/Footer/Footer.jsx';
-import PageTransition from './Components/PageTransition/PageTransition.jsx';
 import Loading from './Components/Loading/Loading.jsx';
 import CustomCursor from './Components/CustomCursor/CustomCursor.jsx';
+import { useReveal } from './utils/useReveal.js';
 
 // Lazy-loaded pages
 const KageHome       = React.lazy(() => import('./Pages/Home/KageHome.jsx'));
@@ -28,16 +27,22 @@ const CategoryDetail = React.lazy(() => import('./Pages/Projects/CategoryDetail.
 
 // Wrapper for sidebar pages
 function SidebarLayout({ children }) {
+  const location = useLocation();
+  // Re-observa al cambiar de ruta: cada página monta sus propios [data-rv].
+  useReveal(`.main-content-body[data-route="${location.pathname}"]`);
+
   return (
     <div className="app-container">
+      {/* Atmósfera compartida con el Home (definidas en index.css). */}
+      <div id="vignette" />
+      <div id="grain" />
+
       <Sidebar />
       <div className="main-content-area">
-        <div className="main-content-body">
-          <AnimatePresence mode="wait">
-            <Suspense fallback={<Loading />}>
-              {children}
-            </Suspense>
-          </AnimatePresence>
+        <div className="main-content-body" data-route={location.pathname}>
+          <Suspense fallback={<Loading />}>
+            {children}
+          </Suspense>
         </div>
         <Footer />
       </div>
@@ -75,17 +80,15 @@ function App() {
         // ── Other pages keep the sidebar layout
         <SidebarLayout>
           <Routes location={location} key={location.pathname}>
-            <Route path="/about"    element={<PageTransition><About /></PageTransition>} />
-            <Route path="/projects" element={<PageTransition><Projects /></PageTransition>} />
-            <Route path="/Next"     element={<PageTransition><Next /></PageTransition>} />
-            <Route path="/projects/:categoryId" element={<PageTransition><CategoryDetail /></PageTransition>} />
+            <Route path="/about"    element={<About />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/Next"     element={<Next />} />
+            <Route path="/projects/:categoryId" element={<CategoryDetail />} />
             <Route path="*" element={
-              <PageTransition>
-                <div style={{ padding: '50px', textAlign: 'center' }}>
-                  <h1 className="glitch-text" data-text="404">404</h1>
-                  <p>Página no encontrada.</p>
-                </div>
-              </PageTransition>
+              <div style={{ padding: '50px', textAlign: 'center' }}>
+                <h1 className="glitch-text" data-text="404">404</h1>
+                <p>Página no encontrada.</p>
+              </div>
             } />
           </Routes>
         </SidebarLayout>

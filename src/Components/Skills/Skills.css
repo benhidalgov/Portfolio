@@ -1,29 +1,7 @@
-/* --- Skills Section: RADIANT ABILITIES PANEL --- */
-
-.skills-section {
-    font-family: var(--font-code);
-    padding: 4rem 0 2rem;
-    margin-top: 3rem;
-    color: var(--color-text);
-    border-top: 1px solid var(--color-border-subtle);
-    position: relative;
-}
-
-/* === TITLE === */
-.skills-title {
-    font-size: 1.4rem;
-    color: var(--color-primary);
-    text-align: center;
-    margin-bottom: 3rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    text-shadow: var(--storm-text-glow);
-    font-weight: 700;
-    font-family: var(--font-primary);
-}
-
-.skills-title::before { content: '◆ '; color: var(--color-border); }
-.skills-title::after  { content: ' ◆'; color: var(--color-border); }
+/* --- Skills Section: RADIANT ABILITIES PANEL ---
+   Nota: .skills-section y .skills-title se eliminaron (huerfanos, el componente
+   Skills no esta montado). Se conserva el resto: about.jsx importa este archivo
+   y reutiliza .skills-grid, .skill-category-card, .skill-tag, etc. */
 
 /* === SKILLS GRID === */
 .skills-grid {
@@ -375,11 +353,6 @@ html[data-theme="light"] .cert-badge:hover .cert-badge-label {
     .skills-grid {
         grid-template-columns: 1fr;
         gap: 1.2rem;
-    }
-
-    .skills-title {
-        font-size: 1.1rem;
-        letter-spacing: 0.1em;
     }
 
     .cert-grid {

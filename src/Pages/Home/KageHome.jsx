@@ -7,6 +7,7 @@ import KageRail from '../../Components/KageRail/KageRail.jsx';
 import KagePreloader from '../../Components/KagePreloader/KagePreloader.jsx';
 import { homeSkills } from '../../data/skills.js';
 import { projectData } from '../../data/project.jsx';
+import { getLoadingPerformance } from '../../utils/readingMetrics.js';
 import './KageHome.css';
 
 // Sections config
@@ -41,7 +42,25 @@ export default function KageHome() {
   const [preloaderDone, setPreloaderDone] = useState(false);
   const [activeSection, setActiveSection] = useState(0);
   const [copied, setCopied] = useState(false);
+  const [perfMetrics, setPerfMetrics] = useState(null);
   const sectionRefs = useRef([]);
+
+  useEffect(() => {
+    const measurePerf = () => {
+      const metrics = getLoadingPerformance();
+      if (metrics.loadTimeMs > 0) {
+        setPerfMetrics(metrics);
+      }
+    };
+
+    if (document.readyState === 'complete') {
+      const timer = setTimeout(measurePerf, 150);
+      return () => clearTimeout(timer);
+    } else {
+      window.addEventListener('load', measurePerf, { once: true });
+      return () => window.removeEventListener('load', measurePerf);
+    }
+  }, [preloaderDone]);
 
   const handleCopyEmail = useCallback(async () => {
     try {
@@ -135,8 +154,8 @@ export default function KageHome() {
         >
           <div className="kh-hero-top">
             <div className="kh-eyebrow" data-rv="fade">
-              <span className="kh-dot" />
-              Capítulo 00 — Caballero Radiante
+              <kbd>CAP_00</kbd>
+              <span>Archivo de Ingeniería & Caballero Radiante</span>
             </div>
             <h1 className="kh-display kh-h-hero">
               <span className="mask-line"><span>Hola, soy</span></span>
@@ -145,7 +164,7 @@ export default function KageHome() {
             </h1>
             <p className="kh-hero-sub" data-rv="up">
               Ingeniero Informático en proceso — construyendo sistemas escalables,
-              interfaces elegantes y soluciones que perduran.
+              interfaces de precisión técnica y arquitecturas que perduran.
             </p>
           </div>
 
@@ -160,8 +179,9 @@ export default function KageHome() {
             {/* Chapter chips */}
             <div className="kh-chips">
               {['Sobre Mí', 'Habilidades', 'Proyectos', 'Contacto'].map((label, i) => (
-                <div
+                <button
                   key={label}
+                  type="button"
                   className={`kh-chip ${activeSection === i + 1 ? 'on' : ''}`}
                   data-rv="up"
                   onClick={() => {
@@ -169,17 +189,17 @@ export default function KageHome() {
                     if (el) el.scrollIntoView({ behavior: 'smooth' });
                   }}
                 >
-                  <span className="kh-chip-num">0{i + 1}</span>
+                  <kbd className="kh-chip-kbd">0{i + 1}</kbd>
                   <span className="kh-chip-tx">
                     <b>{label}</b>
                     <p>{[
                       'Conoce al Radiante',
                       'Arsenal técnico',
-                      'Crónicas de ingeniería',
+                      'Bento de proyectos',
                       'Abre un vínculo',
                     ][i]}</p>
                   </span>
-                </div>
+                </button>
               ))}
             </div>
           </div>
@@ -197,7 +217,7 @@ export default function KageHome() {
           ref={el => setRef(el, 1)}
         >
           <div className="kh-sec-head" data-rv="fade">
-            <span className="kh-sec-k"><b>01</b> — El Radiante</span>
+            <span className="kh-sec-k"><kbd>01</kbd> — El Radiante</span>
             <span className="kh-rule" />
             <span className="kh-sec-k">Sobre Mí</span>
           </div>
@@ -208,25 +228,25 @@ export default function KageHome() {
             </h2>
             <div className="kh-gate-copy">
               <p className="kh-lead" data-rv="up">
-                Soy Benjamín Hidalgo, estudiante de Ingeniería Informática con pasión por
-                la arquitectura de sistemas, el desarrollo Full-Stack y la ciberseguridad.
-                Construyo con propósito, diseño con precisión.
+                Soy Benjamín Hidalgo, estudiante de Ingeniería Informática con enfoque en
+                arquitectura de sistemas, ingeniería de software Full-Stack y ciberseguridad.
+                Construyo con rigor, diseño con sobriedad y propósito.
               </p>
               <p className="kh-body" data-rv="up">
-                Mis proyectos van desde tableros Kanban con Supabase y React hasta
-                microservicios en Go, landing pages de alta gama y sistemas de inventario.
-                Cada línea de código es un juramento pronunciado.
+                Mis proyectos abarcan desde tableros de gestión reactiva y microservicios concurrentes
+                en Go hasta sistemas de indexación documental con RAG vectorial. Cada desarrollo
+                constituye un juramento de calidad técnica.
               </p>
-              <ArrowLink to="/about" data-rv="fade">Conoce al Radiante</ArrowLink>
+              <ArrowLink to="/about" data-rv="fade">Dossier del Radiante</ArrowLink>
             </div>
           </div>
 
           {/* Stats */}
           <div className="kh-gate-stats" data-rv="up">
-            <div><b>4+</b><span>Proyectos</span></div>
-            <div><b>8+</b><span>Certificaciones</span></div>
-            <div><b>3+</b><span>Años de estudio</span></div>
-            <div><b>∞</b><span>Ideales</span></div>
+            <div><b>04+</b><span>Proyectos Producción</span></div>
+            <div><b>08+</b><span>Certificaciones</span></div>
+            <div><b>03+</b><span>Años de Formación</span></div>
+            <div><b>∞</b><span>Ideales & Rigor</span></div>
           </div>
         </section>
 
@@ -237,7 +257,7 @@ export default function KageHome() {
           ref={el => setRef(el, 2)}
         >
           <div className="kh-sec-head" data-rv="fade">
-            <span className="kh-sec-k"><b>02</b> — Arsenal Técnico</span>
+            <span className="kh-sec-k"><kbd>02</kbd> — Arsenal Técnico</span>
             <span className="kh-rule" />
             <span className="kh-sec-k">Habilidades</span>
           </div>
@@ -245,42 +265,33 @@ export default function KageHome() {
           <div className="kh-cards">
             {SKILL_CATS.map((cat, i) => (
               <article className="kh-card" key={cat.title} data-rv="up">
-                <div className="kh-card-fr">
-                  <span className="kh-card-ar">
-                    <svg viewBox="0 0 14 14" fill="none">
-                      <path d="M3 11 11 3M5 3h6v6" stroke="currentColor" strokeWidth="1.3"/>
-                    </svg>
-                  </span>
-                  {/* Ambient glow */}
-                  <div className="kh-card-glow" />
-                  <div className="kh-card-lab">
-                    <b>{cat.title}</b>
-                    <span className="kh-card-num">ORD_{String(i + 1).padStart(2, '0')}</span>
-                  </div>
+                <div className="kh-card-top">
+                  <kbd>ORD_0{i + 1}</kbd>
+                  <span className="kh-card-counter">0{i + 1} / 0{SKILL_CATS.length}</span>
                 </div>
-                <div className="kh-card-meta">
-                  <span>{cat.skills.slice(0, 3).join(' · ')}</span>
-                  <span>0{i + 1} / 0{SKILL_CATS.length}</span>
-                </div>
-                {/* Expanded tag list */}
+                <h3 className="kh-card-title">{cat.title}</h3>
                 <div className="kh-card-tags">
-                  {cat.skills.map(s => (
-                    <span key={s} className="kh-tag">{s}</span>
-                  ))}
+                  {cat.skills.map((s, idx) => {
+                    const pastelTypes = ['pastel-blue', 'pastel-green', 'pastel-amber', 'pastel-purple'];
+                    const pastelClass = pastelTypes[(i + idx) % pastelTypes.length];
+                    return (
+                      <span key={s} className={`kh-pill ${pastelClass}`}>{s}</span>
+                    );
+                  })}
                 </div>
               </article>
             ))}
           </div>
         </section>
 
-        {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ PROJECTS (Chapter III) */}
+        {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ PROJECTS (Chapter III - Bento Grid) */}
         <section
           className="kh-sec kage-sec"
           id="projects"
           ref={el => setRef(el, 3)}
         >
           <div className="kh-sec-head" data-rv="fade">
-            <span className="kh-sec-k"><b>03</b> — Crónicas</span>
+            <span className="kh-sec-k"><kbd>03</kbd> — Crónicas</span>
             <span className="kh-rule" />
             <span className="kh-sec-k">Proyectos</span>
           </div>
@@ -290,46 +301,215 @@ export default function KageHome() {
               Cada proyecto, un juramento pronunciado.
             </h2>
             <p className="kh-body-lg" data-rv="up">
-              Sistemas completos, desde el modelo de datos hasta la interfaz. Construidos
-              para escalar, diseñados para impresionar.
+              Sistemas completos, desde el modelo de datos y concurrencia hasta la interfaz de usuario.
+              Arquitecturas modulares diseñadas para perdurar.
             </p>
           </div>
 
-          <div className="kh-cur">
-            {FEATURED_PROJECTS.map((proj, i) => (
-              <div className="kh-les" key={proj.id} data-rv="fade">
-                <span className="kh-les-k">0{i + 1}</span>
-                <h3 className="kh-les-h">{proj.title}</h3>
-                <p className="kh-les-p">{proj.description.substring(0, 90)}…</p>
-                <div className="kh-les-tech">
-                  {(proj.tech || []).slice(0, 3).map(t => (
-                    <span key={t} className="kh-tech-pill">{t}</span>
-                  ))}
+          {/* Bento Box Asymmetrical Grid */}
+          <div className="kh-bento-grid">
+            {/* Card 1: TaskManager (Large Span - 2 cols) */}
+            <article className="kh-bento-card kh-bento-featured" data-rv="up">
+              <div className="kh-faux-chrome">
+                <div className="kh-chrome-dots">
+                  <span /><span /><span />
                 </div>
-                <div className="kh-les-links">
-                  {proj.slug && (
-                    <Link to={`/projects/${proj.slug}`} className="kh-les-link">
-                      Dossier
-                    </Link>
-                  )}
-                  {proj.link && (
-                    <a href={proj.link} target="_blank" rel="noopener noreferrer" className="kh-les-link">
-                      Demo ↗
-                    </a>
-                  )}
-                  {proj.github && (
-                    <a href={proj.github} target="_blank" rel="noopener noreferrer" className="kh-les-link">
-                      GitHub
-                    </a>
-                  )}
-                </div>
-                <div className="kh-les-bar" />
+                <span className="kh-chrome-path">taskmanager.benhidalgo.dev</span>
+                <span className="kh-bento-badge pastel-blue">SUPABASE + RLS</span>
               </div>
-            ))}
+              <div className="kh-bento-body">
+                <div className="kh-bento-meta">
+                  <kbd>PRJ_01</kbd>
+                  <span className="kh-bento-sub">Gestión & Arquitectura Reactiva</span>
+                </div>
+                <h3 className="kh-bento-title">TaskManager (Kanban)</h3>
+                <p className="kh-bento-desc">
+                  Tablero Kanban Fullstack de alta fidelidad. Drag & Drop fluido, autenticación segura, persistencia en PostgreSQL con políticas RLS granulares y gestión de estado optimista con Zustand.
+                </p>
+                <div className="kh-bento-tech">
+                  <span className="kh-pill pastel-blue">TypeScript</span>
+                  <span className="kh-pill pastel-blue">React</span>
+                  <span className="kh-pill pastel-green">Supabase</span>
+                  <span className="kh-pill pastel-amber">PostgreSQL</span>
+                  <span className="kh-pill pastel-purple">Zustand</span>
+                </div>
+                <div className="kh-bento-actions">
+                  <Link to="/projects/taskmanager" className="kh-bento-link primary">
+                    <span>Dossier</span>
+                    <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M3 11 11 3M5 3h6v6" stroke="currentColor" strokeWidth="1.4"/></svg>
+                  </Link>
+                  <a href="https://github.com/benhidalgov/TaskManager" target="_blank" rel="noopener noreferrer" className="kh-bento-link">
+                    <span>GitHub ↗</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            {/* Card 2: KGB Knowledge Base (1 col) */}
+            <article className="kh-bento-card" data-rv="up">
+              <div className="kh-bento-header-compact">
+                <kbd>PRJ_02</kbd>
+                <span className="kh-bento-badge pastel-green">GEMINI RAG</span>
+              </div>
+              <div className="kh-bento-body">
+                <h3 className="kh-bento-title">Consola Knowledge Base (KGB)</h3>
+                <p className="kh-bento-desc">
+                  Plataforma corporativa de conocimiento técnico: indexación en memoria con DuckDB, embeddings semánticos con Gemini RAG, bóveda cifrada en AES-256 y latencia sub-milisegundo.
+                </p>
+                <div className="kh-bento-tech">
+                  <span className="kh-pill pastel-green">Python</span>
+                  <span className="kh-pill pastel-green">DuckDB</span>
+                  <span className="kh-pill pastel-amber">Gemini RAG</span>
+                  <span className="kh-pill pastel-red">AES-256</span>
+                </div>
+                <div className="kh-bento-actions">
+                  <Link to="/projects/kgb" className="kh-bento-link primary">
+                    <span>Dossier</span>
+                    <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M3 11 11 3M5 3h6v6" stroke="currentColor" strokeWidth="1.4"/></svg>
+                  </Link>
+                  <a href="https://github.com/benhidalgov/KGB" target="_blank" rel="noopener noreferrer" className="kh-bento-link">
+                    <span>GitHub ↗</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            {/* Card 3: API Inventario Golang (1 col) */}
+            <article className="kh-bento-card" data-rv="up">
+              <div className="kh-bento-header-compact">
+                <kbd>PRJ_03</kbd>
+                <span className="kh-bento-badge pastel-blue">CONCURRENCY</span>
+              </div>
+              <div className="kh-bento-body">
+                <h3 className="kh-bento-title">API Inventario Golang</h3>
+                <p className="kh-bento-desc">
+                  Microservicio backend de inventario de alto rendimiento. Arquitectura limpia, sincronización thread-safe con sync.Mutex, Repository pattern y persistencia SQLite embebida.
+                </p>
+                <div className="kh-bento-tech">
+                  <span className="kh-pill pastel-blue">Go</span>
+                  <span className="kh-pill pastel-blue">SQLite</span>
+                  <span className="kh-pill pastel-green">sync.Mutex</span>
+                  <span className="kh-pill pastel-amber">Clean Arch</span>
+                </div>
+                <div className="kh-bento-actions">
+                  <Link to="/projects/golang" className="kh-bento-link primary">
+                    <span>Dossier</span>
+                    <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M3 11 11 3M5 3h6v6" stroke="currentColor" strokeWidth="1.4"/></svg>
+                  </Link>
+                  <a href="https://github.com/benhidalgov/Inventario_Golang" target="_blank" rel="noopener noreferrer" className="kh-bento-link">
+                    <span>GitHub ↗</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            {/* Card 4: Autodocs (1 col) */}
+            <article className="kh-bento-card" data-rv="up">
+              <div className="kh-bento-header-compact">
+                <kbd>PRJ_04</kbd>
+                <span className="kh-bento-badge pastel-amber">ENTERPRISE</span>
+              </div>
+              <div className="kh-bento-body">
+                <h3 className="kh-bento-title">Autodocs (Sistema Tickets)</h3>
+                <p className="kh-bento-desc">
+                  Gestión corporativa de soporte y tickets técnicos. Validación algorítmica de RUT chileno (Módulo 11), backend modular desacoplado, Prisma ORM y despliegue continuo en Vercel.
+                </p>
+                <div className="kh-bento-tech">
+                  <span className="kh-pill pastel-blue">TypeScript</span>
+                  <span className="kh-pill pastel-amber">Prisma ORM</span>
+                  <span className="kh-pill pastel-green">Vercel</span>
+                </div>
+                <div className="kh-bento-actions">
+                  <Link to="/projects/autodocs" className="kh-bento-link primary">
+                    <span>Dossier</span>
+                    <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M3 11 11 3M5 3h6v6" stroke="currentColor" strokeWidth="1.4"/></svg>
+                  </Link>
+                  <a href="https://autodocs-mu.vercel.app" target="_blank" rel="noopener noreferrer" className="kh-bento-link">
+                    <span>Demo ↗</span>
+                  </a>
+                  <a href="https://github.com/benhidalgov/Autodocs" target="_blank" rel="noopener noreferrer" className="kh-bento-link">
+                    <span>GitHub</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            {/* Card 5: Minutera Web App (1 col) */}
+            <article className="kh-bento-card" data-rv="up">
+              <div className="kh-bento-header-compact">
+                <kbd>PRJ_05</kbd>
+                <span className="kh-bento-badge pastel-green">PRODUCTIVITY</span>
+              </div>
+              <div className="kh-bento-body">
+                <h3 className="kh-bento-title">Minutera Web App</h3>
+                <p className="kh-bento-desc">
+                  Aplicación web orientada a la trazabilidad operativa: catalogación de acuerdos de equipo, seguimiento de compromisos semanales y gestión de acuerdos en tiempo real.
+                </p>
+                <div className="kh-bento-tech">
+                  <span className="kh-pill pastel-blue">TypeScript</span>
+                  <span className="kh-pill pastel-blue">React</span>
+                  <span className="kh-pill pastel-green">Vite</span>
+                  <span className="kh-pill pastel-purple">Vercel</span>
+                </div>
+                <div className="kh-bento-actions">
+                  <Link to="/projects/minutera" className="kh-bento-link primary">
+                    <span>Dossier</span>
+                    <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M3 11 11 3M5 3h6v6" stroke="currentColor" strokeWidth="1.4"/></svg>
+                  </Link>
+                  <a href="https://minutera.vercel.app" target="_blank" rel="noopener noreferrer" className="kh-bento-link">
+                    <span>Demo ↗</span>
+                  </a>
+                  <a href="https://github.com/benhidalgov/Minutera" target="_blank" rel="noopener noreferrer" className="kh-bento-link">
+                    <span>GitHub</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            {/* Card 6: Portafolio Roshar (Wide Span - 3 cols) */}
+            <article className="kh-bento-card kh-bento-wide" data-rv="up">
+              <div className="kh-faux-chrome">
+                <div className="kh-chrome-dots">
+                  <span /><span /><span />
+                </div>
+                <span className="kh-chrome-path">urithiru-terminal // webgl-shaders</span>
+                <span className="kh-bento-badge pastel-purple">THREE.JS + REACT 19</span>
+              </div>
+              <div className="kh-bento-body kh-bento-wide-body">
+                <div className="kh-bento-wide-content">
+                  <div className="kh-bento-meta">
+                    <kbd>PRJ_06</kbd>
+                    <span className="kh-bento-sub">Gráficos 3D & Sistema de Audio Web</span>
+                  </div>
+                  <h3 className="kh-bento-title">Portafolio Roshar</h3>
+                  <p className="kh-bento-desc">
+                    Plataforma técnica interactiva con estética de El Archivo de las Tormentas. Shaders WebGL interactivos con Three.js, síntesis sonora Web Audio API, cursor Shardblade reactivo y arquitectura modular dividida en chunks de alto rendimiento.
+                  </p>
+                </div>
+                <div className="kh-bento-wide-side">
+                  <div className="kh-bento-tech">
+                    <span className="kh-pill pastel-purple">React 19</span>
+                    <span className="kh-pill pastel-blue">Three.js</span>
+                    <span className="kh-pill pastel-green">Web Audio API</span>
+                    <span className="kh-pill pastel-amber">Framer Motion</span>
+                    <span className="kh-pill pastel-blue">Vite</span>
+                  </div>
+                  <div className="kh-bento-actions">
+                    <Link to="/projects/portfolio" className="kh-bento-link primary">
+                      <span>Dossier</span>
+                      <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M3 11 11 3M5 3h6v6" stroke="currentColor" strokeWidth="1.4"/></svg>
+                    </Link>
+                    <a href="https://github.com/benhidalgov/Portfolio" target="_blank" rel="noopener noreferrer" className="kh-bento-link">
+                      <span>GitHub ↗</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </article>
           </div>
 
-          <div style={{ marginTop: '2rem' }} data-rv="fade">
-            <ArrowLink to="/projects">Ver todos los proyectos</ArrowLink>
+          <div style={{ marginTop: '2.5rem' }} data-rv="fade">
+            <ArrowLink to="/projects">Explorar archivo completo de proyectos</ArrowLink>
           </div>
         </section>
 
@@ -340,34 +520,32 @@ export default function KageHome() {
           ref={el => setRef(el, 4)}
         >
           <div className="kh-eyebrow" data-rv="fade">
-            <span className="kh-dot" />
-            Capítulo 04 — Vínculo Spren
+            <kbd>CAP_04</kbd>
+            <span>Vínculo Spren & Contacto</span>
           </div>
           <h2 className="kh-display kh-fin-h" data-rv="up">
             Abre<br />un vínculo.
           </h2>
           <p className="kh-body-lg" data-rv="up">
-            ¿Tienes un proyecto que requiere un Radiante? Escríbeme — cada
-            conversación es el primer paso de un juramento.
+            ¿Tienes un desafío técnico o una propuesta de ingeniería? Conversemos — cada
+            colaboración inicia con un primer contacto claro y directo.
           </p>
 
           <div className="kh-cta-row" data-rv="fade">
-            <a href="mailto:hidalgobenjaminv@gmail.com" className="kh-cta" title="Abrir cliente de correo">
-              <i />
+            <a href="mailto:hidalgobenjaminv@gmail.com" className="kh-cta kh-cta-primary" title="Abrir cliente de correo">
               <span>Enviar Correo</span>
               <svg viewBox="0 0 14 14" fill="none" width="13" height="13" aria-hidden="true">
-                <path d="M3 11 11 3M5 3h6v6" stroke="currentColor" strokeWidth="1.3"/>
+                <path d="M3 11 11 3M5 3h6v6" stroke="currentColor" strokeWidth="1.4"/>
               </svg>
             </a>
 
             <button
               type="button"
               onClick={handleCopyEmail}
-              className={`kh-cta kh-copy-btn ${copied ? 'copied' : ''}`}
+              className={`kh-cta kh-cta-secondary kh-copy-btn ${copied ? 'copied' : ''}`}
               title="Copiar dirección de correo al portapapeles"
               aria-label="Copiar correo hidalgobenjaminv@gmail.com"
             >
-              <i />
               {copied ? (
                 <span style={{ color: '#10b981', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -389,11 +567,13 @@ export default function KageHome() {
 
           <div className="kh-social-row" data-rv="up">
             <a href="https://github.com/benhidalgov" target="_blank" rel="noopener noreferrer" className="kh-social-link">
-              GitHub
+              <kbd>GH</kbd>
+              <span>github.com/benhidalgov</span>
             </a>
-            <span className="kh-social-sep">◆</span>
+            <span className="kh-social-sep">/</span>
             <a href="https://www.linkedin.com/in/benjamin-hidalgov/" target="_blank" rel="noopener noreferrer" className="kh-social-link">
-              LinkedIn
+              <kbd>IN</kbd>
+              <span>linkedin.com/in/benjamin-hidalgov</span>
             </a>
           </div>
         </section>
@@ -437,6 +617,14 @@ export default function KageHome() {
             <span>© 2026 Benjamín Hidalgo</span>
             <span className="kh-foot-oath">«Vida antes que muerte»</span>
             <span>React · Three.js · Vite</span>
+            {perfMetrics && perfMetrics.loadTimeMs > 0 && (
+              <span
+                style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--color-primary)', opacity: 0.9 }}
+                title={`DOM: ${perfMetrics.domReadyMs}ms | FCP: ${perfMetrics.fcpMs ? perfMetrics.fcpMs + 'ms' : 'N/A'}`}
+              >
+                ⚡ {perfMetrics.loadTimeMs}ms [{perfMetrics.rating}]
+              </span>
+            )}
           </div>
         </footer>
 

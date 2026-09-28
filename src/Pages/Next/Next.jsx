@@ -4,7 +4,7 @@ import { projectData } from './next.js';
 import '../../styles/next.css';
 import SEO from '../../Components/SEO/SEO.jsx';
 
-function ProjectsSummary() {
+function Next() {
   // Tomamos solo los primeros 3 proyectos para el resumen de la página Home
   const featuredProjects = projectData.slice(0, 3); 
 
@@ -14,7 +14,7 @@ function ProjectsSummary() {
         title="Próximos Pasos | Benjamin Hidalgo" 
         description="Explora mis futuros proyectos y áreas de aprendizaje continuo."
       />
-      <div className="summary-header">
+      <div className="summary-header" data-rv="up">
         <h2>Proyectos Destacados</h2>
         <Link to="/projects" className="view-all-link">
           Ver todos mis trabajos &rarr;
@@ -23,7 +23,7 @@ function ProjectsSummary() {
 
       <div className="summary-grid">
         {featuredProjects.map((project) => (
-          <div key={project.id} className="project-card-summary">
+          <div key={project.id} className="project-card-summary" data-rv="up">
             <img 
               src={project.image} 
               alt={project.title} 
@@ -56,4 +56,4 @@ function ProjectsSummary() {
   );
 }
 
-export default ProjectsSummary;
+export default Next;
