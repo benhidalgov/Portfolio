@@ -12,17 +12,19 @@ export const useTheme = () => {
 
 export const ThemeProvider = ({ children }) => {
     const [theme, setTheme] = useState(() => {
-        // Usa el tema guardado en localStorage o 'DARK' por defecto.
+        // Preferencia guardada, o la del sistema en la primera visita.
         // Se aplica sincrónicamente para evitar el destello (FOUC) al cargar.
-        const savedTheme = localStorage.getItem('theme') || 'DARK';
-        document.documentElement.setAttribute('data-theme', savedTheme.toLowerCase());
-        return savedTheme;
+        let saved = null;
+        try { saved = localStorage.getItem('theme'); } catch { /* storage bloqueado */ }
+        const initial = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'LIGHT' : 'DARK');
+        document.documentElement.setAttribute('data-theme', initial.toLowerCase());
+        return initial;
     });
 
     const toggleTheme = () => {
         setTheme(prevTheme => {
             const newTheme = prevTheme === 'DARK' ? 'LIGHT' : 'DARK';
-            localStorage.setItem('theme', newTheme);
+            try { localStorage.setItem('theme', newTheme); } catch { /* storage bloqueado */ }
             return newTheme;
         });
     };

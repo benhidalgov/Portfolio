@@ -7,4 +7,11 @@
   z-index: 0;
   background: var(--color-background, #0a0e1a);
   transition: background 0.5s ease;
+  animation: kage-gl-in 0.8s ease both;
+}
+
+/* El canvas entra después del hero (chunk diferido): que no aparezca de golpe. */
+@keyframes kage-gl-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }

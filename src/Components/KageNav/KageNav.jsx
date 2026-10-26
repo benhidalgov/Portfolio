@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useTheme } from '../../Context/ThemeContext.jsx';
 import RadiantSeal from '../Glyphs/RadiantSeal.jsx';
 import './KageNav.css';
@@ -13,7 +13,6 @@ const NAV_LINKS = [
 
 export default function KageNav() {
   const { theme, toggleTheme } = useTheme();
-  const location = useLocation();
   const [stuck, setStuck] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -35,13 +34,12 @@ export default function KageNav() {
     document.documentElement.classList.toggle('nav-open', menuOpen);
   }, [menuOpen]);
 
-  const handleNavClick = (hash) => {
+  // Enlaces reales: la URL guarda la sección (/#skills) y el scroll es inmediato
+  // cuando ya estamos en el home, sin depender de un cambio de hash.
+  const goToSection = (id) => {
     setMenuOpen(false);
-    if (location.pathname === '/') {
-      // Same-page scroll
-      const el = document.querySelector(hash);
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    }
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   return (
@@ -62,26 +60,24 @@ export default function KageNav() {
 
       {/* Desktop nav links */}
       <nav className="kage-nav-links" id="kage-navlinks">
-        {NAV_LINKS.map(({ to, label, sub }) => {
-          const hash = to.split('#')[1] ? `#${to.split('#')[1]}` : to;
-          return (
-            <button
-              key={to}
-              className="kage-nav-link"
-              onClick={() => handleNavClick(hash)}
-            >
-              <span>{label}</span>
-              <span className="alt">{sub}</span>
-            </button>
-          );
-        })}
+        {NAV_LINKS.map(({ to, label, sub }) => (
+          <Link
+            key={to}
+            to={to}
+            className="kage-nav-link"
+            onClick={() => goToSection(to.split('#')[1])}
+          >
+            <span>{label}</span>
+            <span className="alt">{sub}</span>
+          </Link>
+        ))}
         {/* Other pages */}
         <Link to="/projects" className="kage-nav-link" onClick={() => setMenuOpen(false)}>
           <span>Portafolio</span>
           <span className="alt">Archivo</span>
         </Link>
         <Link to="/about" className="kage-nav-link" onClick={() => setMenuOpen(false)}>
-          <span>Sobre Mí</span>
+          <span>Dossier</span>
           <span className="alt">Perfil</span>
         </Link>
       </nav>

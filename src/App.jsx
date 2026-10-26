@@ -22,14 +22,11 @@ import { useReveal } from './utils/useReveal.js';
 const KageHome       = React.lazy(() => import('./Pages/Home/KageHome.jsx'));
 const About          = React.lazy(() => import('./Pages/about/about.jsx'));
 const Projects       = React.lazy(() => import('./Pages/Projects/projects.jsx'));
-const Next           = React.lazy(() => import('./Pages/Next/Next.jsx'));
 const CategoryDetail = React.lazy(() => import('./Pages/Projects/CategoryDetail.jsx'));
 
 // Wrapper for sidebar pages
 function SidebarLayout({ children }) {
   const location = useLocation();
-  // Re-observa al cambiar de ruta: cada página monta sus propios [data-rv].
-  useReveal(`.main-content-body[data-route="${location.pathname}"]`);
 
   return (
     <div className="app-container">
@@ -41,6 +38,10 @@ function SidebarLayout({ children }) {
       <div className="main-content-area">
         <div className="main-content-body" data-route={location.pathname}>
           <Suspense fallback={<Loading />}>
+            {/* Dentro del Suspense: si observara antes de que el chunk de la
+                página monte, no encontraría ningún [data-rv] y el contenido
+                quedaría invisible. */}
+            <RevealScope scope={`.main-content-body[data-route="${location.pathname}"]`} />
             {children}
           </Suspense>
         </div>
@@ -48,6 +49,11 @@ function SidebarLayout({ children }) {
       </div>
     </div>
   );
+}
+
+function RevealScope({ scope }) {
+  useReveal(scope);
+  return null;
 }
 
 function App() {
@@ -82,7 +88,6 @@ function App() {
           <Routes location={location} key={location.pathname}>
             <Route path="/about"    element={<About />} />
             <Route path="/projects" element={<Projects />} />
-            <Route path="/Next"     element={<Next />} />
             <Route path="/projects/:categoryId" element={<CategoryDetail />} />
             <Route path="*" element={
               <div style={{ padding: '50px', textAlign: 'center' }}>

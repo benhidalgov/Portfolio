@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import { projectData } from '../../data/project.jsx'; 
+import { projects } from '../../data/projects.js';
 import './projects.css';
 import SEO from '../../Components/SEO/SEO.jsx';
-import { calculateReadingTime } from '../../utils/readingMetrics.js';
+import ProjectThumb from '../../Components/ProjectThumb/ProjectThumb.jsx';
 
 function ProjectsFull() {
   return (
@@ -17,28 +17,16 @@ function ProjectsFull() {
       </div>
 
       <div className="summary-grid">
-        {projectData.map((project) => {
-          const reading = calculateReadingTime(project.description);
-          return (
+        {projects.map((project) => (
           <div key={project.id} className="project-card-summary data-slate" data-rv="up">
             <div className="slate-decorator-top"></div>
-            <img 
-              src={project.image} 
-              alt={project.title} 
-              className="project-image"
-              onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/400x250/222222/00ff00?text=IMG+ERROR"; }}
-            />
+            <ProjectThumb project={project} className="project-image" />
             <div className="scanline-hover"></div>
             <div className="card-content">
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: '0.5rem', marginBottom: '0.25rem' }}>
-                <h3 style={{ margin: 0 }}>{project.title}</h3>
-                <span style={{ fontSize: '0.72rem', fontFamily: 'var(--font-mono)', color: 'var(--color-primary)', opacity: 0.85, whiteSpace: 'nowrap' }}>
-                  {reading.text}
-                </span>
-              </div>
-              <p>{project.description}</p>
+              <h3>{project.title}</h3>
+              <p>{project.summary}</p>
               <div className="card-tech">
-                {(project.tech || project.techStack || []).map((tech) => (
+                {project.tech.map((tech) => (
                   <span key={tech} className="tech-tag">{tech}</span>
                 ))}
               </div>
@@ -77,7 +65,7 @@ function ProjectsFull() {
             </div>
             <div className="slate-decorator-bottom"></div>
           </div>
-        ); })}
+        ))}
       </div>
     </section>
   );

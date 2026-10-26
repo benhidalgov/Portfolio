@@ -3,9 +3,15 @@
   <head>
     <script>
       (function () {
+        var root = document.documentElement;
+        // Marca de JS activo: sin ella, index.css muestra el contenido sin animar.
+        root.classList.add('js');
         try {
-          var t = localStorage.getItem('theme') || 'DARK';
-          document.documentElement.setAttribute('data-theme', t.toLowerCase());
+          var t = localStorage.getItem('theme');
+          if (!t) {
+            t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'LIGHT' : 'DARK';
+          }
+          root.setAttribute('data-theme', t.toLowerCase());
         } catch (e) {}
       })();
     </script>
@@ -23,10 +29,10 @@
     <!-- Favicon Oficial Radiante -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- Preconexión de Fuentes para optimizar carga inicial (FCP) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Geist+Mono:wght@400;500;600&family=Geist:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+    <!-- Fuentes self-hosted: sin conexión a fonts.googleapis.com (ver public/fonts/fonts.css) -->
+    <link rel="preload" href="/fonts/instrument-serif-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/fonts/fonts.css" />
 
     <!-- Open Graph (WhatsApp, LinkedIn, Discord, Facebook) -->
     <meta property="og:type" content="website" />
@@ -47,6 +53,15 @@
     <meta name="twitter:image" content="https://portfolio-bice-eight-77.vercel.app/og-image.jpg" />
   </head>
   <body>
+    <noscript>
+      <div style="min-height:100vh;display:grid;place-items:center;padding:2rem;text-align:center;background:#0A0E1A;color:#F1F5F9;font-family:Georgia,serif">
+        <p>
+          Este portafolio necesita JavaScript para funcionar.<br />
+          Escríbeme a
+          <a href="mailto:hidalgobenjaminv@gmail.com" style="color:#38BDF8">hidalgobenjaminv@gmail.com</a>.
+        </p>
+      </div>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

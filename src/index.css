@@ -258,6 +258,14 @@ html {
 [data-rv="up"] { transform: translate3d(0, 28px, 0); }
 [data-rv="fade"] { transform: none; }
 
+/* Sin JS no hay observer que añada .rv-in: el contenido debe verse igual. */
+html:not(.js) [data-rv],
+html:not(.js) .mask-line > span,
+html:not(.js) .word {
+    opacity: 1;
+    transform: none;
+}
+
 [data-rv].rv-in {
     opacity: 1; transform: none;
     transition: opacity .9s var(--ease-out), transform 1.05s var(--ease-out);
@@ -271,6 +279,10 @@ html {
     transform: none;
     transition: transform 1.05s var(--ease-out);
 }
+
+/* Escalonado del titular: cada línea entra 90ms después de la anterior. */
+.mask-line:nth-child(2) > span { transition-delay: .09s; }
+.mask-line:nth-child(3) > span { transition-delay: .18s; }
 
 /* Word-by-word reveal */
 .word-mask { display: inline-block; overflow: hidden; vertical-align: top; }
@@ -312,6 +324,7 @@ html {
     /* 1. Reveals: mostrar contenido sin animar */
     [data-rv] { opacity: 1 !important; transform: none !important; }
     .mask-line > span, .word { opacity: 1 !important; transform: none !important; }
+    .mask-line > span { transition-delay: 0s !important; }
 
     /* 2. Neutralizar animaciones decorativas infinitas en todo el sitio.
        !important gana a las declaraciones de los componentes (misma especificidad,

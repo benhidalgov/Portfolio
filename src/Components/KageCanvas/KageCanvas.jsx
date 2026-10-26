@@ -186,6 +186,10 @@ export default function KageCanvas({ activeSection = 0 }) {
     const canvas = canvasRef.current;
     const s = stateRef.current;
     const currentIsLight = theme === 'LIGHT';
+    // En móvil: sin antialias, menos densidad de píxeles y menos partículas.
+    // ponytail: heurística por ancho, no por GPU real; si aparecen tirones en
+    // tablets, bajar el umbral o medir FPS.
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
     // — Scene setup
     s.scene = new THREE.Scene();
@@ -195,8 +199,8 @@ export default function KageCanvas({ activeSection = 0 }) {
     s.camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
     s.camera.position.z = 5.4;
 
-    s.renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-    s.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    s.renderer = new THREE.WebGLRenderer({ canvas, antialias: !isMobile, alpha: true });
+    s.renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.25 : 1.5));
     s.renderer.setSize(window.innerWidth, window.innerHeight);
     s.renderer.setClearColor(clearColorHex, 1);
 
@@ -395,11 +399,15 @@ export default function KageCanvas({ activeSection = 0 }) {
     };
     window.addEventListener('resize', handleResize);
 
-    // — Animation loop
+    // — Animation loop (quieto si el sistema pide movimiento reducido)
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     let lastTime = 0;
+    let running = false;
+
     function animate(ts) {
+      if (!running) return;
       s.rafId = requestAnimationFrame(animate);
-      const dt = Math.min((ts - lastTime) / 1000, 0.05);
+      const dt = lastTime ? Math.min((ts - lastTime) / 1000, 0.05) : 0;
       lastTime = ts;
       s.time += dt;
 
@@ -438,10 +446,37 @@ export default function KageCanvas({ activeSection = 0 }) {
 
       s.renderer.render(s.scene, s.camera);
     }
-    animate(0);
+
+    const start = () => {
+      if (running) return;
+      running = true;
+      lastTime = 0;
+      s.rafId = requestAnimationFrame(animate);
+    };
+    const stop = () => {
+      running = false;
+      cancelAnimationFrame(s.rafId);
+      s.rafId = null;
+    };
+    const onMotionChange = () => {
+      if (motionQuery.matches) {
+        stop();
+        s.renderer.render(s.scene, s.camera);
+      } else {
+        start();
+      }
+    };
+
+    if (motionQuery.matches) {
+      s.renderer.render(s.scene, s.camera); // un frame fijo, sin bucle
+    } else {
+      start();
+    }
+    motionQuery.addEventListener('change', onMotionChange);
 
     return () => {
-      cancelAnimationFrame(s.rafId);
+      stop();
+      motionQuery.removeEventListener('change', onMotionChange);
       window.removeEventListener('mousemove', handleMouse);
       window.removeEventListener('resize', handleResize);
       geometry.dispose();

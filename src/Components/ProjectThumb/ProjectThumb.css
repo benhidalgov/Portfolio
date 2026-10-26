@@ -1,0 +1,38 @@
+/* div.project-thumb gana a .project-image / .project-hero-image, que fijan
+   display:block y se cargan después en el bundle. */
+div.project-thumb {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: clamp(14px, 2.2vw, 28px);
+  overflow: hidden;
+  background:
+    radial-gradient(120% 100% at 80% 0%, rgba(var(--color-primary-rgb), .14), transparent 60%),
+    var(--color-card-bg);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.project-thumb-mark {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-primary);
+  font-size: clamp(64px, 10vw, 140px);
+  line-height: 1;
+  letter-spacing: .02em;
+  color: rgba(var(--color-primary-rgb), .13);
+  pointer-events: none;
+  user-select: none;
+}
+
+.project-thumb-tech {
+  position: relative;
+  font-family: var(--font-code);
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  opacity: .8;
+}

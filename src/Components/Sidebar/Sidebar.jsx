@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../../Context/ThemeContext.jsx';
+import { isSoundEnabled, toggleSound } from '../../utils/sound.js';
+import { projects } from '../../data/projects.js';
 import '../../styles/Sidebar.css';
 import RadiantSeal from '../Glyphs/RadiantSeal.jsx';
 import { 
@@ -15,6 +17,16 @@ import {
   StormlightIcon 
 } from '../Glyphs/RadiantGlyphs.jsx';
 import '../Glyphs/RadiantGlyphs.css';
+
+// Glifo temático de cada proyecto, por slug (presentación, no contenido).
+const CASE_GLYPHS = {
+  taskmanager: BridgeFourGlyph,
+  kgb: SkybreakerGlyph,
+  autodocs: WindrunnerGlyph,
+  minutera: LightweaverGlyph,
+  golang: DustbringerGlyph,
+  portfolio: GemheartGlyph,
+};
 
 // Iconos SVG de menú
 const MenuIcon = () => (
@@ -31,9 +43,25 @@ const CloseIcon = () => (
   </svg>
 );
 
+const SoundOnIcon = ({ size = 16 }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M11 5 6 9H3v6h3l5 4z" />
+    <path d="M15.5 8.5a5 5 0 0 1 0 7" />
+    <path d="M18.5 5.5a9 9 0 0 1 0 13" />
+  </svg>
+);
+
+const SoundOffIcon = ({ size = 16 }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M11 5 6 9H3v6h3l5 4z" />
+    <path d="m16 9 5 6M21 9l-5 6" />
+  </svg>
+);
+
 function Sidebar() {
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
+  const [sound, setSound] = useState(() => isSoundEnabled());
   
   const [isOpen, setIsOpen] = useState(window.innerWidth > 768);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -63,15 +91,11 @@ function Sidebar() {
     { path: '/about', name: 'Sobre Mí', subtext: 'Conoce al Radiante', glyph: <LightweaverGlyph size={18} /> },
   ];
 
-  // Case studies con glifos temáticos
-  const caseStudies = [
-    { title: 'TaskManager (Kanban)', path: '/projects/taskmanager', glyph: <BridgeFourGlyph size={16} /> },
-    { title: 'Consola Knowledge Base', path: '/projects/kgb', glyph: <SkybreakerGlyph size={16} /> },
-    { title: 'Autodocs (Tickets)', path: '/projects/autodocs', glyph: <WindrunnerGlyph size={16} /> },
-    { title: 'Minutera Web App', path: '/projects/minutera', glyph: <LightweaverGlyph size={16} /> },
-    { title: 'Inventario Golang', path: '/projects/golang', glyph: <DustbringerGlyph size={16} /> },
-    { title: 'Portafolio Roshar', path: '/projects/portfolio', glyph: <GemheartGlyph size={16} /> },
-  ];
+  // Case studies: título y ruta salen de data/projects.js; aquí solo el glifo.
+  const caseStudies = projects.map((p) => {
+    const Glyph = CASE_GLYPHS[p.slug] || SkybreakerGlyph;
+    return { title: p.navTitle, path: `/projects/${p.slug}`, glyph: <Glyph size={16} /> };
+  });
 
   return (
     <>
@@ -188,7 +212,7 @@ function Sidebar() {
           )}
         </div>
         
-        {/* THEME TOGGLE */}
+        {/* TEMA + SONIDO */}
         <div className="sidebar-footer">
           <button 
             className={`theme-toggle-button ${!isOpen ? 'icon-only' : ''}`} 
@@ -204,6 +228,24 @@ function Sidebar() {
             ) : (
               <span className="theme-toggle-icon-collapsed">
                 {theme === 'DARK' ? <HighstormIcon size={18} /> : <StormlightIcon size={18} />}
+              </span>
+            )}
+          </button>
+
+          <button
+            className={`theme-toggle-button ${!isOpen ? 'icon-only' : ''}`}
+            onClick={() => setSound(toggleSound())}
+            title={sound ? 'Silenciar sonido de interfaz' : 'Activar sonido de interfaz'}
+            aria-pressed={sound}
+          >
+            {isOpen ? (
+              <span className="theme-toggle-content">
+                {sound ? <SoundOnIcon /> : <SoundOffIcon />}
+                <span>{sound ? 'Sonido activo' : 'Sonido apagado'}</span>
+              </span>
+            ) : (
+              <span className="theme-toggle-icon-collapsed">
+                {sound ? <SoundOnIcon size={18} /> : <SoundOffIcon size={18} />}
               </span>
             )}
           </button>

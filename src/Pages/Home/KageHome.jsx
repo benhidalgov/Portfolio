@@ -1,14 +1,16 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../../Components/SEO/SEO.jsx';
-import KageCanvas from '../../Components/KageCanvas/KageCanvas.jsx';
 import KageNav from '../../Components/KageNav/KageNav.jsx';
 import KageRail from '../../Components/KageRail/KageRail.jsx';
-import KagePreloader from '../../Components/KagePreloader/KagePreloader.jsx';
 import { homeSkills } from '../../data/skills.js';
-import { projectData } from '../../data/project.jsx';
+import { projects, pillTone } from '../../data/projects.js';
 import { getLoadingPerformance } from '../../utils/readingMetrics.js';
 import './KageHome.css';
+
+// Three.js pesa más que todo el resto del home. Se carga después de pintar
+// el hero para que el titular no espere a WebGL.
+const KageCanvas = React.lazy(() => import('../../Components/KageCanvas/KageCanvas.jsx'));
 
 // Sections config
 const SECTIONS = ['hero', 'about', 'skills', 'projects', 'contact'];
@@ -17,7 +19,6 @@ const SECTIONS = ['hero', 'about', 'skills', 'projects', 'contact'];
 const SKILL_CATS = homeSkills.filter(c => c.title !== 'Certificaciones').slice(0, 3);
 
 // Projects for the lesson list
-const FEATURED_PROJECTS = projectData;
 
 // ──────────────────────────────────────────────
 // Arrow link helper
@@ -39,13 +40,21 @@ function ArrowLink({ href, to, children, 'data-rv': rv }) {
 
 // ──────────────────────────────────────────────
 export default function KageHome() {
-  const [preloaderDone, setPreloaderDone] = useState(false);
   const [activeSection, setActiveSection] = useState(0);
   const [copied, setCopied] = useState(false);
   const [perfMetrics, setPerfMetrics] = useState(null);
+  const [showCanvas, setShowCanvas] = useState(false);
   const sectionRefs = useRef([]);
 
+  // El canvas (Three.js, ~127 KB gzip) se monta después de que el hero pinte.
   useEffect(() => {
+    const timer = setTimeout(() => setShowCanvas(true), 120);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!import.meta.env.DEV) return; // la insignia de carga es solo para desarrollo
+
     const measurePerf = () => {
       const metrics = getLoadingPerformance();
       if (metrics.loadTimeMs > 0) {
@@ -60,7 +69,7 @@ export default function KageHome() {
       window.addEventListener('load', measurePerf, { once: true });
       return () => window.removeEventListener('load', measurePerf);
     }
-  }, [preloaderDone]);
+  }, []);
 
   const handleCopyEmail = useCallback(async () => {
     try {
@@ -77,11 +86,6 @@ export default function KageHome() {
     sectionRefs.current[i] = el;
   }, []);
 
-  // Preloader done → trigger reveals
-  const handlePreloaderDone = useCallback(() => {
-    setPreloaderDone(true);
-  }, []);
-
   // Smooth scroll to a section on the home page
   const scrollToSection = useCallback((id) => {
     const el = document.getElementById(id);
@@ -90,8 +94,6 @@ export default function KageHome() {
 
   // ── IntersectionObserver for scroll reveals + active section
   useEffect(() => {
-    if (!preloaderDone) return;
-
     // Reveal system
     const revealEls = document.querySelectorAll('[data-rv]');
     const revealObs = new IntersectionObserver((entries) => {
@@ -117,14 +119,16 @@ export default function KageHome() {
 
     sectionRefs.current.forEach(el => { if (el) sectionObs.observe(el); });
 
-    // Trigger hero immediately
-    setTimeout(() => {
-      const heroReveal = document.querySelectorAll('#hero [data-rv]');
-      heroReveal.forEach(el => el.classList.add('rv-in'));
-    }, 100);
-
     return () => { revealObs.disconnect(); sectionObs.disconnect(); };
-  }, [preloaderDone]);
+  }, []);
+
+  // Enlace directo a una sección (/#proyectos): aterriza ahí y no en el hero.
+  useEffect(() => {
+    const id = window.location.hash.slice(1);
+    if (!id) return;
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ block: 'start' });
+  }, []);
 
   return (
     <>
@@ -133,11 +137,12 @@ export default function KageHome() {
         description="Portafolio profesional de Benjamín Hidalgo — Ingeniero Informático especializado en desarrollo Full-Stack, arquitectura de sistemas y soluciones escalables."
       />
 
-      {/* Preloader */}
-      {!preloaderDone && <KagePreloader onDone={handlePreloaderDone} />}
-
       {/* Fixed overlays */}
-      <KageCanvas activeSection={activeSection} />
+      {showCanvas && (
+        <React.Suspense fallback={null}>
+          <KageCanvas activeSection={activeSection} />
+        </React.Suspense>
+      )}
       <div id="vignette" />
       <div id="grain" />
       <KageNav activeSection={activeSection} />
@@ -157,7 +162,7 @@ export default function KageHome() {
               <kbd>CAP_00</kbd>
               <span>Archivo de Ingeniería & Caballero Radiante</span>
             </div>
-            <h1 className="kh-display kh-h-hero">
+            <h1 className="kh-display kh-h-hero" data-rv="fade">
               <span className="mask-line"><span>Hola, soy</span></span>
               <span className="mask-line"><span>Benjamín</span></span>
               <span className="mask-line kh-name-line"><span>Hidalgo.</span></span>
@@ -305,206 +310,100 @@ export default function KageHome() {
             </p>
           </div>
 
-          {/* Bento Box Asymmetrical Grid */}
+          {/* Bento asimétrico: una tarjeta por proyecto, derivada de data/projects.js */}
           <div className="kh-bento-grid">
-            {/* Card 1: TaskManager (Large Span - 2 cols) */}
-            <article className="kh-bento-card kh-bento-featured" data-rv="up">
-              <div className="kh-faux-chrome">
-                <div className="kh-chrome-dots">
-                  <span /><span /><span />
-                </div>
-                <span className="kh-chrome-path">taskmanager.benhidalgo.dev</span>
-                <span className="kh-bento-badge pastel-blue">SUPABASE + RLS</span>
-              </div>
-              <div className="kh-bento-body">
-                <div className="kh-bento-meta">
-                  <kbd>PRJ_01</kbd>
-                  <span className="kh-bento-sub">Gestión & Arquitectura Reactiva</span>
-                </div>
-                <h3 className="kh-bento-title">TaskManager (Kanban)</h3>
-                <p className="kh-bento-desc">
-                  Tablero Kanban Fullstack de alta fidelidad. Drag & Drop fluido, autenticación segura, persistencia en PostgreSQL con políticas RLS granulares y gestión de estado optimista con Zustand.
-                </p>
+            {projects.map((p) => {
+              const { variant, badge, tone, sub, chrome } = p.card;
+              const num = String(p.id).padStart(2, '0');
+              const tech = (
                 <div className="kh-bento-tech">
-                  <span className="kh-pill pastel-blue">TypeScript</span>
-                  <span className="kh-pill pastel-blue">React</span>
-                  <span className="kh-pill pastel-green">Supabase</span>
-                  <span className="kh-pill pastel-amber">PostgreSQL</span>
-                  <span className="kh-pill pastel-purple">Zustand</span>
+                  {p.tech.slice(0, variant === 'compact' ? 4 : 5).map((t, i) => (
+                    <span key={t} className={`kh-pill ${pillTone(i)}`}>{t}</span>
+                  ))}
                 </div>
+              );
+              const actions = (
                 <div className="kh-bento-actions">
-                  <Link to="/projects/taskmanager" className="kh-bento-link primary">
+                  <Link to={`/projects/${p.slug}`} className="kh-bento-link primary">
                     <span>Dossier</span>
                     <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M3 11 11 3M5 3h6v6" stroke="currentColor" strokeWidth="1.4"/></svg>
                   </Link>
-                  <a href="https://github.com/benhidalgov/TaskManager" target="_blank" rel="noopener noreferrer" className="kh-bento-link">
-                    <span>GitHub ↗</span>
-                  </a>
-                </div>
-              </div>
-            </article>
-
-            {/* Card 2: KGB Knowledge Base (1 col) */}
-            <article className="kh-bento-card" data-rv="up">
-              <div className="kh-bento-header-compact">
-                <kbd>PRJ_02</kbd>
-                <span className="kh-bento-badge pastel-green">GEMINI RAG</span>
-              </div>
-              <div className="kh-bento-body">
-                <h3 className="kh-bento-title">Consola Knowledge Base (KGB)</h3>
-                <p className="kh-bento-desc">
-                  Plataforma corporativa de conocimiento técnico: indexación en memoria con DuckDB, embeddings semánticos con Gemini RAG, bóveda cifrada en AES-256 y latencia sub-milisegundo.
-                </p>
-                <div className="kh-bento-tech">
-                  <span className="kh-pill pastel-green">Python</span>
-                  <span className="kh-pill pastel-green">DuckDB</span>
-                  <span className="kh-pill pastel-amber">Gemini RAG</span>
-                  <span className="kh-pill pastel-red">AES-256</span>
-                </div>
-                <div className="kh-bento-actions">
-                  <Link to="/projects/kgb" className="kh-bento-link primary">
-                    <span>Dossier</span>
-                    <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M3 11 11 3M5 3h6v6" stroke="currentColor" strokeWidth="1.4"/></svg>
-                  </Link>
-                  <a href="https://github.com/benhidalgov/KGB" target="_blank" rel="noopener noreferrer" className="kh-bento-link">
-                    <span>GitHub ↗</span>
-                  </a>
-                </div>
-              </div>
-            </article>
-
-            {/* Card 3: API Inventario Golang (1 col) */}
-            <article className="kh-bento-card" data-rv="up">
-              <div className="kh-bento-header-compact">
-                <kbd>PRJ_03</kbd>
-                <span className="kh-bento-badge pastel-blue">CONCURRENCY</span>
-              </div>
-              <div className="kh-bento-body">
-                <h3 className="kh-bento-title">API Inventario Golang</h3>
-                <p className="kh-bento-desc">
-                  Microservicio backend de inventario de alto rendimiento. Arquitectura limpia, sincronización thread-safe con sync.Mutex, Repository pattern y persistencia SQLite embebida.
-                </p>
-                <div className="kh-bento-tech">
-                  <span className="kh-pill pastel-blue">Go</span>
-                  <span className="kh-pill pastel-blue">SQLite</span>
-                  <span className="kh-pill pastel-green">sync.Mutex</span>
-                  <span className="kh-pill pastel-amber">Clean Arch</span>
-                </div>
-                <div className="kh-bento-actions">
-                  <Link to="/projects/golang" className="kh-bento-link primary">
-                    <span>Dossier</span>
-                    <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M3 11 11 3M5 3h6v6" stroke="currentColor" strokeWidth="1.4"/></svg>
-                  </Link>
-                  <a href="https://github.com/benhidalgov/Inventario_Golang" target="_blank" rel="noopener noreferrer" className="kh-bento-link">
-                    <span>GitHub ↗</span>
-                  </a>
-                </div>
-              </div>
-            </article>
-
-            {/* Card 4: Autodocs (1 col) */}
-            <article className="kh-bento-card" data-rv="up">
-              <div className="kh-bento-header-compact">
-                <kbd>PRJ_04</kbd>
-                <span className="kh-bento-badge pastel-amber">ENTERPRISE</span>
-              </div>
-              <div className="kh-bento-body">
-                <h3 className="kh-bento-title">Autodocs (Sistema Tickets)</h3>
-                <p className="kh-bento-desc">
-                  Gestión corporativa de soporte y tickets técnicos. Validación algorítmica de RUT chileno (Módulo 11), backend modular desacoplado, Prisma ORM y despliegue continuo en Vercel.
-                </p>
-                <div className="kh-bento-tech">
-                  <span className="kh-pill pastel-blue">TypeScript</span>
-                  <span className="kh-pill pastel-amber">Prisma ORM</span>
-                  <span className="kh-pill pastel-green">Vercel</span>
-                </div>
-                <div className="kh-bento-actions">
-                  <Link to="/projects/autodocs" className="kh-bento-link primary">
-                    <span>Dossier</span>
-                    <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M3 11 11 3M5 3h6v6" stroke="currentColor" strokeWidth="1.4"/></svg>
-                  </Link>
-                  <a href="https://autodocs-mu.vercel.app" target="_blank" rel="noopener noreferrer" className="kh-bento-link">
-                    <span>Demo ↗</span>
-                  </a>
-                  <a href="https://github.com/benhidalgov/Autodocs" target="_blank" rel="noopener noreferrer" className="kh-bento-link">
-                    <span>GitHub</span>
-                  </a>
-                </div>
-              </div>
-            </article>
-
-            {/* Card 5: Minutera Web App (1 col) */}
-            <article className="kh-bento-card" data-rv="up">
-              <div className="kh-bento-header-compact">
-                <kbd>PRJ_05</kbd>
-                <span className="kh-bento-badge pastel-green">PRODUCTIVITY</span>
-              </div>
-              <div className="kh-bento-body">
-                <h3 className="kh-bento-title">Minutera Web App</h3>
-                <p className="kh-bento-desc">
-                  Aplicación web orientada a la trazabilidad operativa: catalogación de acuerdos de equipo, seguimiento de compromisos semanales y gestión de acuerdos en tiempo real.
-                </p>
-                <div className="kh-bento-tech">
-                  <span className="kh-pill pastel-blue">TypeScript</span>
-                  <span className="kh-pill pastel-blue">React</span>
-                  <span className="kh-pill pastel-green">Vite</span>
-                  <span className="kh-pill pastel-purple">Vercel</span>
-                </div>
-                <div className="kh-bento-actions">
-                  <Link to="/projects/minutera" className="kh-bento-link primary">
-                    <span>Dossier</span>
-                    <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M3 11 11 3M5 3h6v6" stroke="currentColor" strokeWidth="1.4"/></svg>
-                  </Link>
-                  <a href="https://minutera.vercel.app" target="_blank" rel="noopener noreferrer" className="kh-bento-link">
-                    <span>Demo ↗</span>
-                  </a>
-                  <a href="https://github.com/benhidalgov/Minutera" target="_blank" rel="noopener noreferrer" className="kh-bento-link">
-                    <span>GitHub</span>
-                  </a>
-                </div>
-              </div>
-            </article>
-
-            {/* Card 6: Portafolio Roshar (Wide Span - 3 cols) */}
-            <article className="kh-bento-card kh-bento-wide" data-rv="up">
-              <div className="kh-faux-chrome">
-                <div className="kh-chrome-dots">
-                  <span /><span /><span />
-                </div>
-                <span className="kh-chrome-path">urithiru-terminal // webgl-shaders</span>
-                <span className="kh-bento-badge pastel-purple">THREE.JS + REACT 19</span>
-              </div>
-              <div className="kh-bento-body kh-bento-wide-body">
-                <div className="kh-bento-wide-content">
-                  <div className="kh-bento-meta">
-                    <kbd>PRJ_06</kbd>
-                    <span className="kh-bento-sub">Gráficos 3D & Sistema de Audio Web</span>
-                  </div>
-                  <h3 className="kh-bento-title">Portafolio Roshar</h3>
-                  <p className="kh-bento-desc">
-                    Plataforma técnica interactiva con estética de El Archivo de las Tormentas. Shaders WebGL interactivos con Three.js, síntesis sonora Web Audio API, cursor Shardblade reactivo y arquitectura modular dividida en chunks de alto rendimiento.
-                  </p>
-                </div>
-                <div className="kh-bento-wide-side">
-                  <div className="kh-bento-tech">
-                    <span className="kh-pill pastel-purple">React 19</span>
-                    <span className="kh-pill pastel-blue">Three.js</span>
-                    <span className="kh-pill pastel-green">Web Audio API</span>
-                    <span className="kh-pill pastel-amber">Framer Motion</span>
-                    <span className="kh-pill pastel-blue">Vite</span>
-                  </div>
-                  <div className="kh-bento-actions">
-                    <Link to="/projects/portfolio" className="kh-bento-link primary">
-                      <span>Dossier</span>
-                      <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M3 11 11 3M5 3h6v6" stroke="currentColor" strokeWidth="1.4"/></svg>
-                    </Link>
-                    <a href="https://github.com/benhidalgov/Portfolio" target="_blank" rel="noopener noreferrer" className="kh-bento-link">
-                      <span>GitHub ↗</span>
+                  {p.link && (
+                    <a href={p.link} target="_blank" rel="noopener noreferrer" className="kh-bento-link">
+                      <span>Demo ↗</span>
                     </a>
-                  </div>
+                  )}
+                  <a href={p.github} target="_blank" rel="noopener noreferrer" className="kh-bento-link">
+                    <span>GitHub{variant === 'compact' ? '' : ' ↗'}</span>
+                  </a>
                 </div>
-              </div>
-            </article>
+              );
+              const badgeEl = <span className={`kh-bento-badge ${tone}`}>{badge}</span>;
+              const chromeEl = (
+                <div className="kh-faux-chrome">
+                  <div className="kh-chrome-dots">
+                    <span /><span /><span />
+                  </div>
+                  <span className="kh-chrome-path">{chrome}</span>
+                  {badgeEl}
+                </div>
+              );
+
+              if (variant === 'wide') {
+                return (
+                  <article key={p.slug} className="kh-bento-card kh-bento-wide" data-rv="up">
+                    {chromeEl}
+                    <div className="kh-bento-body kh-bento-wide-body">
+                      <div className="kh-bento-wide-content">
+                        <div className="kh-bento-meta">
+                          <kbd>PRJ_{num}</kbd>
+                          <span className="kh-bento-sub">{sub}</span>
+                        </div>
+                        <h3 className="kh-bento-title">{p.title}</h3>
+                        <p className="kh-bento-desc">{p.summary}</p>
+                      </div>
+                      <div className="kh-bento-wide-side">
+                        {tech}
+                        {actions}
+                      </div>
+                    </div>
+                  </article>
+                );
+              }
+
+              if (variant === 'featured') {
+                return (
+                  <article key={p.slug} className="kh-bento-card kh-bento-featured" data-rv="up">
+                    {chromeEl}
+                    <div className="kh-bento-body">
+                      <div className="kh-bento-meta">
+                        <kbd>PRJ_{num}</kbd>
+                        <span className="kh-bento-sub">{sub}</span>
+                      </div>
+                      <h3 className="kh-bento-title">{p.title}</h3>
+                      <p className="kh-bento-desc">{p.summary}</p>
+                      {tech}
+                      {actions}
+                    </div>
+                  </article>
+                );
+              }
+
+              return (
+                <article key={p.slug} className="kh-bento-card" data-rv="up">
+                  <div className="kh-bento-header-compact">
+                    <kbd>PRJ_{num}</kbd>
+                    {badgeEl}
+                  </div>
+                  <div className="kh-bento-body">
+                    <h3 className="kh-bento-title">{p.title}</h3>
+                    <p className="kh-bento-desc">{p.summary}</p>
+                    {tech}
+                    {actions}
+                  </div>
+                </article>
+              );
+            })}
           </div>
 
           <div style={{ marginTop: '2.5rem' }} data-rv="fade">
@@ -598,8 +497,8 @@ export default function KageHome() {
             <div>
               <h4>Proyectos</h4>
               <ul>
-                {FEATURED_PROJECTS.slice(0, 4).map(p => (
-                  <li key={p.id}><Link to="/projects">{p.title}</Link></li>
+                {projects.slice(0, 4).map(p => (
+                  <li key={p.id}><Link to={`/projects/${p.slug}`}>{p.title}</Link></li>
                 ))}
               </ul>
             </div>
@@ -616,7 +515,7 @@ export default function KageHome() {
             <span>© 2026 Benjamín Hidalgo</span>
             <span className="kh-foot-oath">«Vida antes que muerte»</span>
             <span>React · Three.js · Vite</span>
-            {perfMetrics && perfMetrics.loadTimeMs > 0 && (
+            {import.meta.env.DEV && perfMetrics && perfMetrics.loadTimeMs > 0 && (
               <span
                 style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--color-primary)', opacity: 0.9 }}
                 title={`DOM: ${perfMetrics.domReadyMs}ms | FCP: ${perfMetrics.fcpMs ? perfMetrics.fcpMs + 'ms' : 'N/A'}`}

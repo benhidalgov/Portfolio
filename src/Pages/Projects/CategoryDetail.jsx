@@ -1,16 +1,17 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { categoriesData } from '../../data/categories.js';
+import { projects } from '../../data/projects.js';
 import '../../styles/Projects.css'; 
 import SEO from '../../Components/SEO/SEO.jsx';
+import ProjectThumb from '../../Components/ProjectThumb/ProjectThumb.jsx';
 import { calculateReadingTime } from '../../utils/readingMetrics.js';
 
 function CategoryDetail() {
     // Extrae el categoryId de la URL (ej. 'cloud', 'data')
     const { categoryId } = useParams();
     
-    // Busca la data correspondiente en el objeto
-    const project = categoriesData[categoryId];
+    // Busca la data correspondiente en el registro
+    const project = projects.find((p) => p.slug === categoryId);
 
     // Si no existe, muestra un mensaje de error estilo terminal
     if (!project) {
@@ -48,12 +49,7 @@ function CategoryDetail() {
 
             <div className="project-detail-container">
                 <div className="project-hero-wrapper" data-rv="fade">
-                    <img 
-                        src={project.image} 
-                        alt={project.title} 
-                        className="project-hero-image" 
-                        onError={(e) => { e.target.onerror = null; e.target.src=`https://placehold.co/800x450/0066CC/ffffff?text=IMG+ERROR`; }}
-                    />
+                    <ProjectThumb project={project} className="project-hero-image" />
                 </div>
 
                 <p className="project-description-long" data-rv="up">{project.description}</p>
@@ -70,15 +66,15 @@ function CategoryDetail() {
 
                 <h2 data-rv="up">Stack Utilizado</h2>
                 <div className="card-tech-full" data-rv="up">
-                    {project.techStack.map((tech) => (
+                    {project.tech.map((tech) => (
                         <span key={tech} className="tech-tag-full">{tech}</span>
                     ))}
                 </div>
 
                 <div className="project-actions mt-5" data-rv="fade" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                    {project.liveLink && (
+                    {project.link && (
                         <a 
-                            href={project.liveLink}
+                            href={project.link}
                             target="_blank" 
                             rel="noopener noreferrer" 
                             className="btn-primary"
@@ -86,12 +82,12 @@ function CategoryDetail() {
                             Ver Aplicación en Vivo ↗
                         </a>
                     )}
-                    {project.repoLink && (
+                    {project.github && (
                         <a 
-                            href={project.repoLink}
+                            href={project.github}
                             target="_blank" 
                             rel="noopener noreferrer" 
-                            className={project.liveLink ? "btn-secondary" : "btn-primary"}
+                            className={project.link ? "btn-secondary" : "btn-primary"}
                         >
                             Ver Repositorio (GitHub)
                         </a>

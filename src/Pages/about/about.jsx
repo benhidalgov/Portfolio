@@ -6,19 +6,19 @@ import SEO from '../../Components/SEO/SEO.jsx';
 
 // Iconos SVG para habilidades de Sobre Mí
 const techIcons = {
-  'AWS': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg',
-  'Azure': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg',
-  'Red Hat (Linux)': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redhat/redhat-original.svg',
-  'Docker & Kubernetes': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
-  'IaC (Terraform)': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg',
-  'Python (Pandas/Spark)': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
-  'SQL/T-SQL': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg',
-  'PostgreSQL/MongoDB': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg',
-  'React JS': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
-  'Node.js (Express)': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
-  'CI/CD (GitHub Actions)': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg',
-  'Git & GitHub': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg',
-  'Bash Scripting': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg',
+  'AWS': '/icons/amazonwebservices-original.svg',
+  'Azure': '/icons/azure-original.svg',
+  'Red Hat (Linux)': '/icons/redhat-original.svg',
+  'Docker & Kubernetes': '/icons/docker-original.svg',
+  'IaC (Terraform)': '/icons/terraform-original.svg',
+  'Python (Pandas/Spark)': '/icons/python-original.svg',
+  'SQL/T-SQL': '/icons/microsoftsqlserver-plain.svg',
+  'PostgreSQL/MongoDB': '/icons/postgresql-original.svg',
+  'React JS': '/icons/react-original.svg',
+  'Node.js (Express)': '/icons/nodejs-original.svg',
+  'CI/CD (GitHub Actions)': '/icons/github-original.svg',
+  'Git & GitHub': '/icons/github-original.svg',
+  'Bash Scripting': '/icons/bash-original.svg',
 };
 
 function SkillTag({ skill }) {

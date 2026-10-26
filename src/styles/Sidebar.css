@@ -261,7 +261,9 @@
 .sidebar-footer {
     padding-top: 1.5rem;
     border-top: 1px solid var(--color-border-subtle);
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .theme-toggle-button {
@@ -390,9 +392,12 @@
     }
 
     /* Ocultar el comportamiento de "icon-only" en móvil, siempre mostrar nombres si está abierto */
-    .sidebar-intro-text,
-    .sidebar-footer {
+    .sidebar-intro-text {
         display: block !important;
+    }
+
+    .sidebar-footer {
+        display: flex !important;
     }
 
     .item-name,
