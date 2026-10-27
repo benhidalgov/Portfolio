@@ -1,83 +1,212 @@
-/* --- About Page: RADIANT DOSSIER --- */
+﻿/* About — perfil profesional */
 
 .about-page {
+    font-family: var(--font-sans);
+    padding: 2.5rem 0 1rem;
+    color: var(--color-text);
+}
+
+.about-head {
+    border-top: 1px solid var(--color-border-subtle);
+    padding-top: 18px;
+    margin-bottom: 2rem;
+}
+
+.about-head h1 {
+    margin: 0;
     font-family: var(--font-primary);
-    padding: 2rem 0;
+    font-size: clamp(2.4rem, 4.6vw, 4.2rem);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--color-text);
+    text-transform: none;
+}
+
+.about-kicker {
+    margin: 10px 0 0;
+    font-size: 13px;
+    color: var(--color-subtext);
+}
+
+.about-lead {
+    max-width: 30ch;
+    margin: 0 0 1.2rem;
+    font-family: var(--font-primary);
+    font-size: clamp(1.5rem, 2.6vw, 2.4rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
     color: var(--color-text);
 }
 
-/* === TITLES === */
-.about-page h1 {
-    font-size: 2.5rem;
-    color: var(--color-text);
-    margin-bottom: 0.5rem;
-    padding-bottom: 0.3rem;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-    text-shadow: var(--storm-text-glow);
-    border-bottom: 2px solid var(--color-border-subtle);
-}
-
-.about-page h2 {
-    font-size: 1.5rem;
-    color: var(--color-primary);
-    margin-top: 3.5rem;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    text-shadow: var(--storm-text-glow);
-}
-
-/* === LEAD PARAGRAPH === */
-.lead-paragraph {
-    font-size: 1rem;
+.about-body {
+    max-width: 62ch;
+    margin: 0;
+    font-size: 14.5px;
     line-height: 1.8;
     color: var(--color-subtext);
-    max-width: 900px;
-    border-left: 3px solid var(--color-primary);
-    padding-left: 1rem;
-    font-family: var(--font-code);
 }
 
-.lead-paragraph strong {
-    color: var(--color-primary);
-    font-weight: 600;
+.about-section {
+    margin-top: clamp(3rem, 7vh, 5rem);
 }
 
-/* === SKILLS GRID === */
-.about-skills-grid {
+.about-section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+    border-top: 1px solid var(--color-border-subtle);
+    padding-top: 20px;
+    margin-bottom: 20px;
+}
+
+.about-section-head h2 {
+    margin: 0;
+    font-family: var(--font-primary);
+    font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+    font-weight: 400;
+    color: var(--color-text);
+}
+
+.about-section-note {
+    font-size: 12px;
+    color: var(--color-subtext);
+}
+
+/* Directorio de capacidades */
+.about-directory {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.25rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    background: var(--surface);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 4px;
 }
 
-@media (max-width: 1180px) {
-    .about-skills-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+.about-directory-col {
+    padding: 22px clamp(18px, 2.4vw, 30px);
+    border-left: 1px solid var(--color-border-subtle);
+    border-top: 1px solid var(--color-border-subtle);
 }
 
-/* === RESPONSIVE === */
-@media (max-width: 768px) {
-    .about-page {
-        padding: 1rem 0;
-    }
+.about-directory-col:nth-child(odd) {
+    border-left: 0;
+}
+.about-directory-col:nth-child(-n+2) {
+    border-top: 0;
+}
 
-    .about-page h1 {
-        font-size: 1.8rem;
-    }
+.about-directory-col h3 {
+    margin: 0 0 14px;
+    font-family: var(--font-primary);
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--color-text);
+}
 
-    .about-page h2 {
-        font-size: 1.2rem;
-    }
+.about-directory-col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
 
-    .lead-paragraph {
-        font-size: 0.9rem;
-    }
+.about-directory-col li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0;
+    border-top: 1px solid var(--color-border-subtle);
+    font-size: 12.5px;
+    line-height: 1.4;
+    color: var(--color-subtext);
+}
+.about-directory-col li:first-child { border-top: 0; }
 
-    .skills-grid,
-    .about-skills-grid {
+.about-skill-icon {
+    width: 14px;
+    height: 14px;
+    object-fit: contain;
+    opacity: 0.55;
+    filter: brightness(0) invert(0.9);
+}
+
+[data-theme="light"] .about-skill-icon {
+    filter: brightness(0) opacity(0.55);
+}
+
+/* Certificaciones */
+.about-certs {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--color-border);
+}
+
+.about-cert-row {
+    display: grid;
+    grid-template-columns: 5.5rem minmax(0, 1fr) auto;
+    gap: clamp(12px, 3vw, 40px);
+    align-items: baseline;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.about-cert-code {
+    font-size: 11px;
+    color: var(--carpet);
+    font-variant-numeric: tabular-nums;
+}
+
+.about-cert-name {
+    font-size: 13px;
+    line-height: 1.45;
+    color: var(--color-text);
+}
+
+.about-cert-issuer {
+    font-size: 11px;
+    color: var(--color-subtext);
+    text-align: right;
+}
+
+.about-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 3.5rem 0 0;
+    padding-top: 18px;
+    border-top: 1px solid var(--color-border-subtle);
+    font-size: 12px;
+    color: var(--color-subtext);
+}
+
+.about-status-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--exit);
+}
+
+@media (max-width: 900px) {
+    .about-directory {
         grid-template-columns: 1fr;
     }
+    .about-directory-col {
+        border-left: 0;
+    }
+    .about-directory-col:nth-child(2) {
+        border-top: 1px solid var(--color-border-subtle);
+    }
+}
+
+@media (max-width: 700px) {
+    .about-page { padding: 1.5rem 0 0; }
+    .about-lead { max-width: 100%; }
+    .about-cert-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+    .about-cert-issuer { text-align: left; }
 }

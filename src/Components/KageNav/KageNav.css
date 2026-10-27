@@ -1,4 +1,4 @@
-/* ============================================================= KageNav */
+﻿/* ============================================================= KageNav */
 
 .kage-nav {
   position: fixed;
@@ -17,14 +17,14 @@
 .kage-nav::before {
   content: '';
   position: absolute; inset: 0; z-index: -1; pointer-events: none;
-  background: rgba(10, 14, 26, .75);
+  background: rgba(var(--color-bg-rgb), .58);
   backdrop-filter: blur(18px) saturate(1.2);
   -webkit-backdrop-filter: blur(18px) saturate(1.2);
   opacity: 0;
   transition: opacity .5s linear;
 }
 [data-theme="light"] .kage-nav::before {
-  background: rgba(234, 230, 223, .85);
+  background: rgba(250, 247, 255, .68);
 }
 .kage-nav.stuck::before { opacity: 1; }
 
@@ -63,14 +63,18 @@
   display: flex; flex-direction: column; line-height: 1; gap: 3px;
 }
 .kage-brand-tx b {
-  font-family: var(--font-primary, serif);
-  font-size: 15px; font-weight: 500; letter-spacing: .08em;
+  font-family: var(--font-primary);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: .01em;
   color: var(--color-text);
 }
 .kage-brand-tx i {
-  font-style: normal; font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
+  font-style: normal;
+  font-size: 11px;
+  letter-spacing: .02em;
   color: var(--color-subtext);
-  font-family: var(--font-code);
+  font-family: var(--font-sans);
 }
 
 /* ============================================================= Nav links */
@@ -81,41 +85,36 @@
 
 .kage-nav-link {
   position: relative;
-  font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0;
   color: var(--color-subtext);
-  display: block; height: 15px; line-height: 15px; overflow: hidden;
-  background: none; border: 0; cursor: pointer; padding: 0;
-  font-family: var(--font-code);
+  display: inline-block;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+  font-family: var(--font-sans);
   text-decoration: none;
-  transition: color .2s;
+  transition: color .25s ease;
 }
-
-.kage-nav-link span {
-  display: block; height: 15px; line-height: 15px;
-  transition: transform .4s var(--ease-out, ease), color .2s;
+.kage-nav-link:hover {
+  color: var(--color-text);
 }
-.kage-nav-link .alt {
-  position: absolute; inset: 0;
-  transform: translate3d(0, 100%, 0);
-  color: var(--color-primary);
-  letter-spacing: .14em;
-}
-.kage-nav-link:hover span:first-child { transform: translate3d(0, -100%, 0); }
-.kage-nav-link:hover .alt { transform: none; }
 
 /* ============================================================= Theme button */
 .kage-theme-btn {
   display: flex; align-items: center; justify-content: center;
   width: 32px; height: 32px;
   border: 1px solid var(--color-border, rgba(var(--color-primary-rgb), .25)); border-radius: 50%;
-  background: none; cursor: pointer; color: var(--color-subtext, #8ba4c4);
+  background: none; cursor: pointer; color: var(--color-subtext);
   transition: border-color .35s, color .35s, box-shadow .35s;
   flex-shrink: 0;
 }
 .kage-theme-btn:hover {
-  border-color: var(--color-primary, #00d4ff);
-  color: var(--color-primary, #00d4ff);
-  box-shadow: var(--storm-glow);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  box-shadow: var(--soft-glow);
 }
 
 /* ============================================================= Hamburger */
@@ -144,7 +143,7 @@
     position: fixed; top: 0; right: 0; bottom: 0; width: min(82vw, 340px);
     padding: calc(var(--nav-h, 72px) + 28px) var(--pad, 24px) 34px;
     flex-direction: column; align-items: flex-start; gap: 0;
-    background: var(--color-card-bg, #0A0E1A);
+    background: var(--color-card-bg);
     border-left: 1px solid var(--color-border-subtle);
     transform: translate3d(100%, 0, 0); opacity: 0; visibility: hidden; pointer-events: none;
     transition: transform .65s var(--ease-out, ease), opacity .4s, visibility 0s linear .65s;
@@ -155,13 +154,21 @@
     transition-delay: 0s;
   }
   .kage-nav-link {
-    width: 100%; height: auto; padding: 16px 0;
-    overflow: visible; border-bottom: 1px solid var(--color-border-subtle);
-    font-size: 16px; line-height: 1.2; letter-spacing: .12em;
+    width: 100%; height: auto; padding: 14px 0;
+    border-bottom: 1px solid var(--color-border-subtle);
+    font-size: 15px; line-height: 1.2;
   }
-  .kage-nav-link span { height: auto; line-height: 1.2; transform: none !important; }
-  .kage-nav-link .alt { position: static; margin-top: 4px; font-size: 10px; color: var(--color-subtext); }
   .kage-burger { margin-left: auto; }
 }
 
 html.nav-open, html.nav-open body { overflow: hidden; }
+
+
+
+/* --- Ethereal brand --- */
+.kage-brand-glyph {
+  filter: drop-shadow(0 0 10px rgba(var(--color-primary-rgb), 0.45));
+}
+.kage-nav {
+  transition: transform .55s var(--ease), background-color .8s ease, border-color .8s ease;
+}

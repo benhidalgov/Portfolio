@@ -1,18 +1,18 @@
-/* --- FOOTER: URITHIRU TOWER BASE (RESPONSIVE) --- */
+/* --- Footer: base de niebla --- */
 
 .footer {
-    font-family: var(--font-code);
+    font-family: var(--font-sans);
     color: var(--color-subtext);
-    background-color: var(--color-card-bg);
+    background: var(--surface);
     border-top: 1px solid var(--color-border-subtle);
     position: relative;
     overflow: hidden;
-    margin-top: auto; /* Always pins footer to bottom of viewport */
+    margin-top: auto;
     width: 100%;
     box-sizing: border-box;
 }
 
-/* === STORMLIGHT BORDER TOP === */
+/* === Línea de luz superior === */
 .footer-hazard-bar {
     height: 2px;
     background: linear-gradient(
@@ -79,21 +79,20 @@
 }
 
 .footer-brand-name {
-    font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+    font-size: clamp(1.1rem, 1.6vw, 1.35rem);
     color: var(--color-text);
-    font-weight: 700;
-    letter-spacing: 0.08em;
+    font-weight: 400;
+    letter-spacing: 0;
     margin: 0;
-    text-shadow: var(--storm-text-glow);
     font-family: var(--font-primary);
 }
 
 .footer-brand-sub {
-    font-size: clamp(0.72rem, 0.95vw, 0.82rem);
+    font-size: clamp(0.75rem, 0.95vw, 0.85rem);
     color: var(--color-subtext);
-    letter-spacing: 0.04em;
+    letter-spacing: 0;
     margin: 0;
-    line-height: 1.5;
+    line-height: 1.55;
     max-width: 36ch;
 }
 
@@ -105,16 +104,14 @@
 }
 
 .footer-col-title {
-    font-size: 0.72rem;
-    color: var(--color-primary);
-    letter-spacing: 0.2em;
-    font-weight: 700;
+    font-size: 13px;
+    color: var(--color-text);
+    letter-spacing: 0;
+    font-weight: 500;
     margin: 0 0 0.25rem;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--color-border-subtle);
-    text-shadow: var(--storm-text-glow);
-    font-family: var(--font-primary);
-    text-transform: uppercase;
+    font-family: var(--font-sans);
 }
 
 /* === LINKS === */
@@ -133,7 +130,7 @@
     text-decoration: none;
     letter-spacing: 0.04em;
     padding: 0.25rem 0;
-    transition: color 0.2s ease, transform 0.2s ease;
+    transition: color 0.2s ease;
     border-radius: 2px;
 }
 
@@ -173,7 +170,7 @@
     flex-wrap: wrap;
     gap: 0.6rem 1.5rem;
     padding: 0.75rem clamp(1.5rem, 4vw, 3.5rem);
-    background: rgba(0, 0, 0, 0.2);
+    background: var(--surface-raised);
     border-top: 1px solid var(--color-border-subtle);
     font-size: clamp(0.65rem, 0.85vw, 0.72rem);
     letter-spacing: 0.06em;
@@ -191,16 +188,16 @@
     display: inline-block;
     width: 6px;
     height: 6px;
-    background: var(--color-primary);
+    background: var(--exit);
     border-radius: 50%;
     margin-right: 0.5rem;
-    box-shadow: 0 0 6px var(--color-primary);
-    animation: pulse-dot 2.5s ease-in-out infinite;
+    box-shadow: 0 0 8px rgba(var(--exit-rgb), 0.6);
+    animation: pulse-dot 3s ease-in-out infinite;
 }
 
 @keyframes pulse-dot {
-    0%, 100% { opacity: 1; box-shadow: 0 0 6px var(--color-primary); }
-    50%       { opacity: 0.3; box-shadow: 0 0 12px var(--color-primary); }
+    0%, 100% { opacity: 1; box-shadow: 0 0 8px rgba(var(--dream-mint-rgb), 0.7); }
+    50%       { opacity: 0.35; box-shadow: 0 0 16px rgba(var(--dream-mint-rgb), 0.5); }
 }
 
 .footer-status-value {

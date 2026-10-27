@@ -29,10 +29,14 @@ export const ThemeProvider = ({ children }) => {
         });
     };
 
-    // 🌩️ Aplica el tema: Alta Tormenta (dark) o Luz Tormentosa (light)
+    // Aplica el tema: nocturno (dark) o diurno (light)
     useEffect(() => {
         // Esto aplica html[data-theme="dark"] o html[data-theme="light"]
         document.documentElement.setAttribute('data-theme', theme.toLowerCase());
+        const background = getComputedStyle(document.documentElement)
+            .getPropertyValue('--color-background').trim();
+        document.querySelector('meta[name="theme-color"]')
+            ?.setAttribute('content', background);
     }, [theme]);
 
     const value = useMemo(() => ({

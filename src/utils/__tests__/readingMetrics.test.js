@@ -42,10 +42,10 @@ describe('calculateReadingTime', () => {
   });
 
   it('strips HTML tags before counting words', () => {
-    const htmlText = '<article><h2>Urithiru</h2><p>La torre <strong>ciudad</strong> de Roshar.</p></article>';
+    const htmlText = '<article><h2>Umbral</h2><p>La puerta <strong>de luz</strong> y niebla.</p></article>';
     const result = calculateReadingTime(htmlText);
 
-    expect(result.words).toBe(6); // Urithiru, La, torre, ciudad, de, Roshar
+    expect(result.words).toBe(7); // Umbral, La, puerta, de, luz, y, niebla
     expect(result.minutes).toBe(1);
     expect(result.text).toBe('< 1 min de lectura');
   });

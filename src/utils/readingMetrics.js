@@ -1,6 +1,6 @@
 /**
  * Utilidades minimalistas de métricas de lectura y rendimiento de carga.
- * Estilo Roshar / Minimalist UI (Ponytail: <40 líneas, cero dependencias).
+ * Estilo limpio / Minimalist UI (Ponytail: <40 líneas, cero dependencias).
  */
 
 export function calculateReadingTime(text, wpm = 200) {

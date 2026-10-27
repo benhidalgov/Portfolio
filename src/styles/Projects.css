@@ -1,95 +1,85 @@
-/* --- Projects Detail Pages: ROSHAR CHRONICLES DATA --- */
+﻿/* Proyecto — dossier editorial */
 
 .projects-full-page {
     padding: 2rem 3rem;
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
     color: var(--color-text);
-    font-family: var(--font-code);
+    font-family: var(--font-sans);
     min-height: calc(100vh - 200px);
 }
 
-/* === HEADER === */
 .projects-header {
-    margin-bottom: 3rem;
-    border-bottom: 1px solid var(--color-border-subtle);
-    padding-bottom: 2rem;
+    margin-bottom: 2.5rem;
+    border-top: 1px solid var(--color-border-subtle);
+    padding-top: 18px;
 }
 
 .back-link {
     display: inline-block;
-    color: var(--color-primary);
+    color: var(--color-subtext);
     text-decoration: none;
-    font-size: 0.8rem;
-    font-weight: 500;
-    margin-bottom: 1.5rem;
-    transition: all 0.2s;
-    border: 1px solid var(--color-border-subtle);
-    padding: 0.4rem 0.8rem;
-    border-radius: 2px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font-size: 12px;
+    margin-bottom: 1.4rem;
+    transition: color 0.2s ease;
 }
 
 .back-link:hover {
-    border-color: var(--color-primary);
-    background-color: rgba(var(--color-primary-rgb), 0.08);
-    box-shadow: var(--storm-glow);
-    transform: translateX(-3px);
+    color: var(--color-text);
+}
+
+.project-title-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-bottom: 0.8rem;
 }
 
 .projects-header h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--color-text);
-    margin: 0 0 1rem 0;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    text-shadow: var(--storm-text-glow);
     font-family: var(--font-primary);
+    font-size: clamp(2rem, 4vw, 3.6rem);
+    font-weight: 400;
+    line-height: 1.04;
+    letter-spacing: -0.03em;
+    color: var(--color-text);
+    margin: 0;
+    text-transform: none;
 }
 
-.lead-paragraph {
-    font-size: 1rem;
+.project-meta-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.project-meta {
+    font-size: 12px;
     color: var(--color-subtext);
+}
+
+.project-subtitle {
     margin: 0;
-    line-height: 1.7;
+    max-width: 64ch;
+    font-family: var(--font-primary);
+    font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+    line-height: 1.4;
+    color: var(--color-subtext);
 }
 
 .project-detail-container {
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 2.2rem;
 }
 
-/* === STORM STATUS STAMP === */
-.storm-status-stamp {
-    font-size: 0.8rem;
-    color: var(--color-primary);
-    border: 1px solid var(--color-primary);
-    padding: 0.3rem 0.6rem;
-    font-family: var(--font-code);
-    letter-spacing: 0.1em;
-    background-color: rgba(var(--color-primary-rgb), 0.08);
-    animation: blinkText 4s infinite;
-    border-radius: 2px;
-}
-
-@keyframes blinkText {
-    0%, 96%, 98% { opacity: 1; }
-    97%, 99% { opacity: 0; }
-}
-
-/* === HERO IMAGE WITH STORMLIGHT FILTER === */
 .project-hero-wrapper {
     position: relative;
-    width: 100%;
-    margin-bottom: 1rem;
     overflow: hidden;
-    border: 2px solid var(--color-primary);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    background-color: #000;
-    border-radius: 2px;
+    border: 1px solid var(--color-border-subtle);
+    background: var(--surface);
+    border-radius: 4px;
 }
 
 .project-hero-image {
@@ -99,151 +89,94 @@
     aspect-ratio: 16/9;
     object-fit: cover;
     display: block;
-    /* Stormlight blue or gold filter depending on theme */
-    filter: var(--image-filter);
-    transition: all 0.5s ease;
-}
-
-.project-hero-wrapper::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    pointer-events: none;
-    /* Subtle crystalline overlay instead of scanlines */
-    background: 
-        radial-gradient(ellipse at 30% 20%, rgba(var(--color-primary-rgb), 0.05) 0%, transparent 50%),
-        radial-gradient(ellipse at 70% 80%, rgba(var(--color-primary-rgb), 0.03) 0%, transparent 50%);
-    z-index: 5;
+    transition: transform 0.6s var(--ease-out);
 }
 
 .project-hero-wrapper:hover .project-hero-image {
-    filter: sepia(0) hue-rotate(0deg) saturate(1) brightness(1) contrast(1);
-    transform: scale(1.02);
+    transform: scale(1.01);
 }
 
 .project-description-long {
-    font-size: 1rem;
+    font-size: 15px;
     color: var(--color-text);
     line-height: 1.8;
     margin: 0;
+    max-width: 72ch;
 }
 
-/* === SECTION TITLES === */
 .project-detail-container h2 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--color-primary);
-    margin: 2rem 0 1.5rem 0;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    text-shadow: var(--storm-text-glow);
+    margin: 2rem 0 1.1rem;
+    padding-top: 18px;
+    border-top: 1px solid var(--color-border-subtle);
     font-family: var(--font-primary);
+    font-size: clamp(1.3rem, 2vw, 1.7rem);
+    font-weight: 400;
+    color: var(--color-text);
 }
 
-/* === GOALS (CHRONICLE LOGS) === */
 .goals-list {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-}
-
-.dossier-log {
-    color: var(--color-text);
-    font-size: 0.95rem;
-    line-height: 1.6;
-    padding: 1rem 1.2rem;
-    background-color: var(--color-card-bg);
-    border: 1px solid var(--color-border-subtle);
-    border-left: 3px solid var(--color-primary);
-    transition: all 0.2s ease;
-    font-family: var(--font-code);
-    border-radius: 2px;
-}
-
-.log-prefix {
-    color: var(--color-primary);
-    font-family: var(--font-primary);
-    margin-right: 0.5rem;
-    font-weight: bold;
-}
-
-.dossier-log:hover {
-    border-color: var(--color-primary);
-    box-shadow: var(--storm-glow);
-    background-color: rgba(var(--color-primary-rgb), 0.03);
-}
-
-/* === TECH TAGS === */
-.card-tech-full {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin: 1rem 0;
-}
-
-.tech-tag-full {
-    background-color: rgba(var(--color-primary-rgb), 0.08);
-    color: var(--color-primary);
-    padding: 0.4rem 0.8rem;
-    border-radius: 2px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    border: 1px solid var(--color-border);
-    transition: all 0.2s ease;
-    cursor: default;
-    font-family: var(--font-code);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.tech-tag-full:hover {
-    background-color: var(--color-primary);
-    color: var(--color-background);
-    box-shadow: var(--storm-glow);
-}
-
-/* === ACTIONS === */
-.project-actions {
-    margin-top: 2rem;
-    padding-top: 2rem;
     border-top: 1px solid var(--color-border-subtle);
+}
+
+.goal-item {
+    display: grid;
+    grid-template-columns: 3rem minmax(0, 1fr);
+    gap: 12px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--color-border-subtle);
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: var(--color-text);
+}
+
+.goal-index {
+    font-size: 11px;
+    color: var(--carpet);
+    font-variant-numeric: tabular-nums;
+}
+
+.project-tech {
+    margin: 0;
+    max-width: 80ch;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--color-subtext);
+}
+
+.project-actions {
+    margin-top: 1rem;
+    padding-top: 1.6rem;
+    border-top: 1px solid var(--color-border-subtle);
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
 }
 
 .mt-5 {
     margin-top: 3rem;
 }
 
-/* === RESPONSIVE === */
 @media (max-width: 768px) {
     .projects-full-page {
-        padding: 1.5rem 1.5rem;
+        padding: 1.5rem 1.25rem;
     }
 
-    .projects-header h1 {
-        font-size: 1.8rem;
+    .project-title-row {
+        align-items: flex-start;
     }
 
-    .lead-paragraph {
-        font-size: 0.9rem;
+    .project-meta-row {
+        gap: 10px;
     }
 
     .project-hero-image {
         aspect-ratio: 4/3;
     }
 
-    .project-detail-container h2 {
-        font-size: 1.15rem;
-    }
-
-    .card-tech-full {
-        gap: 0.4rem;
-    }
-
-    .tech-tag-full {
-        font-size: 0.75rem;
-        padding: 0.3rem 0.6rem;
+    .goal-item {
+        grid-template-columns: 2rem minmax(0, 1fr);
     }
 }

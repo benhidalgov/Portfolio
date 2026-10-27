@@ -1,6 +1,8 @@
 .app-container {
     display: flex;
     min-height: 100vh;
+    position: relative;
+    z-index: 1;
 }
 
 .main-content-area {
@@ -37,18 +39,15 @@
 
 @media (max-width: 768px) {
     /* Sidebar is an off-canvas overlay, so main content area takes full width */
-    .main-content-area {
+    .main-content-area,
+    .sidebar.closed + .main-content-area,
+    .sidebar.open + .main-content-area {
         margin-left: 0;
         width: 100%;
     }
 
     .main-content-body {
         padding: 1.5rem 1.25rem;
-    }
-
-    .sidebar.open + .main-content-area {
-        margin-left: 0;
-        width: 100%;
     }
 
     .sidebar-intro-text {

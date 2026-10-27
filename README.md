@@ -1,81 +1,81 @@
-# 🚀 Portafolio | Benjamín Hidalgo
+# Benjamín Hidalgo — Portafolio
 
-Portafolio técnico construido en React, con una estética inspirada en *El Archivo de las Tormentas* (The Stormlight Archive) de Brandon Sanderson. Muestra un perfil de Ingeniería en Informática con enfoque en desarrollo Full-Stack, infraestructura Cloud (AWS/Azure) y datos.
+Portafolio técnico construido en React con una estética **dreamcore / ethereal**: niebla, auroras suaves, una puerta de luz y un suelo ajedrezado que se pierde en la oscuridad. El contenido es profesional; la atmósfera es liminal.
 
-El diseño usa alto contraste (Dark Mode), tipografía `Cinzel`/`Raleway` y glifos de los Caballeros Radiantes para reflejar rigor técnico.
-
-## Stack Tecnológico
+## Stack
 
 | Categoría | Tecnologías |
 | :--- | :--- |
 | **Frontend** | React 19, React Router DOM 7, JavaScript (ES6+) |
-| **Animación / 3D** | Framer Motion, Three.js (fondo 3D de la home) |
+| **Animación** | CSS transitions/keyframes |
 | **Build** | Vite 7 |
-| **SEO** | react-helmet-async |
+| **SEO** | Metadatos dinámicos con `SEO.jsx` |
 | **Estilos** | CSS con variables (`src/styles/variables.css`) |
 
-## Estructura del Proyecto
+Sin Three.js, sin librerías de animación y sin imágenes de fondo: la atmósfera se construye con gradientes, `backdrop-filter`, SVG y grano.
+
+## Estructura
 
 ```
 src/
-├── main.jsx                  # Entrada (HashRouter + HelmetProvider)
-├── App.jsx                   # Enrutado y selección de layout
-├── index.css                 # Estilos globales + tema Stormlight
-├── Context/
-│   └── ThemeContext.jsx      # Tema DARK/LIGHT (persistido en localStorage)
+├── main.jsx                  # Entrada
+├── App.jsx                   # Rutas + layout
+├── index.css                 # Base global y tokens visuales
+├── Context/ThemeContext.jsx  # Nocturno / Diurno
 ├── Pages/
-│   ├── Home/KageHome.jsx     # Landing — experiencia "Kage" (canvas 3D + scroll)
-│   ├── about/about.jsx       # Sobre mí / stack de habilidades
-│   ├── Projects/             # Galería de proyectos y detalle por categoría
-│   └── Next/Next.jsx         # Próximos pasos / proyectos futuros
+│   ├── Home/KageHome.jsx     # Landing liminal
+│   ├── about/about.jsx       # Perfil y capacidades
+│   └── Projects/             # Galería y dossier por proyecto
 ├── Components/
-│   ├── Sidebar/              # Navegación lateral (páginas internas)
-│   ├── Footer/
-│   ├── SEO/
-│   ├── Glyphs/RadiantGlyphs.jsx  # Glifos de las Órdenes (SVG inline)
-│   └── Kage*/                # KageNav, KageRail, KageCursor, KageCanvas, KagePreloader
+│   ├── Atmosphere/           # Aurora, nubes, suelo y puerta
+│   ├── Umbral/               # Interludio entre Proyectos y Contacto
+│   ├── CustomCursor/         # Orbe de luz
+│   ├── EtherealMark/         # Logotipo
+│   ├── KageNav/ KageRail/    # Navegación
+│   ├── Sidebar/ Footer/      # Chrome interno
+│   ├── Loading/              # Umbral de carga
+│   ├── ProjectThumb/         # Miniaturas
+│   └── SEO/
 ├── data/
-│   ├── project.jsx           # Proyectos principales
-│   ├── categories.js         # Detalle por categoría
-│   └── skills.js             # Habilidades (home y about)
-└── styles/                   # CSS por sección
+│   ├── projects.js
+│   └── skills.js
+└── styles/                   # Tokens y CSS por página
 ```
 
 ## Rutas
 
 | Ruta | Descripción |
 | :--- | :--- |
-| `/` | Landing (Kage) |
-| `/about` | Sobre mí |
+| `/` | Landing liminal |
+| `/about` | Perfil |
 | `/projects` | Galería de proyectos |
-| `/projects/:categoryId` | Detalle de un proyecto |
-| `/Next` | Próximos proyectos |
+| `/projects/:slug` | Dossier de proyecto |
 
-## Ejecución Local
+## Ejecución
 
 ```bash
-# 1. Clonar
 git clone https://github.com/benhidalgov/Portfolio.git
 cd Portfolio
-
-# 2. Instalar dependencias
 npm install
-
-# 3. Ejecutar
 npm run dev
 ```
 
 La aplicación se abre en `http://localhost:5173`.
 
-## Scripts Disponibles
+## Scripts
 
 | Comando | Descripción |
 | :--- | :--- |
 | `npm run dev` | Servidor de desarrollo |
 | `npm run build` | Build de producción |
 | `npm run lint` | ESLint |
+| `npm run test` | Tests |
 | `npm run preview` | Previsualizar el build |
+
+## Accesibilidad y movimiento
+
+El sitio respeta `prefers-reduced-motion`: desactiva auroras, suelo, cursor orbe y revelados animados. El cursor personalizado solo se activa en punteros finos; en táctil se usa el nativo.
 
 ## Deploy
 
-El proyecto usa `HashRouter`, por lo que los deep-links (`/#/projects`, `/#/about`) funcionan en cualquier hosting estático (Vercel, GitHub Pages, Netlify) sin configuración adicional de rewrites.
+El proyecto usa `HashRouter`, por lo que los deep-links funcionan en cualquier hosting estático (Vercel, GitHub Pages, Netlify) sin rewrites adicionales.

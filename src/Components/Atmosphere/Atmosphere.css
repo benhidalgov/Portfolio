@@ -1,0 +1,311 @@
+/* ============================================================= ATMOSPHERE
+   Capas fijas: aurora, nubes, escaneo, grano y viñeta. */
+
+.atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(80% 60% at 50% 115%, rgba(var(--dream-mist-rgb), 0.08), transparent 70%),
+    var(--color-background);
+}
+
+/* --- Aurora: tres luces lentas --- */
+.atmosphere__aurora {
+  position: absolute;
+  width: min(62vw, 900px);
+  height: min(62vw, 900px);
+  min-width: 420px;
+  min-height: 420px;
+  border-radius: 50%;
+  filter: blur(68px);
+  opacity: 0.32;
+  will-change: transform;
+}
+
+.atmosphere__aurora--lilac {
+  top: -18%;
+  left: -8%;
+  background: radial-gradient(circle, rgba(var(--dream-lilac-rgb), 0.55), transparent 68%);
+  animation: aurora-drift-a 42s var(--ease-float) infinite alternate;
+}
+
+.atmosphere__aurora--blush {
+  top: 18%;
+  right: -18%;
+  background: radial-gradient(circle, rgba(var(--dream-blush-rgb), 0.42), transparent 68%);
+  animation: aurora-drift-b 51s var(--ease-float) infinite alternate;
+}
+
+.atmosphere__aurora--mist {
+  bottom: -32%;
+  left: 22%;
+  background: radial-gradient(circle, rgba(var(--dream-mist-rgb), 0.38), transparent 68%);
+  animation: aurora-drift-c 58s var(--ease-float) infinite alternate;
+}
+
+@keyframes aurora-drift-a {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(8vw, 6vh, 0) scale(1.12); }
+}
+@keyframes aurora-drift-b {
+  0%   { transform: translate3d(0, 0, 0) scale(1.05); }
+  100% { transform: translate3d(-7vw, 9vh, 0) scale(0.94); }
+}
+@keyframes aurora-drift-c {
+  0%   { transform: translate3d(0, 0, 0) scale(0.96); }
+  100% { transform: translate3d(5vw, -7vh, 0) scale(1.1); }
+}
+
+/* --- Nubes interiores: manchas muy difusas --- */
+.atmosphere__clouds {
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+}
+
+.atmosphere__cloud {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  filter: blur(44px);
+  background: rgba(var(--dream-pearl-rgb), 0.22);
+}
+
+[data-theme="light"] .atmosphere__cloud {
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.atmosphere__cloud--one {
+  width: 42vw;
+  height: 14vw;
+  top: 16%;
+  left: 8%;
+  animation: cloud-drift 48s var(--ease-float) infinite alternate;
+}
+
+.atmosphere__cloud--two {
+  width: 34vw;
+  height: 12vw;
+  top: 48%;
+  right: 4%;
+  opacity: 0.7;
+  animation: cloud-drift 58s var(--ease-float) -16s infinite alternate-reverse;
+}
+
+.atmosphere__cloud--three {
+  width: 50vw;
+  height: 16vw;
+  bottom: 8%;
+  left: 26%;
+  opacity: 0.55;
+  animation: cloud-drift 64s var(--ease-float) -27s infinite alternate;
+}
+
+@keyframes cloud-drift {
+  0%   { transform: translate3d(-2vw, 1vh, 0) scale(1); }
+  100% { transform: translate3d(4vw, -2vh, 0) scale(1.08); }
+}
+
+/* --- VHS: líneas de escaneo muy suaves --- */
+.atmosphere__scanlines {
+  position: absolute;
+  inset: 0;
+  opacity: 0.24;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--scanline) 0,
+    var(--scanline) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  mix-blend-mode: soft-light;
+}
+
+@keyframes scanline-drift {
+  from { transform: translateY(0); }
+  to   { transform: translateY(4px); }
+}
+
+/* --- Grano --- */
+.atmosphere__grain {
+  position: absolute;
+  inset: -1px;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+}
+
+/* --- Viñeta --- */
+.atmosphere__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    125% 95% at 50% 42%,
+    transparent 38%,
+    rgba(var(--color-bg-rgb), 0.5) 100%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atmosphere__aurora,
+  .atmosphere__cloud,
+  .atmosphere__scanlines {
+    animation: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .atmosphere__aurora {
+    width: 100vw;
+    height: 100vw;
+    min-width: 0;
+    min-height: 0;
+    filter: blur(38px);
+    opacity: 0.2;
+  }
+  .atmosphere__aurora--mist,
+  .atmosphere__clouds { display: none; }
+  .atmosphere__grain { opacity: 0.02; }
+  .atmosphere__scanlines { opacity: 0.14; }
+}
+
+/* ============================================================= DREAM FLOOR */
+.dream-floor {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 52vh;
+  overflow: hidden;
+  pointer-events: none;
+  perspective: 620px;
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 34%, #000 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 34%, #000 100%);
+  opacity: 0.9;
+}
+
+.dream-floor__horizon {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 36%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(var(--color-primary-rgb), 0.4), transparent);
+  filter: blur(1px);
+}
+
+.dream-floor__grid {
+  position: absolute;
+  left: -60%;
+  right: -60%;
+  bottom: -18%;
+  height: 150%;
+  background-image:
+    linear-gradient(rgba(var(--color-primary-rgb), 0.22) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--color-primary-rgb), 0.22) 1px, transparent 1px);
+  background-size: 74px 74px;
+  transform: rotateX(66deg);
+  transform-origin: center bottom;
+  will-change: transform;
+  animation: floor-drift 28s linear infinite;
+}
+
+@keyframes floor-drift {
+  from { transform: translate3d(0, 0, 0) rotateX(66deg); }
+  to   { transform: translate3d(0, 22px, 0) rotateX(66deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dream-floor__grid { animation: none; }
+}
+
+@media (max-width: 700px) {
+  .dream-floor {
+    height: 38vh;
+    opacity: 0.6;
+  }
+}
+
+/* ============================================================= DOORWAY */
+.doorway {
+  position: relative;
+  width: clamp(180px, 26vw, 360px);
+  aspect-ratio: 0.58;
+  filter: drop-shadow(0 0 70px rgba(var(--dream-lilac-rgb), 0.28));
+}
+
+.doorway__frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 50% 50% 8px 8px / 32% 32% 8px 8px;
+  border: 1px solid rgba(var(--dream-pearl-rgb), 0.42);
+  background:
+    radial-gradient(80% 60% at 50% 78%, rgba(var(--dream-blush-rgb), 0.82), rgba(var(--dream-lilac-rgb), 0.48) 42%, transparent 78%),
+    linear-gradient(180deg, rgba(var(--dream-mist-rgb), 0.18), rgba(var(--color-bg-rgb), 0.92));
+  box-shadow:
+    inset 0 0 60px rgba(var(--dream-blush-rgb), 0.2),
+    0 0 90px rgba(var(--dream-lilac-rgb), 0.25);
+}
+
+.doorway__frame::before {
+  content: '';
+  position: absolute;
+  inset: 10px;
+  border-radius: 50% 50% 6px 6px / 31% 31% 6px 6px;
+  border: 1px solid rgba(var(--dream-pearl-rgb), 0.22);
+}
+
+.doorway__light {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  width: 62%;
+  height: 58%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(var(--dream-blush-rgb), 0.88), rgba(var(--dream-lilac-rgb), 0.44) 45%, transparent 75%);
+  filter: blur(2px);
+  animation: doorway-breathe 9s var(--ease-float) infinite alternate;
+}
+
+.doorway__haze {
+  position: absolute;
+  inset: auto -10% 0;
+  height: 32%;
+  background: radial-gradient(ellipse at 50% 100%, rgba(var(--dream-blush-rgb), 0.34), transparent 68%);
+  filter: blur(8px);
+}
+
+.doorway__glow {
+  position: absolute;
+  inset: -14%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--dream-lilac-rgb), 0.22), transparent 68%);
+  filter: blur(30px);
+  z-index: -1;
+}
+
+@keyframes doorway-breathe {
+  from { opacity: 0.75; transform: translateX(-50%) scale(0.96); }
+  to   { opacity: 1;    transform: translateX(-50%) scale(1.06); }
+}
+
+[data-theme="light"] .doorway__frame {
+  background:
+    radial-gradient(80% 60% at 50% 78%, #FFF5F5, rgba(var(--dream-blush-rgb), 0.2) 45%, transparent 80%),
+    linear-gradient(180deg, rgba(var(--dream-mist-rgb), 0.14), rgba(251, 246, 244, 0.94));
+  border-color: rgba(41, 17, 22, 0.18);
+  box-shadow:
+    inset 0 0 60px rgba(255, 255, 255, 0.7),
+    0 0 90px rgba(var(--dream-lilac-rgb), 0.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .doorway__light { animation: none; }
+}

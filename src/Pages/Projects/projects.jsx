@@ -6,22 +6,20 @@ import ProjectThumb from '../../Components/ProjectThumb/ProjectThumb.jsx';
 
 function ProjectsFull() {
   return (
-    <section className="projects-summary" style={{padding: '2rem 3rem'}}>
+    <section className="projects-summary">
       <SEO 
         title="Proyectos | Benjamín Hidalgo" 
         description="Directorio completo de repositorios y proyectos técnicos."
       />
       <div className="summary-header">
-        <h2>CRÓNICAS // REGISTRO_DE_JURAMENTOS</h2>
-        <span style={{color: 'var(--color-primary)', fontSize: '0.8rem', letterSpacing: '0.2em'}}>[ VÍNCULO NAHEL CONECTADO ]</span>
+        <h2>Proyectos</h2>
+        <span>Casos de estudio</span>
       </div>
 
       <div className="summary-grid">
         {projects.map((project) => (
           <div key={project.id} className="project-card-summary data-slate" data-rv="up">
-            <div className="slate-decorator-top"></div>
             <ProjectThumb project={project} className="project-image" />
-            <div className="scanline-hover"></div>
             <div className="card-content">
               <h3>{project.title}</h3>
               <p>{project.summary}</p>
@@ -34,10 +32,9 @@ function ProjectsFull() {
                 {project.slug && (
                   <Link 
                     to={`/projects/${project.slug}`}
-                    className="details-link"
-                    style={{ color: 'var(--color-primary)' }}
+                    className="details-link"
                   >
-                    [ VER CASO DE ESTUDIO ]
+                    Ver caso
                   </Link>
                 )}
                 {project.link && (
@@ -45,10 +42,9 @@ function ProjectsFull() {
                     href={project.link} 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="details-link"
-                    style={{ color: '#10b981' }}
+                    className="details-link"
                   >
-                    [ DEMO EN VIVO ↗ ]
+                    Demo
                   </a>
                 )}
                 {project.github && (
@@ -58,7 +54,7 @@ function ProjectsFull() {
                     rel="noopener noreferrer" 
                     className="details-link"
                   >
-                    [ GITHUB ]
+                    GitHub
                   </a>
                 )}
               </div>

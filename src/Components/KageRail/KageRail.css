@@ -1,4 +1,4 @@
-.kage-rail {
+﻿.kage-rail {
   position: fixed;
   right: calc(var(--pad, 40px) - 6px);
   top: 50%;
@@ -25,8 +25,8 @@
 }
 .kage-rail-btn.on i {
   width: 22px;
-  background: var(--color-primary, #00d4ff);
-  box-shadow: var(--storm-glow);
+  background: var(--color-primary, #CDBBFF);
+  box-shadow: var(--soft-glow);
 }
 .kage-rail-btn:hover i {
   width: 22px;
@@ -36,3 +36,5 @@
 @media (max-width: 768px) {
   .kage-rail { display: none; }
 }
+
+

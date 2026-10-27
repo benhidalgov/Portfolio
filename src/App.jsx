@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 
 // Estilos Globales
@@ -8,14 +8,12 @@ import './styles/layout.css';
 // ThemeProvider
 import { ThemeProvider } from './Context/ThemeContext.jsx';
 
-// Sound utility
-import { playTerminalBip } from './utils/sound.js';
-
 // Components for non-home pages (sidebar layout)
 import Sidebar from './Components/Sidebar/Sidebar.jsx';
 import Footer from './Components/Footer/Footer.jsx';
 import Loading from './Components/Loading/Loading.jsx';
 import CustomCursor from './Components/CustomCursor/CustomCursor.jsx';
+import Atmosphere from './Components/Atmosphere/Atmosphere.jsx';
 import { useReveal } from './utils/useReveal.js';
 
 // Lazy-loaded pages
@@ -30,10 +28,6 @@ function SidebarLayout({ children }) {
 
   return (
     <div className="app-container">
-      {/* Atmósfera compartida con el Home (definidas en index.css). */}
-      <div id="vignette" />
-      <div id="grain" />
-
       <Sidebar />
       <div className="main-content-area">
         <div className="main-content-body" data-route={location.pathname}>
@@ -60,20 +54,9 @@ function App() {
   const location = useLocation();
   const isHome = location.pathname === '/';
 
-  // Global sound on interactive clicks (non-home pages only)
-  useEffect(() => {
-    if (isHome) return;
-    const handleClick = (e) => {
-      if (e.target.closest('a') || e.target.closest('button')) {
-        playTerminalBip();
-      }
-    };
-    document.addEventListener('click', handleClick);
-    return () => document.removeEventListener('click', handleClick);
-  }, [isHome]);
-
   return (
     <ThemeProvider>
+      <Atmosphere />
       <CustomCursor />
       {isHome ? (
         // ── Kage full-page experience (no sidebar, own nav)
@@ -91,8 +74,8 @@ function App() {
             <Route path="/projects/:categoryId" element={<CategoryDetail />} />
             <Route path="*" element={
               <div style={{ padding: '50px', textAlign: 'center' }}>
-                <h1 className="glitch-text" data-text="404">404</h1>
-                <p>Página no encontrada.</p>
+                <h1>404</h1>
+                <p>Esta habitación no existe.</p>
               </div>
             } />
           </Routes>

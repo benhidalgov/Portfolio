@@ -1,0 +1,121 @@
+/* Umbral.css — interludio liminal */
+
+.umbral {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: var(--section-pad) var(--pad);
+  overflow: hidden;
+  border-top: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.umbral::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(60% 70% at 72% 55%, rgba(var(--dream-lilac-rgb), 0.12), transparent 70%),
+    linear-gradient(180deg, rgba(var(--color-bg-rgb), 0.35), transparent 30%, rgba(var(--color-bg-rgb), 0.55));
+  pointer-events: none;
+  z-index: 1;
+}
+
+.umbral__scene {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.umbral__door {
+  position: absolute;
+  right: 10%;
+  bottom: 12%;
+  width: min(30vw, 340px);
+  opacity: 0.95;
+}
+
+.umbral__floor {
+  height: 58vh;
+  opacity: 0.7;
+}
+
+.umbral__content {
+  position: relative;
+  z-index: 2;
+  max-width: 620px;
+}
+
+.umbral__title {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: clamp(2.2rem, 4.6vw, 4.4rem);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  color: var(--color-text);
+  max-width: 14ch;
+}
+
+.umbral__copy {
+  margin: 1.4rem 0 0;
+  max-width: 46ch;
+  font-family: var(--font-sans);
+  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+  line-height: 1.75;
+  color: var(--color-subtext);
+}
+
+.umbral__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 2rem;
+  padding: 13px 22px;
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  letter-spacing: 0;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.umbral__cta:hover {
+  background: rgba(var(--color-primary-rgb), 0.08);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+@media (max-width: 900px) {
+  .umbral {
+    min-height: 88svh;
+    align-items: flex-end;
+    padding-bottom: 12vh;
+  }
+
+  .umbral__door {
+    right: 6%;
+    bottom: 22%;
+    width: min(44vw, 260px);
+    opacity: 0.55;
+  }
+
+  .umbral__content {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .umbral__door {
+    right: -6%;
+    width: 58vw;
+    opacity: 0.4;
+  }
+  .umbral__title {
+    max-width: 16ch;
+  }
+}

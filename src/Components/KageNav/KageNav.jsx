@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../../Context/ThemeContext.jsx';
-import RadiantSeal from '../Glyphs/RadiantSeal.jsx';
+import EtherealMark from '../EtherealMark/EtherealMark.jsx';
 import './KageNav.css';
 
 const NAV_LINKS = [
-  { to: '/#about',    label: 'Sobre Mí',     sub: 'Radiante' },
-  { to: '/#skills',   label: 'Habilidades',  sub: 'Habilidades' },
-  { to: '/#projects', label: 'Proyectos',    sub: 'Proyectos' },
-  { to: '/#contact',  label: 'Contacto',     sub: 'Contacto' },
+  { to: '/#about',    label: 'Sobre mí' },
+  { to: '/#skills',   label: 'Herramientas' },
+  { to: '/#projects', label: 'Archivo' },
+  { to: '/#contact',  label: 'Contacto' },
 ];
 
 export default function KageNav() {
@@ -17,25 +17,30 @@ export default function KageNav() {
   const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const lastY = useRef(0);
+  const scrollFrame = useRef(null);
 
   useEffect(() => {
     const onScroll = () => {
-      const y = window.scrollY;
-      setStuck(y > 20);
-      setHidden(y > lastY.current && y > 200);
-      lastY.current = y;
+      if (scrollFrame.current !== null) return;
+      scrollFrame.current = requestAnimationFrame(() => {
+        const y = window.scrollY;
+        setStuck(y > 20);
+        setHidden(y > lastY.current && y > 200);
+        lastY.current = y;
+        scrollFrame.current = null;
+      });
     };
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (scrollFrame.current !== null) cancelAnimationFrame(scrollFrame.current);
+    };
   }, []);
 
-  // Lock body scroll when mobile menu open
   useEffect(() => {
     document.documentElement.classList.toggle('nav-open', menuOpen);
   }, [menuOpen]);
 
-  // Enlaces reales: la URL guarda la sección (/#skills) y el scroll es inmediato
-  // cuando ya estamos en el home, sin depender de un cambio de hash.
   const goToSection = (id) => {
     setMenuOpen(false);
     const el = document.getElementById(id);
@@ -47,43 +52,35 @@ export default function KageNav() {
       className={`kage-nav ${stuck ? 'stuck' : ''} ${hidden ? 'hide' : ''} ${menuOpen ? 'menu-open' : ''}`}
       id="kage-nav"
     >
-      {/* Brand: Sello Heráldico Radiante */}
-      <Link to="/" className="kage-brand" onClick={() => setMenuOpen(false)} aria-label="Inicio - Benjamín Hidalgo">
+      <Link to="/" className="kage-brand" onClick={() => setMenuOpen(false)} aria-label="Inicio — Benjamín Hidalgo">
         <div className="kage-brand-glyph-wrap">
-          <RadiantSeal size={34} className="kage-brand-glyph" />
+          <EtherealMark size={32} className="kage-brand-glyph" />
         </div>
         <span className="kage-brand-tx">
-          <b>BHidalgo</b>
-          <i>{theme === 'DARK' ? 'Corredor del Viento' : 'Tejedor de Luz'}</i>
+          <b>Benjamín Hidalgo</b>
+          <i>Ingeniería y diseño</i>
         </span>
       </Link>
 
-      {/* Desktop nav links */}
       <nav className="kage-nav-links" id="kage-navlinks">
-        {NAV_LINKS.map(({ to, label, sub }) => (
+        {NAV_LINKS.map(({ to, label }) => (
           <Link
             key={to}
             to={to}
             className="kage-nav-link"
             onClick={() => goToSection(to.split('#')[1])}
           >
-            <span>{label}</span>
-            <span className="alt">{sub}</span>
+            {label}
           </Link>
         ))}
-        {/* Other pages */}
-        <Link to="/projects" className="kage-nav-link" onClick={() => setMenuOpen(false)}>
-          <span>Portafolio</span>
-          <span className="alt">Archivo</span>
-        </Link>
-        <Link to="/about" className="kage-nav-link" onClick={() => setMenuOpen(false)}>
-          <span>Dossier</span>
-          <span className="alt">Perfil</span>
-        </Link>
       </nav>
 
-      {/* Theme toggle */}
-      <button className="kage-theme-btn" onClick={toggleTheme} title={theme === 'DARK' ? 'Modo Luz (Tejedor de Luz)' : 'Alta Tormenta (Corredor del Viento)'}>
+      <button
+        className="kage-theme-btn"
+        onClick={toggleTheme}
+        title={theme === 'DARK' ? 'Cambiar a modo diurno' : 'Cambiar a modo nocturno'}
+        aria-label={theme === 'DARK' ? 'Cambiar a modo diurno' : 'Cambiar a modo nocturno'}
+      >
         {theme === 'DARK' ? (
           <svg viewBox="0 0 20 20" fill="none" width="16" height="16">
             <circle cx="10" cy="10" r="4" stroke="currentColor" strokeWidth="1.5"/>
@@ -96,10 +93,9 @@ export default function KageNav() {
         )}
       </button>
 
-      {/* Hamburger */}
       <button
         className={`kage-burger ${menuOpen ? 'active' : ''}`}
-        aria-label="Menu"
+        aria-label="Abrir menú"
         onClick={() => setMenuOpen(!menuOpen)}
       >
         <i /><i />

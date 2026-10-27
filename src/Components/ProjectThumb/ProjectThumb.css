@@ -7,8 +7,9 @@ div.project-thumb {
   padding: clamp(14px, 2.2vw, 28px);
   overflow: hidden;
   background:
-    radial-gradient(120% 100% at 80% 0%, rgba(var(--color-primary-rgb), .14), transparent 60%),
-    var(--color-card-bg);
+    radial-gradient(circle at 76% 18%, rgba(var(--dream-lilac-rgb), .18), transparent 34%),
+    linear-gradient(145deg, rgba(var(--dream-mist-rgb), .12), transparent 60%),
+    var(--surface);
   border-bottom: 1px solid var(--color-border-subtle);
 }
 
@@ -29,10 +30,123 @@ div.project-thumb {
 
 .project-thumb-tech {
   position: relative;
-  font-family: var(--font-code);
-  font-size: 10px;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--color-primary);
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0;
+  color: var(--color-subtext);
   opacity: .8;
+}
+
+.project-thumb__kanban,
+.project-thumb__knowledge,
+.project-thumb__terminal {
+  position: absolute;
+  inset: clamp(20px, 5%, 38px);
+  font-family: var(--font-code);
+  font-size: clamp(8px, .72vw, 11px);
+  color: rgba(var(--dream-pearl-rgb), .72);
+}
+
+/* TaskManager: tres columnas y tickets, no una inicial genérica. */
+.project-thumb__kanban {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(8px, 1.3vw, 18px);
+}
+
+.project-thumb__kanban-column {
+  display: grid;
+  align-content: start;
+  gap: clamp(6px, 1vw, 11px);
+  min-width: 0;
+}
+
+.project-thumb__kanban-column > span {
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(var(--dream-pearl-rgb), .2);
+  font-size: .76em;
+  letter-spacing: .12em;
+}
+
+.project-thumb__kanban-column i {
+  display: block;
+  height: clamp(22px, 3.3vw, 42px);
+  border: 1px solid rgba(var(--dream-pearl-rgb), .14);
+  border-radius: 2px;
+  background: linear-gradient(120deg, rgba(var(--dream-pearl-rgb), .08), transparent);
+}
+
+.project-thumb__kanban-column i.active {
+  border-color: rgba(var(--color-primary-rgb), .66);
+  background: linear-gradient(120deg, rgba(var(--color-primary-rgb), .3), rgba(var(--dream-lilac-rgb), .06));
+  box-shadow: 0 0 24px rgba(var(--color-primary-rgb), .16);
+}
+
+/* KGB: buscador, índice y documento con líneas de lectura. */
+.project-thumb__knowledge {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: clamp(12px, 2vw, 22px);
+}
+
+.project-thumb__search {
+  padding: clamp(8px, 1.1vw, 13px);
+  border: 1px solid rgba(var(--dream-pearl-rgb), .22);
+  color: var(--dream-pearl);
+  background: rgba(var(--color-bg-rgb), .32);
+}
+
+.project-thumb__search span { margin-left: 8px; opacity: .64; }
+
+.project-thumb__knowledge-grid {
+  display: grid;
+  grid-template-columns: .72fr 1.45fr;
+  gap: clamp(12px, 2vw, 28px);
+}
+
+.project-thumb__index-lines,
+.project-thumb__document-lines {
+  display: grid;
+  align-content: start;
+  gap: clamp(6px, .8vw, 10px);
+  padding: clamp(7px, 1vw, 12px);
+  border-left: 1px solid rgba(var(--dream-pearl-rgb), .16);
+}
+
+.project-thumb__index-lines i,
+.project-thumb__document-lines i {
+  display: block;
+  height: 1px;
+  background: rgba(var(--dream-pearl-rgb), .34);
+}
+
+.project-thumb__index-lines i:nth-child(2),
+.project-thumb__document-lines i:nth-child(3) { width: 72%; }
+.project-thumb__index-lines i:nth-child(3),
+.project-thumb__document-lines i:nth-child(5) { width: 52%; }
+.project-thumb__knowledge small,
+.project-thumb__terminal small { color: var(--color-primary); letter-spacing: .1em; }
+
+/* Inventario: una respuesta API en formato terminal. */
+.project-thumb__terminal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(10px, 1.7vw, 20px);
+  padding: clamp(14px, 2vw, 28px);
+  border: 1px solid rgba(var(--dream-pearl-rgb), .18);
+  background: rgba(var(--color-bg-rgb), .46);
+}
+
+.project-thumb__terminal p { display: flex; justify-content: space-between; margin: 0; }
+.project-thumb__terminal p span { color: var(--color-primary); font-size: .85em; }
+.project-thumb__terminal code { color: rgba(var(--dream-pearl-rgb), .84); }
+.project-thumb__terminal code em { color: var(--color-primary); font-style: normal; margin-right: 8px; }
+.project-thumb__terminal-result { display: flex; align-items: center; gap: 8px; color: var(--color-primary) !important; }
+.project-thumb__terminal-result i { height: 1px; flex: 1; background: currentColor; opacity: .45; }
+
+@media (max-width: 600px) {
+  .project-thumb__kanban,
+  .project-thumb__knowledge,
+  .project-thumb__terminal { inset: 18px; }
 }

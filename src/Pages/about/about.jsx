@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { aboutSkills as skillCategories, certificationsList } from '../../data/skills.js';
 import '../../styles/about.css';
-import '../../Components/Skills/Skills.css'; // Reutilizar estilos de insignias y glifos
 import SEO from '../../Components/SEO/SEO.jsx';
 
-// Iconos SVG para habilidades de Sobre Mí
 const techIcons = {
   'AWS': '/icons/amazonwebservices-original.svg',
   'Azure': '/icons/azure-original.svg',
@@ -21,96 +19,86 @@ const techIcons = {
   'Bash Scripting': '/icons/bash-original.svg',
 };
 
-function SkillTag({ skill }) {
-  const icon = techIcons[skill];
-  const label = skill.trim();
-
-  return (
-    <div className="skill-tag">
-      {icon && (
-        <img
-          src={icon}
-          alt=""
-          aria-hidden="true"
-          className="skill-tag-icon"
-          onError={(e) => { e.target.style.display = 'none'; }}
-        />
-      )}
-      <span className="skill-tag-label">{label}</span>
-    </div>
-  );
-}
-
 function About() {
-  const [hoveredCard, setHoveredCard] = useState(null);
-
   return (
     <main className="about-page">
-      <SEO 
-        title="Sobre Mí | Benjamín Hidalgo" 
-        description="Conoce más sobre mi perfil como Ingeniero en Informática, mis habilidades en Cloud, Data y Desarrollo, y mis certificaciones profesionales verificadas."
+      <SEO
+        title="Perfil | Benjamín Hidalgo"
+        description="Perfil de Benjamín Hidalgo como Ingeniero en Informática: capacidades en Cloud, Data y Desarrollo, y certificaciones profesionales."
       />
-      
-      {/* 1. Descripción del Perfil Integral */}
-      <h1 data-rv="up">REGISTRO_CRÓNICA // Benjamín Hidalgo</h1>
-      <p className="lead-paragraph" data-rv="up">
-        <strong>CRÓNICA DEL RADIANTE:</strong> Ingeniero en Informática especializado en la construcción de arquitecturas escalables, seguridad de plataformas corporativas y desarrollo de ecosistemas Full-Stack. Mi flujo operativo combina el estricto rigor del tipado (TypeScript y Go) con despliegues ágiles, garantizando sistemas resilientes ante altos volúmenes de datos. Mi objetivo es transformar la deuda técnica y las amenazas de seguridad en bases estructurales inquebrantables.
+
+      <header className="about-head">
+        <h1>Benjamín Hidalgo</h1>
+        <p className="about-kicker">Perfil profesional</p>
+      </header>
+
+      <p className="about-lead">
+        Estudio Ingeniería Informática y trabajo en arquitectura de sistemas,
+        desarrollo Full-Stack y ciberseguridad. Me interesa lo que se siente
+        simple porque está bien construido.
       </p>
-      
-      {/* 2. Mapeo de Habilidades por Categoría */}
-      <h2 data-rv="up">Arsenal Técnico & Especialidades</h2>
-      <div className="skills-grid about-skills-grid">
-        {skillCategories.map((category, index) => (
-          <div 
-            key={index} 
-            className={`skill-category-card ${hoveredCard === index ? 'is-hovered' : ''}`}
-            data-rv="up"
-            onMouseEnter={() => setHoveredCard(index)}
-            onMouseLeave={() => setHoveredCard(null)}
-          >
-            <div className="card-scan-line" />
-            <div className="card-corner card-corner--tl" />
-            <div className="card-corner card-corner--br" />
 
-            <div className="category-header">
-              <span className="category-index">ORD_{String(index + 1).padStart(2, '0')}</span>
-              <span className="category-decorator">◆</span>
-              <h3 className="category-title">{category.title.toUpperCase()}</h3>
-            </div>
+      <p className="about-body">
+        Mi trabajo combina el rigor del tipado (TypeScript y Go) con despliegues
+        ágiles. Construyo sistemas resilientes, mantengo la deuda técnica a raya
+        y diseño interfaces que no piden atención innecesaria.
+      </p>
 
-            <div className="skill-tags-container">
-              {category.skills.map((skill, i) => (
-                <SkillTag key={i} skill={skill} />
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* 3. Juramentos y Acreditaciones Profesionales */}
-      <section className="about-certifications-section" style={{ marginTop: '4rem' }}>
-        <div className="cert-section-header" data-rv="fade">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-            <span style={{ color: 'var(--color-primary)' }}>◆</span>
-            <span className="cert-section-label">JURAMENTOS Y ACREDITACIONES PROFESIONALES</span>
-          </div>
-          <span className="cert-count">{certificationsList.length} CERTIFICACIONES VERIFICADAS</span>
+      <section className="about-section">
+        <div className="about-section-head">
+          <h2>Capacidades</h2>
+          <span className="about-section-note">Herramientas y especialidades</span>
         </div>
 
-        <div className="cert-grid">
-          {certificationsList.map((cert) => (
-            <div key={cert.code} className="cert-badge" data-rv="up">
-              <span className="cert-badge-prefix">[{cert.code}]</span>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.15rem' }}>
-                <span className="cert-badge-label" style={{ fontWeight: 600 }}>{cert.name}</span>
-                <span style={{ fontSize: '0.68rem', color: 'var(--color-primary)', opacity: 0.85, letterSpacing: '0.06em' }}>
-                  Emisor: {cert.issuer}
-                </span>
-              </div>
-            </div>
+        <div className="about-directory">
+          {skillCategories.map((category) => (
+            <section className="about-directory-col" key={category.title}>
+              <h3>{category.title}</h3>
+              <ul>
+                {category.skills.map((skill) => {
+                  const icon = techIcons[skill];
+                  return (
+                    <li key={skill}>
+                      {icon && (
+                        <img
+                          src={icon}
+                          alt=""
+                          aria-hidden="true"
+                          className="about-skill-icon"
+                          onError={(e) => { e.target.style.display = 'none'; }}
+                        />
+                      )}
+                      <span>{skill}</span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </section>
           ))}
         </div>
       </section>
+
+      <section className="about-section">
+        <div className="about-section-head">
+          <h2>Certificaciones</h2>
+          <span className="about-section-note">{certificationsList.length} verificadas</span>
+        </div>
+
+        <ul className="about-certs">
+          {certificationsList.map((cert) => (
+            <li key={cert.code} className="about-cert-row">
+              <span className="about-cert-code">{cert.code}</span>
+              <span className="about-cert-name">{cert.name}</span>
+              <span className="about-cert-issuer">{cert.issuer}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <p className="about-status">
+        <span className="about-status-dot" />
+        Disponible para colaborar
+      </p>
     </main>
   );
 }
